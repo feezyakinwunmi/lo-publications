@@ -140,10 +140,10 @@ export default function AboutPage() {
                   hidden: { opacity: 0, x: -30 },
                   visible: { opacity: 1, x: 0 },
                 }}
-                className="flex items-center gap-4 text-xl md:text-2xl font-medium"
+                className="flex items-center gap-4 text-xl text-black md:text-2xl font-medium"
               >
                 <BookOpen className="text-red-900 flex-shrink-0" size={32} />
-                <span>{item}</span>
+                <span className="text-black">{item}</span>
               </motion.li>
             ))}
           </motion.ul>

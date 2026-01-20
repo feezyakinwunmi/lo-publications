@@ -223,7 +223,7 @@ export default function SubmitManuscriptPage() {
               <li>A sample chapter or 10–15 pages of your manuscript</li>
               <li>Why you believe LO Publications is the right home for your message</li>
             </ol>
-            <p className="mt-10 text-lg">
+            <p className="mt-10 text-lg text-black">
               Fill out the form below — we'll receive your submission securely.
             </p>
           </div>

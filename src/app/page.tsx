@@ -122,7 +122,7 @@ export default function Home() {
   return (
     <main className="min-h-screen mt-20 md:mt-0">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-red-900/10 via-white to-black/5 overflow-hidden">
+      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-white via-white to-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/book.jpg')] bg-cover bg-center opacity-10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-32 grid md:grid-cols-2 gap-12 items-center">
