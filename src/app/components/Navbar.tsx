@@ -39,14 +39,19 @@ export default function Navbar() {
           <Link href="/">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative px-6 py-3 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-xl overflow-hidden group"
+              className="relative px-1 py-1 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-xl overflow-hidden group"
             >
               {/* Liquid ripple effect on hover */}
               <span className="absolute inset-0 bg-gradient-to-r from-red-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <span className="absolute inset-0 rounded-full border-2 border-red-900/40 scale-0 group-hover:scale-125 opacity-0 group-hover:opacity-30 transition-all duration-700" />
               <span className="relative text-2xl font-bold text-white drop-shadow-lg">
-                LO Publications
-              </span>
+                {/* image logo */}
+                <img
+                  src="/logolop.png"
+                  alt="LO Publications Logo"
+                  className="w-18 h-auto"
+                />
+             </span>
             </motion.div>
           </Link>
 

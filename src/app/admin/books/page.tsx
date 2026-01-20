@@ -274,7 +274,7 @@ export default function AdminBooks() {
                   bucket="book-covers"  // Change to your exact bucket name!
                   onUploadComplete={(url) => setCoverUrl(url || "")}
                   currentUrl={coverUrl}
-                  accept="image/*"
+                  accept={{ "image/*": [".jpg", ".jpeg", ".png"] }}
                   maxSizeMB={5}
                   label="Drag & drop cover image (JPG/PNG)"
                 />

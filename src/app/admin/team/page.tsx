@@ -161,7 +161,11 @@ export default function AdminTeam() {
 
   const updateSocialLink = (index: number, field: "type" | "url", value: string) => {
     const newSocials = [...socials];
-    newSocials[index][field] = value;
+    if (field === "type") {
+      newSocials[index][field] = value as SocialLink["type"];
+    } else {
+      newSocials[index][field] = value;
+    }
     setSocials(newSocials);
   };
 

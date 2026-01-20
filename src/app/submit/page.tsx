@@ -341,8 +341,11 @@ export default function SubmitManuscriptPage() {
                         // We'll handle this in onSubmit
                       }}
                       currentUrl={null}
-                      accept=".pdf,.doc,.docx"
-                      maxSizeMB={20}
+accept={{
+  "application/pdf": [".pdf"],
+  "application/msword": [".doc"],
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"]
+}}                      maxSizeMB={20}
                       label="Drag & drop your sample chapter (PDF, DOC, DOCX)"
                     />
                   </div>
