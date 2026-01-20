@@ -47,7 +47,7 @@ export default async function BlogPostPage({
   const readingTime = estimateReadingTime(post.content);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50 mt-20">
+    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50 mt-30 md:mt-20">
       {/* Back button + share */}
       <div className="max-w-5xl mx-auto px-6 pt-8 md:pt-12 flex justify-between items-left">
         <Link
@@ -100,11 +100,11 @@ export default async function BlogPostPage({
           className="
             prose prose-lg md:prose-xl lg:prose-2xl max-w-none 
             prose-headings:text-black prose-headings:font-bold
-            prose-p:text-gray-800 prose-p:leading-relaxed
+            prose-p:text-black prose-p:leading-relaxed
             prose-a:text-red-900 prose-a:no-underline hover:prose-a:underline
             prose-img:rounded-2xl prose-img:shadow-xl prose-img:border prose-img:border-gray-200
             prose-blockquote:border-l-4 prose-blockquote:border-red-900 prose-blockquote:pl-6 prose-blockquote:italic
-            prose-li:text-gray-800
+            prose-li:text-black text-black
           "
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
