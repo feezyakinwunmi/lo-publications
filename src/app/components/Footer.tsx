@@ -24,10 +24,10 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter/X" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61558581959123", label: "Facebook" },
+  { icon: Twitter, href: "https://x.com/Lo_Publications?fbclid=IwY2xjawPK9WlleHRuA2FlbQIxMABicmlkETFWbGx4MmxsRVphak82YXVBc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnX18qvztO5buo1JsaF1Vx-Rco_GKHZt-yyCgjUViP24RJwwjgzguj72Mwws_aem_KdlQUPgFqwejrZzFS8O2wA", label: "Twitter/X" },
+  { icon: Instagram, href: "https://www.instagram.com/lopublications/", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/lo-publications", label: "LinkedIn" },
 ];
 
 export default function Footer() {
@@ -80,13 +80,14 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="text-red-900 mt-1" size={20} />
                 <span>
-                  123 Publishing Lane, Victoria Island, Lagos, Nigeria
+1551 Lycee Place, Ottawa, K1G4B5
+
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              {/* <li className="flex items-center gap-3">
                 <Phone className="text-red-900" size={20} />
                 <span>+234 123 456 7890</span>
-              </li>
+              </li> */}
               <li className="flex items-center gap-3">
                 <Mail className="text-red-900" size={20} />
                 <a href="mailto:info@lopublications.com" className="hover:text-red-900 transition">

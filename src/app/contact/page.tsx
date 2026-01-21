@@ -169,7 +169,7 @@ export default function ContactPage() {
                   <label className="block text-gray-700 font-medium mb-2">Name *</label>
                   <input
                     {...register("name")}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="Your full name"
                   />
                   {errors.name && <p className="text-red-600 mt-1">{errors.name.message}</p>}
@@ -180,7 +180,7 @@ export default function ContactPage() {
                   <input
                     type="email"
                     {...register("email")}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="your@email.com"
                   />
                   {errors.email && <p className="text-red-600 mt-1">{errors.email.message}</p>}
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   <textarea
                     {...register("message")}
                     rows={6}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="How can we help you today?"
                   />
                   {errors.message && <p className="text-red-600 mt-1">{errors.message.message}</p>}

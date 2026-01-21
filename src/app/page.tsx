@@ -160,7 +160,7 @@ export default function Home() {
                   value={formData.name}
                   onChange={handleFormChange}
                   placeholder="Full Name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   required
                   disabled={formLoading}
                 />
@@ -170,7 +170,7 @@ export default function Home() {
                   value={formData.email}
                   onChange={handleFormChange}
                   placeholder="Email Address"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   required
                   disabled={formLoading}
                 />
@@ -180,7 +180,7 @@ export default function Home() {
                   onChange={handleFormChange}
                   placeholder="Your message..."
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   required
                   disabled={formLoading}
                 />
@@ -269,7 +269,7 @@ export default function Home() {
               Self-publishing a book becomes simple. Transform your ideas into professional literature with our fantasy, romance, sci-fi, and children’s book publishing expertise.
             </p>
 
-            <div className="flex flex-col sm:flex-row  gap-6 mt-8">
+            {/* <div className="flex flex-col sm:flex-row  gap-6 mt-8">
               <a
                 href="#chat" // or live chat integration later
                 className="inline-flex items-center px-5 py-2 bg-white text-red-900 font-semibold text-md rounded-lg hover:bg-gray-100 transition shadow-lg"
@@ -284,7 +284,7 @@ export default function Home() {
                 <Headphones className="mr-3" size={20} />
                 Call Us: (415) 504-9548
               </a>
-            </div>
+            </div> */}
           </motion.div>
         </div>
 <img
@@ -647,7 +647,7 @@ export default function Home() {
               >
                 <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/Layo-Obidike.png"
                     alt="Team Member 1"
                     className="w-full h-full object-cover"
                   />
@@ -660,7 +660,7 @@ export default function Home() {
               >
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/john.jpg"
                     alt="Team Member 2"
                     className="w-full h-full object-cover"
                   />
@@ -674,7 +674,7 @@ export default function Home() {
               >
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/kenny.jpg"
                     alt="Team Member 3"
                     className="w-full h-full object-cover"
                   />
@@ -687,7 +687,7 @@ export default function Home() {
               >
                 <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/deb.jpg"
                     alt="Team Member 4 - Center"
                     className="w-full h-full object-cover"
                   />
@@ -700,7 +700,7 @@ export default function Home() {
               >
                 <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/akeem.png"
                     alt="Team Member 5"
                     className="w-full h-full object-cover"
                   />
@@ -714,7 +714,7 @@ export default function Home() {
               >
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/oma.jpeg"
                     alt="Team Member 6"
                     className="w-full h-full object-cover"
                   />
@@ -727,7 +727,7 @@ export default function Home() {
               >
                 <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/jul.jpeg"
                     alt="Team Member 7"
                     className="w-full h-full object-cover"
                   />
@@ -740,7 +740,7 @@ export default function Home() {
               >
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
                   <img
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    src="/ade.png"
                     alt="Team Member 8"
                     className="w-full h-full object-cover"
                   />

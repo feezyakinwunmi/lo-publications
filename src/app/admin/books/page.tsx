@@ -242,7 +242,7 @@ export default function AdminBooks() {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Enter book title..."
                 />
               </div>
@@ -253,7 +253,7 @@ export default function AdminBooks() {
                   type="text"
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Author name"
                 />
               </div>
@@ -263,7 +263,7 @@ export default function AdminBooks() {
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
                   placeholder="Brief book description..."
                 />
               </div>
@@ -289,14 +289,14 @@ export default function AdminBooks() {
                       value={link.label}
                       onChange={(e) => updateDownloadLink(index, "label", e.target.value)}
                       placeholder="Label (e.g. PDF Nigeria)"
-                      className="flex-1 px-4 py-3 rounded-xl border border-gray-300"
+                      className="flex-1 text-black  px-4 py-3 rounded-xl border border-gray-300"
                     />
                     <input
                       type="text"
                       value={link.url}
                       onChange={(e) => updateDownloadLink(index, "url", e.target.value)}
                       placeholder="https://..."
-                      className="flex-1 px-4 py-3 rounded-xl border border-gray-300"
+                      className="flex-1 px-4 py-3 text-black  rounded-xl border border-gray-300"
                     />
                     <button
                       onClick={() => removeDownloadLink(index)}

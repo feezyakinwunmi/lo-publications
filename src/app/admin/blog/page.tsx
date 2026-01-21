@@ -260,7 +260,7 @@ const handleImageUpload = async (file: File): Promise<string> => {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full px-5 text-black  py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Enter a catchy title..."
                 />
               </div>
@@ -272,7 +272,7 @@ const handleImageUpload = async (file: File): Promise<string> => {
                   type="text"
                   value={publisherName}
                   onChange={(e) => setPublisherName(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full px-5 text-black  py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="LO Publications / Your Name / Pen Name"
                 />
               </div>
@@ -328,7 +328,7 @@ const handleImageUpload = async (file: File): Promise<string> => {
 </button>
                   </div>
 
-                  <EditorContent editor={editor} className="p-4 min-h-[300px]" />
+                  <EditorContent editor={editor} className="p-4 min-h-[300px] " />
                 </div>
               </div>
 

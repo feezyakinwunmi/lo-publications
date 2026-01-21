@@ -62,7 +62,7 @@ export default function AdminLogin() {
               value={email}
               onChange={(e) => setEmail(e.target.value.trim())}
               placeholder="admin@example.com"
-              className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent"
+              className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent"
               required
               disabled={loading}
             />
@@ -75,7 +75,7 @@ export default function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent"
+              className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent"
               required
               disabled={loading}
             />

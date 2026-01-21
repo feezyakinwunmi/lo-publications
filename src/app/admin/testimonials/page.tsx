@@ -228,7 +228,7 @@ export default function AdminTestimonials() {
                   type="text"
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Daniel"
                 />
               </div>
@@ -239,7 +239,7 @@ export default function AdminTestimonials() {
                   type="text"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Debut Novelist"
                 />
               </div>
@@ -249,7 +249,7 @@ export default function AdminTestimonials() {
                 <textarea
                   value={quote}
                   onChange={(e) => setQuote(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
                   placeholder="The team was amazing..."
                 />
               </div>

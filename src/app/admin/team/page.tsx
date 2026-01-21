@@ -284,7 +284,7 @@ export default function AdminTeam() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Dr. Grace Adebayo"
                 />
               </div>
@@ -295,7 +295,7 @@ export default function AdminTeam() {
                   type="text"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Founder & Publishing Director"
                 />
               </div>
@@ -305,7 +305,7 @@ export default function AdminTeam() {
                 <textarea
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
+                  className="w-full text-black  px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900 h-32"
                   placeholder="Brief description about their role and contributions..."
                 />
               </div>
@@ -344,7 +344,7 @@ export default function AdminTeam() {
                       value={social.url}
                       onChange={(e) => updateSocialLink(index, "url", e.target.value)}
                       placeholder="https://instagram.com/..."
-                      className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                      className="flex-1 text-black  px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     />
 
                     <button

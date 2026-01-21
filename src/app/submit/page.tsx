@@ -262,7 +262,7 @@ export default function SubmitManuscriptPage() {
                     <label className="block text-gray-700 font-medium mb-2">Full Name *</label>
                     <input
                       {...register("fullName")}
-                      className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                      className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                       placeholder="Your name"
                     />
                     {errors.fullName && <p className="text-red-600 mt-1">{errors.fullName.message}</p>}
@@ -273,7 +273,7 @@ export default function SubmitManuscriptPage() {
                     <input
                       type="email"
                       {...register("email")}
-                      className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                      className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                       placeholder="your@email.com"
                     />
                     {errors.email && <p className="text-red-600 mt-1">{errors.email.message}</p>}
@@ -284,7 +284,7 @@ export default function SubmitManuscriptPage() {
                   <label className="block text-gray-700 font-medium mb-2">Phone (optional)</label>
                   <input
                     {...register("phone")}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="+234 ..."
                   />
                 </div>
@@ -293,7 +293,7 @@ export default function SubmitManuscriptPage() {
                   <label className="block text-gray-700 font-medium mb-2">Book Title *</label>
                   <input
                     {...register("bookTitle")}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="Title of your manuscript"
                   />
                   {errors.bookTitle && <p className="text-red-600 mt-1">{errors.bookTitle.message}</p>}
@@ -304,7 +304,7 @@ export default function SubmitManuscriptPage() {
                   <textarea
                     {...register("authorBio")}
                     rows={4}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="Brief bio including faith background and writing experience..."
                   />
                   {errors.authorBio && <p className="text-red-600 mt-1">{errors.authorBio.message}</p>}
@@ -315,7 +315,7 @@ export default function SubmitManuscriptPage() {
                   <textarea
                     {...register("manuscriptSummary")}
                     rows={6}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="1-2 paragraphs summarizing your book..."
                   />
                   {errors.manuscriptSummary && <p className="text-red-600 mt-1">{errors.manuscriptSummary.message}</p>}
@@ -326,7 +326,7 @@ export default function SubmitManuscriptPage() {
                   <textarea
                     {...register("whyLO")}
                     rows={4}
-                    className="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    className="w-full text-black  px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                     placeholder="Why you feel we're the right publisher for your message..."
                   />
                   {errors.whyLO && <p className="text-red-600 mt-1">{errors.whyLO.message}</p>}

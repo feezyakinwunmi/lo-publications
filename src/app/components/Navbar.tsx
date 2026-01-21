@@ -29,9 +29,9 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-4" : "py-6"
-      } backdrop-blur-xl bg-black/10 border-b border-white/10`}
+      className={`fixed top-0 left-0  right-0 z-50 transition-all duration-500 ${
+        scrolled ? "py-2" : "py-2"
+      } backdrop-blur-xl bg-red-800 border-b border-white/10`}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center">
@@ -49,7 +49,7 @@ export default function Navbar() {
                 <img
                   src="/logolop.png"
                   alt="LO Publications Logo"
-                  className="w-18 h-auto"
+                  className="w-14 h-auto"
                 />
              </span>
             </motion.div>
