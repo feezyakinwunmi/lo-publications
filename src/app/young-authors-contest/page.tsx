@@ -129,7 +129,7 @@ export default function YoungAuthorsContest() {
               href="mailto:layo@ithriveonwisdom.com?subject=Young%20Authors%20Contest%20Submission"
               className="flex text-center justify-center items-center px-10 py-5 bg-red-900 text-white font-bold text-lg rounded-full hover:bg-red-800 transition shadow-xl"
             >
-              Submit Your Manuscript <ArrowRight className="ml-3" size={24} />
+              JOin the contest <ArrowRight className="ml-3" size={24} />
             </a>
             <a
               href="#faq"
@@ -233,9 +233,9 @@ export default function YoungAuthorsContest() {
           <h2 className="text-4xl md:text-5xl font-bold mb-12">Prizes & Publication</h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
-              { place: "First Prize", amount: "$500" },
-              { place: "Second Prize", amount: "$300" },
-              { place: "Third Prize", amount: "$200" },
+              { place: "First Prize", amount: "500 CAD" },
+              { place: "Second Prize", amount: "300 CAD" },
+              { place: "Third Prize", amount: "200 CAD" },
             ].map((prize, i) => (
               <motion.div
                 key={prize.place}
@@ -257,6 +257,12 @@ export default function YoungAuthorsContest() {
           <p className="text-lg opacity-90">
             Each shortlisted author receives one complimentary copy.
           </p>
+           <a
+            href="mailto:layo@ithriveonwisdom.com?subject=Young%20Authors%20Contest%20-%20I'm%20Interested"
+            className="inline-flex items-center px-12 py-6 bg-white text-red-900 font-bold text-xl rounded-full hover:bg-gray-100 transition shadow-2xl"
+          >
+           Join the contest <ArrowRight className="ml-4" size={28} />
+          </a>
         </div>
       </section>
 
@@ -325,7 +331,7 @@ export default function YoungAuthorsContest() {
             href="mailto:layo@ithriveonwisdom.com?subject=Young%20Authors%20Contest%20-%20I'm%20Interested"
             className="inline-flex items-center px-12 py-6 bg-white text-red-900 font-bold text-xl rounded-full hover:bg-gray-100 transition shadow-2xl"
           >
-            Submit Your Interest <ArrowRight className="ml-4" size={28} />
+           Join the contest <ArrowRight className="ml-4" size={28} />
           </a>
         </div>
       </section>
