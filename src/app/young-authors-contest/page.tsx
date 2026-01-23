@@ -246,7 +246,7 @@ export default function YoungAuthorsContest() {
                 className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 shadow-2xl"
               >
                 <Trophy className="w-16 h-16 mx-auto mb-6 text-yellow-400" />
-                <h3 className="text-2xl font-bold mb-2 text-black">{prize.place}</h3>
+                <h3 className="text-2xl font-bold mb-2 ">{prize.place}</h3>
                 <p className="text-4xl font-bold">{prize.amount}</p>
               </motion.div>
             ))}
