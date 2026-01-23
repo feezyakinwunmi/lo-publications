@@ -108,10 +108,10 @@ export default function ContactPage() {
                   <div>
                     <p className="text-lg font-medium">Manuscript Submissions</p>
                     <a
-                      href="mailto:submission@lopublications.com"
+                      href="mailto:info@lopublications.com"
                       className="text-red-900 hover:underline text-xl"
                     >
-                      submission@lopublications.com
+                      info@lopublications.com
                     </a>
                   </div>
                 </div>
