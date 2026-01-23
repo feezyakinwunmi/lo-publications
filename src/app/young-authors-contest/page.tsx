@@ -127,13 +127,13 @@ export default function YoungAuthorsContest() {
           >
             <a
               href="mailto:layo@ithriveonwisdom.com?subject=Young%20Authors%20Contest%20Submission"
-              className="inline-flex items-center px-10 py-5 bg-red-900 text-white font-bold text-lg rounded-full hover:bg-red-800 transition shadow-xl"
+              className="inline-flex text-center items-center px-10 py-5 bg-red-900 text-white font-bold text-lg rounded-full hover:bg-red-800 transition shadow-xl"
             >
               Submit Your Manuscript <ArrowRight className="ml-3" size={24} />
             </a>
             <a
               href="#faq"
-              className="inline-flex items-center px-10 py-5 border-2 border-red-900 text-white font-bold text-lg rounded-full hover:bg-red-50 hover:text-red-800 transition"
+              className="inline-flex text-center items-center px-10 py-5 border-2 border-red-900 text-white font-bold text-lg rounded-full hover:bg-red-50 hover:text-red-800 transition"
             >
               Read FAQ
             </a>
@@ -185,7 +185,7 @@ export default function YoungAuthorsContest() {
                 className="bg-white p-10 rounded-3xl shadow-lg border border-gray-200 hover:shadow-xl transition-all"
               >
                 <Users className="w-16 h-16 text-red-900 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold mb-4">{group}</h3>
+                <h3 className="text-2xl text-black font-bold mb-4">{group}</h3>
                 <p className="text-gray-700">Open to all disciplines — no literature background required.</p>
               </motion.div>
             ))}
@@ -216,7 +216,7 @@ export default function YoungAuthorsContest() {
                 <div className="w-20 h-20 rounded-full bg-red-900 text-white flex items-center justify-center text-3xl font-bold mx-auto mb-6 shadow-xl">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                <h3 className="text-xl font-bold mb-3 text-black">{step.title}</h3>
                 <p className="text-gray-700">{step.desc}</p>
                 {i < 4 && (
                   <div className="hidden md:block absolute top-10 left-1/2 w-full h-1 bg-red-200 -z-10" />
@@ -246,7 +246,7 @@ export default function YoungAuthorsContest() {
                 className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 shadow-2xl"
               >
                 <Trophy className="w-16 h-16 mx-auto mb-6 text-yellow-400" />
-                <h3 className="text-2xl font-bold mb-2">{prize.place}</h3>
+                <h3 className="text-2xl font-bold mb-2 text-black">{prize.place}</h3>
                 <p className="text-4xl font-bold">{prize.amount}</p>
               </motion.div>
             ))}
