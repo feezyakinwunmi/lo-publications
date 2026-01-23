@@ -127,13 +127,13 @@ export default function YoungAuthorsContest() {
           >
             <a
               href="mailto:layo@ithriveonwisdom.com?subject=Young%20Authors%20Contest%20Submission"
-              className="inline-flex text-center items-center px-10 py-5 bg-red-900 text-white font-bold text-lg rounded-full hover:bg-red-800 transition shadow-xl"
+              className="flex text-center items-center px-10 py-5 bg-red-900 text-white font-bold text-lg rounded-full hover:bg-red-800 transition shadow-xl"
             >
               Submit Your Manuscript <ArrowRight className="ml-3" size={24} />
             </a>
             <a
               href="#faq"
-              className="inline-flex text-center items-center px-10 py-5 border-2 border-red-900 text-white font-bold text-lg rounded-full hover:bg-red-50 hover:text-red-800 transition"
+              className="flex text-center  items-center px-10 py-5 border-2 border-red-900 text-white font-bold text-lg rounded-full hover:bg-red-50 hover:text-red-800 transition"
             >
               Read FAQ
             </a>
