@@ -632,121 +632,149 @@ export default function Home() {
             </motion.div>
 
             {/* Right: Scattered Circular Avatars */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, staggerChildren: 0.15 }}
-              className="relative h-[500px] md:h-[600px] flex justify-center items-center"
-            >
-              {/* Scattered layout - positions are approximate, adjust as needed */}
-              {/* Top row - 2 people */}
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute top-0 left-10 md:left-20"
-              >
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/Layo-Obidike.png"
-                    alt="Team Member 1"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+<motion.div
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 1, staggerChildren: 0.15 }}
+  className="relative min-h-[580px] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[720px]"
+>
 
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute top-8 right-10 md:right-32"
-              >
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/john.jpg"
-                    alt="Team Member 2"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+  {/* Mobile + tablet: grid layout — desktop: absolute positioning takes over */}
+  <div
+    className="
+      grid grid-cols-2 gap-6 sm:gap-8 px-4 py-12
+      md:hidden           /* hide grid on md+ because we use absolute there */
+    "
+  >
+    {/* Just list all members in grid order — no absolute positioning */}
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/Layo-Obidike.png" alt="Layo Obidike" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              {/* Middle row - 3 people */}
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute top-1/3 left-0 md:left-16"
-              >
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/kenny.jpg"
-                    alt="Team Member 3"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/john.jpg" alt="John" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-              >
-                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform">
-                  <img
-                    src="/deb.jpg"
-                    alt="Team Member 4 - Center"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute top-1/3 right-0 md:right-16"
-              >
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/akeem.png"
-                    alt="Team Member 5"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+    <div className="flex justify-center col-span-2 sm:col-span-1">
+      <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform duration-300">
+        <img src="/deb.jpg" alt="Deb - Center" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              {/* Bottom row - 3 people */}
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute bottom-0 left-12 md:left-28"
-              >
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/oma.jpeg"
-                    alt="Team Member 6"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/akeem.png" alt="Akeem" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute bottom-16 left-1/3 md:left-1/2 transform -translate-x-1/2"
-              >
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/jul.jpeg"
-                    alt="Team Member 7"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-cover" />
+      </div>
+    </div>
 
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                className="absolute bottom-0 right-10 md:right-24"
-              >
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform">
-                  <img
-                    src="/ade.png"
-                    alt="Team Member 8"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <div className="flex justify-center">
+      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/ade.png" alt="Ade" className="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+
+  {/* Desktop scattered layout — only visible on md+ */}
+  <div className="hidden md:block relative w-full h-full">
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute top-0 left-10 lg:left-20"
+    >
+      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/Layo-Obidike.png" alt="Layo Obidike" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute top-8 right-10 lg:right-32"
+    >
+      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/john.jpg" alt="John" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute top-[28%] left-4 lg:left-16"
+    >
+      <div className="w-32 lg:w-36 h-32 lg:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      <div className="w-48 lg:w-56 h-48 lg:h-56 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform duration-300">
+        <img src="/deb.jpg" alt="Deb - Center" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute top-[28%] right-4 lg:right-16"
+    >
+      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/akeem.png" alt="Akeem" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute bottom-4 left-12 lg:left-28"
+    >
+      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute bottom-20 left-1/3 lg:left-[42%]"
+    >
+      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+      className="absolute bottom-4 right-10 lg:right-24"
+    >
+      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+        <img src="/ade.png" alt="Ade" className="w-full h-full object-cover" />
+      </div>
+    </motion.div>
+
+  </div>
+
+</motion.div>
           </div>
         </div>
       </section>
