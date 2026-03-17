@@ -636,138 +636,124 @@ export default function Home() {
   initial={{ opacity: 0 }}
   whileInView={{ opacity: 1 }}
   viewport={{ once: true }}
-  transition={{ duration: 1, staggerChildren: 0.15 }}
-  className="relative min-h-[580px] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[720px]"
+  transition={{ duration: 0.9, staggerChildren: 0.1 }}
+  className="w-full h-full py-12 md:py-16 lg:py-20 "
 >
 
-  {/* Mobile + tablet: grid layout — desktop: absolute positioning takes over */}
-  <div
-    className="
-      grid grid-cols-2 gap-6 sm:gap-8 px-4 py-12
-      md:hidden           /* hide grid on md+ because we use absolute there */
-    "
-  >
-    {/* Just list all members in grid order — no absolute positioning */}
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/Layo-Obidike.png" alt="Layo Obidike" className="w-full h-full object-cover" />
-      </div>
-    </div>
+  <div className="
+    grid grid-cols-2 sm:grid-cols-3 
+    md:grid-cols-4 
+    gap-6 sm:gap-8 md:gap-10 lg:gap-12 
+    place-items-center justify-items-center
+    max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+  ">
 
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/john.jpg" alt="John" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center col-span-2 sm:col-span-1">
-      <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform duration-300">
-        <img src="/deb.jpg" alt="Deb - Center" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/akeem.png" alt="Akeem" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <div className="flex justify-center">
-      <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/ade.png" alt="Ade" className="w-full h-full object-cover" />
-      </div>
-    </div>
-  </div>
-
-  {/* Desktop scattered layout — only visible on md+ */}
-  <div className="hidden md:block relative w-full h-full">
+    {/* All 8 members — same size everywhere */}
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute top-0 left-10 lg:left-20"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full h-full max-w-[140px] aspect-square"
     >
-      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
-        <img src="/Layo-Obidike.png" alt="Layo Obidike" className="w-full h-full object-cover" />
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
+        <img
+          src="/Layo-Obidike.png"
+          alt="Layo Obidike"
+          className="w-full h-full object-cover"
+        />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute top-8 right-10 lg:right-32"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/john.jpg" alt="John" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute top-[28%] left-4 lg:left-16"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-32 lg:w-36 h-32 lg:h-36 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-48 lg:w-56 h-48 lg:h-56 rounded-full overflow-hidden border-4 border-red-900 shadow-2xl hover:scale-110 transition-transform duration-300">
-        <img src="/deb.jpg" alt="Deb - Center" className="w-full h-full object-cover" />
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
+        <img src="/deb.jpg" alt="Deb" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute top-[28%] right-4 lg:right-16"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/akeem.png" alt="Akeem" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute bottom-4 left-12 lg:left-28"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute bottom-20 left-1/3 lg:left-[42%]"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-36 lg:w-40 h-36 lg:h-40 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-cover" />
       </div>
     </motion.div>
 
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-      className="absolute bottom-4 right-10 lg:right-24"
+      variants={{ hidden: { opacity: 0, scale: 0.92 }, visible: { opacity: 1, scale: 1 } }}
+      className="w-full max-w-[140px] aspect-square"
     >
-      <div className="w-40 lg:w-44 h-40 lg:h-44 rounded-full overflow-hidden border-4 border-red-900 shadow-xl hover:scale-110 transition-transform duration-300">
+      <div className="
+        w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-900 shadow-lg 
+        hover:scale-105 focus:scale-105 transition-transform duration-300
+      ">
         <img src="/ade.png" alt="Ade" className="w-full h-full object-cover" />
       </div>
     </motion.div>
