@@ -90,7 +90,7 @@ export default function Footer() {
               </li> */}
               <li className="flex items-center gap-3">
                 <Mail className="text-red-900" size={20} />
-                <a href="layoobidikepublications@gmail.com" className="hover:text-red-900 transition">
+                <a href="mailto:layoobidikepublications@gmail.com" className="hover:text-red-900 transition">
                   layoobidikepublications@gmail.com
                 </a>
               </li>
