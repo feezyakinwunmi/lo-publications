@@ -95,10 +95,10 @@ export default function ContactPage() {
                   <div>
                     <p className="text-lg font-medium">General Inquiries</p>
                     <a
-                      href="mailto:info@lopublications.com"
+                      href="mailto:layoobidikepublications@gmail.com"
                       className="text-red-900 hover:underline text-xl"
                     >
-                      info@lopublications.com
+                      layoobidikepublications@gmail.com
                     </a>
                   </div>
                 </div>
@@ -108,10 +108,10 @@ export default function ContactPage() {
                   <div>
                     <p className="text-lg font-medium">Manuscript Submissions</p>
                     <a
-                      href="mailto:info@lopublications.com"
+                      href="mailto:layoobidikepublications@gmail.com"
                       className="text-red-900 hover:underline text-xl"
                     >
-                      info@lopublications.com
+                      layoobidikepublications@gmail.com
                     </a>
                   </div>
                 </div>
