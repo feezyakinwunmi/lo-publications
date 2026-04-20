@@ -17,12 +17,12 @@ const navLinks: NavLink[] = [
   { name: "About", href: "/about" },
   { name: "Books", href: "/books" },
   { name: "Team", href: "/team" },
-  { name: "Career", href: "/career" },
   { name: "Contact", href: "/contact" },
   {
     name: "Services",
     dropdown: true,
     items: [
+      { name: "Careers", href: "/careers" },
       { name: "Blog", href: "/blog" },
       { name: "Submit Manuscript", href: "/submit" },
       { name: "Young Authors Contest", href: "/young-authors-contest" },
