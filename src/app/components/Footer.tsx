@@ -90,8 +90,8 @@ export default function Footer() {
               </li> */}
               <li className="flex items-center gap-3">
                 <Mail className="text-red-900" size={20} />
-                <a href="mailto:layoobidikepublications@gmail.com" className="hover:text-red-900 transition">
-                  layoobidikepublications@gmail.com
+                <a href="mailto:layo@lopublications.com" className="hover:text-red-900 transition">
+                  layo@lopublications.com
                 </a>
               </li>
             </ul>
@@ -124,7 +124,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} LO Publications. All rights reserved.
           </p>
           <p className="mt-2">
-            Built with passion for authors • Faith-Friendly Publishing
+            Built with passion for authors • Faith-Friendly Publishing • Powered by LO Platform
           </p>
         </div>
       </div>
