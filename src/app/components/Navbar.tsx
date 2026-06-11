@@ -25,6 +25,7 @@ const navLinks: NavLink[] = [
     dropdown: true,
     items: [
       { name: "Blog", href: "/blog" },
+      {name: "Articles", href: "/articles" },
       { name: "Submit Manuscript", href: "/submit" },
       { name: "Young Authors Contest", href: "/young-authors-contest" },
     ],
