@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Calendar, ArrowRight, Clock } from "lucide-react";
 
-// This data will grow as you send more articles
-// src/app/articles/page.tsx - Add this to the articles array
+
+
 
 const articles = [
+
   {
     slug: "professional-book-publishing-ottawa",
     title: "Professional Book Publishing Services for Authors in Ottawa",
@@ -19,6 +20,8 @@ const articles = [
     coverImage: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=500&fit=crop",
     author: "Publishing Team",
   },
+
+  
   {
     slug: "bilingual-publishing-ottawa",
     title: "Bilingual Publishing in Ottawa (English & French)",
@@ -29,6 +32,7 @@ const articles = [
     coverImage: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=500&fit=crop",
     author: "Bilingual Team",
   },
+
   {
     slug: "self-publishing-consultation-ottawa",
     title: "Self-Publishing Consultation for Ottawa Authors: Turning Your Manuscript into a Successful Book",
@@ -39,6 +43,7 @@ const articles = [
     coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop",
     author: "Consultation Team",
   },
+
   {
     slug: "corporate-heritage-publishing-ottawa",
     title: "Corporate and Heritage Publishing in Ottawa, Canada",
@@ -49,7 +54,7 @@ const articles = [
     coverImage: "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=800&h=500&fit=crop",
     author: "Heritage Team",
   },
-  // NEW ARTICLE 5 - ADD THIS
+
   {
     slug: "author-branding-book-marketing-ottawa",
     title: "Author Branding & Book Marketing in Ottawa: How Local Authors Build Visibility and Grow Their Readership",
@@ -57,10 +62,44 @@ const articles = [
     category: "Marketing",
     date: "2024",
     readTime: "10 min read",
-    coverImage: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&h=500&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&h=500&fit=crop",
     author: "Marketing Team",
   },
-  // Add more articles here as you send them
+
+  {
+    slug: "self-publishing-services-ottawa",
+    title: "Self-Publishing Services in Ottawa: A Complete Guide for Aspiring Authors",
+    excerpt: "Discover the benefits of self-publishing services in Ottawa. From editing and design to distribution and marketing, learn how to transform your manuscript into a market-ready book.",
+    category: "Self-Publishing",
+    date: "2024",
+    readTime: "8 min read",
+    coverImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=500&fit=crop",
+    author: "Publishing Team",
+  },
+
+  {
+    slug: "faith-based-publishing-ottawa",
+    title: "Faith-Based Publishing in Ottawa: Choosing the Right Path for Your Book",
+    excerpt: "Discover how to publish your faith-based book in Ottawa. From traditional to self-publishing, learn the options, challenges, and opportunities for reaching readers in faith communities.",
+    category: "Faith-Based",
+    date: "2024",
+    readTime: "10 min read",
+    coverImage: "https://images.unsplash.com/photo-1438032005730-c779502df39b   ",
+    author: "Maryanne",
+  },
+
+  {
+    slug: "author-support-services-ottawa",
+    title: "Author Support Services in Ottawa: Turn Your Manuscript into a Published Success Story",
+    excerpt: "Discover comprehensive author support services in Ottawa. From manuscript evaluation and editing to book design and marketing, get the expert guidance you need to publish with confidence.",
+    category: "Support Services",
+    date: "2024",
+    readTime: "9 min read",
+    coverImage: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=800&h=500&fit=crop",
+    author: "Victoria",
+  },
+
+
 ];
 
 export default function ArticlesPage() {
