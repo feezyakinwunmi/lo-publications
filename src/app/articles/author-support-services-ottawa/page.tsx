@@ -80,6 +80,11 @@ export default function AuthorSupportServicesArticle() {
                 Whether you're a first-time author or an experienced writer, expert guidance can transform your manuscript into a 
                 polished, professionally published book that reaches the right audience.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offers comprehensive publishing consultation to guide you through every stage of the process.
+              </p>
             </div>
 
             {/* Why Authors Need Professional Support */}
@@ -111,6 +116,11 @@ export default function AuthorSupportServicesArticle() {
                 </div>
                 <p className="text-gray-600 mt-4 italic">
                   Without proper support, these challenges can delay publication and limit a book's potential success.
+                </p>
+                <p className="text-gray-600 text-sm mt-3">
+                  <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                    iThriveOnWisdom
+                  </a> provides wisdom and practical advice to help authors navigate these common obstacles.
                 </p>
               </div>
             </div>
@@ -171,6 +181,11 @@ export default function AuthorSupportServicesArticle() {
                     </span>
                   ))}
                 </div>
+                <p className="text-gray-600 text-sm mt-3">
+                  <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                    LO Media Studio
+                  </a> provides professional editing services tailored for first-time and experienced authors.
+                </p>
               </div>
 
               {/* Book Design */}
@@ -195,6 +210,11 @@ export default function AuthorSupportServicesArticle() {
                     </span>
                   ))}
                 </div>
+                <p className="text-gray-600 text-sm mt-3">
+                  <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                    LO Media House
+                  </a> offers professional book design services to help your book stand out.
+                </p>
               </div>
 
               {/* Self-Publishing Support */}
@@ -219,6 +239,11 @@ export default function AuthorSupportServicesArticle() {
                     </span>
                   ))}
                 </div>
+                <p className="text-white/70 text-sm mt-3">
+                  <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                    LO Platforms
+                  </a> provides end-to-end self-publishing support for Ottawa authors.
+                </p>
               </div>
             </div>
 
@@ -248,6 +273,11 @@ export default function AuthorSupportServicesArticle() {
                 Professional author support services provide a clear roadmap that takes authors from manuscript completion to 
                 successful publication and promotion.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  PF Schools
+                </a> offers educational programs to help you understand the publishing process and build your skills.
+              </p>
             </div>
 
             {/* Book Marketing and Author Branding */}
@@ -276,6 +306,11 @@ export default function AuthorSupportServicesArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  Layo Obidike
+                </a> offers expert guidance on author branding and building visibility for your book.
+              </p>
             </div>
 
             {/* Why Choose Local Support Services */}
@@ -298,6 +333,11 @@ export default function AuthorSupportServicesArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/60 text-sm mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Publications
+                </a> offers personalized author support services based in Ottawa, Canada.
+              </p>
             </div>
 
             {/* Who Can Benefit */}
@@ -325,6 +365,23 @@ export default function AuthorSupportServicesArticle() {
               <p className="text-gray-600 mt-4">
                 No matter your experience level or genre, professional support can help improve your publishing outcomes.
               </p>
+              <div className="flex flex-wrap gap-3 mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline text-sm">
+                  LO Media House
+                </a>
+                <span className="text-gray-300">|</span>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline text-sm">
+                  LO Media Studio
+                </a>
+                <span className="text-gray-300">|</span>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline text-sm">
+                  LO Platforms
+                </a>
+                <span className="text-gray-300">|</span>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline text-sm">
+                  Layo Obidike
+                </a>
+              </div>
             </div>
 
             {/* Start Your Journey */}
@@ -341,6 +398,15 @@ export default function AuthorSupportServicesArticle() {
                 Professional Author Support Services in Ottawa help writers refine their manuscripts, publish professionally, 
                 build their author brand, and connect with readers.
               </p>
+              <div className="flex flex-wrap gap-3 mt-4">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline text-sm">
+                  LO Platforms
+                </a>
+                <span className="text-white/30">|</span>
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline text-sm">
+                  iThriveOnWisdom
+                </a>
+              </div>
             </div>
 
             {/* Conclusion */}
@@ -353,15 +419,55 @@ export default function AuthorSupportServicesArticle() {
               <p className="text-gray-700 leading-relaxed">
                 Your story deserves to be read. With the right support, it can reach the audience it was written for.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  PF Schools
+                </a> and <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  iThriveOnWisdom
+                </a> offer ongoing learning and wisdom to support your author journey.
+              </p>
             </div>
 
             {/* CTA */}
             <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 text-center text-white mt-10">
               <h2 className="text-2xl font-bold mb-4">Ready to Turn Your Manuscript into a Published Success Story?</h2>
               <p className="mb-6">Get professional author support services tailored for Ottawa writers.</p>
+              <p className="mb-6 text-white/80">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Platforms
+                </a> — Turning Manuscripts into Masterpieces.
+              </p>
               <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Get Started Today →
               </button>
+            </div>
+
+            {/* Additional Resources / Partner Sites */}
+            <div className="mt-10 border-t border-gray-200 pt-8">
+              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media House
+                </a>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media Studio
+                </a>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Platforms
+                </a>
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  PF Schools
+                </a>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  Layo Obidike
+                </a>
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  iThrive On Wisdom
+                </a>
+              </div>
+              <p className="text-gray-500 text-xs text-center mt-4">
+                Discover more resources and services to support your publishing journey.
+              </p>
             </div>
           </div>
         </motion.article>

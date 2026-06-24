@@ -99,6 +99,17 @@ const articles = [
     author: "Victoria",
   },
 
+  {
+    slug: "first-time-author-publishing-ottawa",
+    title: "First-Time Author Publishing in Ottawa: Everything You Need to Know",
+    excerpt: "Becoming a published author is a dream for many aspiring writers in Ottawa. Discover the resources, publishing options, and support available for first-time authors in Canada's capital.",
+    category: "First-Time Author",
+    date: "2024",
+    readTime: "12 min read",
+    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=500&fit=crop",
+    author: "Publishing Team",
+  },
+
 
 ];
 

@@ -18,7 +18,12 @@ import {
   Award,
   Heart,
   Clock,
-  Shield
+  Shield,
+  Target,
+  MapPin,
+  MessageCircle,
+  Rocket,
+  Sparkles
 } from "lucide-react";
 
 export default function CorporateHeritagePublishingArticle() {
@@ -80,6 +85,11 @@ export default function CorporateHeritagePublishingArticle() {
                 and corporations to community groups, churches, families, and historical societies, there is a growing need to 
                 preserve important stories and communicate them professionally.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offers comprehensive publishing consultation to help organisations preserve their legacy through professional publishing.
+              </p>
             </div>
 
             {/* What Is Corporate Publishing */}
@@ -115,6 +125,11 @@ export default function CorporateHeritagePublishingArticle() {
                   ))}
                 </div>
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media House
+                </a> specializes in corporate publishing projects that strengthen brand identity and preserve institutional knowledge.
+              </p>
             </div>
 
             {/* What Is Heritage Publishing */}
@@ -148,6 +163,11 @@ export default function CorporateHeritagePublishingArticle() {
                   ))}
                 </div>
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  iThriveOnWisdom
+                </a> provides wisdom and guidance on preserving cultural heritage and family legacies through professional publishing.
+              </p>
             </div>
 
             {/* Why It Matters */}
@@ -175,11 +195,17 @@ export default function CorporateHeritagePublishingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  Layo Obidike
+                </a> offers expert guidance on building lasting brand legacies through professional publishing.
+              </p>
             </div>
 
             {/* Professional Services */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8 mb-10 shadow-sm">
-              <h2 className="text-2xl font-bold text-black mb-6 text-center">
+              <h2 className="text-2xl font-bold text-black mb-6 text-center flex items-center justify-center gap-2">
+                <Sparkles className="text-red-900" size={28} />
                 Professional Publishing Services in Ottawa
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -200,6 +226,11 @@ export default function CorporateHeritagePublishingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4 text-center">
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media Studio
+                </a> provides professional editing, design, and production services for corporate and heritage publishing projects.
+              </p>
             </div>
 
             {/* Corporate Anniversary Books */}
@@ -229,6 +260,11 @@ export default function CorporateHeritagePublishingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/70 text-sm mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Publications
+                </a> specializes in creating stunning corporate anniversary books that celebrate organizational milestones.
+              </p>
             </div>
 
             {/* Heritage Books for Families */}
@@ -257,11 +293,19 @@ export default function CorporateHeritagePublishingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/60 text-sm mt-4">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  PF Schools
+                </a> offers educational resources for families and communities interested in preserving their heritage.
+              </p>
             </div>
 
             {/* Choosing the Right Partner */}
             <div className="mb-10">
-              <h2 className="text-2xl font-bold text-black mb-4">Choosing the Right Publishing Partner</h2>
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
+                <Target className="text-red-900" size={28} />
+                Choosing the Right Publishing Partner
+              </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {[
                   "Historical project experience",
@@ -279,11 +323,48 @@ export default function CorporateHeritagePublishingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> provides expert guidance to help you choose the right publishing approach for your corporate or heritage project.
+              </p>
+            </div>
+
+            {/* Testimonials / Trust Section */}
+            <div className="bg-gray-50 rounded-2xl p-8 mb-10">
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
+                <MessageCircle className="text-red-900" size={28} />
+                Why Organisations Trust Our Publishing Services
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { title: "Decades of Combined Experience", desc: "Expertise in corporate and heritage publishing" },
+                  { title: "Professional Quality Standards", desc: "Rigorous editing, design, and production processes" },
+                  { title: "Preservation-Focused Approach", desc: "Ensuring stories are preserved for future generations" },
+                  { title: "Client-Centered Collaboration", desc: "Working closely with organisations and families" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 bg-white rounded-lg">
+                    <CheckCircle size={18} className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold text-black text-sm">{item.title}</h3>
+                      <p className="text-gray-500 text-xs">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  iThriveOnWisdom
+                </a> provides wisdom and guidance for organisations seeking to preserve their legacy through professional publishing.
+              </p>
             </div>
 
             {/* Final CTA */}
             <div className="border-t border-gray-200 pt-8 text-center">
-              <h2 className="text-2xl font-bold text-black mb-4">Preserve Your Story for Future Generations</h2>
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center justify-center gap-2">
+                <MapPin className="text-red-900" size={28} />
+                Preserve Your Story for Future Generations
+              </h2>
               <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
                 Whether you are documenting a company's journey, preserving a family's legacy, celebrating a community's history, 
                 or commemorating an organisational milestone, professional corporate and heritage publishing provides a lasting way 
@@ -294,10 +375,43 @@ export default function CorporateHeritagePublishingArticle() {
                   In Ottawa, where history, culture, and innovation intersect, professionally published works serve as powerful tools 
                   for preserving the past, celebrating the present, and inspiring the future.
                 </p>
+                <p className="mb-6 text-white/80">
+                  <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                    LO Platforms
+                  </a> — Turning Manuscripts into Masterpieces.
+                </p>
                 <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                   Start Your Publishing Project Today →
                 </button>
               </div>
+            </div>
+
+            {/* Additional Resources / Partner Sites */}
+            <div className="mt-10 border-t border-gray-200 pt-8">
+              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media House
+                </a>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media Studio
+                </a>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Platforms
+                </a>
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  PF Schools
+                </a>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  Layo Obidike
+                </a>
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  iThrive On Wisdom
+                </a>
+              </div>
+              <p className="text-gray-500 text-xs text-center mt-4">
+                Discover more resources and services to support your corporate and heritage publishing journey.
+              </p>
             </div>
           </div>
         </motion.article>

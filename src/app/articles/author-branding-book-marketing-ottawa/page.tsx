@@ -123,6 +123,11 @@ export default function AuthorBrandingMarketingArticle() {
                   ))}
                 </div>
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  Layo Obidike
+                </a> offers expert guidance on author branding and building a recognizable author identity.
+              </p>
             </div>
 
             {/* Why Branding Matters in Ottawa */}
@@ -157,6 +162,11 @@ export default function AuthorBrandingMarketingArticle() {
                   ))}
                 </div>
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media House
+                </a> offers resources to help you connect with Ottawa's vibrant literary community.
+              </p>
             </div>
 
             {/* Branding Starts Before Publishing */}
@@ -185,6 +195,11 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/70 text-sm mt-6">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  PF Schools
+                </a> offers educational programs to help you develop your author brand and writing skills.
+              </p>
             </div>
 
             {/* Ottawa's Literary Community */}
@@ -213,6 +228,11 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  iThriveOnWisdom
+                </a> provides wisdom and practical advice for navigating the literary community and building your author career.
+              </p>
             </div>
 
             {/* Common Branding Mistakes */}
@@ -231,6 +251,11 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offers publishing consultation to help you avoid these common pitfalls and build a strong foundation.
+              </p>
             </div>
 
             {/* Book Marketing Strategies */}
@@ -258,6 +283,11 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media Studio
+                </a> provides professional editing, cover design, and book formatting services to ensure your book makes a strong impression.
+              </p>
             </div>
 
             {/* Where Readers Discover Books */}
@@ -283,6 +313,11 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/60 text-sm mt-4">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Publications
+                </a> helps authors navigate these channels and develop effective marketing strategies.
+              </p>
             </div>
 
             {/* How LO Publications Supports Authors */}
@@ -309,6 +344,23 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
+              <div className="flex flex-wrap gap-4 mt-6 text-sm">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Media House
+                </a>
+                <span className="text-white/30">|</span>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Media Studio
+                </a>
+                <span className="text-white/30">|</span>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Platforms
+                </a>
+                <span className="text-white/30">|</span>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  Layo Obidike
+                </a>
+              </div>
             </div>
 
             {/* Final Thoughts */}
@@ -330,6 +382,11 @@ export default function AuthorBrandingMarketingArticle() {
                   "The most successful authors are rarely the most visible overnight. They are often the ones who consistently show up, 
                   contribute to the literary community, and create lasting connections with readers."
                 </p>
+                <p className="text-gray-600 text-sm mt-3">
+                  <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                    iThriveOnWisdom
+                  </a> offers wisdom and guidance to help authors build sustainable careers.
+                </p>
               </div>
             </div>
 
@@ -337,9 +394,42 @@ export default function AuthorBrandingMarketingArticle() {
             <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 text-center text-white mt-10">
               <h2 className="text-2xl font-bold mb-4">Ready to Build Your Author Brand?</h2>
               <p className="mb-6">Get expert guidance on author branding and book marketing tailored for Ottawa authors.</p>
+              <p className="mb-6 text-white/80">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Platforms
+                </a> — Turning Manuscripts into Masterpieces.
+              </p>
               <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Start Building Your Brand Today →
               </button>
+            </div>
+
+            {/* Additional Resources / Partner Sites */}
+            <div className="mt-10 border-t border-gray-200 pt-8">
+              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media House
+                </a>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media Studio
+                </a>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Platforms
+                </a>
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  PF Schools
+                </a>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  Layo Obidike
+                </a>
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  iThrive On Wisdom
+                </a>
+              </div>
+              <p className="text-gray-500 text-xs text-center mt-4">
+                Discover more resources and services to support your publishing journey.
+              </p>
             </div>
           </div>
         </motion.article>

@@ -17,7 +17,12 @@ import {
   Share2,
   Search,
   Rocket,
-  Shield
+  Shield,
+  MapPin,
+  Users,
+  MessageCircle,
+  Award,
+  DollarSign
 } from "lucide-react";
 
 export default function SelfPublishingServicesArticle() {
@@ -78,6 +83,11 @@ export default function SelfPublishingServicesArticle() {
                 seeking to share their knowledge and stories. This guide explores the benefits of self-publishing services in Ottawa, 
                 the available solutions, and how authors can achieve publishing success.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offers comprehensive self-publishing services designed specifically for Ottawa authors.
+              </p>
             </div>
 
             {/* What Are Self-Publishing Services */}
@@ -92,12 +102,17 @@ export default function SelfPublishingServicesArticle() {
                 printing, eBook conversion, distribution, and marketing support. By leveraging these services, authors can produce 
                 high-quality books that meet industry standards without relying on traditional publishing houses.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media House
+                </a> provides end-to-end self-publishing services to help authors bring their books to market.
+              </p>
             </div>
 
             {/* Why Choose Self-Publishing in Ottawa */}
             <div className="mb-10">
               <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
-                <Globe className="text-red-900" size={28} />
+                <MapPin className="text-red-900" size={28} />
                 Why Choose Self-Publishing in Ottawa?
               </h2>
               <p className="text-gray-700 leading-relaxed">
@@ -105,6 +120,11 @@ export default function SelfPublishingServicesArticle() {
                 established authors. Self-publishing services in Ottawa offer personalized support, local expertise, and access 
                 to professional publishing resources. Authors can collaborate closely with editors, designers, and marketing 
                 specialists while maintaining full creative control over their projects.
+              </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Publications
+                </a> offers localized self-publishing services with personalized support for Ottawa authors.
               </p>
             </div>
 
@@ -128,11 +148,19 @@ export default function SelfPublishingServicesArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-white/70 text-sm mt-4">
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  Layo Obidike
+                </a> offers expert guidance on maximizing the benefits of self-publishing for Ottawa authors.
+              </p>
             </div>
 
             {/* Essential Services */}
             <div className="mb-10">
-              <h2 className="text-2xl font-bold text-black mb-6">Essential Self-Publishing Services</h2>
+              <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-2">
+                <Target className="text-red-900" size={28} />
+                Essential Self-Publishing Services
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { icon: PenTool, title: "Professional Editing & Proofreading", desc: "Ensure manuscripts are polished and error-free" },
@@ -150,6 +178,11 @@ export default function SelfPublishingServicesArticle() {
                   </div>
                 ))}
               </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media Studio
+                </a> provides professional editing, design, and formatting services to ensure your book meets industry standards.
+              </p>
             </div>
 
             {/* How to Choose a Provider */}
@@ -179,6 +212,11 @@ export default function SelfPublishingServicesArticle() {
               <p className="text-gray-700 leading-relaxed mt-4">
                 It is important to choose a provider that understands your publishing goals and offers solutions tailored to your 
                 target audience and genre.
+              </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offers expert consultation to help you choose the right publishing services for your needs.
               </p>
             </div>
 
@@ -210,6 +248,71 @@ export default function SelfPublishingServicesArticle() {
                 Using relevant keywords, engaging blog content, and optimized book descriptions can significantly improve 
                 discoverability and sales performance.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  Layo Obidike
+                </a> offers expert guidance on author branding and book marketing strategies.
+              </p>
+            </div>
+
+            {/* Author Education */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 mb-10">
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
+                <Users className="text-red-900" size={28} />
+                Educational Resources for Self-Publishing Authors
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Continuous learning is essential for authors navigating the self-publishing landscape. Educational programs and 
+                workshops can help you develop your craft and understand the business of publishing.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "Creative writing workshops",
+                  "Publishing seminars",
+                  "Author masterclasses",
+                  "Marketing and promotion training",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <CheckCircle size={16} className="text-red-900" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  PF Schools
+                </a> offers educational programs designed to help authors succeed in self-publishing.
+              </p>
+            </div>
+
+            {/* Wisdom for Authors */}
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 mb-10 shadow-sm">
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
+                <MessageCircle className="text-red-900" size={28} />
+                Wisdom for Your Self-Publishing Journey
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Navigating the self-publishing industry requires wisdom, patience, and the right guidance. Learning from experienced 
+                publishing professionals can help you avoid common pitfalls and make informed decisions.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "Understand your publishing goals",
+                  "Invest in professional editing",
+                  "Create a compelling book cover",
+                  "Develop a marketing plan",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <CheckCircle size={16} className="text-green-600" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm mt-4">
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  iThriveOnWisdom
+                </a> provides wisdom and practical advice to help authors navigate their self-publishing journey.
+              </p>
             </div>
 
             {/* The Future of Self-Publishing */}
@@ -237,11 +340,19 @@ export default function SelfPublishingServicesArticle() {
               <p className="text-white/90 mt-4">
                 Ottawa's growing creative ecosystem positions it as a strong hub for independent publishing and literary entrepreneurship.
               </p>
+              <p className="text-white/70 text-sm mt-4">
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  PF Schools
+                </a> offers programs to help authors stay ahead of publishing industry trends.
+              </p>
             </div>
 
             {/* Conclusion */}
             <div className="border-t border-gray-200 pt-8">
-              <h2 className="text-2xl font-bold text-black mb-4">Conclusion</h2>
+              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
+                <Award className="text-red-900" size={28} />
+                Conclusion
+              </h2>
               <p className="text-gray-700 leading-relaxed mb-4">
                 Self-publishing services in Ottawa provide authors with the tools, expertise, and flexibility needed to bring their 
                 books to life. Whether you are writing fiction, non-fiction, educational materials, or business content, partnering 
@@ -251,15 +362,60 @@ export default function SelfPublishingServicesArticle() {
                 By combining quality publishing services with effective marketing strategies, authors can successfully establish their 
                 presence in today's competitive publishing landscape.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media House
+                </a>, <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Media Studio
+                </a>, and <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
+                  LO Platforms
+                </a> offer comprehensive self-publishing services for Ottawa authors.
+              </p>
             </div>
 
             {/* CTA */}
             <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 text-center text-white mt-10">
-              <h2 className="text-2xl font-bold mb-4">Ready to Self-Publish Your Book?</h2>
+              <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-2">
+                <Rocket className="text-amber-300" size={28} />
+                Ready to Self-Publish Your Book?
+              </h2>
               <p className="mb-6">Get professional self-publishing services tailored for Ottawa authors.</p>
+              <p className="mb-6 text-white/80">
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                  LO Platforms
+                </a> — Turning Manuscripts into Masterpieces.
+              </p>
               <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Start Your Publishing Journey Today →
               </button>
+            </div>
+
+            {/* Additional Resources / Partner Sites */}
+            <div className="mt-10 border-t border-gray-200 pt-8">
+              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
+                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media House
+                </a>
+                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Media Studio
+                </a>
+                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  LO Platforms
+                </a>
+                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  PF Schools
+                </a>
+                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  Layo Obidike
+                </a>
+                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
+                  iThrive On Wisdom
+                </a>
+              </div>
+              <p className="text-gray-500 text-xs text-center mt-4">
+                Discover more resources and services to support your self-publishing journey in Ottawa.
+              </p>
             </div>
           </div>
         </motion.article>
