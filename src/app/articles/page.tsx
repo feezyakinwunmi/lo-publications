@@ -84,7 +84,7 @@ const articles = [
     category: "Faith-Based",
     date: "2024",
     readTime: "10 min read",
-    coverImage: "https://images.unsplash.com/photo-1438032005730-c779502df39b   ",
+    coverImage: "https://images.unsplash.com/photo-1438032005730-c779502df39b",
     author: "Maryanne",
   },
 

@@ -66,9 +66,9 @@ export default function BilingualPublishingArticle() {
                 the same impact, elegance, and professionalism in both official languages.
               </p>
               <p className="text-gray-600 text-sm mt-3">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offers comprehensive publishing consultation to help you navigate bilingual publishing requirements.
+                <Link href="/articles/corporate-heritage-publishing-ottawa" className="text-red-900 hover:underline font-semibold">
+                  Corporate and heritage publishing
+                </Link> services can help organizations preserve their legacy in both official languages.
               </p>
             </div>
 
@@ -93,9 +93,9 @@ export default function BilingualPublishingArticle() {
               ))}
             </div>
             <p className="text-gray-600 text-sm mb-10">
-              <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                iThriveOnWisdom
-              </a> provides wisdom and guidance on reaching diverse audiences through bilingual publishing.
+              <Link href="/articles/professional-book-publishing-ottawa" className="text-red-900 hover:underline">
+                Professional book publishing services
+              </Link> can help you reach bilingual audiences effectively.
             </p>
 
             {/* Solutions Grid */}
@@ -111,9 +111,9 @@ export default function BilingualPublishingArticle() {
                 </div>
                 <p className="text-gray-600">Fiction, non-fiction, textbooks, memoirs, faith-based, academic, children's books, poetry.</p>
                 <p className="text-gray-600 text-sm mt-2">
-                  <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    LO Media House
-                  </a> offers professional book publishing services for bilingual projects.
+                  <Link href="/articles/faith-based-publishing-ottawa" className="text-red-900 hover:underline">
+                    Faith-based publishing
+                  </Link> and other genres benefit from bilingual accessibility.
                 </p>
               </div>
               <div className="bg-white border rounded-xl p-6 shadow-sm">
@@ -123,9 +123,9 @@ export default function BilingualPublishingArticle() {
                 </div>
                 <p className="text-gray-600">Grammatically accurate, professionally localized, culturally relevant, brand consistent.</p>
                 <p className="text-gray-600 text-sm mt-2">
-                  <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    LO Media Studio
-                  </a> provides professional editing and translation services for bilingual publications.
+                  <Link href="/articles/author-support-services-ottawa" className="text-red-900 hover:underline">
+                    Author support services
+                  </Link> include professional editing and translation for bilingual publications.
                 </p>
               </div>
               <div className="bg-white border rounded-xl p-6 shadow-sm">
@@ -135,9 +135,9 @@ export default function BilingualPublishingArticle() {
                 </div>
                 <p className="text-gray-600">Annual reports, policy docs, training manuals, brochures, conference materials.</p>
                 <p className="text-gray-600 text-sm mt-2">
-                  <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    LO Platforms
-                  </a> offers bilingual publishing solutions for corporate and government clients.
+                  <Link href="/articles/corporate-heritage-publishing-ottawa" className="text-red-900 hover:underline">
+                    Corporate and heritage publishing
+                  </Link> services help organizations communicate effectively in both languages.
                 </p>
               </div>
               <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 text-white">
@@ -147,9 +147,9 @@ export default function BilingualPublishingArticle() {
                 </div>
                 <p className="text-gray-300">eBook formatting, Kindle, PDF, interactive pubs, magazine layout, hard/soft cover.</p>
                 <p className="text-gray-400 text-sm mt-2">
-                  <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:underline">
-                    LO Media House
-                  </a> provides professional design and formatting for both digital and print publications.
+                  <Link href="/articles/self-publishing-services-ottawa" className="text-amber-400 hover:underline">
+                    Self-publishing services
+                  </Link> provide both digital and print solutions for bilingual projects.
                 </p>
               </div>
             </div>
@@ -168,9 +168,9 @@ export default function BilingualPublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  PF Schools
-                </a> offers educational programs for institutions and organizations seeking bilingual publishing solutions.
+                <Link href="/articles/first-time-author-publishing-ottawa" className="text-red-900 hover:underline">
+                  First-time authors
+                </Link> and established writers alike can benefit from bilingual publishing services.
               </p>
             </div>
 
@@ -198,9 +198,9 @@ export default function BilingualPublishingArticle() {
                 ))}
               </div>
               <p className="text-white/70 text-sm mt-4">
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  Layo Obidike
-                </a> offers expert guidance on reaching diverse audiences through bilingual author branding.
+                <Link href="/articles/author-branding-book-marketing-ottawa" className="text-amber-300 hover:underline">
+                  Author branding and book marketing
+                </Link> strategies should consider Ottawa's bilingual audience.
               </p>
             </div>
 
@@ -225,9 +225,9 @@ export default function BilingualPublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  iThriveOnWisdom
-                </a> provides wisdom and practical advice for successful bilingual publishing projects.
+                <Link href="/articles/self-publishing-consultation-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing consultation
+                </Link> can help you navigate the unique considerations of bilingual publishing.
               </p>
             </div>
 
@@ -242,13 +242,6 @@ export default function BilingualPublishingArticle() {
               <p className="text-gray-700 leading-relaxed">
                 With the right publishing partner, your message can resonate authentically in both English and French.
               </p>
-              <p className="text-gray-600 text-sm mt-3">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media House
-                </a> and <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offer comprehensive bilingual publishing services tailored to your needs.
-              </p>
             </div>
 
             {/* CTA */}
@@ -258,42 +251,46 @@ export default function BilingualPublishingArticle() {
                 Elevate Your Message Through Bilingual Publishing
               </h2>
               <p className="mb-6">Publishing in both English and French shows professionalism, inclusion, and national reach.</p>
-              <p className="mb-6 text-white/80">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Platforms
-                </a> — Turning Manuscripts into Masterpieces.
-              </p>
-              <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+              <Link href="/articles/self-publishing-services-ottawa" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Contact Us Today
-              </button>
+              </Link>
             </div>
 
-            {/* Additional Resources / Partner Sites */}
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media House
-                </a>
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media Studio
-                </a>
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Platforms
-                </a>
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  PF Schools
-                </a>
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  Layo Obidike
-                </a>
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  iThrive On Wisdom
-                </a>
+            {/* Related Articles */}
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Link href="/articles/corporate-heritage-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=600&h=400&fit=crop" 
+                      alt="Corporate and heritage publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Corporate and Heritage Publishing in Ottawa, Canada
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">Preserving stories and building legacies through professional publishing.</p>
+                  </div>
+                </Link>
+                <Link href="/articles/faith-based-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1504052434569-70ad5836ab9c?w=600&h=400&fit=crop" 
+                      alt="Faith-based publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Faith-Based Publishing in Ottawa: Choosing the Right Path for Your Book
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">A comprehensive guide for faith-based authors navigating the publishing journey.</p>
+                  </div>
+                </Link>
               </div>
-              <p className="text-gray-500 text-xs text-center mt-4">
-                Discover more resources and services to support your bilingual publishing journey.
-              </p>
             </div>
           </div>
         </motion.article>

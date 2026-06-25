@@ -42,7 +42,7 @@ export default function FaithBasedPublishingArticle() {
           {/* Hero Image */}
           <div className="relative h-96">
             <img
-              src="https://images.unsplash.com/photo-1504052434569-70ad5836ab9c?w=1200&h=500&fit=crop"
+src="https://images.unsplash.com/photo-1438032005730-c779502df39b"
               alt="Faith-based publishing in Ottawa - church and community"
               className="w-full h-full object-cover"
             />
@@ -80,9 +80,9 @@ export default function FaithBasedPublishingArticle() {
                 readers in Ottawa, across Ontario, and throughout Canada.
               </p>
               <p className="text-gray-600 text-sm mt-3">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offers comprehensive publishing consultation to help faith-based authors navigate their publishing journey.
+                <Link href="/articles/first-time-author-publishing-ottawa" className="text-red-900 hover:underline font-semibold">
+                  First-time authors in Ottawa
+                </Link> often face unique challenges when navigating faith-based publishing options.
               </p>
             </div>
 
@@ -137,9 +137,9 @@ export default function FaithBasedPublishingArticle() {
                 or a broader national audience.
               </p>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media House
-                </a> offers faith-based publishing services tailored to your ministry goals and audience.
+                <Link href="/articles/self-publishing-consultation-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing consultation
+                </Link> can help faith-based authors understand their options and choose the right path.
               </p>
             </div>
 
@@ -178,9 +178,9 @@ export default function FaithBasedPublishingArticle() {
                   and positioning. Others prefer to maintain full control over every aspect of the publishing process.
                 </p>
                 <p className="text-gray-600 text-sm mt-2">
-                  <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    LO Platforms
-                  </a> helps authors understand the trade-offs between creative control and professional support.
+                  <Link href="/articles/self-publishing-services-ottawa" className="text-red-900 hover:underline">
+                    Self-publishing services
+                  </Link> offer the highest level of creative control for faith-based authors.
                 </p>
               </div>
 
@@ -210,9 +210,9 @@ export default function FaithBasedPublishingArticle() {
                   ))}
                 </div>
                 <p className="text-gray-600 text-sm mt-3">
-                  <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    iThriveOnWisdom
-                  </a> offers wisdom and guidance on defining your audience and ministry goals.
+                  <Link href="/articles/author-branding-book-marketing-ottawa" className="text-red-900 hover:underline">
+                    Author branding and book marketing
+                  </Link> strategies can help you reach your target faith-based audience.
                 </p>
               </div>
             </div>
@@ -248,9 +248,9 @@ export default function FaithBasedPublishingArticle() {
                 manuscript trying to appeal to everyone.
               </p>
               <p className="text-gray-600 text-sm mt-3">
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media Studio
-                </a> provides professional editing services to help faith-based manuscripts meet publishing standards.
+                <Link href="/articles/professional-book-publishing-ottawa" className="text-red-900 hover:underline">
+                  Professional book publishing services
+                </Link> can help faith-based authors prepare manuscripts that meet publisher standards.
               </p>
             </div>
 
@@ -282,9 +282,9 @@ export default function FaithBasedPublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  Layo Obidike
-                </a> offers expert guidance on author branding and connecting with faith-based audiences.
+                <Link href="/articles/corporate-heritage-publishing-ottawa" className="text-red-900 hover:underline">
+                  Corporate and heritage publishing
+                </Link> can also help faith-based organizations preserve their history and reach wider audiences.
               </p>
             </div>
 
@@ -304,9 +304,9 @@ export default function FaithBasedPublishingArticle() {
                 partner, or fellow believer can carry more influence than a paid advertisement.
               </p>
               <p className="text-white/70 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Publications
-                </a> helps faith-based authors connect with Ottawa's diverse church and ministry communities.
+                <Link href="/articles/author-support-services-ottawa" className="text-amber-300 hover:underline">
+                  Author support services
+                </Link> can help faith-based authors connect with Ottawa's diverse church and ministry communities.
               </p>
             </div>
 
@@ -343,9 +343,9 @@ export default function FaithBasedPublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  iThriveOnWisdom
-                </a> provides wisdom and practical advice for navigating these challenges.
+                <Link href="/articles/bilingual-publishing-ottawa" className="text-red-900 hover:underline">
+                  Bilingual publishing
+                </Link> can help faith-based authors reach both English and French-speaking audiences in Ottawa.
               </p>
             </div>
 
@@ -376,9 +376,9 @@ export default function FaithBasedPublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media Studio
-                </a> provides professional editing and design services to prepare your faith-based manuscript for publication.
+                <Link href="/articles/author-support-services-ottawa" className="text-red-900 hover:underline">
+                  Author support services
+                </Link> can help you prepare your manuscript for publication, regardless of your chosen path.
               </p>
             </div>
 
@@ -397,9 +397,9 @@ export default function FaithBasedPublishingArticle() {
                 for faith-based authors and publishers are expanding as well.
               </p>
               <p className="text-white/70 text-sm mt-4">
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  PF Schools
-                </a> offers educational programs to help faith-based authors develop their writing and ministry skills.
+                <Link href="/articles/self-publishing-services-ottawa" className="text-amber-300 hover:underline">
+                  Self-publishing services
+                </Link> offer faith-based authors more control and flexibility than ever before.
               </p>
             </div>
 
@@ -410,13 +410,6 @@ export default function FaithBasedPublishingArticle() {
                 Publishing is ultimately about more than producing a book. It's about creating something that reaches the people it was 
                 written for, and making a meaningful impact within Ottawa, Ontario, and beyond.
               </p>
-              <p className="text-gray-600 text-sm mt-3">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media House
-                </a> and <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offer comprehensive faith-based publishing services to help you reach your audience.
-              </p>
             </div>
 
             {/* CTA */}
@@ -426,42 +419,46 @@ export default function FaithBasedPublishingArticle() {
                 Ready to Publish Your Faith-Based Book?
               </h2>
               <p className="mb-6">Get professional faith-based publishing services tailored for Ottawa authors.</p>
-              <p className="mb-6 text-white/80">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Platforms
-                </a> — Turning Manuscripts into Masterpieces.
-              </p>
-              <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+              <Link href="/articles/self-publishing-services-ottawa" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Start Your Publishing Journey Today →
-              </button>
+              </Link>
             </div>
 
-            {/* Additional Resources / Partner Sites */}
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media House
-                </a>
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media Studio
-                </a>
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Platforms
-                </a>
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  PF Schools
-                </a>
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  Layo Obidike
-                </a>
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  iThrive On Wisdom
-                </a>
+            {/* Related Articles */}
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Link href="/articles/corporate-heritage-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=600&h=400&fit=crop" 
+                      alt="Corporate and heritage publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Corporate and Heritage Publishing in Ottawa, Canada
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">Preserving stories and building legacies through professional publishing.</p>
+                  </div>
+                </Link>
+                <Link href="/articles/bilingual-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop" 
+                      alt="Bilingual publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Bilingual Publishing in Ottawa (English & French)
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">Publishing in both official languages for wider reach and credibility.</p>
+                  </div>
+                </Link>
               </div>
-              <p className="text-gray-500 text-xs text-center mt-4">
-                Discover more resources and services to support your faith-based publishing journey.
-              </p>
             </div>
           </div>
         </motion.article>

@@ -86,9 +86,9 @@ export default function CorporateHeritagePublishingArticle() {
                 preserve important stories and communicate them professionally.
               </p>
               <p className="text-gray-600 text-sm mt-3">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offers comprehensive publishing consultation to help organisations preserve their legacy through professional publishing.
+                <Link href="/articles/bilingual-publishing-ottawa" className="text-red-900 hover:underline font-semibold">
+                  Bilingual publishing services
+                </Link> can help organizations preserve their legacy in both of Canada's official languages.
               </p>
             </div>
 
@@ -126,9 +126,9 @@ export default function CorporateHeritagePublishingArticle() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media House
-                </a> specializes in corporate publishing projects that strengthen brand identity and preserve institutional knowledge.
+                <Link href="/articles/professional-book-publishing-ottawa" className="text-red-900 hover:underline">
+                  Professional book publishing services
+                </Link> can help organizations create high-quality corporate publications.
               </p>
             </div>
 
@@ -164,9 +164,9 @@ export default function CorporateHeritagePublishingArticle() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  iThriveOnWisdom
-                </a> provides wisdom and guidance on preserving cultural heritage and family legacies through professional publishing.
+                <Link href="/articles/author-support-services-ottawa" className="text-red-900 hover:underline">
+                  Author support services
+                </Link> can help families and communities preserve their heritage through professional publishing.
               </p>
             </div>
 
@@ -196,9 +196,9 @@ export default function CorporateHeritagePublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  Layo Obidike
-                </a> offers expert guidance on building lasting brand legacies through professional publishing.
+                <Link href="/articles/faith-based-publishing-ottawa" className="text-red-900 hover:underline">
+                  Faith-based publishing
+                </Link> also plays an important role in preserving spiritual and community heritage.
               </p>
             </div>
 
@@ -227,9 +227,9 @@ export default function CorporateHeritagePublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4 text-center">
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media Studio
-                </a> provides professional editing, design, and production services for corporate and heritage publishing projects.
+                <Link href="/articles/self-publishing-services-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing services
+                </Link> provide the professional expertise needed for corporate and heritage projects.
               </p>
             </div>
 
@@ -261,9 +261,9 @@ export default function CorporateHeritagePublishingArticle() {
                 ))}
               </div>
               <p className="text-white/70 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Publications
-                </a> specializes in creating stunning corporate anniversary books that celebrate organizational milestones.
+                <Link href="/articles/author-branding-book-marketing-ottawa" className="text-amber-300 hover:underline">
+                  Author branding and book marketing
+                </Link> strategies can help promote corporate anniversary publications.
               </p>
             </div>
 
@@ -294,9 +294,9 @@ export default function CorporateHeritagePublishingArticle() {
                 ))}
               </div>
               <p className="text-white/60 text-sm mt-4">
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  PF Schools
-                </a> offers educational resources for families and communities interested in preserving their heritage.
+                <Link href="/articles/first-time-author-publishing-ottawa" className="text-amber-300 hover:underline">
+                  First-time authors
+                </Link> can preserve their family stories through professional heritage publishing.
               </p>
             </div>
 
@@ -324,38 +324,9 @@ export default function CorporateHeritagePublishingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> provides expert guidance to help you choose the right publishing approach for your corporate or heritage project.
-              </p>
-            </div>
-
-            {/* Testimonials / Trust Section */}
-            <div className="bg-gray-50 rounded-2xl p-8 mb-10">
-              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-2">
-                <MessageCircle className="text-red-900" size={28} />
-                Why Organisations Trust Our Publishing Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { title: "Decades of Combined Experience", desc: "Expertise in corporate and heritage publishing" },
-                  { title: "Professional Quality Standards", desc: "Rigorous editing, design, and production processes" },
-                  { title: "Preservation-Focused Approach", desc: "Ensuring stories are preserved for future generations" },
-                  { title: "Client-Centered Collaboration", desc: "Working closely with organisations and families" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 p-3 bg-white rounded-lg">
-                    <CheckCircle size={18} className="text-green-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h3 className="font-semibold text-black text-sm">{item.title}</h3>
-                      <p className="text-gray-500 text-xs">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-gray-600 text-sm mt-4">
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  iThriveOnWisdom
-                </a> provides wisdom and guidance for organisations seeking to preserve their legacy through professional publishing.
+                <Link href="/articles/self-publishing-consultation-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing consultation
+                </Link> can help you choose the right publishing partner for your corporate or heritage project.
               </p>
             </div>
 
@@ -375,43 +346,46 @@ export default function CorporateHeritagePublishingArticle() {
                   In Ottawa, where history, culture, and innovation intersect, professionally published works serve as powerful tools 
                   for preserving the past, celebrating the present, and inspiring the future.
                 </p>
-                <p className="mb-6 text-white/80">
-                  <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                    LO Platforms
-                  </a> — Turning Manuscripts into Masterpieces.
-                </p>
-                <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+                <Link href="/articles/self-publishing-services-ottawa" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                   Start Your Publishing Project Today →
-                </button>
+                </Link>
               </div>
             </div>
 
-            {/* Additional Resources / Partner Sites */}
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media House
-                </a>
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media Studio
-                </a>
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Platforms
-                </a>
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  PF Schools
-                </a>
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  Layo Obidike
-                </a>
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  iThrive On Wisdom
-                </a>
+            {/* Related Articles */}
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Link href="/articles/bilingual-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=400&fit=crop" 
+                      alt="Bilingual publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Bilingual Publishing in Ottawa (English & French)
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">Publishing in both official languages for wider reach and credibility.</p>
+                  </div>
+                </Link>
+                <Link href="/articles/faith-based-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+src="https://images.unsplash.com/photo-1438032005730-c779502df39b"
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Faith-Based Publishing in Ottawa: Choosing the Right Path for Your Book
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">A comprehensive guide for faith-based authors navigating the publishing journey.</p>
+                  </div>
+                </Link>
               </div>
-              <p className="text-gray-500 text-xs text-center mt-4">
-                Discover more resources and services to support your corporate and heritage publishing journey.
-              </p>
             </div>
           </div>
         </motion.article>

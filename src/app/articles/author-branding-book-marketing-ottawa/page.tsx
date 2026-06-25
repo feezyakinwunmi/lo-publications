@@ -79,6 +79,11 @@ export default function AuthorBrandingMarketingArticle() {
                 While these may seem like separate concerns, they all connect to two important areas of an author's career: 
                 <strong className="text-red-900"> branding and marketing</strong>.
               </p>
+              <p className="text-gray-600 text-sm mt-3">
+                <Link href="/articles/first-time-author-publishing-ottawa" className="text-red-900 hover:underline font-semibold">
+                  First-time authors in Ottawa
+                </Link> often find that building a strong author brand is essential for standing out in a competitive market.
+              </p>
             </div>
 
             <p className="text-gray-700 leading-relaxed mb-6">
@@ -124,9 +129,9 @@ export default function AuthorBrandingMarketingArticle() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  Layo Obidike
-                </a> offers expert guidance on author branding and building a recognizable author identity.
+                <Link href="/articles/professional-book-publishing-ottawa" className="text-red-900 hover:underline">
+                  Professional book publishing services
+                </Link> can help you build a strong author brand from the ground up.
               </p>
             </div>
 
@@ -163,9 +168,9 @@ export default function AuthorBrandingMarketingArticle() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media House
-                </a> offers resources to help you connect with Ottawa's vibrant literary community.
+                <Link href="/articles/author-support-services-ottawa" className="text-red-900 hover:underline">
+                  Author support services in Ottawa
+                </Link> can help you connect with the local literary community and build your author brand.
               </p>
             </div>
 
@@ -195,11 +200,6 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
-              <p className="text-white/70 text-sm mt-6">
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  PF Schools
-                </a> offers educational programs to help you develop your author brand and writing skills.
-              </p>
             </div>
 
             {/* Ottawa's Literary Community */}
@@ -229,9 +229,9 @@ export default function AuthorBrandingMarketingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  iThriveOnWisdom
-                </a> provides wisdom and practical advice for navigating the literary community and building your author career.
+                <Link href="/articles/corporate-heritage-publishing-ottawa" className="text-red-900 hover:underline">
+                  Corporate and heritage publishing
+                </Link> projects can also help authors build credibility and visibility within the community.
               </p>
             </div>
 
@@ -252,9 +252,9 @@ export default function AuthorBrandingMarketingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Platforms
-                </a> offers publishing consultation to help you avoid these common pitfalls and build a strong foundation.
+                <Link href="/articles/self-publishing-consultation-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing consultation
+                </Link> can help you avoid these common pitfalls and build a strong foundation for your author brand.
               </p>
             </div>
 
@@ -284,9 +284,9 @@ export default function AuthorBrandingMarketingArticle() {
                 ))}
               </div>
               <p className="text-gray-600 text-sm mt-4">
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                  LO Media Studio
-                </a> provides professional editing, cover design, and book formatting services to ensure your book makes a strong impression.
+                <Link href="/articles/self-publishing-services-ottawa" className="text-red-900 hover:underline">
+                  Self-publishing services in Ottawa
+                </Link> can help you implement these marketing strategies effectively.
               </p>
             </div>
 
@@ -313,54 +313,6 @@ export default function AuthorBrandingMarketingArticle() {
                   </div>
                 ))}
               </div>
-              <p className="text-white/60 text-sm mt-4">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Publications
-                </a> helps authors navigate these channels and develop effective marketing strategies.
-              </p>
-            </div>
-
-            {/* How LO Publications Supports Authors */}
-            <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 mb-10 text-white">
-              <h2 className="text-2xl font-bold mb-4">How LO Publications Supports Ottawa Authors</h2>
-              <p className="text-white/90 mb-4">
-                Publishing a book involves more than preparing a manuscript for release. Authors often need guidance on branding, 
-                publishing, positioning, and marketing to ensure their work reaches the right audience.
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
-                {[
-                  "Author branding",
-                  "Editing & proofreading",
-                  "Cover design",
-                  "Book formatting",
-                  "Publishing consultation",
-                  "Author websites",
-                  "Distribution support",
-                  "Marketing strategy",
-                ].map((service) => (
-                  <div key={service} className="flex items-center gap-1 text-sm">
-                    <CheckCircle size={12} className="text-amber-300" />
-                    <span>{service}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-4 mt-6 text-sm">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Media House
-                </a>
-                <span className="text-white/30">|</span>
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Media Studio
-                </a>
-                <span className="text-white/30">|</span>
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Platforms
-                </a>
-                <span className="text-white/30">|</span>
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  Layo Obidike
-                </a>
-              </div>
             </div>
 
             {/* Final Thoughts */}
@@ -382,11 +334,6 @@ export default function AuthorBrandingMarketingArticle() {
                   "The most successful authors are rarely the most visible overnight. They are often the ones who consistently show up, 
                   contribute to the literary community, and create lasting connections with readers."
                 </p>
-                <p className="text-gray-600 text-sm mt-3">
-                  <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-red-900 hover:underline">
-                    iThriveOnWisdom
-                  </a> offers wisdom and guidance to help authors build sustainable careers.
-                </p>
               </div>
             </div>
 
@@ -394,42 +341,46 @@ export default function AuthorBrandingMarketingArticle() {
             <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 text-center text-white mt-10">
               <h2 className="text-2xl font-bold mb-4">Ready to Build Your Author Brand?</h2>
               <p className="mb-6">Get expert guidance on author branding and book marketing tailored for Ottawa authors.</p>
-              <p className="mb-6 text-white/80">
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                  LO Platforms
-                </a> — Turning Manuscripts into Masterpieces.
-              </p>
-              <button className="bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+              <Link href="/articles/self-publishing-services-ottawa" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Start Building Your Brand Today →
-              </button>
+              </Link>
             </div>
 
-            {/* Additional Resources / Partner Sites */}
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <h3 className="text-lg font-semibold text-black text-center mb-4">Explore Our Publishing Ecosystem</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
-                <a href="https://lomediahouse.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media House
-                </a>
-                <a href="https://lomediastudio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Media Studio
-                </a>
-                <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  LO Platforms
-                </a>
-                <a href="https://pfschools.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  PF Schools
-                </a>
-                <a href="https://layoobidike.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  Layo Obidike
-                </a>
-                <a href="https://ithriveonwisdom.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-900 transition text-sm">
-                  iThrive On Wisdom
-                </a>
+            {/* Related Articles */}
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Link href="/articles/first-time-author-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&h=400&fit=crop" 
+                      alt="First-time author publishing in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      First-Time Author Publishing in Ottawa: Everything You Need to Know
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">A comprehensive guide for aspiring authors navigating the publishing journey in Ottawa.</p>
+                  </div>
+                </Link>
+                <Link href="/articles/professional-book-publishing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&h=400&fit=crop" 
+                      alt="Professional book publishing services in Ottawa" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-black group-hover:text-red-900 transition">
+                      Professional Book Publishing Services for Authors in Ottawa
+                    </h4>
+                    <p className="text-gray-500 text-sm mt-1">Learn how professional publishing services can elevate your manuscript into a market-ready book.</p>
+                  </div>
+                </Link>
               </div>
-              <p className="text-gray-500 text-xs text-center mt-4">
-                Discover more resources and services to support your publishing journey.
-              </p>
             </div>
           </div>
         </motion.article>
