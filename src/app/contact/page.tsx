@@ -93,7 +93,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <Mail className="text-red-900 mt-1" size={28} />
                   <div>
-                    <p className="text-lg font-medium">General Inquiries</p>
+                    <p className="text-lg text-black font-medium">General Inquiries</p>
                     <a
                       href="mailto:layoobidikepublications@gmail.com"
                       className="text-red-900 hover:underline text-xl"
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <Mail className="text-red-900 mt-1" size={28} />
                   <div>
-                    <p className="text-lg font-medium">Manuscript Submissions</p>
+                    <p className="text-lg text-black font-medium">Manuscript Submissions</p>
                     <a
                       href="mailto:layoobidikepublications@gmail.com"
                       className="text-red-900 hover:underline text-xl"
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <MapPin className="text-red-900 mt-1" size={28} />
                   <div>
-                    <p className="text-lg font-medium">Head Office</p>
+                    <p className="text-lg text-black font-medium">Head Office</p>
                     <p className="text-xl text-gray-700">
                       1551 Lycee Place, Ottawa, ON K1G 4B5
                     </p>
