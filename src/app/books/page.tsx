@@ -100,8 +100,7 @@ export default function BooksPage() {
                   <img
                     src={book.cover_url || "https://via.placeholder.com/800x800?text=No+Cover"}
                     alt={book.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="p-6">
@@ -154,7 +153,7 @@ export default function BooksPage() {
                     <img
                       src={selectedBook.cover_url || "https://via.placeholder.com/800x800?text=No+Cover"}
                       alt={selectedBook.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-white"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>

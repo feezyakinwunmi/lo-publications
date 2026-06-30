@@ -128,13 +128,13 @@ export default function AboutPage() {
                 desc: "Daily guides, Bible studies, and books that draw readers closer to God.",
               },
               {
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREKHSNDTFzjCLu0lOJOHfKCd3m72qV3SRFVQ&s",
+  img: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop",
                 title: "Inspirational Memoirs & Testimonies",
                 desc: "Real-life stories of faith, redemption, healing, and God’s faithfulness.",
               },
               {
                 img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                title: "Purpose-Driven Nonfiction & Poetry",
+                title: "Purpose-Driven Non-fiction & Poetry",
                 desc: "Reflective essays, poetry, and books that stir the heart and soul.",
               },
             ].map((item, idx) => (

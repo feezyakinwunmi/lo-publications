@@ -123,7 +123,7 @@ export default function TeamPage() {
                   <img
                     src={member.photo_url || "https://via.placeholder.com/400?text=No+Photo"}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-[100%] h-full object-contain bg-black transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-black">{member.name}</h3>
@@ -166,7 +166,7 @@ export default function TeamPage() {
                         <img
                           src={selectedMember.photo_url || "https://via.placeholder.com/400?text=No+Photo"}
                           alt={selectedMember.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain bg-black"
                         />
                       </div>
                     </div>

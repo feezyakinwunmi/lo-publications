@@ -290,7 +290,7 @@ export default function Home() {
 <img
               src="/book.jpg" // Elegant open book + red light (placeholder)
               alt="Professional book publishing workspace"
-              className="w-full h-80 md:h-96 object-cover"
+              className="w-full h-80 md:h-96 object-contain"
             />        
 
         </div>
@@ -417,7 +417,7 @@ export default function Home() {
                     <img
                       src={book.cover_url || "https://via.placeholder.com/800x800?text=No+Cover"}
                       alt={book.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
@@ -457,7 +457,7 @@ export default function Home() {
             <img
               src="/book.jpg" // Or your /book.jpg
               alt="Author holding published book"
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-64 md:h-80 object-contain"
             />
           </motion.div>
 
@@ -542,7 +542,7 @@ export default function Home() {
                           <img
                             src={t.avatar_url || "https://via.placeholder.com/100?text=Avatar"}
                             alt={t.author}
-                            className="w-20 h-20 rounded-full object-cover border-4 border-red-900 mb-4 shadow-md group-hover:scale-110 transition-transform"
+                            className="w-20 h-20 rounded-full object-contain border-4 border-red-900 mb-4 shadow-md group-hover:scale-110 transition-transform"
                           />
                           <h4 className="text-xl font-bold text-black">{t.author}</h4>
                           {t.role && <p className="text-gray-600">{t.role}</p>}
@@ -655,14 +655,14 @@ export default function Home() {
       className="w-full h-full max-w-[140px] aspect-square"
     >
       <div className="
-        w-full h-full rounded-full overflow-hidden 
+        w-full h-full bg-black rounded-full overflow-hidden 
         border-4 border-red-900 shadow-lg 
-        hover:scale-105 focus:scale-105 transition-transform duration-300
+        hover:scale-105 focus:scale-105 transition-transform duration-300 
       ">
         <img
           src="/Layo-Obidike.png"
           alt="Layo Obidike"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
       </div>
     </motion.div>
@@ -676,7 +676,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/john.jpg" alt="John" className="w-full h-full object-cover" />
+        <img src="/john.jpg" alt="John" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -689,7 +689,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-cover" />
+        <img src="/kenny.jpg" alt="Kenny" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -702,7 +702,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/deb.jpg" alt="Deb" className="w-full h-full object-cover" />
+        <img src="/deb.jpg" alt="Deb" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -715,7 +715,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/akeem.png" alt="Akeem" className="w-full h-full object-cover" />
+        <img src="/akeem.png" alt="Akeem" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -728,7 +728,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-cover" />
+        <img src="/oma.jpeg" alt="Oma" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -741,7 +741,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-cover" />
+        <img src="/jul.jpeg" alt="Jul" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
@@ -754,7 +754,7 @@ export default function Home() {
         border-4 border-red-900 shadow-lg 
         hover:scale-105 focus:scale-105 transition-transform duration-300
       ">
-        <img src="/ade.png" alt="Ade" className="w-full h-full object-cover" />
+        <img src="/ade.png" alt="Ade" className="w-full h-full object-contain" />
       </div>
     </motion.div>
 
