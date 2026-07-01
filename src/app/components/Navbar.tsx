@@ -26,6 +26,7 @@ const navLinks: NavLink[] = [
     items: [
       { name: "Blog", href: "/blog" },
       {name: "Articles", href: "/articles" },
+      {name: "Case Studies", href: "/casestudies" },
       { name: "Submit Manuscript", href: "/submit" },
       { name: "Young Authors Contest", href: "/young-authors-contest" },
     ],
