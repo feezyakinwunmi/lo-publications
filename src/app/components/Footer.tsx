@@ -124,7 +124,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} LO Publications. All rights reserved.
           </p>
           <p className="mt-2">
-            Built with passion for authors • Faith-Friendly Publishing •  Powered by <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-900 transition">
+            Built with passion for authors • Faith-Friendly Publishing •  Powered by <a href="https://loplatforms.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-900 text-red-200 transition">
               LO Platforms
             </a>
           </p>
