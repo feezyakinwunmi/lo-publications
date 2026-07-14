@@ -84,6 +84,27 @@ export default function Navbar() {
             date: "2024",
           },
           {
+  slug: "ottawa-author-brand-website",
+  title: "Ottawa Author: Building Your Author Brand and Website Before Your Book Launches",
+  excerpt: "Learn why building your author brand and website before launch is essential for success in Ottawa's literary scene.",
+  category: "Author Branding",
+  date: "2026",
+},
+{
+  slug: "book-marketing-on-a-budget-ottawa",
+  title: "Book Marketing on a Budget: Strategies for First-Time Self-Published Authors in Ottawa",
+  excerpt: "Discover practical, low-cost marketing strategies for first-time self-published authors in Ottawa.",
+  category: "Book Marketing",
+  date: "2026",
+},
+{
+  slug: "editing-vs-proofreading-ottawa",
+  title: "Editing vs. Proofreading: What Ottawa Authors Need to Know",
+  excerpt: "Understanding the difference between editing and proofreading can save time and help you publish a professional-quality book.",
+  category: "Editing & Proofreading",
+  date: "2026",
+},
+          {
             slug: "self-publishing-consultation-ottawa",
             title: "Self-Publishing Consultation for Ottawa Authors",
             excerpt: "Every author's journey begins with a story. Learn how self-publishing consultation can help.",

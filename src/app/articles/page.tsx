@@ -110,7 +110,36 @@ const articles = [
     author: "Publishing Team",
   },
 
-
+  {
+    slug: "ottawa-author-brand-website",
+    title: "Ottawa Author: Building Your Author Brand and Website Before Your Book Launches",
+    excerpt: "Most authors finish the manuscript and assume the rest will sort itself out. Learn why building your brand and website before launch is essential for success in Ottawa's literary scene.",
+    category: "Author Branding",
+    date: "2026",
+    readTime: "5 min read",
+    coverImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=500&fit=crop",
+    author: "LO Publications Team",
+  },
+  {
+    slug: "book-marketing-on-a-budget-ottawa",
+    title: "Book Marketing on a Budget: Strategies for First-Time Self-Published Authors in Ottawa",
+    excerpt: "Discover practical, low-cost marketing strategies for first-time self-published authors in Ottawa. Learn how to build visibility without exhausting your budget through local networking, digital marketing, and community engagement.",
+    category: "Book Marketing",
+    date: "2026",
+    readTime: "10 min read",
+    coverImage: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=500&fit=crop",
+    author: "LO Publications Team",
+  },
+  {
+    slug: "editing-vs-proofreading-ottawa",
+    title: "Editing vs. Proofreading: What Ottawa Authors Need to Know",
+    excerpt: "Understanding the difference between editing and proofreading can save time, money, and help you publish a professional-quality book. Learn when each service is needed and why both are essential.",
+    category: "Editing & Proofreading",
+    date: "2026",
+    readTime: "5 min read",
+    coverImage: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=800&h=500&fit=crop",
+    author: "LO Publications Team",
+  },
 ];
 
 export default function ArticlesPage() {
