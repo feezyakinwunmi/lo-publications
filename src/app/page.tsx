@@ -246,7 +246,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <a href="/services" className="inline-flex items-center px-8 py-4 bg-red-900 text-white font-semibold rounded-lg hover:bg-red-800 transition shadow-md">
+            <a href="/about" className="inline-flex items-center px-8 py-4 bg-red-900 text-white font-semibold rounded-lg hover:bg-red-800 transition shadow-md">
               Explore Our Services <ArrowRight className="ml-2" size={20} />
             </a>
           </div>
