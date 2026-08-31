@@ -54,6 +54,7 @@ export default function Navbar() {
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [allContent, setAllContent] = useState<SearchItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -68,6 +69,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -78,6 +89,13 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Close mobile menu when resizing to desktop
+  useEffect(() => {
+    if (!isMobile) {
+      setIsOpen(false);
+    }
+  }, [isMobile]);
 
   // Load all content
   useEffect(() => {
@@ -351,12 +369,12 @@ export default function Navbar() {
     }
   };
 
-  const isCompact = scrolled && !isHovered;
+  const isCompact = scrolled && !isHovered && !isMobile;
   const navbarWidth = isCompact ? "auto" : "90%";
   const maxWidth = isCompact ? "200px" : "1200px";
   const paddingY = isCompact ? "py-1.5" : "py-3";
   const logoSize = isCompact ? "w-10 h-auto" : "w-14 h-auto";
-  const showFullNav = !isCompact;
+  const showFullNav = !isCompact || isMobile;
 
   return (
     <>
@@ -392,17 +410,8 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {/* Navigation */}
-            <motion.div
-              className="flex items-center gap-2 overflow-visible"
-              initial={false}
-              animate={{
-                width: showFullNav ? "auto" : 0,
-                opacity: showFullNav ? 1 : 0,
-                marginLeft: showFullNav ? "1rem" : 0,
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
+            {/* Desktop Navigation - Hidden on mobile */}
+            <div className="hidden md:flex items-center gap-2">
               {/* Search Button */}
               <motion.button
                 whileHover={{ scale: 1.08 }}
@@ -435,7 +444,6 @@ export default function Navbar() {
                         </span>
                       </motion.div>
 
-                      {/* Dropdown Menu */}
                       <AnimatePresence>
                         {openDropdown === link.name && (
                           <motion.div
@@ -476,27 +484,21 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-            </motion.div>
+            </div>
 
-            {/* Mobile Menu Button */}
-            <motion.button
+            {/* Mobile Menu Button - Always visible on mobile */}
+            <button
               className="md:hidden text-white p-2 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition flex-shrink-0"
               onClick={() => setIsOpen(!isOpen)}
-              initial={false}
-              animate={{
-                opacity: showFullNav ? 1 : 0,
-                scale: showFullNav ? 1 : 0.8,
-              }}
-              transition={{ duration: 0.3 }}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {isOpen && (
+          {isOpen && isMobile && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -504,7 +506,8 @@ export default function Navbar() {
               transition={{ duration: 0.2 }}
               className="md:hidden mt-2 bg-red-800/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl overflow-hidden"
             >
-              <div className="px-4 py-6 space-y-3">
+              <div className="px-4 py-6 space-y-3 max-h-[80vh] overflow-y-auto">
+                {/* Search in Mobile */}
                 <button
                   onClick={() => {
                     handleSearchOpen();
@@ -519,14 +522,14 @@ export default function Navbar() {
                 {navLinks.map((link) => {
                   if (link.dropdown) {
                     return (
-                      <div key={link.name}>
+                      <div key={link.name} className="border-b border-white/10 pb-3">
                         <button
                           onClick={() => toggleDropdown(link.name)}
-                          className="w-full text-left text-white text-sm font-medium hover:text-red-200 transition flex items-center justify-between"
+                          className="w-full text-left text-white text-base font-medium hover:text-red-200 transition flex items-center justify-between"
                         >
                           {link.name}
                           <ChevronDown
-                            size={18}
+                            size={20}
                             className={`transition-transform duration-300 ${
                               openDropdown === link.name ? "rotate-180" : "rotate-0"
                             }`}
@@ -539,7 +542,7 @@ export default function Navbar() {
                               <Link
                                 key={item.name}
                                 href={item.href}
-                                className="block text-white/80 text-sm hover:text-red-200 transition"
+                                className="block text-white/80 text-sm hover:text-red-200 transition py-2"
                                 onClick={closeAllMenus}
                               >
                                 {item.name}
@@ -555,7 +558,7 @@ export default function Navbar() {
                     <Link
                       key={link.name}
                       href={link.href!}
-                      className="block text-white text-sm font-medium hover:text-red-200 transition"
+                      className="block text-white text-base font-medium hover:text-red-200 transition py-2 border-b border-white/10"
                       onClick={closeAllMenus}
                     >
                       {link.name}
