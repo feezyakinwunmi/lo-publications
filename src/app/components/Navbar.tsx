@@ -54,7 +54,6 @@ export default function Navbar() {
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [allContent, setAllContent] = useState<SearchItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -69,16 +68,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle resize for mobile detection
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -89,13 +78,6 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  // Close mobile menu when resizing to desktop
-  useEffect(() => {
-    if (!isMobile) {
-      setIsOpen(false);
-    }
-  }, [isMobile]);
 
   // Load all content
   useEffect(() => {
@@ -369,18 +351,22 @@ export default function Navbar() {
     }
   };
 
-  const isCompact = scrolled && !isHovered && !isMobile;
+  // Desktop navbar states
+  const isCompact = scrolled && !isHovered;
   const navbarWidth = isCompact ? "auto" : "90%";
   const maxWidth = isCompact ? "200px" : "1200px";
   const paddingY = isCompact ? "py-1.5" : "py-3";
   const logoSize = isCompact ? "w-10 h-auto" : "w-14 h-auto";
-  const showFullNav = !isCompact || isMobile;
+  const showFullNav = !isCompact;
 
   return (
     <>
+      {/* =====================================================
+          DESKTOP NAVBAR - Hidden on mobile
+      ====================================================== */}
       <div 
         ref={navbarRef}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500"
+        className="hidden md:block fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500"
         style={{ width: navbarWidth, maxWidth: maxWidth }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -410,8 +396,17 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation - Hidden on mobile */}
-            <div className="hidden md:flex items-center gap-2">
+            {/* Desktop Navigation */}
+            <motion.div
+              className="flex items-center gap-2 overflow-visible"
+              initial={false}
+              animate={{
+                width: showFullNav ? "auto" : 0,
+                opacity: showFullNav ? 1 : 0,
+                marginLeft: showFullNav ? "1rem" : 0,
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
               {/* Search Button */}
               <motion.button
                 whileHover={{ scale: 1.08 }}
@@ -484,27 +479,72 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-            </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
-            {/* Mobile Menu Button - Always visible on mobile */}
-            <button
-              className="md:hidden text-white p-2 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition flex-shrink-0"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+      {/* =====================================================
+          MOBILE NAVBAR - Hidden on desktop
+      ====================================================== */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50">
+        <div className={`
+          relative w-full backdrop-blur-xl 
+          bg-gradient-to-r from-red-900/90 via-red-800/90 to-red-900/90
+          border-b border-white/20 shadow-2xl
+          transition-all duration-300
+          ${scrolled ? "py-2" : "py-3"}
+        `}>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/30 via-white/5 to-red-900/30 opacity-0 hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+
+          <div className="relative px-4 flex justify-between items-center">
+            {/* Logo */}
+            <Link href="/" onClick={closeAllMenus} className="flex-shrink-0">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="relative"
+              >
+                <img
+                  src="/logolop.png"
+                  alt="LO Publications Logo"
+                  className={`${scrolled ? "w-10 h-auto" : "w-12 h-auto"} transition-all duration-300 drop-shadow-lg`}
+                />
+              </motion.div>
+            </Link>
+
+            {/* Mobile Actions */}
+            <div className="flex items-center gap-2">
+              {/* Search Button */}
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleSearchOpen}
+                className="relative p-2 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-lg overflow-hidden group hover:bg-white/20 transition flex-shrink-0"
+              >
+                <Search className="text-white w-5 h-5 relative" />
+              </motion.button>
+
+              {/* Menu Button */}
+              <button
+                className="text-white p-2 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 transition flex-shrink-0"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {isOpen && isMobile && (
+          {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden mt-2 bg-red-800/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl overflow-hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-red-800/95 backdrop-blur-xl border-b border-white/20 shadow-2xl overflow-hidden"
             >
               <div className="px-4 py-6 space-y-3 max-h-[80vh] overflow-y-auto">
                 {/* Search in Mobile */}
@@ -571,7 +611,9 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Search Modal */}
+      {/* =====================================================
+          SEARCH MODAL - Shared between desktop and mobile
+      ====================================================== */}
       <AnimatePresence>
         {searchOpen && (
           <>
