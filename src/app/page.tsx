@@ -1024,9 +1024,8 @@ export default function Home() {
                   const rotations = [-11, -4, 5, 11];
 
                   return (
-                    <motion.a
-                      href={`/books/${book.id}`}
-                      key={book.id}
+                    // eslint-disable-next-line react/jsx-key
+                    <motion.div
                       className="group absolute w-[160px] sm:w-[200px]"
                       style={{
                         transform: `translateX(${positions[index]}px) rotate(${rotations[index]}deg)`,
@@ -1042,9 +1041,9 @@ export default function Home() {
                           className="h-full w-full object-contain"
                         />
                       </div>
-                    </motion.a>
+                    </motion.div>
                   );
-                })}
+                })} 
 
                 {!featuredBooks.length && [0, 1, 2, 3].map((index) => (
                   <div
@@ -1412,9 +1411,9 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {featuredBooks.map((book, index) => (
-                <motion.a
-                  key={book.id}
-                  href={`/books/${book.id}`}
+                // eslint-disable-next-line react/jsx-key
+                <motion.div
+                  
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1437,7 +1436,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold text-black mb-2 line-clamp-2">{book.title}</h3>
                     <p className="text-gray-600">by {book.author}</p>
                   </div>
-                </motion.a>
+                </motion.div>
               ))}
             </div>
           )}
