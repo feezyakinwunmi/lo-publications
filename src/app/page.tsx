@@ -1304,7 +1304,7 @@ export default function Home() {
             >
               <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[#e8e0d8]">
                 <img
-                  src="/img2.png"
+                  src="/book.jpg"
                   alt="LO Publications"
                   className="h-full w-full object-cover"
                 />
