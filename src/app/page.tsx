@@ -1077,7 +1077,7 @@ export default function Home() {
                 Stories · Ideas · Books
               </p>
 
-              <h1 className="text-[16vw] font-black leading-[.77] tracking-[-.095em] sm:text-[12vw] lg:text-[8.5vw]">
+              <h1 className="text-[16vw] text-black font-black leading-[.77] tracking-[-.095em] sm:text-[12vw] lg:text-[8.5vw]">
                 YOUR STORY
                 <br />
                 <span className="text-[#8d171c]">DESERVES</span>
