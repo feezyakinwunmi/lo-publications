@@ -1685,13 +1685,13 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-              Your Next Chapter
+              Your Next Chapte
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
               Your Story Is Next
             </h2>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              Tell us about the book you've been thinking about. We'll help you figure out what comes next.
+              Tell us about the book you&apos;ve been thinking about. We&apos;ll help you figure out what comes next.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <motion.a
