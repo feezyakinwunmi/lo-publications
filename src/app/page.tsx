@@ -1474,25 +1474,26 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                whileHover={{ y: -8 }}
-                className="text-center group"
-              >
-                <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
-                  <img
-                    src={member.image}
-                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                </motion.div>
-            ))}
-          </div>
+  {teamMembers.map((member, index) => (
+    <motion.div
+      key={member.name}
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      whileHover={{ y: -8 }}
+      className="text-center group"
+    >
+      <div className="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
+        <img
+          src={member.image}
+          alt={member.name}
+          className="w-full h-full object-cover object-[center_5%] group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </motion.div>
+  ))}
+</div>
 
           <div className="text-center mt-12">
             <motion.a
