@@ -1487,7 +1487,6 @@ export default function Home() {
                 <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
                   <img
                     src={member.image}
-                    alt={member.name}
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
