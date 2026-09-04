@@ -1490,7 +1490,6 @@ export default function Home() {
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="font-bold text-black">{member.name}</h3>
                 </motion.div>
             ))}
           </div>
