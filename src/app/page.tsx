@@ -848,14 +848,14 @@ const tickerText = "100+ Published Titles • Author-Centric Process • Fast Tu
 
 // Team members data
 const teamMembers = [
-  { name: "Layo Obidike", role: "Founder & Publisher", image: "/Layo-Obidike.png" },
-  { name: "John", role: "Editorial Director", image: "/john.jpg" },
-  { name: "Kenny", role: "Cover Design Lead", image: "/kenny.jpg" },
-  { name: "Deb", role: "Book Designer", image: "/deb.jpg" },
-  { name: "Akeem", role: "Marketing Strategist", image: "/akeem.png" },
-  { name: "Oma", role: "Production Manager", image: "/oma.jpeg" },
-  { name: "Jul", role: "Author Relations", image: "/jul.jpeg" },
-  { name: "Ade", role: "Distribution Expert", image: "/ade.png" },
+  { name: "Layo Obidike",  image: "/Layo-Obidike.png" },
+  { name: "John", image: "/john.jpg" },
+  { name: "Kenny", image: "/kenny.jpg" },
+  { name: "Deb",image: "/deb.jpg" },
+  { name: "Akeem", image: "/akeem.png" },
+  { name: "Oma", image: "/oma.jpeg" },
+  { name: "Jul",image: "/jul.jpeg" },
+  { name: "Ade", image: "/ade.png" },
 ];
 
 // Stats data
@@ -1488,12 +1488,11 @@ export default function Home() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <h3 className="font-bold text-black">{member.name}</h3>
-                <p className="text-sm text-gray-600">{member.role}</p>
-              </motion.div>
+                </motion.div>
             ))}
           </div>
 
