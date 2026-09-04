@@ -121,8 +121,7 @@ export default function TeamPage() {
               >
                 <div className="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
         <img
-          src={member.image}
-          alt={member.name}
+         src={member.photo_url || "https://via.placeholder.com/400?text=No+Photo"}          alt={member.name}
           className="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-300"
         />
       </div>

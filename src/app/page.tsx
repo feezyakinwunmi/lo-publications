@@ -1685,7 +1685,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-              Your Next Chapte
+              Your Next Chapter
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
               Your Story Is Next
