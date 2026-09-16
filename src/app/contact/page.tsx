@@ -111,7 +111,7 @@ const onSubmit = async (data: FormData) => {
 
     // 2. Build the Web3Forms payload
     const payload = {
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+      access_key:"a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       subject: `[Contact] ${data.messageType} — ${data.name}`,
       from_name: "LO Publications Contact Form",
       name: data.name,
