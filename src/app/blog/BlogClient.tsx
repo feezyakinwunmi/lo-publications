@@ -5,7 +5,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Clock, Calendar, User, TrendingUp, X } from 'lucide-react';
 import { gsap } from 'gsap';
-import type { BlogPost } from '@/lib/blogs';
+import type { BlogPost } from '@/app/data/blog';
 
 const POSTS_PER_PAGE = 12;
 
