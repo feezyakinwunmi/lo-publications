@@ -1255,7 +1255,7 @@ export default function Home() {
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">Our Method</span>
               <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">Method &amp; Mastery</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We don't believe great publishing happens by accident. Every decision should serve the story, the author and the reader.
+                We don&apos;t believe great publishing happens by accident. Every decision should serve the story, the author and the reader.
               </p>
 
               <div className="mt-10 space-y-6">
@@ -1301,11 +1301,11 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[#e8e0d8]">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-transparent ">
                 <img
                   src="/book.jpg"
                   alt="LO Publications"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain "
                 />
               </div>
               <motion.div
@@ -1713,30 +1713,6 @@ export default function Home() {
               </motion.a>
             </div>
 
-            {/* Contact Info */}
-            <div className="mt-16 pt-8 border-t border-white/10 grid md:grid-cols-3 gap-8 text-left">
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-white/60" />
-                <div>
-                  <p className="text-sm text-white/60">Email</p>
-                  <p className="text-sm font-medium">info@lopublications.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-white/60" />
-                <div>
-                  <p className="text-sm text-white/60">Phone</p>
-                  <p className="text-sm font-medium">+1 (415) 504-9548</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-white/60" />
-                <div>
-                  <p className="text-sm text-white/60">Location</p>
-                  <p className="text-sm font-medium">San Francisco, CA</p>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
