@@ -1,28 +1,18 @@
 // app/blog/BlogClient.tsx
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Clock, Calendar, User, TrendingUp } from 'lucide-react';
+import { ArrowRight, Clock, Calendar, User, TrendingUp, X } from 'lucide-react';
 import { gsap } from 'gsap';
+import type { BlogPost } from '@/lib/blogs';
 
-type BlogPost = {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  image: string;
-  category: string;
-  readTime: string;
-  date: string;
-  author: string;
-};
-
-const POSTS_PER_PAGE = 8;
+const POSTS_PER_PAGE = 12;
 
 export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -33,28 +23,56 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
     );
   }, []);
 
-  const featured = blogPosts[0];
-  const regularPosts = blogPosts.slice(1);
+  // Sort newest → oldest so the featured post is the most recent
+  const sortedPosts = useMemo(
+    () =>
+      [...blogPosts].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      ),
+    [blogPosts]
+  );
 
-  // Derive unique categories and count posts per category
-  const categoryCounts = blogPosts.reduce<Record<string, number>>((acc, post) => {
-    acc[post.category] = (acc[post.category] || 0) + 1;
-    return acc;
-  }, {});
-  const categories = Object.keys(categoryCounts);
+  // Category counts derived from all posts (for the sidebar chips)
+  const categoryCounts = useMemo(
+    () =>
+      sortedPosts.reduce<Record<string, number>>((acc, post) => {
+        acc[post.category] = (acc[post.category] || 0) + 1;
+        return acc;
+      }, {}),
+    [sortedPosts]
+  );
+  const categories = useMemo(
+    () => Object.keys(categoryCounts),
+    [categoryCounts]
+  );
 
-  // Sidebar shows the top 4 recommended
-  const sidebarPosts = regularPosts.slice(0, 4);
+  // Filter by selected category
+  const filteredPosts = useMemo(
+    () =>
+      activeCategory === 'All'
+        ? sortedPosts
+        : sortedPosts.filter((p) => p.category === activeCategory),
+    [sortedPosts, activeCategory]
+  );
 
-  // Grid shows up to visibleCount posts
-  const gridPosts = regularPosts.slice(0, visibleCount);
-  const hasMore = visibleCount < regularPosts.length;
-  const remaining = regularPosts.length - visibleCount;
+  // Featured is only meaningful when viewing All
+  const featured = activeCategory === 'All' ? filteredPosts[0] : null;
+  const rest = activeCategory === 'All' ? filteredPosts.slice(1) : filteredPosts;
+
+  const gridPosts = rest.slice(0, visibleCount);
+  const hasMore = visibleCount < rest.length;
+  const remaining = rest.length - visibleCount;
+
+  // Reset pagination when the user switches category
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat);
+    setVisibleCount(POSTS_PER_PAGE);
+  };
 
   return (
-    <div className="bg-gray-100 text-black min-h-screen">
+    <div ref={sectionRef} className="bg-gray-100 text-black min-h-screen">
 
-      {/* Hero Section with Background Image */}
+      {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center bg-gray-900 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -83,60 +101,79 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
 
           {/* Main Content */}
           <div className="lg:col-span-8">
-            <div className="mb-10">
+            <div className="mb-6 flex items-center justify-between flex-wrap gap-4">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Latest Articles
+                {activeCategory === 'All' ? 'Latest Articles' : activeCategory}
               </h2>
+
+              {activeCategory !== 'All' && (
+                <button
+                  onClick={() => handleCategoryChange('All')}
+                  className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-red-600 transition"
+                >
+                  <X className="w-4 h-4" /> Clear filter
+                </button>
+              )}
             </div>
 
-            {/* Featured Post */}
-            <div className="mb-12">
-              <Link href={`/blog/${featured.slug}`} className="group block">
-                <div className="relative h-[380px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500">
-                  <img
-                    src={featured.image}
-                    alt={featured.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+            {/* Featured Post (only when viewing All) */}
+            {featured && (
+              <div className="mb-12">
+                <Link href={`/blog/${featured.slug}`} className="group block">
+                  <div className="relative h-[380px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500">
+                    <img
+                      src={featured.image}
+                      alt={featured.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent md:opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent md:opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
-                  <div className="absolute top-6 left-6 px-4 py-2 bg-white/95 text-sm font-medium rounded-2xl z-10">
-                    {featured.category}
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-                      {featured.title}
-                    </h2>
-
-                    <div className="md:flex items-center gap-4 text-sm text-gray-300">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" /> {featured.author}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" /> {featured.date}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4" /> {featured.readTime}
-                      </div>
+                    <div className="absolute top-6 left-6 px-4 py-2 bg-white/95 text-sm font-medium rounded-2xl z-10">
+                      {featured.category}
                     </div>
 
-                    <div className="mt-6 inline-flex items-center gap-2 text-red-400 font-medium">
-                      Read Full Article
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                      <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                        {featured.title}
+                      </h2>
+
+                      <div className="md:flex items-center gap-4 text-sm text-gray-300">
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4" /> {featured.author}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" /> {featured.date}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" /> {featured.readTime}
+                        </div>
+                      </div>
+
+                      <div className="mt-6 inline-flex items-center gap-2 text-red-400 font-medium">
+                        Read Full Article
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
+                </Link>
+              </div>
+            )}
 
-            {/* Regular Posts Grid */}
-            <div className="grid md:grid-cols-2 gap-8">
-              {gridPosts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
+            {/* Posts Grid */}
+            {gridPosts.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {gridPosts.map((post) => (
+                  <BlogCard key={post.id} post={post} />
+                ))}
+              </div>
+            ) : (
+              <div className="py-20 text-center">
+                <p className="text-gray-500">
+                  No articles in this category yet.
+                </p>
+              </div>
+            )}
 
             {/* Load More */}
             {hasMore && (
@@ -146,12 +183,12 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 shadow-sm"
                 >
                   Load More Articles
-                  <span className="text-xs text-gray-500 group-hover:text-white">
+                  <span className="text-xs text-gray-500">
                     ({remaining} more)
                   </span>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  Showing {gridPosts.length} of {regularPosts.length} articles
+                  Showing {gridPosts.length} of {rest.length} articles
                 </p>
               </div>
             )}
@@ -167,24 +204,48 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
                   <TrendingUp className="text-red-500" />
                   <h3 className="text-xl font-bold">Recommended Reads</h3>
                 </div>
-                {sidebarPosts.map((post) => (
+                {sortedPosts.slice(1, 5).map((post) => (
                   <TrendingItem key={post.id} post={post} />
                 ))}
               </div>
 
-              {/* Categories */}
+              {/* Categories — clickable filter */}
               <div className="bg-white rounded-2xl p-6 shadow-md">
                 <h3 className="text-xl font-bold mb-5">Categories</h3>
                 <div className="flex flex-wrap gap-2">
-                  {categories.map((cat) => (
-                    <span
-                      key={cat}
-                      className="px-4 py-2 bg-gray-100 hover:bg-red-50 hover:text-red-600 rounded-xl text-sm transition-all cursor-pointer"
-                    >
-                      {cat}{' '}
-                      <span className="text-gray-400">({categoryCounts[cat]})</span>
+                  <button
+                    onClick={() => handleCategoryChange('All')}
+                    className={`px-4 py-2 rounded-xl text-sm transition-all ${
+                      activeCategory === 'All'
+                        ? 'bg-red-600 text-white'
+                        : 'bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700'
+                    }`}
+                  >
+                    All{' '}
+                    <span className={activeCategory === 'All' ? 'text-red-100' : 'text-gray-400'}>
+                      ({sortedPosts.length})
                     </span>
-                  ))}
+                  </button>
+
+                  {categories.map((cat) => {
+                    const isActive = activeCategory === cat;
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => handleCategoryChange(cat)}
+                        className={`px-4 py-2 rounded-xl text-sm transition-all ${
+                          isActive
+                            ? 'bg-red-600 text-white'
+                            : 'bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700'
+                        }`}
+                      >
+                        {cat}{' '}
+                        <span className={isActive ? 'text-red-100' : 'text-gray-400'}>
+                          ({categoryCounts[cat]})
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

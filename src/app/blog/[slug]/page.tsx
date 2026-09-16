@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, User, TrendingUp } from 'lucide-react';
 import { allBlogPosts } from '@/app/data/blog';
 
+// ========== EXISTING POSTS ==========
 import CanadaBookMarketing from './posts/CanadaBookMarketing';
 import CommonWritingMistakes from './posts/CommonWritingMistakes';
 import BookMarketing101 from './posts/BookMarketing101';
@@ -19,11 +20,26 @@ import WhyTeensShouldWrite from './posts/WhyTeensShouldWrite';
 import FaithFueledSelfPublishing from './posts/FaithFueledSelfPublishing';
 import OttawaPublishersReject from './posts/OttawaPublishersReject';
 
+// ========== MIGRATED FROM /ARTICLES ==========
+import AuthorBrandingMarketing from './posts/AuthorBrandingMarketing';
+import AuthorSupportServices from './posts/AuthorSupportServices';
+import BilingualPublishing from './posts/BilingualPublishing';
+import BookMarketingOnABudget from './posts/BookMarketingOnABudget';
+import CorporateHeritagePublishing from './posts/CorporateHeritagePublishing';
+import EditingVsProofreading from './posts/EditingVsProofreading';
+import FaithBasedPublishing from './posts/FaithBasedPublishing';
+import FirstTimeAuthorPublishing from './posts/FirstTimeAuthorPublishing';
+import OttawaAuthorBrandWebsite from './posts/OttawaAuthorBrandWebsite';
+import ProfessionalBookPublishing from './posts/ProfessionalBookPublishing';
+import SelfPublishingConsultation from './posts/SelfPublishingConsultation';
+import SelfPublishingServices from './posts/SelfPublishingServices';
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 const PostComponents: Record<string, React.ComponentType> = {
+  // ========== EXISTING POSTS ==========
   "what-new-authors-in-canada-get-wrong-about-book-marketing": CanadaBookMarketing,
   "7-common-writing-mistakes-editors-hate": CommonWritingMistakes,
   "book-marketing-101-social-media-for-first-time-authors": BookMarketing101,
@@ -38,6 +54,20 @@ const PostComponents: Record<string, React.ComponentType> = {
   "why-more-teens-should-write": WhyTeensShouldWrite,
   "faith-fueled-guide-to-self-publishing-your-book": FaithFueledSelfPublishing,
   "why-do-ottawa-publishers-reject-manuscripts": OttawaPublishersReject,
+
+  // ========== MIGRATED FROM /ARTICLES ==========
+  "author-branding-book-marketing-ottawa": AuthorBrandingMarketing,
+  "author-support-services-ottawa": AuthorSupportServices,
+  "bilingual-publishing-ottawa": BilingualPublishing,
+  "book-marketing-on-a-budget-ottawa": BookMarketingOnABudget,
+  "corporate-heritage-publishing-ottawa": CorporateHeritagePublishing,
+  "editing-vs-proofreading-ottawa": EditingVsProofreading,
+  "faith-based-publishing-ottawa": FaithBasedPublishing,
+  "first-time-author-publishing-ottawa": FirstTimeAuthorPublishing,
+  "ottawa-author-brand-website": OttawaAuthorBrandWebsite,
+  "professional-book-publishing-ottawa": ProfessionalBookPublishing,
+  "self-publishing-consultation-ottawa": SelfPublishingConsultation,
+  "self-publishing-services-ottawa": SelfPublishingServices,
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -52,6 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [
       "book marketing", "self-publishing", "writing craft", "publishing industry",
       "author marketing", "faith-based literature", "writing career",
+      "Ottawa publishing", "book publishing Canada", "author branding Ottawa",
       post.category.toLowerCase()
     ],
     openGraph: {
@@ -118,7 +149,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             {/* Meta Info */}
-            <div className="flex items-center gap-8 text-sm text-gray-500 mb-12 border-b pb-10">
+            <div className="flex items-center gap-8 text-sm text-gray-500 mb-12 border-b pb-10 flex-wrap">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" /> {post.author}
               </div>
@@ -187,7 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
               {/* Newsletter */}
               <div className="bg-gray-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-bold mb-3">Stay Updated</h3>
-                <p className="text-gray-400 text-sm mb-6">Get the latest publishing, book marketing & writing craft insights.</p>
+                <p className="text-gray-400 text-sm mb-6">Get the latest publishing, book marketing &amp; writing craft insights.</p>
                 <input
                   type="email"
                   placeholder="Your email"

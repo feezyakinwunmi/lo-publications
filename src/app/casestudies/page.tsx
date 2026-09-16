@@ -3,12 +3,12 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Search, 
-  Calendar, 
-  Clock, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Calendar,
+  Clock,
   User,
   BookOpen,
   ArrowUpDown,
@@ -16,7 +16,11 @@ import {
   ChevronDown,
   Star,
   TrendingUp,
-  Award
+  Quote,
+  Lightbulb,
+  Target,
+  Award,
+  Wrench,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -30,7 +34,8 @@ const caseStudiesData = [
     authorProfession: "Entrepreneur, Business Coach, Speaker",
     genre: "Inspirational / Christian Living",
     coverImage: "./rl.jpg",
-    excerpt: "A transformational book combining reflections, poetry, guided exercises, and scriptural insights to help readers experience healing, self-love, forgiveness, and authentic relationships.",
+    excerpt:
+      "A transformational book combining reflections, poetry, guided exercises, and scriptural insights to help readers experience healing, self-love, forgiveness, and authentic relationships.",
     publishedDate: "2025-01-15",
     readTime: 8,
     featured: true,
@@ -38,22 +43,24 @@ const caseStudiesData = [
       "Getting a suitable book cover design",
       "Structuring content effectively",
       "Meeting publishing standards",
-      "Preparing print and digital editions"
+      "Preparing print and digital editions",
     ],
     solutions: [
       "Professional editing and formatting",
       "Custom cover design consultation",
       "ISBN support and digital publishing assistance",
-      "Print-ready preparation"
+      "Print-ready preparation",
     ],
     results: [
       "Successfully published in digital and print formats",
       "Enhanced author credibility",
       "Created speaking and coaching opportunities",
-      "Expanded audience reach"
+      "Expanded audience reach",
     ],
-    testimonial: "Working with the publishing team made my dream of becoming a published author seamless. Their professionalism, guidance, and attention to detail ensured that Rhapsody of Love was published to a high standard while preserving the heart of my message.",
-    authorBio: "Layo Obidike is passionate about personal and spiritual growth, emotional healing, and purposeful living. She is an entrepreneur, business coach, speaker, and author dedicated to helping others transform their lives."
+    testimonial:
+      "Working with the publishing team made my dream of becoming a published author seamless. Their professionalism, guidance, and attention to detail ensured that Rhapsody of Love was published to a high standard while preserving the heart of my message.",
+    authorBio:
+      "Layo Obidike is passionate about personal and spiritual growth, emotional healing, and purposeful living. She is an entrepreneur, business coach, speaker, and author dedicated to helping others transform their lives.",
   },
   {
     id: 2,
@@ -63,7 +70,8 @@ const caseStudiesData = [
     authorProfession: "Lawyer, Writer, Speaker",
     genre: "Memoir / Literary Nonfiction",
     coverImage: "/./crown.jpg",
-    excerpt: "A reflective memoir that explores identity, family dynamics, birth order, resilience, forgiveness, and healing through the author's experience as a firstborn daughter in a Nigerian polygamous household.",
+    excerpt:
+      "A reflective memoir that explores identity, family dynamics, birth order, resilience, forgiveness, and healing through the author's experience as a firstborn daughter in a Nigerian polygamous household.",
     publishedDate: "2025-02-20",
     readTime: 12,
     featured: true,
@@ -71,22 +79,24 @@ const caseStudiesData = [
       "Documenting sensitive family experiences",
       "Balancing personal truth with privacy",
       "Structuring a narrative spanning decades",
-      "First-time author navigating publishing"
+      "First-time author navigating publishing",
     ],
     solutions: [
       "Comprehensive manuscript editing (5 stages)",
       "Custom cover design representing the memoir's theme",
       "ISBN and copyright registration",
-      "Amazon publication setup"
+      "Amazon publication setup",
     ],
     results: [
       "Successfully published memoir",
       "Professional editorial development",
       "Global print distribution via Amazon",
-      "Published on author's birthday"
+      "Published on author's birthday",
     ],
-    testimonial: "The publishing team helped me transform my deeply personal manuscript into a professionally published memoir. Their expertise and sensitivity made all the difference.",
-    authorBio: "Temitope Soewu is a lawyer, writer, and speaker with a growing interest in family systems, identity, womanhood, and personal development."
+    testimonial:
+      "The publishing team helped me transform my deeply personal manuscript into a professionally published memoir. Their expertise and sensitivity made all the difference.",
+    authorBio:
+      "Temitope Soewu is a lawyer, writer, and speaker with a growing interest in family systems, identity, womanhood, and personal development.",
   },
   {
     id: 3,
@@ -96,7 +106,8 @@ const caseStudiesData = [
     authorProfession: "Children's Author, Storyteller, Literacy Advocate",
     genre: "Children's Fiction / Educational",
     coverImage: "./ngozi.jpg",
-    excerpt: "A culturally rich children's story that celebrates the beauty of family, community, and everyday learning through a memorable visit to a beloved aunt.",
+    excerpt:
+      "A culturally rich children's story that celebrates the beauty of family, community, and everyday learning through a memorable visit to a beloved aunt.",
     publishedDate: "2025-03-10",
     readTime: 6,
     featured: false,
@@ -104,22 +115,24 @@ const caseStudiesData = [
       "Finding books that reflect Nigerian culture",
       "Teaching values without being instructional",
       "Creating universally relatable stories",
-      "Encouraging a love for reading"
+      "Encouraging a love for reading",
     ],
     solutions: [
       "Authentic Nigerian family storytelling",
       "Age-appropriate language and engaging pace",
       "Subtle integration of values and lessons",
-      "Culturally resonant illustrations and themes"
+      "Culturally resonant illustrations and themes",
     ],
     results: [
       "Valuable educational resource for parents and teachers",
       "Supports literacy and character development",
       "Celebrates Nigerian traditions and identity",
-      "Nurtures lifelong love for reading"
+      "Nurtures lifelong love for reading",
     ],
-    testimonial: "I wanted to create a book that reminds children that some of life's greatest lessons are found in the simple moments we share with family.",
-    authorBio: "Omolara Adeola believes that some of life's greatest lessons are learned through ordinary moments. She is dedicated to creating stories that capture the warmth of Nigerian family life while helping children develop meaningful values."
+    testimonial:
+      "I wanted to create a book that reminds children that some of life's greatest lessons are found in the simple moments we share with family.",
+    authorBio:
+      "Omolara Adeola believes that some of life's greatest lessons are learned through ordinary moments. She is dedicated to creating stories that capture the warmth of Nigerian family life while helping children develop meaningful values.",
   },
   {
     id: 4,
@@ -129,27 +142,30 @@ const caseStudiesData = [
     authorProfession: "Christian Minister, Leadership Mentor",
     genre: "Christian Entrepreneurship",
     coverImage: "./kingdom.jpg",
-    excerpt: "A transformative book bridging faith and entrepreneurship with practical, Scripture-based strategies for leadership, stewardship, integrity, and sustainable business growth.",
+    excerpt:
+      "A transformative book bridging faith and entrepreneurship with practical, Scripture-based strategies for leadership, stewardship, integrity, and sustainable business growth.",
     publishedDate: "2025-04-05",
     readTime: 10,
     featured: false,
     challenges: [
       "Transforming years of ministry experience into a book",
       "Maintaining biblical accuracy and readability",
-      "Meeting high publishing standards"
+      "Meeting high publishing standards",
     ],
     solutions: [
       "Manuscript editing and proofreading",
       "Professional typesetting and cover design",
-      "Quality assurance and publication support"
+      "Quality assurance and publication support",
     ],
     results: [
       "Successfully published and serving as a resource",
       "Encouraging Christian entrepreneurs globally",
-      "Creating lasting impact for Kingdom businesses"
+      "Creating lasting impact for Kingdom businesses",
     ],
-    testimonial: "The publishing process was seamless. They helped me present my message professionally while keeping the heart of my ministry intact.",
-    authorBio: "Pastor Ireti Sholola is a Christian minister, leadership mentor, and Kingdom-minded entrepreneur dedicated to equipping business leaders with biblical principles."
+    testimonial:
+      "The publishing process was seamless. They helped me present my message professionally while keeping the heart of my ministry intact.",
+    authorBio:
+      "Pastor Ireti Sholola is a Christian minister, leadership mentor, and Kingdom-minded entrepreneur dedicated to equipping business leaders with biblical principles.",
   },
   {
     id: 5,
@@ -159,7 +175,8 @@ const caseStudiesData = [
     authorProfession: "Storyteller, Memoir Writer, Creative Artist",
     genre: "Inspirational Memoir / Women's Literature",
     coverImage: "./niw.jpg",
-    excerpt: "An inspirational memoir exploring the journey of identity, grief, healing, resilience, and faith through the experiences of Deborah Adebayo and the women whose lives shaped her.",
+    excerpt:
+      "An inspirational memoir exploring the journey of identity, grief, healing, resilience, and faith through the experiences of Deborah Adebayo and the women whose lives shaped her.",
     publishedDate: "2025-05-12",
     readTime: 14,
     featured: true,
@@ -167,33 +184,35 @@ const caseStudiesData = [
       "Transforming personal experiences into a broad memoir",
       "Organizing complex narrative across generations",
       "Balancing memoir, history, and faith-based reflection",
-      "Maintaining emotional consistency"
+      "Maintaining emotional consistency",
     ],
     solutions: [
       "Comprehensive developmental editing",
       "Structural refinement and chapter sequencing",
       "Line editing and copyediting",
-      "Professional cover and interior design"
+      "Professional cover and interior design",
     ],
     results: [
       "Successfully published 141-page memoir",
       "Professionally edited and designed",
       "Published under LO Publications imprint",
-      "Complete editorial and design team support"
+      "Complete editorial and design team support",
     ],
-    testimonial: "The team helped me transform my manuscript into a professionally published work while preserving my authentic voice and the emotional depth of my story.",
-    authorBio: "Oluwaseun Deborah Adebayo is a storyteller, memoir writer, creative artist, and founder of the Crafts and Impressions platform, dedicated to amplifying overlooked voices through storytelling."
-  }
+    testimonial:
+      "The team helped me transform my manuscript into a professionally published work while preserving my authentic voice and the emotional depth of my story.",
+    authorBio:
+      "Oluwaseun Deborah Adebayo is a storyteller, memoir writer, creative artist, and founder of the Crafts and Impressions platform, dedicated to amplifying overlooked voices through storytelling.",
+  },
 ];
 
 // Custom Select Component
-const CustomSelect = ({ 
-  options, 
-  value, 
-  onChange, 
+const CustomSelect = ({
+  options,
+  value,
+  onChange,
   placeholder,
-  icon: Icon 
-}: { 
+  icon: Icon,
+}: {
   options: { value: string; label: string }[];
   value: string;
   onChange: (value: string) => void;
@@ -201,8 +220,7 @@ const CustomSelect = ({
   icon?: any;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const selectedOption = options.find(opt => opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value);
 
   return (
     <div className="relative">
@@ -214,9 +232,11 @@ const CustomSelect = ({
         <span className="flex-1 text-left text-sm">
           {selectedOption?.label || placeholder || "Select..."}
         </span>
-        <ChevronDown 
-          size={16} 
-          className={`text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        <ChevronDown
+          size={16}
+          className={`text-gray-400 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
         />
       </button>
 
@@ -238,7 +258,9 @@ const CustomSelect = ({
                     setIsOpen(false);
                   }}
                   className={`w-full px-4 py-2.5 text-sm text-left hover:bg-red-50 transition-colors ${
-                    value === option.value ? 'bg-red-50 text-red-900 font-medium' : 'text-gray-700'
+                    value === option.value
+                      ? "bg-red-50 text-red-900 font-medium"
+                      : "text-gray-700"
                   }`}
                 >
                   {option.label}
@@ -259,58 +281,59 @@ export default function CaseStudiesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  
+
   const itemsPerPage = 10;
 
-  // Get unique genres
   const genres = useMemo(() => {
-    const genreSet = new Set(caseStudiesData.map(study => study.genre));
+    const genreSet = new Set(caseStudiesData.map((study) => study.genre));
     return Array.from(genreSet);
   }, []);
 
-  // Sort options
   const sortOptions = [
     { value: "newest", label: "Newest First" },
     { value: "oldest", label: "Oldest First" },
     { value: "a-z", label: "A - Z" },
-    { value: "z-a", label: "Z - A" }
+    { value: "z-a", label: "Z - A" },
   ];
 
-  // Genre options
   const genreOptions = [
     { value: "all", label: "All Topics" },
-    ...genres.map(genre => ({ value: genre, label: genre }))
+    ...genres.map((genre) => ({ value: genre, label: genre })),
   ];
 
-  // Featured studies for slider
-  const featuredStudies = caseStudiesData.filter(study => study.featured);
+  const featuredStudies = caseStudiesData.filter((study) => study.featured);
 
-  // Filter and sort logic
   const filteredStudies = useMemo(() => {
     let result = [...caseStudiesData];
 
-    // Search
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
-      result = result.filter(study =>
-        study.title.toLowerCase().includes(term) ||
-        study.author.toLowerCase().includes(term) ||
-        study.genre.toLowerCase().includes(term)
+      result = result.filter(
+        (study) =>
+          study.title.toLowerCase().includes(term) ||
+          study.author.toLowerCase().includes(term) ||
+          study.genre.toLowerCase().includes(term)
       );
     }
 
-    // Genre
     if (selectedGenre !== "all") {
-      result = result.filter(study => study.genre === selectedGenre);
+      result = result.filter((study) => study.genre === selectedGenre);
     }
 
-    // Sort
     switch (sortBy) {
       case "newest":
-        result.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+        result.sort(
+          (a, b) =>
+            new Date(b.publishedDate).getTime() -
+            new Date(a.publishedDate).getTime()
+        );
         break;
       case "oldest":
-        result.sort((a, b) => new Date(a.publishedDate).getTime() - new Date(b.publishedDate).getTime());
+        result.sort(
+          (a, b) =>
+            new Date(a.publishedDate).getTime() -
+            new Date(b.publishedDate).getTime()
+        );
         break;
       case "a-z":
         result.sort((a, b) => a.title.localeCompare(b.title));
@@ -323,20 +346,16 @@ export default function CaseStudiesPage() {
     return result;
   }, [searchTerm, selectedGenre, sortBy]);
 
-  // Pagination
   const totalPages = Math.ceil(filteredStudies.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredStudies.slice(startIndex, endIndex);
 
-  // Auto-slide
   useMemo(() => {
     if (!isAutoPlaying || featuredStudies.length === 0) return;
-    
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % featuredStudies.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [isAutoPlaying, featuredStudies.length]);
 
@@ -346,20 +365,21 @@ export default function CaseStudiesPage() {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + featuredStudies.length) % featuredStudies.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + featuredStudies.length) % featuredStudies.length
+    );
     setIsAutoPlaying(false);
   };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
-  // Clear all filters
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedGenre("all");
@@ -367,13 +387,14 @@ export default function CaseStudiesPage() {
     setCurrentPage(1);
   };
 
-  const hasActiveFilters = searchTerm !== "" || selectedGenre !== "all" || sortBy !== "newest";
+  const hasActiveFilters =
+    searchTerm !== "" || selectedGenre !== "all" || sortBy !== "newest";
 
   return (
-    <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-50 to-white">
+    <main className="min-h-screen  bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Slider Section */}
       {featuredStudies.length > 0 && (
-        <section className="relative bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white overflow-hidden pt-20 md:pt-0">
+        <section className="relative bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white overflow-hidden pt-20 md:pt-20">
           <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -387,7 +408,10 @@ export default function CaseStudiesPage() {
               >
                 <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src={featuredStudies[currentSlide]?.coverImage || "https://via.placeholder.com/800x600?text=Featured+Case+Study"}
+                    src={
+                      featuredStudies[currentSlide]?.coverImage ||
+                      "https://via.placeholder.com/800x600?text=Featured+Case+Study"
+                    }
                     alt={featuredStudies[currentSlide]?.title}
                     className="w-full h-full object-cover"
                   />
@@ -413,15 +437,34 @@ export default function CaseStudiesPage() {
                   <span className="w-1 h-1 bg-red-400 rounded-full"></span>
                   <span>{featuredStudies[currentSlide]?.genre}</span>
                 </div>
-                
+
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                   {featuredStudies[currentSlide]?.title}
                 </h2>
-                
-                <p className="text-base md:text-lg text-red-100/90 leading-relaxed max-w-lg">
-                  {featuredStudies[currentSlide]?.excerpt}
-                </p>
-                
+
+                {/* Testimonial preview instead of excerpt */}
+                <div className="relative pl-5 border-l-2 border-amber-400/60">
+                  <Quote
+                    size={18}
+                    className="absolute -left-2 -top-1 text-amber-400"
+                  />
+                  <p className="text-base md:text-lg text-red-100/90 leading-relaxed italic max-w-lg">
+                    &ldquo;
+                    {featuredStudies[currentSlide]?.testimonial
+                      ? featuredStudies[currentSlide].testimonial.length > 180
+                        ? featuredStudies[currentSlide].testimonial.slice(
+                            0,
+                            180
+                          ) + "..."
+                        : featuredStudies[currentSlide].testimonial
+                      : ""}
+                    &rdquo;
+                  </p>
+                  <p className="text-xs text-red-200 mt-2 not-italic">
+                    — {featuredStudies[currentSlide]?.author}
+                  </p>
+                </div>
+
                 <div className="flex flex-wrap items-center gap-4 text-sm text-red-200">
                   <span className="flex items-center gap-2">
                     <User size={16} />
@@ -449,7 +492,6 @@ export default function CaseStudiesPage() {
               </motion.div>
             </div>
 
-            {/* Slider Controls */}
             {featuredStudies.length > 1 && (
               <div className="flex justify-center items-center gap-4 mt-8">
                 <button
@@ -459,7 +501,7 @@ export default function CaseStudiesPage() {
                 >
                   <ChevronLeft size={20} />
                 </button>
-                
+
                 <div className="flex gap-2">
                   {featuredStudies.map((_, index) => (
                     <button
@@ -469,15 +511,15 @@ export default function CaseStudiesPage() {
                         setIsAutoPlaying(false);
                       }}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        index === currentSlide 
-                          ? "bg-white w-8" 
+                        index === currentSlide
+                          ? "bg-white w-8"
                           : "bg-white/40 w-4 hover:bg-white/60"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}
                 </div>
-                
+
                 <button
                   onClick={nextSlide}
                   className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all hover:scale-110"
@@ -491,9 +533,77 @@ export default function CaseStudiesPage() {
         </section>
       )}
 
+      {/* What Is a Case Study — explanation block */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-br from-amber-50 via-white to-red-50 border border-amber-100 rounded-3xl p-6 sm:p-8 md:p-10"
+        >
+          <div className="max-w-3xl mb-6">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-red-900 uppercase tracking-wider mb-3">
+              <Lightbulb size={14} />
+              What Is a Case Study?
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight mb-3">
+              Real books. Real challenges. Real results.
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              Each case study walks you through a real author's journey with us —
+              the challenges they faced, the solutions we provided, the results
+              they achieved, and what they said about working with us. If you are
+              considering publishing your own book, these stories show you
+              exactly what the process looks like from start to finish.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Target,
+                label: "The Challenge",
+                desc: "What the author needed help with",
+              },
+              {
+                icon: Wrench,
+                label: "Our Solution",
+                desc: "How we worked with them",
+              },
+              {
+                icon: Award,
+                label: "The Result",
+                desc: "What the book achieved",
+              },
+              {
+                icon: Quote,
+                label: "In Their Words",
+                desc: "The author's testimonial",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.label}
+                  className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-4 shadow-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-3">
+                    <Icon size={18} className="text-red-900" />
+                  </div>
+                  <p className="font-semibold text-black text-sm mb-1">
+                    {item.label}
+                  </p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+      </section>
+
       {/* Main Content Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        {/* Page Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -505,7 +615,8 @@ export default function CaseStudiesPage() {
                 Case Studies
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl">
-                Explore real stories of authors who brought their books to life through professional publishing
+                Explore real stories of authors who brought their books to life
+                through professional publishing
               </p>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-white px-4 py-2 rounded-xl shadow-sm">
@@ -523,9 +634,11 @@ export default function CaseStudiesPage() {
           className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-8"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Search */}
             <div className="relative lg:col-span-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <Search
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                size={18}
+              />
               <input
                 type="text"
                 placeholder="Search case studies..."
@@ -546,7 +659,6 @@ export default function CaseStudiesPage() {
               )}
             </div>
 
-            {/* Genre Filter */}
             <CustomSelect
               options={genreOptions}
               value={selectedGenre}
@@ -558,7 +670,6 @@ export default function CaseStudiesPage() {
               icon={BookOpen}
             />
 
-            {/* Sort */}
             <CustomSelect
               options={sortOptions}
               value={sortBy}
@@ -570,7 +681,6 @@ export default function CaseStudiesPage() {
               icon={ArrowUpDown}
             />
 
-            {/* Clear Filters Button */}
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
@@ -582,17 +692,17 @@ export default function CaseStudiesPage() {
             )}
           </div>
 
-          {/* Results Count */}
           <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2">
             <span className="text-sm text-gray-600">
               Showing <strong className="text-black">{startIndex + 1}</strong> -{" "}
-              <strong className="text-black">{Math.min(endIndex, filteredStudies.length)}</strong> of{" "}
-              <strong className="text-black">{filteredStudies.length}</strong> case studies
+              <strong className="text-black">
+                {Math.min(endIndex, filteredStudies.length)}
+              </strong>{" "}
+              of <strong className="text-black">{filteredStudies.length}</strong>{" "}
+              case studies
             </span>
             {hasActiveFilters && (
-              <span className="text-xs text-gray-500">
-                Filters applied
-              </span>
+              <span className="text-xs text-gray-500">Filters applied</span>
             )}
           </div>
         </motion.div>
@@ -607,8 +717,12 @@ export default function CaseStudiesPage() {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-6">
               <Search size={32} className="text-gray-400" />
             </div>
-            <h3 className="text-2xl font-bold text-black mb-2">No case studies found</h3>
-            <p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+            <h3 className="text-2xl font-bold text-black mb-2">
+              No case studies found
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Try adjusting your filters or search terms
+            </p>
             <button
               onClick={clearFilters}
               className="px-6 py-3 bg-red-900 text-white rounded-xl hover:bg-red-800 transition shadow-lg"
@@ -628,11 +742,17 @@ export default function CaseStudiesPage() {
                   whileHover={{ y: -8 }}
                   className="group relative"
                 >
-                  <Link href={`/casestudies/${study.slug}`} className="block h-full">
+                  <Link
+                    href={`/casestudies/${study.slug}`}
+                    className="block h-full"
+                  >
                     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-gray-100">
                       <div className="relative h-56 overflow-hidden bg-gray-300">
                         <img
-                          src={study.coverImage || "https://via.placeholder.com/600x400?text=Case+Study"}
+                          src={
+                            study.coverImage ||
+                            "https://via.placeholder.com/600x400?text=Case+Study"
+                          }
                           alt={study.title}
                           className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                         />
@@ -650,27 +770,36 @@ export default function CaseStudiesPage() {
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="p-5 flex flex-col flex-grow">
                         <div className="flex items-center gap-2 text-xs mb-2">
                           <span className="bg-red-50 text-red-900 px-2.5 py-1 rounded-full font-medium">
                             {study.genre}
                           </span>
                         </div>
-                        
+
                         <h3 className="text-lg font-bold text-black mb-1 line-clamp-2 group-hover:text-red-900 transition-colors">
                           {study.title}
                         </h3>
-                        
+
                         <p className="text-sm text-gray-600 mb-3 flex items-center gap-1">
                           <User size={14} className="text-gray-400" />
                           {study.author}
                         </p>
-                        
-                        <p className="text-sm text-gray-500 line-clamp-2 flex-grow mb-3">
-                          {study.excerpt}
-                        </p>
-                        
+
+                        {/* Testimonial instead of excerpt */}
+                        <div className="relative flex-grow mb-3 pt-3 border-t border-gray-100">
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <Quote size={12} className="text-amber-500" />
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-600">
+                              Client Testimonial
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 italic">
+                            &ldquo;{study.testimonial}&rdquo;
+                          </p>
+                        </div>
+
                         <div className="flex items-center gap-3 text-xs text-gray-400 pt-3 border-t border-gray-100">
                           <span className="flex items-center gap-1">
                             <Calendar size={14} />
@@ -699,16 +828,18 @@ export default function CaseStudiesPage() {
                 <div className="text-sm text-gray-600">
                   Page {currentPage} of {totalPages}
                 </div>
-                
+
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
                     disabled={currentPage === 1}
                     className="p-2 rounded-xl border border-gray-200 hover:border-red-900 hover:bg-red-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                   >
                     <ChevronLeft size={20} />
                   </button>
-                  
+
                   {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                     let pageNum;
                     if (totalPages <= 5) {
@@ -720,7 +851,7 @@ export default function CaseStudiesPage() {
                     } else {
                       pageNum = currentPage - 2 + i;
                     }
-                    
+
                     return (
                       <button
                         key={i}
@@ -735,9 +866,11 @@ export default function CaseStudiesPage() {
                       </button>
                     );
                   })}
-                  
+
                   <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                    }
                     disabled={currentPage === totalPages}
                     className="p-2 rounded-xl border border-gray-200 hover:border-red-900 hover:bg-red-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                   >

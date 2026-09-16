@@ -1513,106 +1513,152 @@ export default function Home() {
           TESTIMONIALS
       ====================================================== */}
       <section className="py-24 bg-[#f8f6f3]">
-        <div className="max-w-7xl mx-auto px-6">
+  <div className="max-w-7xl mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">
+        Testimonials
+      </span>
+      <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-4">
+        What People Say
+      </h2>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Hear from authors who&apos;ve trusted us with their stories — real
+        experiences, real impact.
+      </p>
+    </motion.div>
+
+    {loadingTestimonials ? (
+      <div className="text-center py-12">
+        <Loader2 className="animate-spin mx-auto text-[#8d171c]" size={48} />
+        <p className="mt-4 text-gray-600">Loading testimonials...</p>
+      </div>
+    ) : error ? (
+      <div className="text-center py-12 text-red-600">{error}</div>
+    ) : testimonials.length === 0 ? (
+      <div className="text-center py-12 text-gray-600">
+        No testimonials yet.
+      </div>
+    ) : (
+      <div className="relative">
+        {/* Carousel viewport */}
+        <div className="overflow-hidden -mx-3">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            className="flex"
+            animate={{
+              x: `calc(-${currentSlide * 100}% + ${currentSlide * 24}px)`,
+            }}
+            transition={{ type: "spring", damping: 30, stiffness: 200 }}
           >
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">Testimonials</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-4">What Authors Say</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from authors who've trusted us with their stories — real experiences, real impact.
-            </p>
-          </motion.div>
+            {testimonials.map((t) => (
+              <div
+                key={t.id}
+                className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3"
+              >
+                <div className="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-gray-100 h-full flex flex-col relative group hover:shadow-2xl hover:shadow-[#8d171c]/10 transition-all duration-300 hover:-translate-y-1">
+                  {/* Big quote icon */}
+                  <Quote className="absolute top-6 right-6 w-12 h-12 text-[#8d171c]/10" />
 
-          {loadingTestimonials ? (
-            <div className="text-center py-12">
-              <Loader2 className="animate-spin mx-auto" size={48} />
-              <p className="mt-4 text-gray-600">Loading testimonials...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-12 text-red-600">{error}</div>
-          ) : testimonials.length === 0 ? (
-            <div className="text-center py-12 text-gray-600">No testimonials yet.</div>
-          ) : (
-            <div className="relative">
-              <div className="overflow-hidden">
-                <motion.div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                  initial={false}
-                >
-                  {testimonials.map((t) => (
-                    <div key={t.id} className="w-full flex-shrink-0 px-4">
-                      <div className="bg-white p-10 md:p-12 rounded-3xl shadow-2xl border border-gray-100 text-center relative group hover:shadow-[#8d171c]/10 transition-shadow">
-                        <Quote className="absolute top-6 left-8 w-16 h-16 text-[#8d171c]/20" />
+                  {/* Rating */}
+                  <div className="flex gap-0.5 mb-5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={16}
+                        className={
+                          i < t.rating
+                            ? "text-yellow-400 fill-yellow-400"
+                            : "text-gray-300"
+                        }
+                      />
+                    ))}
+                  </div>
 
-                        <p className="text-xl md:text-2xl text-gray-800 italic mb-8 leading-relaxed">
-                          "{t.quote}"
+                  {/* Quote */}
+                  <p className="text-base md:text-lg text-gray-800 italic leading-relaxed flex-1 mb-6">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+                    <img
+                      src={
+                        t.avatar_url ||
+                        "https://via.placeholder.com/100?text=Avatar"
+                      }
+                      alt={t.author}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-[#8d171c] shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform"
+                    />
+                    <div className="min-w-0">
+                      <h4 className="text-base font-bold text-black truncate">
+                        {t.author}
+                      </h4>
+                      {t.role && (
+                        <p className="text-sm text-gray-500 truncate">
+                          {t.role}
                         </p>
-
-                        <div className="flex flex-col items-center">
-                          <img
-                            src={t.avatar_url || "https://via.placeholder.com/100?text=Avatar"}
-                            alt={t.author}
-                            className="w-20 h-20 rounded-full object-contain border-4 border-[#8d171c] mb-4 shadow-md group-hover:scale-110 transition-transform"
-                          />
-                          <h4 className="text-xl font-bold text-black">{t.author}</h4>
-                          {t.role && <p className="text-gray-600">{t.role}</p>}
-                        </div>
-
-                        <div className="flex justify-center mt-4">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              size={18}
-                              className={i < t.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
-                            />
-                          ))}
-                        </div>
-                      </div>
+                      )}
                     </div>
-                  ))}
-                </motion.div>
+                  </div>
+                </div>
               </div>
-
-              <motion.button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full shadow-md hover:bg-white transition disabled:opacity-50"
-                disabled={currentSlide === 0}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="text-[#8d171c]" size={28} />
-              </motion.button>
-              <motion.button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full shadow-md hover:bg-white transition disabled:opacity-50"
-                disabled={currentSlide === testimonials.length - 1}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="text-[#8d171c]" size={28} />
-              </motion.button>
-
-              <div className="flex justify-center gap-3 mt-8">
-                {testimonials.map((_, idx) => (
-                  <motion.button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      currentSlide === idx ? "bg-[#8d171c] w-6" : "bg-gray-300"
-                    }`}
-                    whileHover={{ scale: 1.2 }}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+            ))}
+          </motion.div>
         </div>
-      </section>
+
+        {/* Navigation arrows */}
+        {testimonials.length > 1 && (
+          <>
+            <motion.button
+              onClick={prevSlide}
+              className="absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 p-3 bg-white rounded-full shadow-lg hover:bg-[#8d171c] hover:text-white text-[#8d171c] transition disabled:opacity-30 disabled:cursor-not-allowed z-10"
+              disabled={currentSlide === 0}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft size={24} />
+            </motion.button>
+
+            <motion.button
+              onClick={nextSlide}
+              className="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 p-3 bg-white rounded-full shadow-lg hover:bg-[#8d171c] hover:text-white text-[#8d171c] transition disabled:opacity-30 disabled:cursor-not-allowed z-10"
+              disabled={currentSlide >= testimonials.length - 1}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Next testimonials"
+            >
+              <ChevronRight size={24} />
+            </motion.button>
+          </>
+        )}
+
+        {/* Dots */}
+        {testimonials.length > 1 && (
+          <div className="flex justify-center gap-2 mt-10">
+            {testimonials.map((_, idx) => (
+              <motion.button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`rounded-full transition-all ${
+                  currentSlide === idx
+                    ? "bg-[#8d171c] w-8 h-2.5"
+                    : "bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400"
+                }`}
+                whileHover={{ scale: 1.2 }}
+                aria-label={`Go to testimonial ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</section>
 
       {/* =====================================================
           FAQ / ACCORDION SECTION

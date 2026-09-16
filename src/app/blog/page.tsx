@@ -15,6 +15,7 @@ type BlogPost = {
 };
 
 const blogPosts: BlogPost[] = [
+  // ========== EXISTING POSTS ==========
   {
     id: 1,
     title: "What New Authors in Canada Get Wrong About Book Marketing",
@@ -168,6 +169,140 @@ const blogPosts: BlogPost[] = [
     readTime: "13 min read",
     date: "June 6, 2026",
     author: "LOPublications"
+  },
+
+  // ========== MIGRATED FROM /ARTICLES ==========
+  {
+    id: 15,
+    title: "Author Branding & Book Marketing in Ottawa: How Local Authors Build Visibility and Grow Their Readership",
+    slug: "author-branding-book-marketing-ottawa",
+    excerpt: "How Ottawa authors build visibility through branding, community involvement, and strategic marketing — from literary events to local bookstores and media.",
+    image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&h=500&fit=crop",
+    category: "Book Marketing",
+    readTime: "10 min read",
+    date: "November 12, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 16,
+    title: "Author Support Services in Ottawa: Turn Your Manuscript into a Published Success Story",
+    slug: "author-support-services-ottawa",
+    excerpt: "From manuscript evaluation to editing, design, and marketing — how professional author support services help Ottawa writers publish successfully.",
+    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=1200&h=500&fit=crop",
+    category: "Publishing",
+    readTime: "9 min read",
+    date: "November 10, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 17,
+    title: "Bilingual Publishing in Ottawa (English & French)",
+    slug: "bilingual-publishing-ottawa",
+    excerpt: "How bilingual publishing opens doors to wider Canadian audiences — with linguistic accuracy, cultural authenticity, and credibility in both official languages.",
+    image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=500&fit=crop",
+    category: "Publishing",
+    readTime: "8 min read",
+    date: "November 8, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 18,
+    title: "Book Marketing on a Budget: Strategies for First-Time Self-Published Authors in Ottawa",
+    slug: "book-marketing-on-a-budget-ottawa",
+    excerpt: "Strategic, low-cost marketing can generate impressive results. Here's how Ottawa authors build visibility without exhausting their budget.",
+    image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=500&fit=crop",
+    category: "Book Marketing",
+    readTime: "10 min read",
+    date: "November 6, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 19,
+    title: "Corporate and Heritage Publishing in Ottawa, Canada",
+    slug: "corporate-heritage-publishing-ottawa",
+    excerpt: "Preserving stories and building legacies through professional publishing — for organisations, families, and communities across Ottawa.",
+    image: "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=1200&h=500&fit=crop",
+    category: "Publishing",
+    readTime: "9 min read",
+    date: "November 4, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 20,
+    title: "Editing vs. Proofreading: What Ottawa Authors Need to Know",
+    slug: "editing-vs-proofreading-ottawa",
+    excerpt: "Editing improves the content and structure of your manuscript. Proofreading corrects the surface-level errors. Both are essential for a polished book.",
+    image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1200&h=500&fit=crop",
+    category: "Writing Craft",
+    readTime: "5 min read",
+    date: "November 2, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 21,
+    title: "Faith-Based Publishing in Ottawa: Choosing the Right Path for Your Book",
+    slug: "faith-based-publishing-ottawa",
+    excerpt: "How faith-based authors in Ottawa navigate traditional, hybrid, and self-publishing — balancing ministry goals with publishing goals.",
+    image: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1200&h=500&fit=crop",
+    category: "Faith & Writing",
+    readTime: "10 min read",
+    date: "October 30, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 22,
+    title: "First-Time Author Publishing in Ottawa: Everything You Need to Know",
+    slug: "first-time-author-publishing-ottawa",
+    excerpt: "A comprehensive guide for aspiring authors navigating the publishing journey in Ottawa — from writing and editing to choosing the right publishing path.",
+    image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&h=500&fit=crop",
+    category: "Publishing",
+    readTime: "12 min read",
+    date: "October 28, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 23,
+    title: "Ottawa Author: Building Your Author Brand and Website Before Your Book Launches",
+    slug: "ottawa-author-brand-website",
+    excerpt: "The authors who build a brand and a website before the book is finished are the ones who launch to readers who are actually waiting.",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&h=500&fit=crop",
+    category: "Book Marketing",
+    readTime: "5 min read",
+    date: "October 26, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 24,
+    title: "Professional Book Publishing Services for Authors in Ottawa",
+    slug: "professional-book-publishing-ottawa",
+    excerpt: "From editing and cover design to distribution and marketing — how professional publishing services help Ottawa authors navigate the industry.",
+    image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&h=500&fit=crop",
+    category: "Publishing",
+    readTime: "6 min read",
+    date: "October 24, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 25,
+    title: "Self-Publishing Consultation for Ottawa Authors: Turning Your Manuscript into a Successful Book",
+    slug: "self-publishing-consultation-ottawa",
+    excerpt: "Writing a book is only half the journey. Self-publishing consultation guides Ottawa authors through every stage — from editing to distribution to marketing.",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop",
+    category: "Self-Publishing",
+    readTime: "7 min read",
+    date: "October 22, 2026",
+    author: "LOPublications"
+  },
+  {
+    id: 26,
+    title: "Self-Publishing Services in Ottawa: A Complete Guide for Aspiring Authors",
+    slug: "self-publishing-services-ottawa",
+    excerpt: "How self-publishing services help Ottawa authors bring their books to market with professional editing, design, distribution, and marketing support.",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&h=500&fit=crop",
+    category: "Self-Publishing",
+    readTime: "8 min read",
+    date: "October 20, 2026",
+    author: "LOPublications"
   }
 ];
 
@@ -179,7 +314,8 @@ export const generateMetadata = (): Metadata => {
       "book marketing", "self-publishing", "writing craft", "publishing industry",
       "author marketing", "Canadian book marketing", "writing career",
       "faith-based literature", "teen writing", "book launch strategies",
-      "publishing insights", "author networking"
+      "publishing insights", "author networking",
+      "Ottawa publishing", "book publishing Canada", "author branding Ottawa"
     ],
     authors: [{ name: "LOPublications" }],
     openGraph: {
