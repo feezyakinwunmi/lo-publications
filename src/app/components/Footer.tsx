@@ -37,10 +37,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Logo & Tagline */}
           <div className="space-y-6">
-            <Link href="/" className="text-3xl font-bold text-primary">
+            <Link href="/" className="text-3xl mb-6 font-bold text-primary">
               LO Publications
             </Link>
-            <p className="text-gray-400 max-w-xs">
+            <p className="text-gray-400 mt-4 max-w-xs">
               Turning manuscripts into masterpieces. Premium publishing with passion, precision, and purpose.
             </p>
 
@@ -49,7 +49,7 @@ export default function Footer() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="inline-flex items-center gap-2 text-red-900 hover:text-red-700 transition font-medium"
+              className="inline-flex items-center gap-2 text-red-200 hover:text-red-700 transition font-medium"
             >
               Back to Top
               <ArrowUp size={20} />
@@ -78,7 +78,7 @@ export default function Footer() {
             <h4 className="text-xl font-semibold mb-6 text-white">Contact Us</h4>
             <ul className="space-y-4 text-gray-400">
               <li className="flex items-start gap-3">
-                <MapPin className="text-red-900 mt-1" size={20} />
+                <MapPin className="text-red-200 mt-1" size={20} />
                 <span>
 1551 Lycee Place, Ottawa, K1G4B5
 
@@ -89,7 +89,7 @@ export default function Footer() {
                 <span>+234 123 456 7890</span>
               </li> */}
               <li className="flex items-center gap-3">
-                <Mail className="text-red-900" size={20} />
+                <Mail className="text-red-200" size={20} />
                 <a href="mailto:layo@lopublications.com" className="hover:text-red-900 transition">
                   layo@lopublications.com
                 </a>

@@ -29,15 +29,16 @@ const navLinks: NavLink[] = [
   { name: "About", href: "/about" },
   { name: "Books", href: "/books" },
   { name: "Team", href: "/team" },
-  { name: "Contact", href: "/contact" },
-  { name: "Careers", href: "/careers" },
+  { name: "Contact", href: "/contact" },      
+  { name: "Case Studies", href: "/casestudies" },
+{ name: "Submit Manuscript", href: "/submit" },
+  
   {
     name: "Explore",
     dropdown: true,
     items: [
       { name: "Blog", href: "/blog" },
-      { name: "Case Studies", href: "/casestudies" },
-      { name: "Submit Manuscript", href: "/submit" },
+      { name: "Careers", href: "/careers" },
       { name: "Young Authors Contest", href: "/young-authors-contest" },
     ],
   },

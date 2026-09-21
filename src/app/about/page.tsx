@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-24">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-24 mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -284,7 +284,7 @@ export default function AboutPage() {
               href="/submit"
               className="inline-flex items-center gap-3 px-8 py-4 bg-red-900 text-white font-semibold text-base rounded-full hover:bg-red-800 transition-all shadow-lg hover:shadow-xl group mt-10"
             >
-              Let&apos;s Create Something Eternal
+              Submit Your Manuscript
               <ArrowRight
                 className="group-hover:translate-x-1 transition-transform"
                 size={20}
