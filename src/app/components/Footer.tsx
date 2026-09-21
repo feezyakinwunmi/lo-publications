@@ -107,7 +107,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-red-900 transition-colors"
+                  className="text-red-200 hover:text-red-900 transition-colors"
                   aria-label={social.label}
                   whileHover={{ scale: 1.2, rotate: 10 }}
                 >
