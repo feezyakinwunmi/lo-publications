@@ -206,7 +206,7 @@ const onSubmit = async (data: FormData) => {
                 <div className="space-y-3">
                   {/* General Inquiries */}
                   <a
-                    href="mailto:layo@lomediahouse.com"
+                    href="mailto:layo@lompublications.com"
                     className="group flex items-start gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-red-200 hover:shadow-md transition-all"
                   >
                     <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition">
@@ -217,14 +217,14 @@ const onSubmit = async (data: FormData) => {
                         General Inquiries
                       </p>
                       <p className="text-red-900 text-sm break-all">
-                        layo@lomediahouse.com
+                        layo@lopublications.com
                       </p>
                     </div>
                   </a>
 
                   {/* Manuscript Submissions */}
                   <a
-                    href="mailto:layo@lomediahouse.com"
+                    href="mailto:layo@loplatforms.com"
                     className="group flex items-start gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-red-200 hover:shadow-md transition-all"
                   >
                     <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition">
