@@ -298,7 +298,7 @@ export default function HomeClient() {
               </h1>
 
               <div className="mt-9 max-w-xl">
-                <p className="text-xl text-red-500 font-bold leading-tight sm:text-2xl lg:text-[27px]">
+                <p className="text-xl font-bold leading-tight sm:text-2xl lg:text-[27px]">
                   We turn ideas, manuscripts and voices into books people want to read.
                 </p>
                 <p className="mt-4 max-w-md text-sm leading-6 text-black/50">
