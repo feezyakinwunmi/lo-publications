@@ -138,7 +138,7 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
                         {featured.title}
                       </h2>
 
-                      <div className="md:flex items-center gap-4 text-sm text-gray-300">
+                      <div className="md:flex items-center gap-4 text-sm text-black">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4" /> {featured.author}
                         </div>
@@ -150,7 +150,7 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
                         </div>
                       </div>
 
-                      <div className="mt-6 inline-flex items-center gap-2 text-red-400 font-medium">
+                      <div className="my-6 inline-flex items-center gap-2 text-red-400 font-medium">
                         Read Full Article
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
                       </div>
