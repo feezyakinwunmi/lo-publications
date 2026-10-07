@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { allBlogPosts } from "@/app/data/blog";
 
 interface NavLink {
   name: string;
@@ -83,7 +84,6 @@ export default function Navbar() {
   useEffect(() => {
     const loadAllContent = async () => {
       setIsLoading(true);
-      const supabase = createClient();
       const items: SearchItem[] = [];
 
       try {
@@ -185,48 +185,77 @@ export default function Navbar() {
           });
         });
 
-        const { data: blogPosts, error: blogError } = await supabase
-          .from("blog_posts")
-          .select("*")
-          .eq("status", "published")
-          .order("published_at", { ascending: false });
-
-        if (blogError) {
-          console.error("Error loading blog posts:", blogError);
-        } else if (blogPosts) {
-          blogPosts.forEach(post => {
+        // Static blog posts – keeps search working even when Supabase isn't configured
+        allBlogPosts.forEach(post => {
+          const href = `/blog/${post.slug}`;
+          if (!items.some(item => item.href === href)) {
             items.push({
               title: post.title,
-              href: `/blog/${post.slug || post.id}`,
+              href,
               type: "Blog",
-              excerpt: post.excerpt || post.content?.slice(0, 150) + "...",
-              thumbnail: post.thumbnail_url,
-              date: post.published_at ? new Date(post.published_at).toLocaleDateString() : "Recent",
-              author: post.publisher_name || "LO Publications",
+              excerpt: post.excerpt,
+              thumbnail: post.image,
+              date: post.date,
+              author: post.author,
             });
-          });
-        }
+          }
+        });
 
-        const { data: books, error: booksError } = await supabase
-          .from("books")
-          .select("*")
-          .eq("status", "published")
-          .order("created_at", { ascending: false });
+        // Live content from Supabase (only attempted when configured)
+        if (isSupabaseConfigured()) {
+          const supabase = createClient();
 
-        if (booksError) {
-          console.error("Error loading books:", booksError);
-        } else if (books) {
-          books.forEach(book => {
-            items.push({
-              title: book.title,
-              href: `/books/${book.slug || book.id}`,
-              type: "Book",
-              excerpt: book.description || book.excerpt,
-              thumbnail: book.cover_image,
-              date: book.published_date,
-              author: book.author_name || "LO Publications",
-            });
-          });
+          if (supabase) {
+            const { data: blogPosts, error: blogError } = await supabase
+              .from("blog_posts")
+              .select("*")
+              .eq("status", "published")
+              .order("published_at", { ascending: false });
+
+            if (blogError) {
+              console.error("Error loading blog posts:", blogError);
+            } else if (blogPosts) {
+              blogPosts.forEach(post => {
+                const href = `/blog/${post.slug || post.id}`;
+                if (!items.some(item => item.href === href)) {
+                  items.push({
+                    title: post.title,
+                    href,
+                    type: "Blog",
+                    excerpt: post.excerpt || post.content?.slice(0, 150) + "...",
+                    thumbnail: post.thumbnail_url,
+                    date: post.published_at ? new Date(post.published_at).toLocaleDateString() : "Recent",
+                    author: post.publisher_name || "LO Publications",
+                  });
+                }
+              });
+            }
+
+            const { data: books, error: booksError } = await supabase
+              .from("books")
+              .select("*")
+              .eq("status", "published")
+              .order("created_at", { ascending: false });
+
+            if (booksError) {
+              console.error("Error loading books:", booksError);
+            } else if (books) {
+              books.forEach(book => {
+                const href = `/books/${book.slug || book.id}`;
+                if (!items.some(item => item.href === href)) {
+                  items.push({
+                    title: book.title,
+                    href,
+                    type: "Book",
+                    excerpt: book.description || book.excerpt,
+                    thumbnail: book.cover_image,
+                    date: book.published_date,
+                    author: book.author_name || "LO Publications",
+                  });
+                }
+              });
+            }
+          }
         }
 
         const staticPages = [

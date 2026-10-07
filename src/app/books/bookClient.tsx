@@ -3,6 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google'
 import {
   X,
   Download,
@@ -267,6 +268,12 @@ export default function BookClient() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <NextLink
                   href="/submit"
+                  onClick={() =>
+                    sendGAEvent('event', 'button_click', {
+                      value: 'Submit Your Manuscript',
+                      // any other parameters
+                    })
+                  }
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-red-900 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
                 >
                   <Send size={18} />

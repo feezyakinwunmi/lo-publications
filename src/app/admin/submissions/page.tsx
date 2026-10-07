@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Eye, Save, X, Loader2, CheckCircle, Clock, XCircle } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 
 // Type matching your manuscript_submissions table
 type Submission = {
@@ -39,6 +39,12 @@ export default function AdminSubmissions() {
 
       const supabase = createClient();
 
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from("manuscript_submissions")
         .select("*")
@@ -66,6 +72,11 @@ export default function AdminSubmissions() {
     if (submission.sample_url) {
       try {
         const supabase = createClient();
+
+        if (!supabase) {
+          throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        }
+
         const { data, error } = await supabase.storage
           .from("manuscript-samples")
           .createSignedUrl(submission.sample_url.split("/").pop() || "", 3600); // 1 hour expiry
@@ -88,6 +99,10 @@ export default function AdminSubmissions() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
 
       const { error } = await supabase
         .from("manuscript_submissions")

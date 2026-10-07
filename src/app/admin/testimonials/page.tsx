@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, Save, X, Loader2, Star } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import FileDropzone from "../../components/admin/FileDropzone";
 
 // Type matching your testimonials table
@@ -37,6 +37,12 @@ export default function AdminTestimonials() {
       setError(null);
 
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("testimonials")
@@ -86,6 +92,10 @@ export default function AdminTestimonials() {
     try {
       const supabase = createClient();
 
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const testimonialData = {
         author,
         role: role || null,
@@ -128,6 +138,11 @@ export default function AdminTestimonials() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const { error } = await supabase.from("testimonials").delete().eq("id", id);
 
       if (error) throw error;

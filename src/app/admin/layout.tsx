@@ -15,6 +15,11 @@ export default async function AdminLayout({
 }) {
   const supabase = await createClient();
 
+  // Without Supabase configured there is nothing to authenticate against
+  if (!supabase) {
+    redirect("/admin-login");
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();

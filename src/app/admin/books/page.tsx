@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, Save, X, Loader2, Link as LinkIcon } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import FileDropzone from "../../components/admin/FileDropzone";
 
 // Type matching your books table
@@ -39,6 +39,12 @@ export default function AdminBooks() {
       setError(null);
 
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("books")
@@ -87,6 +93,10 @@ export default function AdminBooks() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
 
       const bookData = {
         title,
@@ -145,6 +155,11 @@ export default function AdminBooks() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const { error } = await supabase.from("books").delete().eq("id", id);
 
       if (error) throw error;

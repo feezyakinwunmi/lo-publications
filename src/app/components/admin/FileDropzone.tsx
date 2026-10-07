@@ -5,7 +5,7 @@ import { Accept } from "react-dropzone";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, X, Loader2, Image as ImageIcon, File } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 
 type FileDropzoneProps = {
   onUploadComplete: (publicUrl: string | null) => void; // Callback when upload finishes
@@ -54,6 +54,10 @@ export default function FileDropzone({
 
 try {
   const supabase = createClient();
+
+  if (!supabase) {
+    throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+  }
 
   const fileName = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
 

@@ -18,7 +18,6 @@ import {
   Clock,
   MessageSquare,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),

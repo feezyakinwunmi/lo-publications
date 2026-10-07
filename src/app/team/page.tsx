@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, Linkedin, Twitter, Globe, Phone, Facebook, Instagram, Loader2} from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 
 // Define TypeScript type matching your team_members table
 type TeamMember = {
@@ -33,6 +33,12 @@ export default function TeamPage() {
       setError(null);
 
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("team_members")
