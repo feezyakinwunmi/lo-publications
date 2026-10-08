@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google'
 import { 
   ArrowRight, 
   BookOpen, 
@@ -36,7 +37,8 @@ import {
   Linkedin,
   Youtube
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { DEMO_BOOKS } from "./books/data";
 
 // Types for real data
 type Book = {
@@ -78,6 +80,55 @@ const stats = [
   { number: "20+", label: "Countries Reached", icon: Globe },
 ];
 
+// Fallback static testimonials shown when Supabase isn't configured
+const DEMO_TESTIMONIALS: Testimonial[] = [
+  {
+    id: "t1",
+    author: "Grace Adeyemi",
+    role: "Author of \"Walking in Purpose\"",
+    quote:
+      "From manuscript to finished book in just a few months. The LO team treated my story with such care — every edit preserved my voice.",
+    avatar_url: null,
+    rating: 5,
+  },
+  {
+    id: "t2",
+    author: "Emmanuel Okafor",
+    role: "Author of \"The Quiet Harvest\"",
+    quote:
+      "They handled everything — cover design, formatting, distribution. I just focused on writing, and the results exceeded my expectations.",
+    avatar_url: null,
+    rating: 5,
+  },
+  {
+    id: "t3",
+    author: "Dr. Amara Nwosu",
+    role: "Author of \"Building a Reading Culture at Home\"",
+    quote:
+      "Professional from start to finish. They helped me navigate the publishing process and launch globally. I couldn't recommend them more.",
+    avatar_url: null,
+    rating: 5,
+  },
+  {
+    id: "t4",
+    author: "Tolu Bankole",
+    role: "Author of \"Letters to My Younger Self\"",
+    quote:
+      "A truly author-centric publishing house. They listened, guided, and delivered a beautiful final book.",
+    avatar_url: null,
+    rating: 4,
+  },
+  {
+    id: "t5",
+    author: "Pastor David Balogun",
+    role: "Author of \"The Marketplace Ministry\"",
+    quote:
+      "Faith-friendly and values-aligned every step of the way. Publishing with LO Publications has been a blessing.",
+    avatar_url: null,
+    rating: 5,
+  },
+];
+
 export default function HomeClient() {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -105,7 +156,21 @@ export default function HomeClient() {
   useEffect(() => {
     async function fetchFeaturedBooks() {
       setLoadingBooks(true);
+
+      // Fall back to the static catalogue when Supabase isn't configured
+      if (!isSupabaseConfigured()) {
+        setFeaturedBooks(DEMO_BOOKS.slice(0, 6));
+        setLoadingBooks(false);
+        return;
+      }
+
       const supabase = createClient();
+
+      if (!supabase) {
+        setFeaturedBooks(DEMO_BOOKS.slice(0, 6));
+        setLoadingBooks(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("books")
@@ -130,7 +195,20 @@ export default function HomeClient() {
   useEffect(() => {
     async function fetchTestimonialsData() {
       setLoadingTestimonials(true);
+
+      if (!isSupabaseConfigured()) {
+        setTestimonials(DEMO_TESTIMONIALS);
+        setLoadingTestimonials(false);
+        return;
+      }
+
       const supabase = createClient();
+
+      if (!supabase) {
+        setTestimonials(DEMO_TESTIMONIALS);
+        setLoadingTestimonials(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("testimonials")
@@ -236,8 +314,8 @@ export default function HomeClient() {
                   const rotations = [-11, -4, 5, 11];
 
                   return (
-                    // eslint-disable-next-line react/jsx-key
                     <motion.div
+                      key={book.id}
                       className="group absolute w-[160px] sm:w-[200px]"
                       style={{
                         transform: `translateX(${positions[index]}px) rotate(${rotations[index]}deg)`,
@@ -307,6 +385,12 @@ export default function HomeClient() {
 
                 <motion.a
                   href="/submit"
+                  onClick={() =>
+                      sendGAEvent('event', 'button_click', {
+                        value: 'Start your book',
+                        // any other parameters
+                      })
+                    }
                   className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#8d171c] px-5 py-3 text-[10px] font-bold uppercase tracking-[.18em] text-white transition-transform hover:scale-105"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -623,9 +707,8 @@ export default function HomeClient() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {featuredBooks.map((book, index) => (
-                // eslint-disable-next-line react/jsx-key
                 <motion.div
-                  
+                  key={book.id}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -656,6 +739,12 @@ export default function HomeClient() {
           <div className="text-center mt-16">
             <motion.a
               href="/books"
+              onClick={() =>
+                  sendGAEvent('event', 'button_click', {
+                    value: 'View All Books',
+                    // any other parameters
+                  })
+                }
               className="inline-flex items-center px-8 py-4 bg-[#8d171c] text-white font-semibold rounded-lg hover:bg-[#6b1215] transition shadow-lg group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -710,7 +799,13 @@ export default function HomeClient() {
           <div className="text-center mt-12">
             <motion.a
               href="/team"
-              className="inline-flex items-center px-8 py-4 border-2 border-[#8d171c] text-[#8d171c] font-semibold rounded-lg hover:bg-[#8d171c] hover:text-white transition group"
+              onClick={() =>
+                  sendGAEvent('event', 'button_click', {
+                    value: 'View Full Team',
+                    // any other parameters
+                  })
+                }
+                        className="inline-flex items-center px-8 py-4 border-2 border-[#8d171c] text-[#8d171c] font-semibold rounded-lg hover:bg-[#8d171c] hover:text-white transition group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

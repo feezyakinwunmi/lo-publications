@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, Save, X, Loader2, Image as ImageIcon } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
@@ -45,6 +45,7 @@ const editor = useEditor({
     ImageUpload.configure({
       uploadFn: async (file: File) => {
         const supabase = createClient()
+        if (!supabase) throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE)
         const fileName = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
         const { data, error } = await supabase.storage
           .from('thumbnails')
@@ -68,6 +69,11 @@ const editor = useEditor({
 const handleImageUpload = async (file: File): Promise<string> => {
   try {
     const supabase = createClient();
+
+    if (!supabase) {
+      throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+    }
+
     const fileName = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
     const filePath = `blog-images/${fileName}`;
 
@@ -97,6 +103,12 @@ const handleImageUpload = async (file: File): Promise<string> => {
     async function fetchPosts() {
       setLoading(true);
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("blog_posts")
@@ -144,6 +156,10 @@ const handleImageUpload = async (file: File): Promise<string> => {
     try {
       const supabase = createClient();
 
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const postData = {
         title,
         slug: title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""),
@@ -181,6 +197,11 @@ const handleImageUpload = async (file: File): Promise<string> => {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const { error } = await supabase.from("blog_posts").delete().eq("id", id);
       if (error) throw error;
 

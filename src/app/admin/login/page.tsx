@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";  // Client version
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";  // Client version
 import { Loader2 } from "lucide-react";
 
 export default function AdminLogin() {
@@ -20,6 +20,11 @@ export default function AdminLogin() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        return;
+      }
 
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,

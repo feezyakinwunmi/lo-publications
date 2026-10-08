@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Upload, Loader2, Send, CheckCircle } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import { Heart, BookOpen, Sparkles, Users } from "lucide-react";
 import FileDropzone from "../components/admin/FileDropzone";
 
@@ -62,6 +62,10 @@ export default function SubmitManuscriptPage() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
 
       let sampleUrl: string | null = null;
 

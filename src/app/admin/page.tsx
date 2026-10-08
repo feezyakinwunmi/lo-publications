@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, FileText, Users, PenTool, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -23,6 +23,12 @@ export default function AdminDashboard() {
       setError(null);
 
       const supabase = createClient();
+
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
 
       try {
         // Parallel fetches for speed

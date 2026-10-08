@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, Save, X, Loader2, Phone, Mail, Globe, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import FileDropzone from "../../components/admin/FileDropzone";
 
 // Type for social link
@@ -55,6 +55,12 @@ export default function AdminTeam() {
 
       const supabase = createClient();
 
+      if (!supabase) {
+        setError(SUPABASE_NOT_CONFIGURED_MESSAGE);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from("team_members")
         .select("*")
@@ -103,6 +109,10 @@ export default function AdminTeam() {
     try {
       const supabase = createClient();
 
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const memberData = {
         name,
         role,
@@ -145,6 +155,11 @@ export default function AdminTeam() {
 
     try {
       const supabase = createClient();
+
+      if (!supabase) {
+        throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
+      }
+
       const { error } = await supabase.from("team_members").delete().eq("id", id);
 
       if (error) throw error;
