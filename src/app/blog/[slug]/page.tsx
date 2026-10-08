@@ -34,6 +34,11 @@ import ProfessionalBookPublishing from './posts/ProfessionalBookPublishing';
 import SelfPublishingConsultation from './posts/SelfPublishingConsultation';
 import SelfPublishingServices from './posts/SelfPublishingServices';
 
+// ========== NEW POSTS ==========
+import BookMarketingAndWebDesignOttawa from './posts/BookMarketingAndWebDesign';
+import WebDesignServicesOttawaAuthors from './posts/WebDesignServicesOttawa';
+
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -68,6 +73,10 @@ const PostComponents: Record<string, React.ComponentType> = {
   "professional-book-publishing-ottawa": ProfessionalBookPublishing,
   "self-publishing-consultation-ottawa": SelfPublishingConsultation,
   "self-publishing-services-ottawa": SelfPublishingServices,
+
+  // ========== NEW POSTS ==========
+  "book-marketing-web-design-ottawa": BookMarketingAndWebDesignOttawa,
+  "web-design-services-ottawa-authors": WebDesignServicesOttawaAuthors,
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -83,6 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "book marketing", "self-publishing", "writing craft", "publishing industry",
       "author marketing", "faith-based literature", "writing career",
       "Ottawa publishing", "book publishing Canada", "author branding Ottawa",
+      "web design Ottawa", "author website", "book marketing Ottawa",
       post.category.toLowerCase()
     ],
     openGraph: {

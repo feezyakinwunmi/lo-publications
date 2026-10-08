@@ -301,5 +301,27 @@ export const allBlogPosts: BlogPost[] = [
     readTime: "8 min read",
     date: "October 20, 2026",
     author: "LOPublications"
-  }
+  },
+  {
+    id: 27,
+    title: "The Ultimate Guide to Book Marketing & Web Design for Ottawa Authors",
+    slug: "book-marketing-web-design-ottawa",
+    excerpt: "A comprehensive guide covering book marketing fundamentals and web design essentials for Ottawa authors looking to build visibility and grow their readership.",
+    image: "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=1200&h=500&fit=crop",
+    category: "Book Marketing",
+    readTime: "15 min read",
+    date: "October 20, 2026",
+    author: "LOPublications"
+},
+{
+    id: 28,
+    title: "Web Design Services for Ottawa Authors: Build a Polished Online Presence",
+    slug: "web-design-services-ottawa-authors",
+    excerpt: "Learn how professional web design services help Ottawa authors create an engaging online presence that supports their books, brand, and long-term publishing goals.",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=500&fit=crop",
+    category: "Web Design",
+    readTime: "12 min read",
+    date: "October 20, 2026",
+    author: "LOPublications"
+}
 ];
