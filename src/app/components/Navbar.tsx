@@ -3,16 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { allBlogPosts } from "@/app/data/blog";
 
 interface NavLink {
   name: string;
-  href?: string;
-  dropdown?: boolean;
-  items?: { name: string; href: string }[];
+  href: string;
 }
 
 interface SearchItem {
@@ -26,37 +24,27 @@ interface SearchItem {
 }
 
 const navLinks: NavLink[] = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
   { name: "Books", href: "/books" },
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/contact" },      
   { name: "Case Studies", href: "/casestudies" },
-{ name: "Submit Manuscript", href: "/submit" },
-  
-  {
-    name: "Explore",
-    dropdown: true,
-    items: [
-      { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
-      { name: "Young Authors Contest", href: "/young-authors-contest" },
-    ],
-  },
+  { name: "Blog", href: "/blog" },
+  { name: "Careers", href: "/careers" },
+  { name: "Young Authors Contest", href: "/young-authors-contest" },
+  { name: "Submit Manuscript", href: "/submit" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [allContent, setAllContent] = useState<SearchItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const navbarRef = useRef<HTMLDivElement>(null);
 
@@ -67,17 +55,6 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Load all content
@@ -287,18 +264,11 @@ export default function Navbar() {
           { title: "Blog", href: "/blog", type: "Page" },
           { title: "Books", href: "/books", type: "Page" },
           ...navLinks.flatMap(link => {
-            if (link.dropdown && link.items) {
-              return link.items.map(item => ({
-                title: item.name,
-                href: item.href,
-                type: "Page"
-              }));
-            }
-            return link.href ? {
+            return {
               title: link.name,
               href: link.href,
               type: "Page"
-            } : null;
+            };
           }).filter(Boolean) as SearchItem[]
         ]);
       } finally {
@@ -346,11 +316,6 @@ export default function Navbar() {
 
   const closeAllMenus = () => {
     setIsOpen(false);
-    setOpenDropdown(null);
-  };
-
-  const toggleDropdown = (name: string) => {
-    setOpenDropdown(openDropdown === name ? null : name);
   };
 
   const handleSearchOpen = () => {
@@ -380,13 +345,7 @@ export default function Navbar() {
     }
   };
 
-  // Desktop navbar states
-  const isCompact = scrolled && !isHovered;
-  const navbarWidth = isCompact ? "auto" : "90%";
-  const maxWidth = isCompact ? "200px" : "1200px";
-  const paddingY = isCompact ? "py-1.5" : "py-3";
-  const logoSize = isCompact ? "w-10 h-auto" : "w-14 h-auto";
-  const showFullNav = !isCompact;
+  const logoSize = scrolled ? "w-10 h-auto" : "w-12 h-auto";
 
   return (
     <>
@@ -395,22 +354,15 @@ export default function Navbar() {
       ====================================================== */}
       <div 
         ref={navbarRef}
-        className="hidden md:block fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500"
-        style={{ width: navbarWidth, maxWidth: maxWidth }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        className="hidden xl:block fixed top-0 inset-x-0 z-50"
       >
         <div className={`
-          relative w-full rounded-2xl backdrop-blur-xl 
-          bg-gradient-to-r from-red-900/80 via-red-800/80 to-red-900/80
-          border border-white/20 shadow-2xl
-          transition-all duration-500
-          ${paddingY}
+          relative w-full bg-[#8d171c]/95 backdrop-blur-xl border-b border-white/15 shadow-lg
+          transition-all duration-300 ${scrolled ? "py-2" : "py-3"}
         `}>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-900/30 via-white/5 to-red-900/30 opacity-0 hover:opacity-100 transition-opacity duration-700" />
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
 
-          <div className="relative px-4 flex justify-between items-center">
+          <div className="relative mx-auto flex max-w-[1440px] items-center justify-between gap-8 px-6">
             {/* Logo */}
             <Link href="/" onClick={closeAllMenus} className="flex-shrink-0">
               <motion.div
@@ -426,97 +378,36 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <motion.div
-              className="flex items-center gap-2 overflow-visible"
-              initial={false}
-              animate={{
-                width: showFullNav ? "auto" : 0,
-                opacity: showFullNav ? 1 : 0,
-                marginLeft: showFullNav ? "1rem" : 0,
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
+            <div className="flex items-center gap-4 2xl:gap-6">
               {/* Search Button */}
               <motion.button
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSearchOpen}
-                className="relative p-2.5 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-lg overflow-hidden group hover:bg-white/20 transition flex-shrink-0"
+                className="p-2 text-white/85 transition hover:text-white"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-700 ease-out" />
-                <Search className="text-white w-4 h-4 relative" />
+                <Search className="h-4 w-4" />
               </motion.button>
 
-              {navLinks.map((link) => {
-                if (link.dropdown) {
-                  return (
-                    <div key={link.name} className="relative" ref={dropdownRef}>
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="relative px-4 py-2 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-lg overflow-hidden group cursor-pointer hover:bg-white/20 transition flex-shrink-0"
-                        onClick={() => toggleDropdown(link.name)}
-                      >
-                        <span className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-700 ease-out" />
-                        <span className="relative text-white font-medium drop-shadow-md flex items-center gap-1 text-sm whitespace-nowrap">
-                          {link.name}
-                          <ChevronDown
-                            size={14}
-                            className={`transition-transform duration-300 ${
-                              openDropdown === link.name ? "rotate-180" : "rotate-0"
-                            }`}
-                          />
-                        </span>
-                      </motion.div>
-
-                      <AnimatePresence>
-                        {openDropdown === link.name && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 min-w-[220px] bg-red-800/95 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl overflow-hidden z-[60]"
-                          >
-                            {link.items?.map((item) => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                className="block px-5 py-3 text-white font-medium hover:bg-white/20 transition-colors border-b border-white/10 last:border-0 text-sm"
-                                onClick={closeAllMenus}
-                              >
-                                {item.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-
-                return (
-                  <Link key={link.name} href={link.href!} onClick={closeAllMenus}>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="relative px-4 py-2 rounded-full backdrop-blur-2xl bg-white/10 border border-white/20 shadow-lg overflow-hidden group cursor-pointer hover:bg-white/20 transition flex-shrink-0"
+              {navLinks.map((link) => (
+                  <Link key={link.name} href={link.href} onClick={closeAllMenus}>
+                    <motion.span
+                      whileHover={{ y: -1 }}
+                      className="border-b-2 border-transparent py-2 text-sm font-medium text-white/85 transition hover:border-white hover:text-white whitespace-nowrap"
                     >
-                      <span className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-700 ease-out" />
-                      <span className="relative text-white font-medium drop-shadow-md text-sm whitespace-nowrap">
                         {link.name}
-                      </span>
-                    </motion.div>
+                    </motion.span>
                   </Link>
-                );
-              })}
-            </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* =====================================================
-          MOBILE NAVBAR - Hidden on desktop
+          MOBILE NAVBAR - Hidden on wide desktop
       ====================================================== */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50">
+      <div className="xl:hidden fixed top-0 left-0 right-0 z-50">
         <div className={`
           relative w-full backdrop-blur-xl 
           bg-gradient-to-r from-red-900/90 via-red-800/90 to-red-900/90
@@ -588,52 +479,16 @@ export default function Navbar() {
                   Search articles, blogs, books...
                 </button>
 
-                {navLinks.map((link) => {
-                  if (link.dropdown) {
-                    return (
-                      <div key={link.name} className="border-b border-white/10 pb-3">
-                        <button
-                          onClick={() => toggleDropdown(link.name)}
-                          className="w-full text-left text-white text-base font-medium hover:text-red-200 transition flex items-center justify-between"
-                        >
-                          {link.name}
-                          <ChevronDown
-                            size={20}
-                            className={`transition-transform duration-300 ${
-                              openDropdown === link.name ? "rotate-180" : "rotate-0"
-                            }`}
-                          />
-                        </button>
-
-                        {openDropdown === link.name && (
-                          <div className="pl-4 space-y-2 mt-2">
-                            {link.items?.map((item) => (
-                              <Link
-                                key={item.name}
-                                href={item.href}
-                                className="block text-white/80 text-sm hover:text-red-200 transition py-2"
-                                onClick={closeAllMenus}
-                              >
-                                {item.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-
-                  return (
+                {navLinks.map((link) => (
                     <Link
                       key={link.name}
-                      href={link.href!}
+                      href={link.href}
                       className="block text-white text-base font-medium hover:text-red-200 transition py-2 border-b border-white/10"
                       onClick={closeAllMenus}
                     >
                       {link.name}
                     </Link>
-                  );
-                })}
+                ))}
               </div>
             </motion.div>
           )}

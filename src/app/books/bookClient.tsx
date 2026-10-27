@@ -21,7 +21,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import NextLink from "next/link";
-import { DEMO_BOOKS, type Book } from "./data";
+import { DEMO_BOOKS, SHOW_DEMO_BOOKS, type Book } from "./data";
 
 // ========== DEMO DATA ==========
 
@@ -30,7 +30,8 @@ export default function BookClient() {
   const [activeGenre, setActiveGenre] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const books = DEMO_BOOKS;
+  // Sample books stay in the codebase but are hidden until approved titles are supplied.
+  const books = SHOW_DEMO_BOOKS ? DEMO_BOOKS : [];
 
   const genreCounts = useMemo(() => {
     return books.reduce<Record<string, number>>((acc, book) => {
@@ -91,7 +92,7 @@ export default function BookClient() {
         </motion.div>
 
         {/* Toolbar */}
-        <motion.div
+        {books.length > 0 && <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -140,10 +141,16 @@ export default function BookClient() {
               );
             })}
           </div>
-        </motion.div>
+        </motion.div>}
 
         {/* No Results */}
-        {filteredBooks.length === 0 && (
+        {books.length === 0 ? (
+          <div className="mx-auto max-w-2xl py-20 text-center">
+            <BookMarked className="mx-auto mb-5 text-[#8d171c]/35" size={56} />
+            <h2 className="text-2xl font-bold text-black">Our book catalogue is coming soon.</h2>
+            <p className="mt-4 text-lg leading-relaxed text-gray-600">We’re preparing this space for original LO Publications titles. Please check back soon to explore our published works.</p>
+          </div>
+        ) : filteredBooks.length === 0 && (
           <div className="text-center py-24">
             <Search className="mx-auto text-gray-300 mb-4" size={56} />
             <p className="text-gray-600 text-lg mb-2">

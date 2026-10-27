@@ -38,7 +38,7 @@ import {
   Youtube
 } from "lucide-react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { DEMO_BOOKS } from "./books/data";
+import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
 
 // Types for real data
 type Book = {
@@ -157,9 +157,9 @@ export default function HomeClient() {
     async function fetchFeaturedBooks() {
       setLoadingBooks(true);
 
-      // Fall back to the static catalogue when Supabase isn't configured
+      // Keep sample titles out of the public site until approved books are available.
       if (!isSupabaseConfigured()) {
-        setFeaturedBooks(DEMO_BOOKS.slice(0, 6));
+        setFeaturedBooks(SHOW_DEMO_BOOKS ? DEMO_BOOKS.slice(0, 6) : []);
         setLoadingBooks(false);
         return;
       }
@@ -167,7 +167,7 @@ export default function HomeClient() {
       const supabase = createClient();
 
       if (!supabase) {
-        setFeaturedBooks(DEMO_BOOKS.slice(0, 6));
+        setFeaturedBooks(SHOW_DEMO_BOOKS ? DEMO_BOOKS.slice(0, 6) : []);
         setLoadingBooks(false);
         return;
       }
@@ -497,19 +497,19 @@ export default function HomeClient() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">What We Do</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-4">Our Craft</h2>
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">Our Services</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-4">Everything Your Book Needs to Be Published Professionally</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive publishing services designed to bring your vision to life with professionalism and care.
+              From manuscript development to publication preparation, we provide the professional guidance, creative expertise, and publishing support to bring your story to life.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: PenTool, title: "Editorial", desc: "We refine your manuscript while preserving the unique voice that makes it yours.", delay: 0 },
-              { icon: Layout, title: "Cover Design", desc: "Distinctive visual direction that makes your book stand out before the first page is opened.", delay: 0.1 },
-              { icon: BookOpen, title: "Book Design", desc: "Beautiful interiors, typography and layouts for a professional reading experience.", delay: 0.2 },
-              { icon: Rocket, title: "Publishing", desc: "From final manuscript to finished publication, we help turn your work into reality.", delay: 0.3 },
+              { icon: PenTool, title: "Editorial Services", desc: "Manuscript assessment, editorial refinement, proofreading, and final manuscript preparation.", href: "/services#editorial-services" },
+              { icon: Layout, title: "Book Design", desc: "Professional cover design, interior design, typesetting, and visual content development.", href: "/services#book-design" },
+              { icon: BookOpen, title: "Publishing Services", desc: "ISBN and registration support, platform setup, publication files, and project management.", href: "/services#publishing-services" },
+              { icon: Rocket, title: "Author Development & Promotion", desc: "Author profiles, launch planning, media support, and agreed promotional materials.", href: "/services#author-development" },
             ].map((service, idx) => {
               const Icon = service.icon;
               return (
@@ -522,17 +522,125 @@ export default function HomeClient() {
                   whileHover={{ y: -8 }}
                   className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:border-[#8d171c]/40 hover:shadow-2xl transition-all group"
                 >
-                  <div className="p-6 text-center">
+                  <div className="p-6 text-center flex flex-col h-full">
                     <div className="w-14 h-14 rounded-full bg-[#8d171c]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#8d171c] transition-colors">
                       <Icon className="w-7 h-7 text-[#8d171c] group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-xl font-semibold text-black mb-3">{service.title}</h3>
-                    <p className="text-gray-600">{service.desc}</p>
+                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                    <a href={service.href} className="inline-flex items-center justify-center gap-2 mt-6 text-sm font-semibold text-[#8d171c] hover:text-[#6b1215]">
+                      Explore Services <ArrowRight size={16} />
+                    </a>
                   </div>
                 </motion.div>
               );
             })}
           </div>
+
+          <div className="mt-12 text-center">
+            <a href="/services" className="inline-flex items-center gap-3 rounded-lg bg-[#8d171c] px-7 py-3.5 font-semibold text-white shadow-lg transition hover:bg-[#6b1215]">
+              View All Services <ArrowRight size={18} />
+            </a>
+          </div>
+
+          <div className="hidden mt-20 space-y-12" aria-hidden="true">
+            {[
+              {
+                id: "editorial-services",
+                icon: PenTool,
+                title: "Editorial Services",
+                intro: "Thoughtful editorial support that strengthens your manuscript while preserving the voice and purpose behind it.",
+                services: [
+                  ["Editorial Development and Manuscript Assessment", "We assess your manuscript’s content, structure, clarity, and readiness for publication, with practical recommendations to help develop a stronger, more engaging book."],
+                  ["Structural, Line, and Copyediting", "We refine organisation, sentence flow, language, grammar, consistency, and readability at the editorial level agreed for your manuscript."],
+                  ["Proofreading and Final Manuscript Preparation", "We review the final manuscript for typographical, grammatical, and formatting errors before preparing it for professional book production."],
+                ],
+              },
+              {
+                id: "book-design",
+                icon: Layout,
+                title: "Book Design and Visual Development",
+                intro: "A considered visual identity and reading experience that helps your book meet professional publishing standards.",
+                services: [
+                  ["Book Cover Design", "We create professional book covers that reflect your book’s message, genre, intended audience, and market positioning."],
+                  ["Book Interior Design and Typesetting", "We transform your approved manuscript into a well-designed book interior, with close attention to typography, layout, consistency, and readability."],
+                  ["Illustrations, Diagrams, and Visual Content", "We develop or coordinate visual elements that support your content, clarify complex ideas, and complement your manuscript."],
+                ],
+              },
+              {
+                id: "publishing-services",
+                icon: BookOpen,
+                title: "Publishing Services",
+                intro: "Clear, practical publishing support from final manuscript approval to production-ready files.",
+                services: [
+                  ["ISBN Application and Publishing Registration", "We assist with ISBN applications and applicable publishing registration requirements, preparing the necessary identifiers and documentation."],
+                  ["Publishing Platform Setup", "We assist with the preparation of publication information and book details for applicable publishing platforms, according to the agreed arrangement."],
+                  ["Publishing Project Management", "We coordinate the agreed workflow, timelines, approvals, and production stages so that every project progresses with clarity."],
+                ],
+              },
+              {
+                id: "author-development",
+                icon: Rocket,
+                title: "Author Development, Launch, and Promotion",
+                intro: "Optional or package-specific services that help authors establish their platform and present their books professionally.",
+                services: [
+                  ["Author Profile and Platform Setup", "We help develop professional author biographies, profiles, and applicable platforms so readers, partners, and media can discover your work."],
+                  ["Book Launch Planning and Support", "We support launch planning, event coordination, promotional timelines, programme development, and agreed launch materials."],
+                  ["Author Media, Public Relations, and Marketing Materials", "We prepare media profiles, press materials, interview resources, book announcements, social graphics, mockups, flyers, and other agreed campaign assets."],
+                ],
+              },
+            ].map((category, index) => {
+              const Icon = category.icon;
+              return (
+                <motion.section
+                  id={category.id}
+                  key={category.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="scroll-mt-28 rounded-3xl border border-gray-100 bg-[#f8f6f3] p-7 md:p-10"
+                >
+                  <div className="flex items-start gap-4 mb-8">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#8d171c] text-white"><Icon size={23} /></div>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-black">{category.title}</h3>
+                      <p className="mt-2 max-w-3xl text-gray-600 leading-relaxed">{category.intro}</p>
+                    </div>
+                  </div>
+                  <div className="grid gap-5 md:grid-cols-3">
+                    {category.services.map(([title, description]) => (
+                      <div key={title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+                        <h4 className="font-semibold text-black leading-snug">{title}</h4>
+                        <p className="mt-3 text-sm leading-relaxed text-gray-600">{description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="hidden py-20 bg-[#8d171c] text-white" aria-hidden="true">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/70">Our Publishing Approach</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4">A Clear and Professional Publishing Process</h2>
+          <p className="mt-6 text-lg leading-relaxed text-white/85">
+            Every publishing project is guided by an agreed scope of work that defines the services, deliverables, timelines, and responsibilities for that project.
+          </p>
+          <div className="grid gap-5 mt-10 text-left md:grid-cols-2">
+            <div className="rounded-2xl border border-white/20 bg-white/10 p-6">
+              <h3 className="font-semibold text-lg">Core publishing deliverables</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/80">Editorial refinement, cover design, interior design and typesetting, ISBN application assistance, publishing registration, and publication-ready files may be included as specified in your publishing agreement.</p>
+            </div>
+            <div className="rounded-2xl border border-white/20 bg-white/10 p-6">
+              <h3 className="font-semibold text-lg">Additional services</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/80">Launch planning, author platform development, media and public relations, promotional campaigns, distribution support, and ongoing publicity may be selected separately or included in chosen packages.</p>
+            </div>
+          </div>
+          <p className="mt-8 text-sm leading-relaxed text-white/70">We do not promise media coverage, sales, bestseller rankings, distribution acceptance, or promotional outcomes, as these depend on external partners, platforms, audiences, and market conditions.</p>
         </div>
       </section>
 
@@ -646,7 +754,7 @@ export default function HomeClient() {
                 { step: "01", title: "Submit", desc: "Share your manuscript or idea with us.", icon: Upload },
                 { step: "02", title: "Review", desc: "We evaluate your work and provide feedback.", icon: Edit },
                 { step: "03", title: "Design", desc: "Professional cover and interior design.", icon: Image },
-                { step: "04", title: "Publish", desc: "Your book goes to print and digital.", icon: Globe },
+                { step: "04", title: "Prepare for Publication", desc: "Final manuscript checks, ISBN and registration support, metadata, and publication-ready print and digital files.", icon: Globe },
                 { step: "05", title: "Launch", desc: "We help you launch and promote your book.", icon: Rocket },
               ].map((item, index) => {
                 const Icon = item.icon;
@@ -673,6 +781,11 @@ export default function HomeClient() {
                 );
               })}
             </div>
+          </div>
+          <div className="mt-14 text-center">
+            <a href="/publishing-journey" className="inline-flex items-center gap-3 rounded-lg border-2 border-[#8d171c] px-7 py-3.5 font-semibold text-[#8d171c] transition hover:bg-[#8d171c] hover:text-white">
+              View More Details <ArrowRight size={18} />
+            </a>
           </div>
         </div>
       </section>
@@ -1091,4 +1204,4 @@ function Plus({ size = 24 }) {
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
   );
-}   
+}

@@ -11,6 +11,10 @@ export type Book = {
   status: "draft" | "published";
 };
 
+// Keep the sample catalogue available for future development, but never show it publicly.
+// Change this only when the catalogue contains approved LO Publications titles.
+export const SHOW_DEMO_BOOKS = false;
+
 export const DEMO_BOOKS: Book[] = [
   {
     id: "1",

@@ -8,6 +8,7 @@ import {
   Linkedin,
   Mail,
   Phone,
+  MessageCircle,
   MapPin,
   ArrowUp,
 } from "lucide-react";
@@ -28,6 +29,7 @@ const socialLinks = [
   { icon: Twitter, href: "https://x.com/Lo_Publications?fbclid=IwY2xjawPK9WlleHRuA2FlbQIxMABicmlkETFWbGx4MmxsRVphak82YXVBc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnX18qvztO5buo1JsaF1Vx-Rco_GKHZt-yyCgjUViP24RJwwjgzguj72Mwws_aem_KdlQUPgFqwejrZzFS8O2wA", label: "Twitter/X" },
   { icon: Instagram, href: "https://www.instagram.com/lopublications/", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/lo-publications", label: "LinkedIn" },
+  { icon: MessageCircle, href: "https://wa.me/19059224471", label: "WhatsApp" },
 ];
 
 export default function Footer() {
@@ -84,10 +86,18 @@ export default function Footer() {
 
                 </span>
               </li>
-              {/* <li className="flex items-center gap-3">
-                <Phone className="text-red-900" size={20} />
-                <span>+234 123 456 7890</span>
-              </li> */}
+              <li className="flex items-center gap-3">
+                <Phone className="text-red-200" size={20} />
+                <a href="tel:+19059224471" className="hover:text-red-200 transition">
+                  (905) 922-4471
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageCircle className="text-red-200" size={20} />
+                <a href="https://wa.me/19059224471" target="_blank" rel="noopener noreferrer" className="hover:text-red-200 transition">
+                  WhatsApp us
+                </a>
+              </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-red-200" size={20} />
                 <a href="mailto:layo@lopublications.com" className="hover:text-red-900 transition">

@@ -17,6 +17,8 @@ import {
   X,
   Clock,
   MessageSquare,
+  Phone,
+  MessageCircle,
 } from "lucide-react";
 
 const formSchema = z.object({
@@ -218,6 +220,34 @@ const onSubmit = async (data: FormData) => {
                       <p className="text-red-900 text-sm break-all">
                         layo@lopublications.com
                       </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="tel:+19059224471"
+                    className="group flex items-start gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-red-200 hover:shadow-md transition-all"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition">
+                      <Phone className="text-red-900" size={18} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-black text-sm">Call or WhatsApp</p>
+                      <p className="text-red-900 text-sm">(905) 922-4471</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://wa.me/19059224471"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-red-200 hover:shadow-md transition-all"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition">
+                      <MessageCircle className="text-red-900" size={18} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-black text-sm">WhatsApp</p>
+                      <p className="text-red-900 text-sm">Send us a message</p>
                     </div>
                   </a>
 

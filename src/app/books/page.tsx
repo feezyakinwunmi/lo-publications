@@ -63,9 +63,12 @@ export const metadata: Metadata = {
 // from the client for demo — replace with a real data source.
 import { DEMO_BOOKS } from "./data"; // ← see Step 3
 import { Link } from "lucide-react";
+import { SHOW_DEMO_BOOKS } from "./data";
 
 export default function BooksPage() {
-  const publishedBooks = DEMO_BOOKS.filter((b) => b.status === "published");
+  const publishedBooks = SHOW_DEMO_BOOKS
+    ? DEMO_BOOKS.filter((b) => b.status === "published")
+    : [];
 
   // CollectionPage + ItemList schema for the whole catalogue
   const collectionJsonLd = {
