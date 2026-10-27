@@ -11,7 +11,7 @@ const serviceGroups = [
     imageAlt: "A professionally produced LO Publications book",
     icon: PenTool,
     services: [
-      ["Editorial Development and Manuscript Assessment", "We evaluate your manuscript’s content, structure, clarity, and readiness for publication, providing practical recommendations to help you develop a stronger, more engaging book."],
+      ["Editorial Development and Manuscript Assessment", "We evaluate your manuscript’s content, structure, clarity, and readiness for publication, providing practical recommendations to help you develop a stronger,and more engaging book."],
       ["Structural Editing", "We improve the organisation, sequence, flow, and arrangement of chapters and sections so readers can follow your ideas with ease."],
       ["Line Editing", "We refine sentence structure, language, clarity, tone, and readability while protecting the authorial voice that makes your work distinct."],
       ["Copyediting", "We correct grammar, spelling, punctuation, consistency, terminology, and language usage to bring polish and precision to your manuscript."],

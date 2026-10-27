@@ -83,7 +83,7 @@ const reasons = [
   {
     icon: PenTool,
     title: "Excellence Without Compromise",
-    desc: "From editing to cover design to distribution, we deliver work that stands out in quality and clarity.",
+    desc: "From editing and cover design to distribution, we deliver work that stands out for its quality and clarity.",
   },
   {
     icon: Users,
@@ -515,7 +515,7 @@ function PublishingCategories() {
 // "LO" broken into its two words; each letter reveals its meaning on hover
 function LoMeaning() {
   const letters = [
-    { letter: "L", word: "Love", text: "Every story we publish is handled in love." },
+    { letter: "L", word: "Love", text: "Every story we publish is handled with love." },
     { letter: "O", word: "Obedience", text: "In obedience to the calling we've been given." },
   ];
 

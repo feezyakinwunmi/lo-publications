@@ -152,7 +152,7 @@ export default function YoungAuthorsContest() {
               The Young Authors Contest was created to identify and develop emerging storytellers within universities, colleges, and secondary schools. Many students have strong ideas but lack structure, training, and a credible platform. This initiative bridges that gap.
             </p>
             <p className="text-lg text-gray-700">
-              Participants receive structured writing training, editorial guidance, and the opportunity to become published authors under LO Publications.
+              Participants receive structured writing training, editorial guidance, along with the opportunity to become published authors under LO Publications.
             </p>
           </div>
          <motion.div

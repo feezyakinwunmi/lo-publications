@@ -200,7 +200,7 @@ const onSubmit = async (data: FormData) => {
                   Reach Us Directly
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-6 text-sm">
-                  For questions, collaborations, or general inquiries — pick the
+                  For questions, collaborations, or general inquiries, pick the
                   channel that fits best.
                 </p>
 

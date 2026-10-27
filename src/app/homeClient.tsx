@@ -83,7 +83,7 @@ const stats = [
   { number: "50+", label: "Authors Published", icon: Users },
   { number: "100+", label: "Books Published", icon: BookOpen },
   { number: "98%", label: "Satisfaction Rate", icon: Award },
-  { number: "20+", label: "Countries Reached", icon: Globe },
+  { number: "4+", label: "Countries Reached", icon: Globe },
 ];
 
 // Fallback testimonials shown when Supabase isn't configured, taken from our real featured authors

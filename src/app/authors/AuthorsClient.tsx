@@ -365,7 +365,7 @@ export default function AuthorsClient() {
             <h2 className="text-3xl font-bold md:text-5xl">Could You Be Our Next Featured Author?</h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-white/70">
               Your manuscript deserves the same care, craft, and attention. Tell us
-              about your book and we&apos;ll help you take it from page to reader.
+              about your book, and we&apos;ll help you take it from page to reader.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <Link

@@ -211,7 +211,7 @@ export default function SubmitManuscriptPage() {
               ))}
             </ul>
             <p className="mt-8 text-gray-600 italic">
-              If your work doesn’t fit one of these but carries a strong spiritual message, feel free to reach out—we’re open to meaningful, mission-driven storytelling.
+              If your work doesn’t fit one of these categories but carries a strong spiritual message, feel free to reach out—we’re open to meaningful, mission-driven storytelling.
             </p>
           </div>
 
