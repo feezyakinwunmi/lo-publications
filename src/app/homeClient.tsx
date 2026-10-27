@@ -1,8 +1,9 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { sendGAEvent } from '@next/third-parties/google'
 import { 
   ArrowRight, 
@@ -39,6 +40,11 @@ import {
 } from "lucide-react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
+import { featuredAuthors } from "./data/authors";
+import { homeFaqs } from "./data/faqs";
+import AuthorAvatar from "./authors/AuthorAvatar";
+import TiltCard from "./components/TiltCard";
+import CountUp from "./components/CountUp";
 
 // Types for real data
 type Book = {
@@ -80,54 +86,24 @@ const stats = [
   { number: "20+", label: "Countries Reached", icon: Globe },
 ];
 
-// Fallback static testimonials shown when Supabase isn't configured
-const DEMO_TESTIMONIALS: Testimonial[] = [
-  {
-    id: "t1",
-    author: "Grace Adeyemi",
-    role: "Author of \"Walking in Purpose\"",
-    quote:
-      "From manuscript to finished book in just a few months. The LO team treated my story with such care — every edit preserved my voice.",
-    avatar_url: null,
-    rating: 5,
-  },
-  {
-    id: "t2",
-    author: "Emmanuel Okafor",
-    role: "Author of \"The Quiet Harvest\"",
-    quote:
-      "They handled everything — cover design, formatting, distribution. I just focused on writing, and the results exceeded my expectations.",
-    avatar_url: null,
-    rating: 5,
-  },
-  {
-    id: "t3",
-    author: "Dr. Amara Nwosu",
-    role: "Author of \"Building a Reading Culture at Home\"",
-    quote:
-      "Professional from start to finish. They helped me navigate the publishing process and launch globally. I couldn't recommend them more.",
-    avatar_url: null,
-    rating: 5,
-  },
-  {
-    id: "t4",
-    author: "Tolu Bankole",
-    role: "Author of \"Letters to My Younger Self\"",
-    quote:
-      "A truly author-centric publishing house. They listened, guided, and delivered a beautiful final book.",
-    avatar_url: null,
-    rating: 4,
-  },
-  {
-    id: "t5",
-    author: "Pastor David Balogun",
-    role: "Author of \"The Marketplace Ministry\"",
-    quote:
-      "Faith-friendly and values-aligned every step of the way. Publishing with LO Publications has been a blessing.",
-    avatar_url: null,
-    rating: 5,
-  },
+// Fallback testimonials shown when Supabase isn't configured, taken from our real featured authors
+const DEMO_TESTIMONIALS: Testimonial[] = featuredAuthors.map((author) => ({
+  id: author.slug,
+  author: author.name,
+  role: `Author of "${author.books[0].title}"`,
+  quote: author.quote,
+  avatar_url: author.photo ?? null,
+  rating: 5,
+}));
+
+const processSteps = [
+  { title: "Submit", desc: "Share your manuscript or idea with us.", icon: Upload },
+  { title: "Review", desc: "We evaluate your work and provide feedback.", icon: Edit },
+  { title: "Design", desc: "Professional cover and interior design.", icon: Image },
+  { title: "Prepare for Publication", desc: "Final checks, ISBN and registration support, metadata, and publication-ready files.", icon: Globe },
+  { title: "Launch", desc: "We help you launch and promote your book.", icon: Rocket },
 ];
+
 
 export default function HomeClient() {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
@@ -263,6 +239,18 @@ export default function HomeClient() {
     setCurrentTeamSlide((prev) => (prev - 1 + Math.ceil(teamMembers.length / 4)) % Math.ceil(teamMembers.length / 4));
   };
 
+  // Until the catalogue has approved titles, the hero shows our featured authors' books
+  const heroCovers: Book[] = (
+    featuredBooks.length
+      ? featuredBooks
+      : featuredAuthors.map((a) => ({
+          id: a.slug,
+          title: a.books[0].title,
+          author: a.name,
+          cover_url: a.books[0].coverImage,
+        }))
+  ).slice(0, 4);
+
   const getVisibleTeam = () => {
     const start = currentTeamSlide * 4;
     const end = start + 4;
@@ -309,49 +297,29 @@ export default function HomeClient() {
               <div className="relative flex h-[380px] items-center justify-center sm:h-[470px]">
                 <div className="absolute h-[260px] w-[260px] rounded-[46%_54%_60%_40%] bg-[#8d171c] sm:h-[330px] sm:w-[330px]" />
 
-                {featuredBooks.slice(0, 4).map((book, index) => {
-                  const positions = [-80, -28, 28, 80];
-                  const rotations = [-11, -4, 5, 11];
-
-                  return (
-                    <motion.div
-                      key={book.id}
-                      className="group absolute w-[160px] sm:w-[200px]"
-                      style={{
-                        transform: `translateX(${positions[index]}px) rotate(${rotations[index]}deg)`,
-                        zIndex: index + 2,
-                      }}
-                      whileHover={{ y: -20, scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="aspect-[3/4] overflow-hidden rounded-xl border border-white/60 bg-[#ddd6ce] shadow-[20px_25px_50px_rgba(0,0,0,.2)] transition-all duration-500">
-                        <img
-                          src={book.cover_url || "/book.jpg"}
-                          alt={book.title}
-                          className="h-full w-full object-contain"
-                        />
-                      </div>
-                    </motion.div>
-                  );
-                })} 
-
-                {!featuredBooks.length && [0, 1, 2, 3].map((index) => (
-                  <div
-                    key={index}
+                {heroCovers.map((book, index) => (
+                  <motion.div
+                    key={book.id}
                     className="absolute w-[160px] sm:w-[200px]"
-                    style={{
-                      transform: `translateX(${[-80,-28,28,80][index]}px) rotate(${[-11,-4,5,11][index]}deg)`,
-                      zIndex: index + 2,
+                    style={{ zIndex: index + 2 }}
+                    initial={{ opacity: 0, y: 120, x: 0, rotate: 0 }}
+                    animate={{ opacity: 1, y: [0, -8, 0], x: [-80, -28, 28, 80][index], rotate: [-11, -4, 5, 11][index] }}
+                    transition={{
+                      opacity: { duration: 0.5, delay: 0.4 + index * 0.12 },
+                      x: { type: "spring", stiffness: 70, damping: 13, delay: 0.4 + index * 0.12 },
+                      rotate: { type: "spring", stiffness: 70, damping: 13, delay: 0.4 + index * 0.12 },
+                      y: { duration: 4 + index * 0.6, repeat: Infinity, ease: "easeInOut", delay: 1.4 + index * 0.3 },
                     }}
+                    whileHover={{ scale: 1.08, rotate: 0, zIndex: 20, transition: { duration: 0.3 } }}
                   >
-                    <div className="flex aspect-[3/4] flex-col justify-between rounded-xl border border-white/60 bg-gradient-to-br from-white to-[#d6cec5] p-6 shadow-[20px_25px_50px_rgba(0,0,0,.18)]">
-                      <BookOpen className="opacity-25" />
-                      <div>
-                        <p className="text-[8px] font-bold uppercase tracking-[.2em] opacity-35">LO Publications</p>
-                        <p className="mt-3 text-3xl font-black leading-[.8]">YOUR<br />STORY</p>
-                      </div>
+                    <div className="aspect-[3/4] overflow-hidden rounded-xl border border-white/60 bg-[#ddd6ce] shadow-[20px_25px_50px_rgba(0,0,0,.2)]">
+                      <img
+                        src={book.cover_url || "/book.jpg"}
+                        alt={book.title}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -372,12 +340,12 @@ export default function HomeClient() {
                 <br />
                 <span className=" text-[#8d171c] ">DESERVES</span>
                 <br />
-                A BOOK.
+                A BOOK
               </h1>
 
               <div className="mt-9 max-w-xl">
                 <p className="text-xl font-bold text-black leading-tight sm:text-2xl lg:text-[27px]">
-                  We turn ideas, manuscripts and voices into books people want to read.
+                  We turn ideas, manuscripts, and voices into books people want to read.
                 </p>
                 <p className="mt-4 max-w-md text-sm leading-6 text-black/50">
                   From editorial direction and cover design to formatting and publishing, we help authors take their stories from page to reader.
@@ -395,7 +363,7 @@ export default function HomeClient() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Start your book
+                  Start Your Book
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#8d171c]">
                     <ArrowRight size={13} />
                   </span>
@@ -424,7 +392,7 @@ export default function HomeClient() {
                     The publishing experience
                   </p>
                   <p className="mt-2 max-w-lg text-2xl font-bold leading-tight sm:text-3xl">
-                    Your manuscript deserves more than a file on your laptop.
+                    Your manuscript deserves more than a file on your laptop
                   </p>
                 </div>
               </div>
@@ -439,7 +407,7 @@ export default function HomeClient() {
                 <br />
                 THAT
                 <br />
-                <span className="text-[#8d171c]">STAY.</span>
+                <span className="text-[#8d171c]">STAY</span>
               </p>
             </div>
           </motion.div>
@@ -462,7 +430,7 @@ export default function HomeClient() {
       ====================================================== */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
@@ -472,13 +440,18 @@ export default function HomeClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
+                  className="group relative overflow-hidden rounded-2xl border border-gray-100 p-6 text-center transition-colors duration-500 hover:border-transparent"
                 >
-                  <div className="inline-flex p-3 rounded-full bg-[#8d171c]/10 text-[#8d171c] mb-4">
-                    <Icon size={24} />
+                  <div className="absolute inset-0 translate-y-full bg-[#8d171c] transition-transform duration-500 ease-out group-hover:translate-y-0" />
+                  <div className="relative">
+                    <div className="inline-flex p-3 rounded-full bg-[#8d171c]/10 text-[#8d171c] mb-4 transition-all duration-500 group-hover:bg-white/15 group-hover:text-white group-hover:rotate-[360deg]">
+                      <Icon size={24} />
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-[#8d171c] transition-colors duration-500 group-hover:text-white">
+                      <CountUp value={stat.number} />
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1 transition-colors duration-500 group-hover:text-white/80">{stat.label}</div>
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-[#8d171c]">{stat.number}</div>
-                  <div className="text-sm text-gray-600 mt-1">{stat.label}</div>
                 </motion.div>
               );
             })}
@@ -519,19 +492,27 @@ export default function HomeClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  whileHover={{ y: -8 }}
-                  className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:border-[#8d171c]/40 hover:shadow-2xl transition-all group"
                 >
-                  <div className="p-6 text-center flex flex-col h-full">
-                    <div className="w-14 h-14 rounded-full bg-[#8d171c]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#8d171c] transition-colors">
-                      <Icon className="w-7 h-7 text-[#8d171c] group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-black mb-3">{service.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
-                    <a href={service.href} className="inline-flex items-center justify-center gap-2 mt-6 text-sm font-semibold text-[#8d171c] hover:text-[#6b1215]">
-                      Explore Services <ArrowRight size={16} />
+                  <TiltCard className="group h-full rounded-2xl">
+                    <a
+                      href={service.href}
+                      className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 p-7 transition-all duration-500 hover:border-[#8d171c]/30 hover:bg-white hover:shadow-[0_30px_60px_-25px_rgba(141,23,28,.4)]"
+                    >
+                      <span className="absolute right-5 top-4 text-5xl font-black text-black/[.04] transition-colors duration-500 group-hover:text-[#8d171c]/10">
+                        0{idx + 1}
+                      </span>
+                      <div className="relative w-14 h-14 rounded-2xl bg-[#8d171c]/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-[#8d171c] group-hover:rounded-full group-hover:scale-110">
+                        <Icon className="w-7 h-7 text-[#8d171c] transition-all duration-500 group-hover:text-white group-hover:-rotate-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-black mb-3">{service.title}</h3>
+                      <p className="flex-1 text-gray-600 leading-relaxed">{service.desc}</p>
+                      <span className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-[#8d171c]">
+                        Explore Services
+                        <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-2" />
+                      </span>
+                      <span className="absolute bottom-0 left-0 h-1 w-0 bg-[#8d171c] transition-all duration-500 group-hover:w-full" />
                     </a>
-                  </div>
+                  </TiltCard>
                 </motion.div>
               );
             })}
@@ -659,14 +640,14 @@ export default function HomeClient() {
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">Our Method</span>
               <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">Method &amp; Mastery</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We don&apos;t believe great publishing happens by accident. Every decision should serve the story, the author and the reader.
+                We don&apos;t believe great publishing happens by accident. Every decision should serve the story, the author, and the reader.
               </p>
 
               <div className="mt-10 space-y-6">
                 {[
                   { title: "Author First", text: "Your story stays at the centre of every decision we make." },
                   { title: "Direction Before Design", text: "We understand the story before we decide how it should look." },
-                  { title: "Uncompromising Quality", text: "Every page, cover and detail should reflect the value of the work." },
+                  { title: "Uncompromising Quality", text: "Every page, cover, and detail should reflect the value of the work." },
                   { title: "Purpose Over Noise", text: "We don't publish simply to add another book to the world. We publish with intention." },
                 ].map((principle, index) => (
                   <motion.div
@@ -675,9 +656,9 @@ export default function HomeClient() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex gap-4"
+                    className="group -mx-4 flex gap-4 rounded-2xl px-4 py-3 transition-all duration-300 hover:translate-x-2 hover:bg-white hover:shadow-md"
                   >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8d171c] text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8d171c] text-white transition-transform duration-500 group-hover:rotate-[72deg] group-hover:scale-110">
                       <Star size={16} />
                     </div>
                     <div>
@@ -745,43 +726,7 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <div className="relative">
-            {/* Connection line */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-[#8d171c]/20 -translate-y-1/2" />
-            
-            <div className="grid md:grid-cols-5 gap-8 relative">
-              {[
-                { step: "01", title: "Submit", desc: "Share your manuscript or idea with us.", icon: Upload },
-                { step: "02", title: "Review", desc: "We evaluate your work and provide feedback.", icon: Edit },
-                { step: "03", title: "Design", desc: "Professional cover and interior design.", icon: Image },
-                { step: "04", title: "Prepare for Publication", desc: "Final manuscript checks, ISBN and registration support, metadata, and publication-ready print and digital files.", icon: Globe },
-                { step: "05", title: "Launch", desc: "We help you launch and promote your book.", icon: Rocket },
-              ].map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="relative inline-block">
-                      <div className="w-20 h-20 rounded-full bg-[#8d171c] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg relative z-10">
-                        {index + 1}
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 rounded-full bg-[#8d171c]/10 flex items-center justify-center mx-auto mb-3">
-                      <Icon className="w-6 h-6 text-[#8d171c]" />
-                    </div>
-                    <h3 className="font-semibold text-black">{item.title}</h3>
-                    <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+          <ProcessTimeline />
           <div className="mt-14 text-center">
             <a href="/publishing-journey" className="inline-flex items-center gap-3 rounded-lg border-2 border-[#8d171c] px-7 py-3.5 font-semibold text-[#8d171c] transition hover:bg-[#8d171c] hover:text-white">
               View More Details <ArrowRight size={18} />
@@ -789,6 +734,11 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
+
+      {/* =====================================================
+          FEATURED AUTHORS
+      ====================================================== */}
+      <FeaturedAuthorsShowcase />
 
       {/* =====================================================
           FEATURED BOOKS
@@ -888,26 +838,32 @@ export default function HomeClient() {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-  {teamMembers.map((member, index) => (
-    <motion.div
-      key={member.name}
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ y: -8 }}
-      className="text-center group"
-    >
-      <div className="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
-        <img
-          src={member.image}
-          alt={member.name}
-          className="w-full h-full object-cover object-[center_5%] group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-    </motion.div>
-  ))}
-</div>
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                whileHover={{ y: -8 }}
+                className="text-center group"
+              >
+                <div className="relative mx-auto mb-4 h-36 w-36">
+                  <div className="absolute -inset-2 rounded-full border-2 border-dashed border-[#8d171c]/0 transition-all duration-700 group-hover:rotate-180 group-hover:border-[#8d171c]/50" />
+                  <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-[#8d171c] shadow-lg transition-shadow group-hover:shadow-2xl">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover object-[center_5%] grayscale-[30%] transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-[#8d171c] to-[#8d171c]/70 py-2 text-xs font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
+                      {member.name}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
           <div className="text-center mt-12">
             <motion.a
@@ -1099,31 +1055,15 @@ export default function HomeClient() {
           </motion.div>
 
           <div className="space-y-4">
-            {[
-              { q: "How long does the publishing process take?", a: "The timeline varies depending on the scope of work, but typically ranges from 3-6 months from manuscript submission to publication." },
-              { q: "Do you offer both print and digital publishing?", a: "Yes, we publish both print and digital formats, ensuring your book reaches readers in their preferred format." },
-              { q: "Do I retain the rights to my book?", a: "Absolutely. You retain full rights to your work. We publish under a partnership model where you maintain ownership." },
-              { q: "What genres do you publish?", a: "We publish across all genres including fiction, non-fiction, memoirs, business books, children's books, and more." },
-            ].map((faq, index) => (
+            {homeFaqs.map((faq, index) => (
               <motion.div
                 key={faq.q}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border border-gray-200 rounded-lg overflow-hidden hover:border-[#8d171c]/30 transition-colors"
               >
-                <details className="group">
-                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
-                    <span className="font-semibold text-black">{faq.q}</span>
-                    <span className="text-[#8d171c] group-open:rotate-45 transition-transform">
-                      <Plus size={24} />
-                    </span>
-                  </summary>
-                  <div className="px-6 pb-6 text-gray-600">
-                    {faq.a}
-                  </div>
-                </details>
+                <FaqItem q={faq.q} a={faq.a} />
               </motion.div>
             ))}
           </div>
@@ -1184,6 +1124,227 @@ export default function HomeClient() {
       </section>
 
     </main>
+  );
+}
+
+// Publishing steps with a progress line that fills as the section scrolls into view
+function ProcessTimeline() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 55%"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 25 });
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Horizontal track (desktop) */}
+      <div className="absolute left-[10%] right-[10%] top-10 hidden h-1 rounded-full bg-[#8d171c]/10 md:block">
+        <motion.div className="h-full origin-left rounded-full bg-[#8d171c]" style={{ scaleX: progress }} />
+      </div>
+      {/* Vertical track (mobile) */}
+      <div className="absolute bottom-10 left-10 top-10 w-1 -translate-x-1/2 rounded-full bg-[#8d171c]/10 md:hidden">
+        <motion.div className="h-full w-full origin-top rounded-full bg-[#8d171c]" style={{ scaleY: progress }} />
+      </div>
+
+      <ol className="relative grid gap-10 md:grid-cols-5 md:gap-6">
+        {processSteps.map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <motion.li
+              key={step.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: index * 0.12 }}
+              className="group flex gap-6 md:flex-col md:items-center md:text-center"
+            >
+              <div className="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center">
+                <span className="absolute inset-0 rounded-full bg-[#8d171c]/25 group-hover:animate-ping" />
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[#8d171c] text-white shadow-lg transition-transform duration-700 group-hover:scale-110 group-hover:rotate-[360deg]">
+                  <Icon size={28} />
+                </div>
+                <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-black text-xs font-bold text-white ring-4 ring-white">
+                  {index + 1}
+                </span>
+              </div>
+              <div className="flex-1 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:border-[#8d171c]/30 group-hover:shadow-xl md:mt-6 md:w-full">
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8d171c]">Step 0{index + 1}</p>
+                <h3 className="mt-1 font-semibold text-black">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">{step.desc}</p>
+              </div>
+            </motion.li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+// Interactive author list: hovering or tapping a name brings their book and words forward
+function FeaturedAuthorsShowcase() {
+  const [active, setActive] = useState(0);
+  const author = featuredAuthors[active];
+  const book = author.books[0];
+
+  return (
+    <section className="relative overflow-hidden bg-[#111] py-24 text-white">
+      <motion.div
+        className="pointer-events-none absolute -right-40 top-10 h-[480px] w-[480px] rounded-full bg-[#8d171c]/40 blur-3xl"
+        animate={{ x: [0, -60, 0], y: [0, 40, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end"
+        >
+          <div>
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/50">Our Pen Masters</span>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Featured Authors</h2>
+            <p className="mt-4 max-w-xl text-lg text-white/60">
+              Real authors, real books. Hover over a name to meet the voice behind the cover.
+            </p>
+          </div>
+          <Link
+            href="/authors"
+            className="group inline-flex items-center gap-2 self-start rounded-full border border-white/20 px-6 py-3 text-sm font-semibold transition hover:bg-white hover:text-[#8d171c] md:self-auto"
+          >
+            Meet All Authors
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
+
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+          {/* Names */}
+          <ul className="divide-y divide-white/10 border-y border-white/10">
+            {featuredAuthors.map((a, index) => (
+              <li key={a.slug}>
+                <button
+                  onMouseEnter={() => setActive(index)}
+                  onFocus={() => setActive(index)}
+                  onClick={() => setActive(index)}
+                  className="group flex w-full items-center gap-4 py-5 text-left"
+                >
+                  <span
+                    className={`text-sm font-bold tabular-nums transition-colors ${
+                      active === index ? "text-[#e0474d]" : "text-white/30"
+                    }`}
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={`block text-xl font-bold transition-all duration-300 md:text-2xl ${
+                        active === index ? "translate-x-2 text-white" : "text-white/45 group-hover:text-white/75"
+                      }`}
+                    >
+                      {a.name}
+                    </span>
+                    <span
+                      className={`block truncate text-sm transition-all duration-300 ${
+                        active === index ? "translate-x-2 text-white/60" : "text-white/25"
+                      }`}
+                    >
+                      {a.books[0].title}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    size={20}
+                    className={`shrink-0 transition-all duration-300 ${
+                      active === index ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
+                    }`}
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          {/* Stage */}
+          <div className="relative min-h-[420px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={author.slug}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="grid items-center gap-8 sm:grid-cols-[200px_1fr]"
+              >
+                <Link href={`/authors/${author.slug}`} className="group relative mx-auto block w-[180px] sm:w-full">
+                  <motion.div
+                    initial={{ rotate: -8, scale: 0.9 }}
+                    animate={{ rotate: -3, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 12 }}
+                    className="aspect-[3/4] overflow-hidden rounded-lg shadow-[0_30px_60px_rgba(0,0,0,.6)] ring-1 ring-white/10 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-105"
+                  >
+                    <img src={book.coverImage} alt={book.title} className="h-full w-full object-cover" />
+                  </motion.div>
+                </Link>
+                <div>
+                  <div className="mb-5 flex items-center gap-4">
+                    <AuthorAvatar author={author} size="sm" ring="ring-2 ring-white/20" />
+                    <div>
+                      <p className="font-bold">{author.name}</p>
+                      <p className="text-xs text-white/50">{author.profession}</p>
+                    </div>
+                  </div>
+                  <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{book.genre}</span>
+                  <p className="mt-5 text-lg italic leading-relaxed text-white/80">&ldquo;{author.quote}&rdquo;</p>
+                  <Link
+                    href={`/authors/${author.slug}`}
+                    className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#e0474d] transition hover:text-white"
+                  >
+                    Read {author.name.replace(/^Pastor\s+/, "").split(" ")[0]}&apos;s Story
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
+        open ? "border-[#8d171c]/30 bg-[#f8f6f3] shadow-md" : "border-gray-200 bg-white hover:border-[#8d171c]/30"
+      }`}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        className="group flex w-full items-center justify-between gap-4 p-6 text-left"
+      >
+        <span className={`font-semibold transition-colors ${open ? "text-[#8d171c]" : "text-black group-hover:text-[#8d171c]"}`}>
+          {q}
+        </span>
+        <span
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+            open ? "rotate-45 bg-[#8d171c] text-white" : "bg-[#8d171c]/10 text-[#8d171c]"
+          }`}
+        >
+          <Plus size={20} />
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <p className="px-6 pb-6 leading-relaxed text-gray-600">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 

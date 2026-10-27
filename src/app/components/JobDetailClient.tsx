@@ -137,7 +137,7 @@ export default function JobDetailClient({ job }: JobDetailClientProps) {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-red-700">•</span>
-                        <span>2-3 samples of your work</span>
+                        <span>2–3 samples of your work</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-red-700">•</span>

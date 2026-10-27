@@ -255,7 +255,7 @@ export default function FaithAndCreativity() {
         <div className="bg-gray-900 rounded-[2rem] p-10 md:p-14 text-center">
           <div className="max-w-2xl mx-auto space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Write Boldly. Write Prayerfully.
+              Write Boldly, Write Prayerfully
             </h2>
 
             <p className="text-gray-300 text-lg leading-relaxed">

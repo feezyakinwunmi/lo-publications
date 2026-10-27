@@ -1,6 +1,7 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import HomeClient from "./homeClient";
+import { homeFaqs } from "./data/faqs";
 
 const SITE_URL = "https://lopublications.com"; // ← change to your real domain
 
@@ -94,40 +95,11 @@ export default function Page() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "How long does the publishing process take?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "The timeline varies depending on the scope of work, but typically ranges from 3-6 months from manuscript submission to publication.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Do you offer both print and digital publishing?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Yes, we publish both print and digital formats, ensuring your book reaches readers in their preferred format.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Do I retain the rights to my book?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Absolutely. You retain full rights to your work. We publish under a partnership model where you maintain ownership.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "What genres do you publish?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "We publish across all genres including fiction, non-fiction, memoirs, business books, children's books, and more.",
-            },
-          },
-        ],
+        mainEntity: homeFaqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
       },
     ],
   };

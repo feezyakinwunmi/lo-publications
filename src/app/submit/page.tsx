@@ -133,8 +133,8 @@ export default function SubmitManuscriptPage() {
             transition={{ duration: 1 }}
             className="text-4xl md:text-6xl font-bold text-black leading-tight mb-8"
           >
-            Your Story Matters.<br />
-            <span className="text-red-900">Let’s Share It With the World.</span>
+            Your Story Matters<br />
+            <span className="text-red-900">Let’s Share It With the World</span>
           </motion.h1>
 
           <motion.p

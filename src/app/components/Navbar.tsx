@@ -29,7 +29,7 @@ const navLinks: NavLink[] = [
   { name: "Books", href: "/books" },
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/contact" },      
-  { name: "Case Studies", href: "/casestudies" },
+  { name: "Featured Authors", href: "/authors" },
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Young Authors Contest", href: "/young-authors-contest" },
@@ -244,7 +244,7 @@ export default function Navbar() {
           { title: "Careers", href: "/careers", type: "Page" },
           { title: "Submit Manuscript", href: "/submit", type: "Page" },
           { title: "Young Authors Contest", href: "/young-authors-contest", type: "Page" },
-          { title: "Case Studies", href: "/casestudies", type: "Page" },
+          { title: "Featured Authors", href: "/authors", type: "Page" },
         ];
 
         staticPages.forEach(page => {
@@ -521,7 +521,7 @@ export default function Navbar() {
                   <input
                     ref={searchInputRef}
                     type="text"
-                    placeholder="Search articles, blogs, books, case studies..."
+                    placeholder="Search articles, blogs, books, authors..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-12 py-5 text-black text-lg outline-none border-b border-gray-200"

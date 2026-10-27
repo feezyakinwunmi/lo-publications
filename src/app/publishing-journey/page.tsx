@@ -68,7 +68,7 @@ export default function PublishingJourneyPage() {
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 10% 20%, #fff 0, transparent 22%), radial-gradient(circle at 90% 80%, #fff 0, transparent 24%)" }} />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-white/75">How It Works</span>
-          <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">Your publishing journey, clearly guided.</h1>
+          <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">Your Publishing Journey, Clearly Guided</h1>
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">From your first manuscript submission to your book launch, we guide the agreed publishing process with expertise, clear communication, and careful attention to every detail.</p>
           <a href="#step-01" className="mt-10 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 font-semibold text-[#8d171c] transition hover:shadow-xl">Explore the Process <ArrowRight size={18} /></a>
         </div>
@@ -122,7 +122,7 @@ export default function PublishingJourneyPage() {
       <section className="bg-[#f8f6f3] py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8d171c]">Ready to begin?</span>
-          <h2 className="mt-4 text-3xl font-bold text-black md:text-4xl">Let’s take the next step together.</h2>
+          <h2 className="mt-4 text-3xl font-bold text-black md:text-4xl">Let’s Take the Next Step Together</h2>
           <p className="mt-5 text-lg leading-relaxed text-gray-600">Your publishing agreement defines the services, deliverables, timelines, and responsibilities for your project. We are here to help you move forward with clarity and confidence.</p>
           <Link href="/submit" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#8d171c] px-7 py-3.5 font-semibold text-white transition hover:bg-[#6b1215]">Start Your Publishing Journey <ArrowRight size={18} /></Link>
         </div>

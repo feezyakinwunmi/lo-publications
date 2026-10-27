@@ -82,7 +82,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="text-red-200 mt-1" size={20} />
                 <span>
-1551 Lycee Place, Ottawa, K1G4B5
+1551 Lycee Place, Ottawa, ON K1G 4B5
 
                 </span>
               </li>

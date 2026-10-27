@@ -5,7 +5,7 @@ const serviceGroups = [
   {
     id: "editorial-services",
     eyebrow: "01 — Editorial Services",
-    title: "Give your manuscript the attention it deserves.",
+    title: "Give Your Manuscript the Attention It Deserves",
     introduction: "We assess, refine, and prepare your manuscript with care—strengthening the work while preserving your voice, message, and intent.",
     image: "/book.jpg",
     imageAlt: "A professionally produced LO Publications book",
@@ -21,7 +21,7 @@ const serviceGroups = [
   {
     id: "book-design",
     eyebrow: "02 — Book Design & Visual Development",
-    title: "Design that makes a confident first impression.",
+    title: "Design That Makes a Confident First Impression",
     introduction: "From the first look at the cover to the final page, we create a visual reading experience that reflects your book and respects your reader.",
     image: "/crown.jpg",
     imageAlt: "Example of a book cover produced by LO Publications",
@@ -35,7 +35,7 @@ const serviceGroups = [
   {
     id: "publishing-services",
     eyebrow: "03 — Publishing Services",
-    title: "A clear path from approval to publication.",
+    title: "A Clear Path From Approval to Publication",
     introduction: "We manage the technical and practical work of preparing your book for publication, with clear milestones, communication, and approvals throughout.",
     image: "/kingdom.jpg",
     imageAlt: "Another LO Publications book cover",
@@ -50,7 +50,7 @@ const serviceGroups = [
   {
     id: "author-development",
     eyebrow: "04 — Author Development & Promotion",
-    title: "Present your book—and yourself—professionally.",
+    title: "Present Your Book — and Yourself — Professionally",
     introduction: "Additional author and promotional support is available for writers who want to build their platform, launch thoughtfully, and reach readers with confidence.",
     image: "/rl.jpg",
     imageAlt: "A book produced by LO Publications",
@@ -76,7 +76,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 15% 30%, #fff 0, transparent 25%), radial-gradient(circle at 85% 70%, #fff 0, transparent 20%)" }} />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <span className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-white/75"><Sparkles size={16} /> Professional Publishing Services</span>
-          <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">Everything your book needs to be published professionally.</h1>
+          <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">Everything Your Book Needs to Be Published Professionally</h1>
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">From developing your manuscript to preparing publication-ready files, LO Publications provides the editorial expertise, creative direction, and publishing support to help bring your story to life.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link href="/submit" className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 font-semibold text-[#8d171c] transition hover:shadow-xl">Start Your Publishing Journey <ArrowRight size={18} /></Link>
@@ -132,7 +132,7 @@ export default function ServicesPage() {
       <section className="bg-[#f8f6f3] py-24">
         <div className="mx-auto max-w-5xl px-6 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8d171c]">Our Publishing Approach</span>
-          <h2 className="mt-4 text-3xl font-bold text-black md:text-4xl">A clear and professional publishing process.</h2>
+          <h2 className="mt-4 text-3xl font-bold text-black md:text-4xl">A Clear and Professional Publishing Process</h2>
           <p className="mt-6 text-lg leading-relaxed text-gray-600">Every project is guided by an agreed scope of work that defines services, deliverables, timelines, and responsibilities. Core publishing deliverables are provided according to the selected package; additional author, launch, media, and promotional services may be contracted separately or included in selected packages.</p>
           <div className="mt-10 rounded-2xl border border-[#8d171c]/15 bg-white p-6 text-left shadow-sm md:p-8">
             <div className="flex gap-4"><FileText className="mt-1 shrink-0 text-[#8d171c]" size={24} /><p className="leading-relaxed text-gray-700">We provide professional publishing support, clear communication, and quality production throughout the agreed process. Media coverage, sales, bestseller rankings, distribution acceptance, and promotional results are not guaranteed, as they depend on external platforms, partners, audiences, and market conditions.</p></div>
@@ -143,7 +143,7 @@ export default function ServicesPage() {
       <section className="bg-[#8d171c] py-20 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <Megaphone className="mx-auto text-white/80" size={28} />
-          <h2 className="mt-4 text-3xl font-bold md:text-4xl">Ready to publish your book?</h2>
+          <h2 className="mt-4 text-3xl font-bold md:text-4xl">Ready to Publish Your Book?</h2>
           <p className="mt-4 text-lg text-white/80">Let us help you take the next step in your publishing journey.</p>
           <Link href="/submit" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-[#8d171c] transition hover:shadow-xl">Start Your Publishing Journey <ArrowRight size={18} /></Link>
         </div>

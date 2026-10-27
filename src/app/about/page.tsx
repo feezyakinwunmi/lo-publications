@@ -65,7 +65,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="inline-block px-8 md:px-10 py-4 md:py-5 bg-red-900/90 backdrop-blur-md text-white text-lg md:text-xl font-serif italic rounded-2xl shadow-2xl border border-white/20"
           >
-            To publish truth with love and purpose.
+            To publish truth with love and purpose
           </motion.div>
         </div>
       </section>

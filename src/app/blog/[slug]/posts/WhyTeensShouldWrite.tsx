@@ -266,7 +266,7 @@ export default function WhyTeensShouldWrite() {
           </div>
 
           <h2 className="text-3xl font-bold">
-            Writing Isn&apos;t Schoolwork. It&apos;s Survival, Strategy, and Self-Expression.
+            Writing Isn&apos;t Schoolwork — It&apos;s Survival, Strategy, and Self-Expression
           </h2>
 
           <p className="text-gray-300 text-lg leading-relaxed">
@@ -321,7 +321,7 @@ export default function WhyTeensShouldWrite() {
       <section className="bg-gradient-to-br from-red-50 to-rose-50 border border-red-100 rounded-[2rem] p-10 md:p-14">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            You Have a Voice. Writing Is How You Amplify It.
+            You Have a Voice — Writing Is How You Amplify It
           </h2>
 
           <div className="space-y-6 text-lg text-gray-700 leading-relaxed">

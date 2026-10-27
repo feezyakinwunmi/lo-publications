@@ -147,7 +147,7 @@ export default function BookClient() {
         {books.length === 0 ? (
           <div className="mx-auto max-w-2xl py-20 text-center">
             <BookMarked className="mx-auto mb-5 text-[#8d171c]/35" size={56} />
-            <h2 className="text-2xl font-bold text-black">Our book catalogue is coming soon.</h2>
+            <h2 className="text-2xl font-bold text-black">Our Book Catalogue Is Coming Soon</h2>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">We’re preparing this space for original LO Publications titles. Please check back soon to explore our published works.</p>
           </div>
         ) : filteredBooks.length === 0 && (
