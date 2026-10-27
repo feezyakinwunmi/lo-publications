@@ -343,7 +343,7 @@ export default function AboutClient() {
                 Why Authors Choose LO Publications
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-gray-600">
-                Plenty of publishers exist. Few walk with you like we do.
+                Many publishers exist. Few work with you like we do.
               </p>
               <Link
                 href="/submit"
