@@ -13,12 +13,12 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { featuredAuthors } from "../data/authors";
+import { showcaseAuthors } from "../data/authors";
 import TiltCard from "../components/TiltCard";
 import CountUp from "../components/CountUp";
 import { PUBLISHING_CATEGORIES } from "../data/publishing";
 
-const covers = featuredAuthors.map((a) => ({
+const covers = showcaseAuthors.map((a) => ({
   slug: a.slug,
   title: a.books[0].title,
   author: a.name,

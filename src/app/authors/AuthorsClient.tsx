@@ -58,7 +58,11 @@ const steps = [
   },
 ];
 
-const reviews = featuredAuthors.filter((a) => a.quote);
+// Every author with a quote, credited with their first catalogue title
+const reviews = featuredAuthors
+  .filter((a) => a.quote)
+  .map((a) => ({ ...a, firstTitle: a.books[0]?.title ?? CATALOGUE.find((b) => b.authorSlug === a.slug)?.title }))
+  .filter((a) => a.firstTitle);
 
 // Authors with a photo first, then those with the most titles
 const penMasters = [...AUTHOR_DIRECTORY]
@@ -212,7 +216,7 @@ export default function AuthorsClient() {
                     <AuthorAvatar author={author} size="sm" ring="ring-2 ring-white/20" />
                     <div>
                       <p className="font-bold">{author.name}</p>
-                      <p className="text-xs text-white/60">Author of {author.books[0].title}</p>
+                      <p className="text-xs text-white/60">Author of {author.firstTitle}</p>
                     </div>
                   </figcaption>
                 </figure>

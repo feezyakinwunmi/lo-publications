@@ -28,8 +28,12 @@ const ALIASES = {
     "my-alphabet-dictionary": "my-first-alphabet-dictionary",
     "splish-splash": "splish-splash-wow-water-wonders",
     "then-now-always": "then-now-and-always",
+    "novi-sa-protocol": "novi-sad-protocol",
   },
-  authors: {},
+  authors: {
+    "bishop-jesse-dibal": "jesse-dibal",
+    "mr-ayokunle-bamigboye": "david-cross",
+  },
 };
 
 // Must match slugify() in src/app/data/catalogue.ts; "_s" covers apostrophes

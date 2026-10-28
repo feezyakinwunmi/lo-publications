@@ -42,8 +42,9 @@ export type CatalogueBook = {
 type Entry = [title: string, category: CategoryKey, extra?: { coverImage?: string; readUrl?: string }];
 
 const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[] = [
+  // ──────────────────────── Featured / written-up authors ────────────────────────
   {
-    name: "Mrs Deborah Adebayo",
+    name: "Oluwaseun Deborah Adebayo",
     slug: "oluwaseun-deborah-adebayo",
     books: [["Names I’ve Worn", "memoir", { coverImage: "/niw.jpg" }]],
   },
@@ -53,15 +54,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
     books: [["Kingdom Strategies for Purpose Driven Entrepreneurs", "leadership", { coverImage: "/kingdom.jpg" }]],
   },
   {
-    name: "Pastor Kayode Samuel Adekoya",
-    books: [["Building from the Ground Up", "business"]],
-  },
-  {
-    name: "Pastor Adeola Adekoya",
-    books: [["God Designed It", "christian"]],
-  },
-  {
-    name: "Mrs Omiolara Adeola",
+    name: "Omolara Adeola",
     slug: "omolara-adeola",
     books: [
       ["Light at the End of the Tunnel", "fiction"],
@@ -69,80 +62,15 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
     ],
   },
   {
-    name: "Spring of Divine Grace Church (SODGEM)",
-    books: [
-      ["Adult Sunday Bible Study Manual: Fruitful in Every Good Work (2026)", "bible"],
-      ["Children’s Sunday Bible Study Manual: Fruitful in Every Good Work (2026)", "bible"],
-      ["SODGEM Midweek Bible Study Manual: The Power of the Word (2026)", "bible"],
-      ["The Power of the Word: SODGEM Midweek Bible Study Manual (2026)", "bible"],
-      ["Collection of Hymns", "bible"],
-      ["Adult Sunday Bible Study Manual: Fruitful in Every Good Work (2027)", "bible"],
-      ["Children’s Sunday Bible Study Manual: Fruitful in Every Good Work (2027)", "bible"],
-      ["SODGEM Midweek Bible Study Manual (2027)", "bible"],
-      ["Marriage Manual", "bible"],
-      ["Prospectus", "bible"],
-      ["Constitution and Bye-Laws", "bible"],
-      ["Ministers and Workers Code of Conduct", "bible"],
-      ["Prayer Journal (2026)", "bible"],
-      ["Prayer Journal (2027)", "bible"],
-    ],
-  },
-  {
-    name: "Dr Olukunle",
-    books: [["The Boy Who Ran Seven Miles", "education"]],
-  },
-  {
-    name: "Mr Ayokunle Bamigboye",
-    books: [["Novi SA Protocol", "business"]],
-  },
-  {
-    name: "Pastor Patrick Babalola",
-    books: [
-      ["The Great Awakening: The Pattern, History, and Power of Revival", "revival"],
-      ["The Outpouring: How Revival Begins, Spreads, and Transforms Nations", "revival"],
-      ["The Manifestation of the Sons of God: Evidence of the Outpouring of the Spirit", "revival"],
-      ["Life in God’s Order", "revival"],
-    ],
-  },
-  {
-    name: "Mrs Toyosi Oluwole",
-    books: [["A Mother’s Memoir: A Mother’s Journey from the Beginning", "memoir"]],
-  },
-  {
-    name: "Mrs Temitope Soewu",
+    name: "Temitope Soewu",
     slug: "temitope-soewu",
     books: [["The Crown and The Burden", "memoir", { coverImage: "/crown.jpg" }]],
-  },
-  {
-    name: "Mrs Adaeze Oba",
-    books: [["ABC of Wellness", "health"]],
-  },
-  {
-    name: "Bishop Jesse Dibal",
-    books: [
-      ["Winning in the Marketplace", "leadership"],
-      ["Protocol for Progress", "leadership"],
-      ["Anointing on a Magnifying Glass", "revival"],
-      ["The 5-Star Woman", "leadership"],
-    ],
-  },
-  {
-    name: "Priscilla Olukoya",
-    books: [["Who Is the Boss? A Humankind Blind Spot Investigation on Device Use", "tech"]],
-  },
-  {
-    name: "Mrs Chinwedu Madu",
-    books: [
-      ["BALD", "fiction"],
-      ["My Winterized Home", "fiction"],
-      ["The Long Trek", "fiction"],
-    ],
   },
   {
     name: "Layo Obidike",
     slug: "layo-obidike",
     books: [
-      ["Rhapsody of Love", "fiction", { coverImage: "/rl.jpg" }],
+      ["Rhapsody of Love", "christian", { coverImage: "/rl.jpg" }],
       ["See The Bee", "picture"],
       ["The Ant and the Termite", "picture"],
       ["The Empowered Teens Daily Affirmations", "leadership"],
@@ -251,6 +179,99 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["My Letter-Writing Adventure", "writing"],
       ["What to Do When You Plan to Write a Book: A Simple Guide and Checklist for First-Time Authors", "writing"],
       ["50 Questions to Answer Before Writing a Book: A Practical Guide to Help First-Time Authors Clarify Their Idea, Message, Audience, Purpose, and Direction Before They Begin Writing", "writing"],
+    ],
+  },
+
+  // ──────────────────────── Authors with bios in the document ────────────────────────
+  {
+    name: "Bishop Jesse Dibal",
+    slug: "jesse-dibal",
+    books: [
+      ["Winning in the Marketplace", "leadership"],
+      ["Protocol for Progress", "leadership"],
+      ["Anointing on a Magnifying Glass", "revival"],
+      ["The 5-Star Woman", "leadership"],
+    ],
+  },
+  {
+    name: "Mrs Toyosi Oluwole",
+    slug: "olutoyosi-oluwole",
+    books: [["A Mother’s Memoir: A Mother’s Journey from the Beginning", "memoir"]],
+  },
+  {
+    name: "Pastor Kayode Samuel Adekoya",
+    slug: "kayode-samuel-adekoya",
+    books: [["Building from the Ground Up", "business"]],
+  },
+  {
+    name: "Pastor Adeola Adekoya",
+    slug: "adeola-adekoya",
+    books: [["God Designed It", "christian"]],
+  },
+  {
+    name: "Pastor Patrick Babalola",
+    slug: "patrick-babalola",
+    books: [
+      ["The Great Awakening: The Pattern, History, and Power of Revival", "revival"],
+      ["The Outpouring: How Revival Begins, Spreads, and Transforms Nations", "revival"],
+      ["The Manifestation of the Sons of God: Evidence of the Outpouring of the Spirit", "revival"],
+      ["Life in God’s Order", "revival"],
+    ],
+  },
+  {
+    name: "Dr Olakunle Jaiyesimi",
+    slug: "olakunle-jaiyesimi",
+    books: [
+      ["The Boy Who Ran Seven Miles", "education"],
+      ["See The Bee", "picture"],
+      ["The Ant and the Termite", "picture"],
+    ],
+  },
+  {
+    name: "David Cross",
+    slug: "david-cross",
+    books: [["Novi Sad Protocol", "fiction"]],
+  },
+
+  // ──────────────────────── Institutional / church ────────────────────────
+  {
+    name: "Spring of Divine Grace Church (SODGEM)",
+    slug: "spring-of-divine-grace",
+    books: [
+      ["Adult Sunday Bible Study Manual: Fruitful in Every Good Work (2026)", "bible"],
+      ["Children’s Sunday Bible Study Manual: Fruitful in Every Good Work (2026)", "bible"],
+      ["SODGEM Midweek Bible Study Manual: The Power of the Word (2026)", "bible"],
+      ["Collection of Hymns", "bible"],
+      ["Adult Sunday Bible Study Manual: Fruitful in Every Good Work (2027)", "bible"],
+      ["Children’s Sunday Bible Study Manual: Fruitful in Every Good Work (2027)", "bible"],
+      ["SODGEM Midweek Bible Study Manual (2027)", "bible"],
+      ["Marriage Manual", "bible"],
+      ["Prospectus", "bible"],
+      ["Constitution and Bye-Laws", "bible"],
+      ["Ministers and Workers Code of Conduct", "bible"],
+      ["Prayer Journal (2026)", "bible"],
+      ["Prayer Journal (2027)", "bible"],
+    ],
+  },
+
+  // ──────────────────────── Minimal-profile authors (no bio in doc) ────────────────────────
+  {
+    name: "Mrs Adaeze Oba",
+    slug: "adaeze-oba",
+    books: [["ABC of Wellness", "health"]],
+  },
+  {
+    name: "Priscilla Olukoya",
+    slug: "priscilla-olukoya",
+    books: [["Who Is the Boss? A Humankind Blind Spot Investigation on Device Use", "tech"]],
+  },
+  {
+    name: "Mrs Chinwedu Madu",
+    slug: "chinwedu-madu",
+    books: [
+      ["BALD", "fiction"],
+      ["My Winterized Home", "fiction"],
+      ["The Long Trek", "fiction"],
     ],
   },
 ];

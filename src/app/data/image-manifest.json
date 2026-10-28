@@ -3,6 +3,7 @@
     "a-christmas-to-remember": "/covers/web/a-christmas-to-remember.webp",
     "a-weekend-in-bristol": "/covers/web/a-weekend-in-bristol.webp",
     "amara-blasts-off-to-space": "/covers/web/amara-blasts-off-to-space.webp",
+    "an-adventure-to-a-gallery": "/covers/web/an-adventure-to-a-gallery.webp",
     "ben-and-his-pet": "/covers/web/ben-and-his-pet.webp",
     "benny-waits-his-turn": "/covers/web/benny-waits-his-turn.webp",
     "car-watchers-vroom-zoom-beep": "/covers/web/car-watchers-vroom-zoom-beep.webp",
@@ -45,8 +46,11 @@
     "abc-of-wellness": "/covers/web/abc-of-wellness.webp",
     "adult-sunday-bible-study-manual-fruitful-in-every-good-work-2026": "/covers/web/adult-sunday-bible-study-manual-fruitful-in-every-good-work-2026.webp",
     "anointing-on-a-magnifying-glass": "/covers/web/anointing-on-a-magnifying-glass.webp",
+    "bald": "/covers/web/bald.webp",
     "becoming-wise-biblical-mental-models-for-life-leadership-and-grit": "/covers/web/becoming-wise-biblical-mental-models-for-life-leadership-and-grit.webp",
+    "building-from-the-ground-up": "/covers/web/building-from-the-ground-up.webp",
     "collection-of-hymns": "/covers/web/collection-of-hymns.webp",
+    "constitution-and-bye-laws": "/covers/web/constitution-and-bye-laws.webp",
     "dead-to-sin-alive-in-christ-dying-to-self-daily-the-call-and-cost-of-a-living-sacrifice": "/covers/web/dead-to-sin-alive-in-christ-dying-to-self-daily-the-call-and-cost-of-a-living-sacrifice.webp",
     "english-grammar-and-usage-for-editors": "/covers/web/english-grammar-and-usage-for-editors.webp",
     "faith-finance-fulfillment-a-complete-biblical-guide-to-building-wealth-without-losing-your-soul": "/covers/web/faith-finance-fulfillment-a-complete-biblical-guide-to-building-wealth-without-losing-your-soul.webp",
@@ -57,13 +61,15 @@
     "marriage-manual": "/covers/web/marriage-manual.webp",
     "ministers-and-workers-code-of-conduct": "/covers/web/ministers-and-workers-code-of-conduct.webp",
     "money-mind-mastery-financial-wisdom-investing-principles-entrepreneurship-personal-development": "/covers/web/money-mind-mastery-financial-wisdom-investing-principles-entrepreneurship-personal-development.webp",
+    "my-winterized-home": "/covers/web/my-winterized-home.webp",
     "names-ive-worn": "/covers/web/names-ive-worn.webp",
     "niw": "/covers/web/niw.webp",
-    "novi-sa-protocol": "/covers/web/novi-sa-protocol.webp",
+    "novi-sad-protocol": "/covers/web/novi-sad-protocol.webp",
     "pexels-jessbaileydesign-762685": "/covers/web/pexels-jessbaileydesign-762685.webp",
     "prayer-journal-2026": "/covers/web/prayer-journal-2026.webp",
     "praying-gods-word-over-your-finances-53-powerful-affirmations-to-attract-wealth-manifest-abundance-financial-success-all-year": "/covers/web/praying-gods-word-over-your-finances-53-powerful-affirmations-to-attract-wealth-manifest-abundance-financial-success-all-year.webp",
     "prospectus": "/covers/web/prospectus.webp",
+    "protocol-for-progress": "/covers/web/protocol-for-progress.webp",
     "see-the-bee": "/covers/web/see-the-bee.webp",
     "sodgem-midweek-bible-study-manual-the-power-of-the-word-2026": "/covers/web/sodgem-midweek-bible-study-manual-the-power-of-the-word-2026.webp",
     "the-5-star-woman": "/covers/web/the-5-star-woman.webp",
@@ -78,5 +84,9 @@
     "write-your-way-through-it": "/covers/web/write-your-way-through-it.webp",
     "you-are-awesome-you-are-like-god-bible-stories-retold-for-kids": "/covers/web/you-are-awesome-you-are-like-god-bible-stories-retold-for-kids.webp"
   },
-  "authors": {}
+  "authors": {
+    "jesse-dibal": "/authors/web/jesse-dibal.webp",
+    "ireti-sholola": "/authors/web/ireti-sholola.webp",
+    "david-cross": "/authors/web/david-cross.webp"
+  }
 }

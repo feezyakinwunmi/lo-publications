@@ -40,7 +40,7 @@ import {
 } from "lucide-react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
-import { featuredAuthors } from "./data/authors";
+import { showcaseAuthors } from "./data/authors";
 import { homeFaqs } from "./data/faqs";
 import AuthorAvatar from "./authors/AuthorAvatar";
 import TiltCard from "./components/TiltCard";
@@ -87,7 +87,7 @@ const stats = [
 ];
 
 // Fallback testimonials shown when Supabase isn't configured, taken from our real featured authors
-const DEMO_TESTIMONIALS: Testimonial[] = featuredAuthors.map((author) => ({
+const DEMO_TESTIMONIALS: Testimonial[] = showcaseAuthors.map((author) => ({
   id: author.slug,
   author: author.name,
   role: `Author of "${author.books[0].title}"`,
@@ -243,7 +243,7 @@ export default function HomeClient() {
   const heroCovers: Book[] = (
     featuredBooks.length
       ? featuredBooks
-      : featuredAuthors.map((a) => ({
+      : showcaseAuthors.map((a) => ({
           id: a.slug,
           title: a.books[0].title,
           author: a.name,
@@ -1181,7 +1181,7 @@ function ProcessTimeline() {
 // Interactive author list: hovering or tapping a name brings their book and words forward
 function FeaturedAuthorsShowcase() {
   const [active, setActive] = useState(0);
-  const author = featuredAuthors[active];
+  const author = showcaseAuthors[active];
   const book = author.books[0];
 
   return (
@@ -1217,7 +1217,7 @@ function FeaturedAuthorsShowcase() {
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           {/* Names */}
           <ul className="divide-y divide-white/10 border-y border-white/10">
-            {featuredAuthors.map((a, index) => (
+            {showcaseAuthors.map((a, index) => (
               <li key={a.slug}>
                 <button
                   onMouseEnter={() => setActive(index)}
