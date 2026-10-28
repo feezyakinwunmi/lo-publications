@@ -131,11 +131,11 @@ export default function AuthorsHero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 10, delay: 0.2 }}
           className="marquee-pause relative grid h-[520px] grid-cols-2 gap-5 [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)] sm:h-[620px] lg:h-[100svh] lg:-rotate-3"
         >
-          <SliderColumn books={columnA} direction="up" duration="45s" />
-          <SliderColumn books={columnB} direction="down" duration="50s" />
+          <SliderColumn books={columnA} direction="up" duration="150s" />
+          <SliderColumn books={columnB} direction="down" duration="150s" />
         </motion.div>
       </div>
     </section>
