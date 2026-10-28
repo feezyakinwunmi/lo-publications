@@ -127,6 +127,15 @@ export default function HomeClient() {
   // Carousel state for testimonials
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentTeamSlide, setCurrentTeamSlide] = useState(0);
+  // Testimonial cards visible at once: 1 on mobile, 2 from md, 3 from lg
+  const [perView, setPerView] = useState(1);
+
+  useEffect(() => {
+    const update = () => setPerView(window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   // Fetch latest 4 published books
   useEffect(() => {
@@ -221,13 +230,16 @@ export default function HomeClient() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Carousel navigation
+  // Carousel navigation: one card per click, stopping once the last card is in view
+  const maxSlide = Math.max(0, testimonials.length - perView);
+  const slide = Math.min(currentSlide, maxSlide);
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    setCurrentSlide(Math.min(slide + 1, maxSlide));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentSlide(Math.max(slide - 1, 0));
   };
 
   // Team carousel navigation
@@ -926,7 +938,7 @@ export default function HomeClient() {
           <motion.div
             className="flex"
             animate={{
-              x: `calc(-${currentSlide * 100}% + ${currentSlide * 24}px)`,
+              x: `-${(slide * 100) / perView}%`,
             }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
           >
@@ -987,12 +999,12 @@ export default function HomeClient() {
         </div>
 
         {/* Navigation arrows */}
-        {testimonials.length > 1 && (
+        {maxSlide > 0 && (
           <>
             <motion.button
               onClick={prevSlide}
               className="absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 p-3 bg-white rounded-full shadow-lg hover:bg-[#8d171c] hover:text-white text-[#8d171c] transition disabled:opacity-30 disabled:cursor-not-allowed z-10"
-              disabled={currentSlide === 0}
+              disabled={slide === 0}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Previous testimonials"
@@ -1003,7 +1015,7 @@ export default function HomeClient() {
             <motion.button
               onClick={nextSlide}
               className="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 p-3 bg-white rounded-full shadow-lg hover:bg-[#8d171c] hover:text-white text-[#8d171c] transition disabled:opacity-30 disabled:cursor-not-allowed z-10"
-              disabled={currentSlide >= testimonials.length - 1}
+              disabled={slide >= maxSlide}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Next testimonials"
@@ -1014,14 +1026,14 @@ export default function HomeClient() {
         )}
 
         {/* Dots */}
-        {testimonials.length > 1 && (
+        {maxSlide > 0 && (
           <div className="flex justify-center gap-2 mt-10">
-            {testimonials.map((_, idx) => (
+            {Array.from({ length: maxSlide + 1 }, (_, idx) => (
               <motion.button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
                 className={`rounded-full transition-all ${
-                  currentSlide === idx
+                  slide === idx
                     ? "bg-[#8d171c] w-8 h-2.5"
                     : "bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400"
                 }`}

@@ -31,8 +31,7 @@ const ALIASES = {
     "novi-sa-protocol": "novi-sad-protocol",
   },
   authors: {
-    "bishop-jesse-dibal": "jesse-dibal",
-    "mr-ayokunle-bamigboye": "david-cross",
+    "ayokunle-bamigboye": "david-cross",
   },
 };
 
@@ -62,7 +61,9 @@ async function scan(folder) {
   if (existsSync(dir)) {
     for (const file of readdirSync(dir).sort()) {
       if (!IMAGE.test(file)) continue;
-      const name = slugify(parse(file).name);
+      let name = slugify(parse(file).name);
+      // "pastor-kayode-adekoya.jpg" -> "kayode-adekoya": titles aren't part of author slugs
+      if (folder === "authors") name = name.replace(/^(pastor|bishop|mrs|mr|dr)-/, "");
       const slug = ALIASES[folder][name] ?? name;
       found[slug] = `/${folder}/${encodeURIComponent(file)}`;
 
