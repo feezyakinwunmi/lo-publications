@@ -321,6 +321,13 @@ export const AUTHOR_DIRECTORY: DirectoryAuthor[] = AUTHORS.map((a) => {
   };
 });
 
+// Author testimonials shown on the home and authors pages: every author with a
+// quote, credited with their first catalogue title
+export const AUTHOR_REVIEWS = featuredAuthors
+  .filter((a) => a.quote)
+  .map((a) => ({ ...a, firstTitle: a.books[0]?.title ?? CATALOGUE.find((b) => b.authorSlug === a.slug)?.title }))
+  .filter((a) => a.firstTitle);
+
 // Matches current slugs and the old /casestudies slugs
 export function findDirectoryAuthor(slug: string) {
   return AUTHOR_DIRECTORY.find((a) => a.slug === slug || a.profile?.legacySlug === slug);

@@ -15,7 +15,7 @@ import {
   ScanText,
 } from "lucide-react";
 import { featuredAuthors } from "../data/authors";
-import { AUTHOR_DIRECTORY, CATALOGUE, authorHref, type CatalogueBook } from "../data/catalogue";
+import { AUTHOR_DIRECTORY, AUTHOR_REVIEWS, CATALOGUE, authorHref, type CatalogueBook } from "../data/catalogue";
 import AuthorAvatar from "./AuthorAvatar";
 import AuthorsHero from "./AuthorsHero";
 import BookCover from "../components/BookCover";
@@ -58,11 +58,7 @@ const steps = [
   },
 ];
 
-// Every author with a quote, credited with their first catalogue title
-const reviews = featuredAuthors
-  .filter((a) => a.quote)
-  .map((a) => ({ ...a, firstTitle: a.books[0]?.title ?? CATALOGUE.find((b) => b.authorSlug === a.slug)?.title }))
-  .filter((a) => a.firstTitle);
+const reviews = AUTHOR_REVIEWS;
 
 // Authors with a photo first, then those with the most titles
 const penMasters = [...AUTHOR_DIRECTORY]

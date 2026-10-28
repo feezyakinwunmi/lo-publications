@@ -41,6 +41,7 @@ import {
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
 import { showcaseAuthors } from "./data/authors";
+import { AUTHOR_REVIEWS } from "./data/catalogue";
 import { homeFaqs } from "./data/faqs";
 import AuthorAvatar from "./authors/AuthorAvatar";
 import TiltCard from "./components/TiltCard";
@@ -53,15 +54,6 @@ type Book = {
   author: string;
   cover_url?: string | null;
   published_year?: number | null;
-};
-
-type Testimonial = {
-  id: string;
-  author: string;
-  role?: string | null;
-  quote: string;
-  avatar_url?: string | null;
-  rating: number;
 };
 
 const tickerText = "100+ Published Titles • Author-Centric Process • Fast Turnaround Times • Global Distribution Support • Faith-Friendly, Values-Aligned Publishing • Your Story Deserves Excellence • ";
@@ -86,16 +78,6 @@ const stats = [
   { number: "4+", label: "Countries Reached", icon: Globe },
 ];
 
-// Fallback testimonials shown when Supabase isn't configured, taken from our real featured authors
-const DEMO_TESTIMONIALS: Testimonial[] = showcaseAuthors.map((author) => ({
-  id: author.slug,
-  author: author.name,
-  role: `Author of "${author.books[0].title}"`,
-  quote: author.quote,
-  avatar_url: author.photo ?? null,
-  rating: 5,
-}));
-
 const processSteps = [
   { title: "Submit", desc: "Share your manuscript or idea with us.", icon: Upload },
   { title: "Review", desc: "We evaluate your work and provide feedback.", icon: Edit },
@@ -107,9 +89,7 @@ const processSteps = [
 
 export default function HomeClient() {
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(true);
-  const [loadingTestimonials, setLoadingTestimonials] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { scrollYProgress } = useScroll();
 
@@ -176,42 +156,6 @@ export default function HomeClient() {
     fetchFeaturedBooks();
   }, []);
 
-  // Fetch all testimonials
-  useEffect(() => {
-    async function fetchTestimonialsData() {
-      setLoadingTestimonials(true);
-
-      if (!isSupabaseConfigured()) {
-        setTestimonials(DEMO_TESTIMONIALS);
-        setLoadingTestimonials(false);
-        return;
-      }
-
-      const supabase = createClient();
-
-      if (!supabase) {
-        setTestimonials(DEMO_TESTIMONIALS);
-        setLoadingTestimonials(false);
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("id, author, role, quote, avatar_url, rating")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("Testimonials fetch error:", error);
-        setError("Failed to load testimonials");
-      } else {
-        setTestimonials(data || []);
-      }
-      setLoadingTestimonials(false);
-    }
-
-    fetchTestimonialsData();
-  }, []);
-
   // Simple form submit
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -229,6 +173,9 @@ export default function HomeClient() {
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  // Same author testimonials as the authors page
+  const testimonials = AUTHOR_REVIEWS;
 
   // Carousel navigation: one card per click, stopping once the last card is in view
   const maxSlide = Math.max(0, testimonials.length - perView);
@@ -920,18 +867,7 @@ export default function HomeClient() {
       </p>
     </motion.div>
 
-    {loadingTestimonials ? (
-      <div className="text-center py-12">
-        <Loader2 className="animate-spin mx-auto text-[#8d171c]" size={48} />
-        <p className="mt-4 text-gray-600">Loading testimonials...</p>
-      </div>
-    ) : error ? (
-      <div className="text-center py-12 text-red-600">{error}</div>
-    ) : testimonials.length === 0 ? (
-      <div className="text-center py-12 text-gray-600">
-        No testimonials yet.
-      </div>
-    ) : (
+    {testimonials.length > 0 && (
       <div className="relative">
         {/* Carousel viewport */}
         <div className="overflow-hidden -mx-3">
@@ -944,7 +880,7 @@ export default function HomeClient() {
           >
             {testimonials.map((t) => (
               <div
-                key={t.id}
+                key={t.slug}
                 className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-3"
               >
                 <div className="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-gray-100 h-full flex flex-col relative group hover:shadow-2xl hover:shadow-[#8d171c]/10 transition-all duration-300 hover:-translate-y-1">
@@ -958,9 +894,7 @@ export default function HomeClient() {
                         key={i}
                         size={16}
                         className={
-                          i < t.rating
-                            ? "text-yellow-400 fill-yellow-400"
-                            : "text-gray-300"
+                          "text-yellow-400 fill-yellow-400"
                         }
                       />
                     ))}
@@ -973,23 +907,14 @@ export default function HomeClient() {
 
                   {/* Author */}
                   <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
-                    <img
-                      src={
-                        t.avatar_url ||
-                        "https://via.placeholder.com/100?text=Avatar"
-                      }
-                      alt={t.author}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-[#8d171c] shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform"
-                    />
+                    <AuthorAvatar author={t} size="sm" ring="ring-2 ring-[#8d171c] group-hover:scale-105 transition-transform" />
                     <div className="min-w-0">
                       <h4 className="text-base font-bold text-black truncate">
-                        {t.author}
+                        {t.name}
                       </h4>
-                      {t.role && (
-                        <p className="text-sm text-gray-500 truncate">
-                          {t.role}
-                        </p>
-                      )}
+                      <p className="text-sm text-gray-500 truncate">
+                        Author of &ldquo;{t.firstTitle}&rdquo;
+                      </p>
                     </div>
                   </div>
                 </div>
