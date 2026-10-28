@@ -24,3 +24,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Infinite vertical/horizontal book sliders. Content is rendered twice so a
+   -50% shift loops seamlessly. */
+@keyframes marquee-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+@keyframes marquee-down {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-up { animation: marquee-up var(--marquee-duration, 40s) linear infinite; }
+.marquee-down { animation: marquee-down var(--marquee-duration, 40s) linear infinite; }
+.marquee-left { animation: marquee-left var(--marquee-duration, 50s) linear infinite; }
+.marquee-right { animation: marquee-right var(--marquee-duration, 50s) linear infinite; }
+.marquee-pause:hover .marquee-up,
+.marquee-pause:hover .marquee-down,
+.marquee-pause:hover .marquee-left,
+.marquee-pause:hover .marquee-right { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-up, .marquee-down, .marquee-left, .marquee-right { animation: none; }
+}

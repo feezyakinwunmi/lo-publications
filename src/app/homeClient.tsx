@@ -80,7 +80,7 @@ const teamMembers = [
 
 // Stats data
 const stats = [
-  { number: "50+", label: "Authors Published", icon: Users },
+  { number: "20+", label: "Authors Published", icon: Users },
   { number: "100+", label: "Books Published", icon: BookOpen },
   { number: "98%", label: "Satisfaction Rate", icon: Award },
   { number: "4+", label: "Countries Reached", icon: Globe },
@@ -1270,7 +1270,7 @@ function FeaturedAuthorsShowcase() {
                 transition={{ duration: 0.4 }}
                 className="grid items-center gap-8 sm:grid-cols-[200px_1fr]"
               >
-                <Link href={`/authors/${author.slug}`} className="group relative mx-auto block w-[180px] sm:w-full">
+                <Link href={`/authors/all?author=${author.slug}`} className="group relative mx-auto block w-[180px] sm:w-full">
                   <motion.div
                     initial={{ rotate: -8, scale: 0.9 }}
                     animate={{ rotate: -3, scale: 1 }}
@@ -1291,7 +1291,7 @@ function FeaturedAuthorsShowcase() {
                   <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{book.genre}</span>
                   <p className="mt-5 text-lg italic leading-relaxed text-white/80">&ldquo;{author.quote}&rdquo;</p>
                   <Link
-                    href={`/authors/${author.slug}`}
+                    href={`/authors/all?author=${author.slug}`}
                     className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#e0474d] transition hover:text-white"
                   >
                     Read {author.name.replace(/^Pastor\s+/, "").split(" ")[0]}&apos;s Story

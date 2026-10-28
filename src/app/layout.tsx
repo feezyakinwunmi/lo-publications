@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import MetaPixel from "./components/MetaPixel";
+import { Suspense } from "react";
 import {GoogleAnalytics} from "@next/third-parties/google"
 
 
@@ -27,6 +29,9 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <Footer />
         <WhatsAppButton />
       </body>

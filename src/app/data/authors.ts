@@ -1,5 +1,6 @@
 // src/app/data/authors.ts
 // Featured LO Publications authors and the books we published with them.
+import { coverFor, photoFor } from "./images";
 
 export type AuthorBook = {
   title: string;
@@ -30,7 +31,7 @@ export type FeaturedAuthor = {
   };
 };
 
-export const featuredAuthors: FeaturedAuthor[] = [
+const authorProfiles: FeaturedAuthor[] = [
   {
     slug: "layo-obidike",
     legacySlug: "rhapsody-of-love-layo-obidike",
@@ -248,6 +249,13 @@ export const featuredAuthors: FeaturedAuthor[] = [
   },
 ];
 
+// Swap in any photos/covers dropped into public/authors and public/covers
+export const featuredAuthors: FeaturedAuthor[] = authorProfiles.map((author) => ({
+  ...author,
+  photo: photoFor(author.slug, author.photo),
+  books: author.books.map((book) => ({ ...book, coverImage: coverFor(book.slug, book.coverImage) })),
+}));
+
 export function findAuthor(slug: string) {
   return featuredAuthors.find(
     (author) => author.slug === slug || author.legacySlug === slug
@@ -256,7 +264,9 @@ export function findAuthor(slug: string) {
 
 export function authorInitials(name: string) {
   return name
-    .replace(/^Pastor\s+/i, "")
+    .replace(/\(.*?\)/g, "")
+    .replace(/^(Pastor|Bishop|Mrs|Mr|Dr)\.?\s+/i, "")
+    .trim()
     .split(/\s+/)
     .map((part) => part[0])
     .slice(0, 2)

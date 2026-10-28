@@ -16,6 +16,7 @@ import {
 import { featuredAuthors } from "../data/authors";
 import TiltCard from "../components/TiltCard";
 import CountUp from "../components/CountUp";
+import { PUBLISHING_CATEGORIES } from "../data/publishing";
 
 const covers = featuredAuthors.map((a) => ({
   slug: a.slug,
@@ -33,46 +34,35 @@ const values = [
 ];
 
 const stats = [
-  { number: "50+", label: "Authors Published" },
+  { number: "20+", label: "Authors Published" },
   { number: "100+", label: "Books Published" },
-  { number: "20+", label: "Countries Reached" },
+  { number: "4+", label: "Countries Reached" },
 ];
 
 const pillars = [
   {
     icon: Heart,
     title: "Faith-Inspired Purpose",
-    desc: "Every project is covered in prayer and guided by purpose. We only publish stories that align with truth, love, and God's calling.",
+    desc: "Our faith in the Lord Jesus Christ guides our work. We publish with biblical conviction and a commitment to creating works that inspire positive change, transform lives, and make a lasting impact on individuals, families, and society.",
   },
   {
     icon: Sparkles,
-    title: "Excellence With Integrity",
-    desc: "From first draft to final print, we uphold the highest editorial standards — delivering work that is clear, powerful, and purpose-filled.",
+    title: "Publishing Across Genres",
+    desc: "From fiction and nonfiction to Christian literature, children's books, business, academic works, poetry, memoirs, and professional publications, we welcome diverse stories and ideas that align with our publishing values.",
+  },
+  {
+    icon: Users,
+    title: "xcellence With Integrity",
+    desc: "From manuscript to final publication, we uphold high editorial standards, professional quality, and integrity in every project we undertake.",
   },
   {
     icon: Users,
     title: "Author-First Partnership",
-    desc: "We walk closely with every author. Whether you're writing your first book or your tenth, we treat your message with reverence and care.",
+    desc: "Every author has a story worth telling. We work closely with you to preserve your voice, honour your vision, and bring your manuscript to life through publishing solutions tailored to your goals.",
   },
 ];
 
-const categories = [
-  {
-    img: "/rl.jpg",
-    title: "Devotionals & Christian Living",
-    desc: "Daily guides, Bible studies, and books that draw readers closer to God.",
-  },
-  {
-    img: "/niw.jpg",
-    title: "Inspirational Memoirs & Testimonies",
-    desc: "Real-life stories of faith, redemption, healing, and God's faithfulness.",
-  },
-  {
-    img: "/kingdom.jpg",
-    title: "Purpose-Driven Non-fiction & Poetry",
-    desc: "Reflective essays, poetry, and books that stir the heart and soul.",
-  },
-];
+const categories = PUBLISHING_CATEGORIES.slice(0, 3);
 
 const reasons = [
   {
@@ -178,7 +168,7 @@ export default function AboutClient() {
                   className={`absolute ${layout}`}
                 >
                   <Link
-                    href={`/authors/${cover.slug}`}
+                    href={`/authors/all?author=${cover.slug}`}
                     className="group block transition-transform duration-500 hover:-translate-y-3 hover:rotate-0 hover:scale-105"
                     aria-label={`${cover.title} by ${cover.author}`}
                   >
@@ -296,7 +286,7 @@ export default function AboutClient() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.12 }}
+                  transition={{ duration: 0.4, delay: idx * 0.12 }}
                 >
                   <TiltCard className="group h-full rounded-3xl" glow="rgba(255,255,255,0.18)">
                     <div className="relative h-full overflow-hidden rounded-3xl border border-gray-100 bg-white p-8 transition-colors duration-500 md:p-10">
@@ -412,7 +402,7 @@ export default function AboutClient() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
               >
-                <Link href={`/authors/${cover.slug}`} className="group block">
+                <Link href={`/authors/all?author=${cover.slug}`} className="group block">
                   <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl">
                     <img
                       src={cover.src}
@@ -452,7 +442,8 @@ function PublishingCategories() {
           <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/50">Our Catalogue</span>
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">What We Publish</h2>
           <p className="mt-5 text-lg leading-relaxed text-white/60">
-            Books that are spiritually grounded, emotionally honest, and written with deep purpose.
+            From fiction and nonfiction to Christian literature, children&apos;s books, business, academic works,
+            poetry, memoirs, and professional publications, we help authors bring their ideas to life.
           </p>
         </motion.div>
 
@@ -474,7 +465,7 @@ function PublishingCategories() {
               >
                 <img
                   src={cat.img}
-                  alt=""
+                  alt={`${cat.title} book cover`}
                   className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
                     isActive ? "scale-105 opacity-60" : "scale-100 opacity-35 grayscale"
                   }`}
@@ -506,6 +497,20 @@ function PublishingCategories() {
               </motion.button>
             );
           })}
+        </div>
+
+        <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <p className="text-white/50">
+            Plus {PUBLISHING_CATEGORIES.length - categories.length} more categories, from academic and business books to
+            poetry, history and children&apos;s literature.
+          </p>
+          <Link
+            href="/what-we-publish"
+            className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#8d171c] transition hover:shadow-[0_0_40px_rgba(255,255,255,.25)]"
+          >
+            See Everything We Publish
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

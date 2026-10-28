@@ -7,7 +7,7 @@ const SITE_URL = "https://lopublications.com"; // ← change to your real domain
 export const metadata: Metadata = {
   title: "Books | Our Published Works — LO Publications",
   description:
-    "Browse LO Publications' catalogue of published books — fiction, devotionals, memoirs, parenting, poetry, and faith-based titles from authors around the world.",
+    "Browse LO Publications' catalogue of published books — Christian living, Bible study, memoirs, business, finance, children's books, education and fiction.",
   keywords: [
     "published books",
     "faith-based books",
@@ -58,17 +58,10 @@ export const metadata: Metadata = {
   },
 };
 
-// ── Your real book data lives here so we can generate structured data ──
-// Import from BookClient or move to a shared file. For now, duplicated
-// from the client for demo — replace with a real data source.
-import { DEMO_BOOKS } from "./data"; // ← see Step 3
-import { Link } from "lucide-react";
-import { SHOW_DEMO_BOOKS } from "./data";
+import { CATALOGUE, categoryOf } from "../data/catalogue";
 
 export default function BooksPage() {
-  const publishedBooks = SHOW_DEMO_BOOKS
-    ? DEMO_BOOKS.filter((b) => b.status === "published")
-    : [];
+  const publishedBooks = CATALOGUE;
 
   // CollectionPage + ItemList schema for the whole catalogue
   const collectionJsonLd = {
@@ -93,18 +86,14 @@ export default function BooksPage() {
         position: index + 1,
         item: {
           "@type": "Book",
-          "@id": `${SITE_URL}/books#${book.id}`,
+          "@id": `${SITE_URL}/books#${book.slug}`,
           name: book.title,
           author: {
             "@type": "Person",
             name: book.author,
           },
-          image: book.cover_url || undefined,
-          description: book.description || undefined,
-          genre: book.genre || undefined,
-          datePublished: book.published_year
-            ? String(book.published_year)
-            : undefined,
+          image: book.coverImage ? `${SITE_URL}${book.coverImage}` : undefined,
+          genre: categoryOf(book.category).name,
           publisher: {
             "@type": "Organization",
             name: "LO Publications",
