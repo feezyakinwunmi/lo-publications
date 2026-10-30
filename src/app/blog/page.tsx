@@ -347,6 +347,17 @@ const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     date: "October 29, 2026",
     author: "LOPublications"
+},
+{
+    id: 31,
+    title: "How to Prepare Children's Book Illustrations for Print",
+    slug: "prepare-childrens-book-illustrations-for-print",
+    excerpt: "Learn how to prepare children's book illustrations for print: the right resolution, CMYK colour, bleed, file formats and proofing tips.",
+    image: "https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=1200&h=500&fit=crop",
+    category: "Children's Books",
+    readTime: "7 min read",
+    date: "October 30, 2026",
+    author: "LOPublications"
 }
 ];
 

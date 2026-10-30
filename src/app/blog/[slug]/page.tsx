@@ -39,6 +39,7 @@ import BookMarketingAndWebDesignOttawa from './posts/BookMarketingAndWebDesign';
 import WebDesignServicesOttawaAuthors from './posts/WebDesignServicesOttawa';
 import ChildrensPictureBookOttawa from './posts/ChildrensPictureBookOttawa';
 import ChooseChildrensBookIllustrator from './posts/ChooseChildrensBookIllustrator';
+import PrepareIllustrationsForPrint from './posts/PrepareIllustrationsForPrint';
 
 
 type Props = {
@@ -81,6 +82,7 @@ const PostComponents: Record<string, React.ComponentType> = {
   "web-design-services-ottawa-authors": WebDesignServicesOttawaAuthors,
   "how-to-publish-a-childrens-picture-book-ottawa": ChildrensPictureBookOttawa,
   "how-to-choose-an-illustrator-for-your-childrens-book": ChooseChildrensBookIllustrator,
+  "prepare-childrens-book-illustrations-for-print": PrepareIllustrationsForPrint,
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
