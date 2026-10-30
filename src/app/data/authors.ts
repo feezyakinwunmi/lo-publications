@@ -273,7 +273,7 @@ const authorProfiles: FeaturedAuthor[] = [
   {
     slug: "olutoyosi-oluwole",
     legacySlug: "a-mothers-memoir-olutoyosi-oluwole",
-    name: "Mrs Toyosi Oluwole",
+    name: "Toyosi Oluwole",
     profession: "Author, Children's Ministry Leader, and Entrepreneur",
     bio: "Olutoyosi Atinuke Oluwole is a graduate of History Education from Lagos State University and a passionate advocate for preserving family stories, values, and legacy through writing. With over twenty years of experience serving in children's ministry, she has dedicated her life to nurturing, guiding, and encouraging families through faith, wisdom, and practical counsel. Beyond ministry, she is an entrepreneur and a thoughtful writer whose work is deeply rooted in her love for motherhood, family, and purposeful living. Through A Mother's Memoir, Toyosi shares personal reflections, heartfelt insights, and timeless lessons designed to inspire mothers to embrace their journey with grace, strength, and joy.",
     mission:
@@ -357,9 +357,9 @@ const authorProfiles: FeaturedAuthor[] = [
   {
     slug: "chinwedu-madu",
     legacySlug: "bald-chinwedu-madu",
-    name: "Mrs Chinwedu Madu",
+    name: "Chinwedu Madu",
     profession: "Author and Storyteller",
-    bio: "Mrs Chinwedu Madu is a Nigerian fiction writer whose work explores family, migration, illness, and the quiet courage of ordinary people. Her titles include BALD, My Winterized Home, and The Long Trek.",
+    bio: "Chinwedu Madu is a Nigerian fiction writer whose work explores family, migration, illness, and the quiet courage of ordinary people. Her titles include BALD, My Winterized Home, and The Long Trek.",
     mission:
       "To tell honest stories about family, migration, and the resilience of ordinary people.",
     quote:
@@ -371,9 +371,9 @@ const authorProfiles: FeaturedAuthor[] = [
   {
     slug: "adaeze-oba",
     legacySlug: "abc-of-wellness-adaeze-oba",
-    name: "Mrs Adaeze Oba",
+    name: "Adaeze Oba",
     profession: "Author and Wellness Advocate",
-    bio: "Mrs Adaeze Oba is a wellness advocate and author of ABC of Wellness, a practical, accessible guide to everyday health — from nutrition and movement to sleep, stress, and self-care.",
+    bio: "Adaeze Oba is a wellness advocate and author of ABC of Wellness, a practical, accessible guide to everyday health — from nutrition and movement to sleep, stress, and self-care.",
     mission:
       "To make everyday wellness simple, practical, and accessible to everyone.",
     quote:
@@ -385,10 +385,10 @@ const authorProfiles: FeaturedAuthor[] = [
   {
     slug: "david-cross",
     legacySlug: "novi-sa-protocol-david-cross",
-    name: "Mr Ayokunle Bamigboye",
+    name: "Ayokunle Bamigboye",
     photo: "/mr-ayokunle-bamigboye.jpg",
     profession: "Author and Business Writer",
-    bio: "Mr Ayokunle Bamigboye is the author of Novi SA Protocol, a business title exploring professional protocols, strategy, and operational excellence in the modern marketplace.",
+    bio: "Ayokunle Bamigboye is the author of Novi SA Protocol, a business title exploring professional protocols, strategy, and operational excellence in the modern marketplace.",
     mission:
       "To equip professionals with the protocols, strategy, and operational discipline they need to excel in the modern marketplace.",
     quote:

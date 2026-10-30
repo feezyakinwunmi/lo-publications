@@ -194,7 +194,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
     ],
   },
   {
-    name: "Mrs Toyosi Oluwole",
+    name: "Toyosi Oluwole",
     slug: "olutoyosi-oluwole",
     books: [["A Mother’s Memoir: A Mother’s Journey from the Beginning", "memoir"]],
   },
@@ -256,7 +256,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
 
   // ──────────────────────── Minimal-profile authors (no bio in doc) ────────────────────────
   {
-    name: "Mrs Adaeze Oba",
+    name: "Adaeze Oba",
     slug: "adaeze-oba",
     books: [["ABC of Wellness", "health"]],
   },
@@ -266,7 +266,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
     books: [["Who Is the Boss? A Humankind Blind Spot Investigation on Device Use", "tech"]],
   },
   {
-    name: "Mrs Chinwedu Madu",
+    name: "Chinwedu Madu",
     slug: "chinwedu-madu",
     books: [
       ["BALD", "fiction"],

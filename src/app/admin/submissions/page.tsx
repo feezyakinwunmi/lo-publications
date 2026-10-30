@@ -1,9 +1,12 @@
 // src/app/admin/submissions/page.tsx
 "use client";
 
-import { useState, useEffect } from "react";
-import { Eye, Save, X, Loader2, CheckCircle, Clock, XCircle } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Eye, Save, X, Loader2, FileSpreadsheet, FileText, Download } from "lucide-react";
 import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
+import { exportSubmissionDetailToPdf, exportSubmissionsToExcel, exportSubmissionsToPdf } from "./exportSubmissions";
+
+const STATUS_FILTERS = ["all", "pending", "reviewed", "accepted", "rejected"] as const;
 
 // Type matching your manuscript_submissions table
 type Submission = {
@@ -30,6 +33,29 @@ export default function AdminSubmissions() {
   const [notes, setNotes] = useState("");
   const [sampleSignedUrl, setSampleSignedUrl] = useState<string | null>(null);
   const [updating, setUpdating] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<(typeof STATUS_FILTERS)[number]>("all");
+  const [exporting, setExporting] = useState<"excel" | "pdf" | "detail" | null>(null);
+
+  // Exports use whatever the status filter currently shows
+  const visible = useMemo(
+    () => (statusFilter === "all" ? submissions : submissions.filter((s) => s.status === statusFilter)),
+    [submissions, statusFilter]
+  );
+
+  const runExport = async (kind: "excel" | "pdf" | "detail") => {
+    setExporting(kind);
+    try {
+      if (kind === "excel") await exportSubmissionsToExcel(visible);
+      else if (kind === "pdf")
+        await exportSubmissionsToPdf(visible, statusFilter === "all" ? "All submissions" : `Status: ${statusFilter}`);
+      else if (currentSubmission) await exportSubmissionDetailToPdf({ ...currentSubmission, status, notes });
+    } catch (err: any) {
+      alert("Export failed: " + (err.message || "Unknown error"));
+      console.error(err);
+    } finally {
+      setExporting(null);
+    }
+  };
 
   // Fetch all submissions
   useEffect(() => {
@@ -147,9 +173,41 @@ export default function AdminSubmissions() {
 
   return (
     <div className="mt-30 md:mt-20">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
-        Manuscript Submissions
-      </h1>
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          Manuscript Submissions
+        </h1>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value as (typeof STATUS_FILTERS)[number])}
+            className="px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 capitalize focus:outline-none focus:ring-2 focus:ring-red-900"
+          >
+            {STATUS_FILTERS.map((f) => (
+              <option key={f} value={f}>
+                {f === "all" ? "All statuses" : f.charAt(0).toUpperCase() + f.slice(1)}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => runExport("excel")}
+            disabled={!visible.length || exporting !== null}
+            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-green-700 text-white hover:bg-green-800 transition shadow-md disabled:opacity-50"
+          >
+            {exporting === "excel" ? <Loader2 className="animate-spin" size={18} /> : <FileSpreadsheet size={18} />}
+            Export Excel
+          </button>
+          <button
+            onClick={() => runExport("pdf")}
+            disabled={!visible.length || exporting !== null}
+            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-red-900 text-white hover:bg-red-800 transition shadow-md disabled:opacity-50"
+          >
+            {exporting === "pdf" ? <Loader2 className="animate-spin" size={18} /> : <FileText size={18} />}
+            Export PDF
+          </button>
+        </div>
+      </div>
 
       {loading ? (
         <div className="text-center py-12">
@@ -160,17 +218,16 @@ export default function AdminSubmissions() {
         <div className="bg-red-100 text-red-800 p-6 rounded-xl text-center font-medium">
           {error}
         </div>
-      ) : submissions.length === 0 ? (
+      ) : visible.length === 0 ? (
         <div className="text-center py-12 text-gray-600">
-          No submissions yet.
+          {submissions.length === 0 ? "No submissions yet." : `No ${statusFilter} submissions.`}
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-md overflow-x-auto border border-gray-200">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Name</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Email</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Book Title</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Submitted</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Status</th>
@@ -178,7 +235,7 @@ export default function AdminSubmissions() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {submissions.map((sub) => (
+              {visible.map((sub) => (
                 <tr key={sub.id} className="hover:bg-gray-50 transition cursor-pointer" onClick={() => openModal(sub)}>
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900">{sub.name}</div>
@@ -299,7 +356,15 @@ export default function AdminSubmissions() {
                 />
               </div>
 
-              <div className="flex justify-end gap-4 pt-6">
+              <div className="flex flex-wrap justify-end gap-4 pt-6">
+                <button
+                  onClick={() => runExport("detail")}
+                  disabled={exporting !== null}
+                  className="flex items-center gap-2 px-6 py-4 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-100 transition disabled:opacity-50 mr-auto"
+                >
+                  {exporting === "detail" ? <Loader2 className="animate-spin" size={20} /> : <Download size={20} />}
+                  Download PDF
+                </button>
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="px-8 py-4 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-100 transition"
