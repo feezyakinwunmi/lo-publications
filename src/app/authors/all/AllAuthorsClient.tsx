@@ -8,9 +8,12 @@ import { ArrowLeft, ArrowRight, Search, X } from "lucide-react";
 import AuthorAvatar from "../AuthorAvatar";
 import AuthorModal from "../AuthorModal";
 import BookCover from "../../components/BookCover";
-import { AUTHOR_DIRECTORY, CATALOGUE, findDirectoryAuthor, type DirectoryAuthor } from "../../data/catalogue";
+import { type DirectoryAuthor } from "../../data/catalogue";
+import { findInDirectory } from "../../data/siteContent";
+import { useSiteContent } from "@/app/data/SiteContentProvider";
 
 export default function AllAuthorsClient() {
+  const { authorDirectory: AUTHOR_DIRECTORY, catalogue: CATALOGUE } = useSiteContent();
   const [query, setQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -18,7 +21,7 @@ export default function AllAuthorsClient() {
   // The ?author=<slug> param drives the pop-up, so old profile URLs (redirected
   // here) and shared links open straight to that author
   const authorParam = searchParams.get("author");
-  const selected = authorParam ? findDirectoryAuthor(authorParam) ?? null : null;
+  const selected = authorParam ? findInDirectory(AUTHOR_DIRECTORY, authorParam) ?? null : null;
 
   const open = (author: DirectoryAuthor) => router.replace(`/authors/all?author=${author.slug}`, { scroll: false });
   const close = useCallback(() => router.replace("/authors/all", { scroll: false }), [router]);
@@ -29,7 +32,7 @@ export default function AllAuthorsClient() {
     return AUTHOR_DIRECTORY.filter(
       (a) => a.name.toLowerCase().includes(term) || a.books.some((b) => b.title.toLowerCase().includes(term))
     );
-  }, [query]);
+  }, [AUTHOR_DIRECTORY, query]);
 
   return (
     <main className="min-h-screen bg-[#f8f6f3]">

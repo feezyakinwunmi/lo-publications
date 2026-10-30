@@ -1,6 +1,11 @@
 // src/app/books/page.tsx
 import type { Metadata } from "next";
 import BookClient from "./bookClient";
+import { getSiteContent } from "@/app/data/getSiteContent";
+import { SiteContentProvider } from "@/app/data/SiteContentProvider";
+
+// Re-check the database for new books, authors and testimonials every minute
+export const revalidate = 60;
 
 const SITE_URL = "https://lopublications.com"; // ← change to your real domain
 
@@ -58,10 +63,11 @@ export const metadata: Metadata = {
   },
 };
 
-import { CATALOGUE, categoryOf } from "../data/catalogue";
+import { categoryOf } from "../data/catalogue";
 
-export default function BooksPage() {
-  const publishedBooks = CATALOGUE;
+export default async function BooksPage() {
+  const content = await getSiteContent();
+  const publishedBooks = content.catalogue;
 
   // CollectionPage + ItemList schema for the whole catalogue
   const collectionJsonLd = {
@@ -92,7 +98,9 @@ export default function BooksPage() {
             "@type": "Person",
             name: book.author,
           },
-          image: book.coverImage ? `${SITE_URL}${book.coverImage}` : undefined,
+          image: book.coverImage
+            ? book.coverImage.startsWith("http") ? book.coverImage : `${SITE_URL}${book.coverImage}`
+            : undefined,
           genre: categoryOf(book.category).name,
           publisher: {
             "@type": "Organization",
@@ -134,7 +142,9 @@ export default function BooksPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <BookClient />
+      <SiteContentProvider value={content}>
+        <BookClient />
+      </SiteContentProvider>
 
      
     </>

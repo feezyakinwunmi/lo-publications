@@ -13,17 +13,20 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { showcaseAuthors } from "../data/authors";
+import { useSiteContent } from "@/app/data/SiteContentProvider";
 import TiltCard from "../components/TiltCard";
 import CountUp from "../components/CountUp";
 import { PUBLISHING_CATEGORIES } from "../data/publishing";
 
-const covers = showcaseAuthors.map((a) => ({
-  slug: a.slug,
-  title: a.books[0].title,
-  author: a.name,
-  src: a.books[0].coverImage,
-}));
+function useCovers() {
+  const { showcaseAuthors } = useSiteContent();
+  return showcaseAuthors.map((a) => ({
+    slug: a.slug,
+    title: a.books[0].title,
+    author: a.name,
+    src: a.books[0].coverImage,
+  }));
+}
 
 const values = [
   "Love & Obedience",
@@ -83,6 +86,7 @@ const reasons = [
 ];
 
 export default function AboutClient() {
+  const covers = useCovers();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const coversY = useTransform(scrollYProgress, [0, 1], [0, -120]);

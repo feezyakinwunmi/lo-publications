@@ -40,8 +40,7 @@ import {
 } from "lucide-react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
-import { showcaseAuthors } from "./data/authors";
-import { AUTHOR_REVIEWS } from "./data/catalogue";
+import { useSiteContent } from "./data/SiteContentProvider";
 import { homeFaqs } from "./data/faqs";
 import AuthorAvatar from "./authors/AuthorAvatar";
 import TiltCard from "./components/TiltCard";
@@ -88,6 +87,7 @@ const processSteps = [
 
 
 export default function HomeClient() {
+  const { showcaseAuthors, reviews } = useSiteContent();
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -174,8 +174,8 @@ export default function HomeClient() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Same author testimonials as the authors page
-  const testimonials = AUTHOR_REVIEWS;
+  // Same testimonials as the authors page: admin-added ones plus author quotes
+  const testimonials = reviews;
 
   // Carousel navigation: one card per click, stopping once the last card is in view
   const maxSlide = Math.max(0, testimonials.length - perView);
@@ -894,7 +894,7 @@ export default function HomeClient() {
                         key={i}
                         size={16}
                         className={
-                          "text-yellow-400 fill-yellow-400"
+                          i < (t.rating ?? 5) ? "text-yellow-400 fill-yellow-400" : "text-gray-200 fill-gray-200"
                         }
                       />
                     ))}
@@ -913,7 +913,7 @@ export default function HomeClient() {
                         {t.name}
                       </h4>
                       <p className="text-sm text-gray-500 truncate">
-                        Author of &ldquo;{t.firstTitle}&rdquo;
+                        {t.firstTitle ? <>Author of &ldquo;{t.firstTitle}&rdquo;</> : t.role}
                       </p>
                     </div>
                   </div>
@@ -1117,6 +1117,7 @@ function ProcessTimeline() {
 
 // Interactive author list: hovering or tapping a name brings their book and words forward
 function FeaturedAuthorsShowcase() {
+  const { showcaseAuthors } = useSiteContent();
   const [active, setActive] = useState(0);
   const author = showcaseAuthors[active];
   const book = author.books[0];

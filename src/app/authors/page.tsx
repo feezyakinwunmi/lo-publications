@@ -1,6 +1,11 @@
 // src/app/authors/page.tsx
 import type { Metadata } from "next";
 import AuthorsClient from "./AuthorsClient";
+import { getSiteContent } from "@/app/data/getSiteContent";
+import { SiteContentProvider } from "@/app/data/SiteContentProvider";
+
+// Re-check the database for new books, authors and testimonials every minute
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Featured Authors | LO Publications",
@@ -9,6 +14,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/authors" },
 };
 
-export default function AuthorsPage() {
-  return <AuthorsClient />;
+export default async function AuthorsPage() {
+  const content = await getSiteContent();
+  return (
+    <SiteContentProvider value={content}>
+      <AuthorsClient />
+    </SiteContentProvider>
+  );
 }

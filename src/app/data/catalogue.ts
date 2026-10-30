@@ -276,7 +276,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
   },
 ];
 
-function slugify(text: string) {
+export function slugify(text: string) {
   return text
     .toLowerCase()
     .replace(/[’'&]/g, "")

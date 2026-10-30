@@ -8,8 +8,6 @@ import { X, BookOpen, User, Search, BookMarked, ArrowRight, Send, Sparkles, Laye
 import NextLink from "next/link";
 import BookCover from "../components/BookCover";
 import {
-  CATALOGUE,
-  CATALOGUE_AUTHORS,
   CATEGORIES,
   authorHref,
   categoryOf,
@@ -17,13 +15,18 @@ import {
   type CatalogueBook,
   type CategoryKey,
 } from "../data/catalogue";
-
-const categoryCounts = CATALOGUE.reduce<Record<string, number>>((acc, book) => {
-  acc[book.category] = (acc[book.category] || 0) + 1;
-  return acc;
-}, {});
+import { useSiteContent } from "@/app/data/SiteContentProvider";
 
 export default function BookClient() {
+  const { catalogue: CATALOGUE, catalogueAuthors: CATALOGUE_AUTHORS } = useSiteContent();
+  const categoryCounts = useMemo(
+    () =>
+      CATALOGUE.reduce<Record<string, number>>((acc, book) => {
+        acc[book.category] = (acc[book.category] || 0) + 1;
+        return acc;
+      }, {}),
+    [CATALOGUE]
+  );
   const [selectedBook, setSelectedBook] = useState<CatalogueBook | null>(null);
   const [activeCategory, setActiveCategory] = useState<CategoryKey | "all">("all");
   const [activeAuthor, setActiveAuthor] = useState("all");
@@ -44,7 +47,7 @@ export default function BookClient() {
         (activeAuthor === "all" || b.author === activeAuthor) &&
         (!q || b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q))
     );
-  }, [activeCategory, activeAuthor, searchQuery]);
+  }, [CATALOGUE, activeCategory, activeAuthor, searchQuery]);
 
   const isFiltered = activeCategory !== "all" || activeAuthor !== "all" || searchQuery.trim() !== "";
 
@@ -54,7 +57,7 @@ export default function BookClient() {
       CATEGORIES.map((cat) => ({ ...cat, books: CATALOGUE.filter((b) => b.category === cat.key) })).filter(
         (s) => s.books.length > 0
       ),
-    []
+    [CATALOGUE]
   );
 
   const clearFilters = () => {

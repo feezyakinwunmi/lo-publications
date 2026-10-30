@@ -97,10 +97,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 import { 
   LayoutDashboard, 
   BookOpen, 
   Users, 
+  PenTool, 
   FileText, 
   MessageSquare, 
   LogOut, 
@@ -113,17 +116,20 @@ const navItems = [
   { id: "blog", name: "Blog Posts", href: "/admin/blog", icon: FileText },
   { id: "team", name: "Team Members", href: "/admin/team", icon: Users },
   { id: "books", name: "Books", href: "/admin/books", icon: BookOpen },
+  { id: "authors", name: "Authors", href: "/admin/authors", icon: PenTool },
   { id: "testimonials", name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
   { id: "submissions", name: "Manuscript Submissions", href: "/admin/submissions", icon: FileText },
 ];
 
 export default function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("dashboard"); // default
+  const pathname = usePathname();
 
-  const handleItemClick = (id: string) => {
-    setActiveSection(id);
-    setIsOpen(false); // close on mobile
+  const isActive = (href: string) => (href === "/admin" ? pathname === href : pathname.startsWith(href));
+
+  const handleLogout = async () => {
+    await createClient()?.auth.signOut();
+    window.location.href = "/admin-login";
   };
 
   return (
@@ -152,9 +158,9 @@ export default function AdminSidebar() {
             <Link
               key={item.id}
               href={item.href}
-              onClick={() => handleItemClick(item.id)}
+              onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors font-medium ${
-                activeSection === item.id
+                isActive(item.href)
                   ? "bg-red-50 text-red-900"
                   : "text-gray-700 hover:bg-red-50 hover:text-red-900"
               }`}
@@ -166,7 +172,7 @@ export default function AdminSidebar() {
 
           <button
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-50 hover:text-red-900 transition-colors mt-8 text-left font-medium text-gray-700"
-            onClick={() => alert("Logout coming tomorrow with auth!")}
+            onClick={handleLogout}
           >
             <LogOut size={20} />
             Logout

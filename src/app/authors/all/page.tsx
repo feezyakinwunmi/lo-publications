@@ -2,6 +2,11 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import AllAuthorsClient from "./AllAuthorsClient";
+import { getSiteContent } from "@/app/data/getSiteContent";
+import { SiteContentProvider } from "@/app/data/SiteContentProvider";
+
+// Re-check the database for new books, authors and testimonials every minute
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "All Authors | LO Publications",
@@ -10,10 +15,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/authors/all" },
 };
 
-export default function AllAuthorsPage() {
+export default async function AllAuthorsPage() {
+  const content = await getSiteContent();
   return (
     <Suspense>
-      <AllAuthorsClient />
+      <SiteContentProvider value={content}>
+        <AllAuthorsClient />
+      </SiteContentProvider>
     </Suspense>
   );
 }

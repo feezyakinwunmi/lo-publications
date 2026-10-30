@@ -325,6 +325,28 @@ const blogPosts: BlogPost[] = [
     readTime: "12 min read",
     date: "October 20, 2026",
     author: "LOPublications"
+},
+{
+    id: 29,
+    title: "How to Publish a Children's Picture Book in Ottawa: From Your Imagination to the Printed Page",
+    slug: "how-to-publish-a-childrens-picture-book-ottawa",
+    excerpt: "A step-by-step guide for Ottawa authors — from developing your story and manuscript to illustration, book design, publication, and launch.",
+    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&h=500&fit=crop",
+    category: "Children's Books",
+    readTime: "18 min read",
+    date: "October 29, 2026",
+    author: "LOPublications"
+},
+{
+    id: 30,
+    title: "How to Choose an Illustrator for Your Children's Book",
+    slug: "how-to-choose-an-illustrator-for-your-childrens-book",
+    excerpt: "Why the illustrator is also a storyteller, whether to submit text only, and what to look for in a professional children's book illustrator.",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=500&fit=crop",
+    category: "Children's Books",
+    readTime: "6 min read",
+    date: "October 29, 2026",
+    author: "LOPublications"
 }
 ];
 

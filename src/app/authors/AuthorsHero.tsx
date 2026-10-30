@@ -4,10 +4,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import BookCover from "../components/BookCover";
-import { CATALOGUE, CATALOGUE_AUTHORS, CATEGORIES, authorHref, type CatalogueBook } from "../data/catalogue";
+import { CATEGORIES, authorHref, type CatalogueBook } from "../data/catalogue";
+import { useSiteContent } from "@/app/data/SiteContentProvider";
 
 // Real covers first, then one title from each shelf so the slider shows the range
-function pickSliderBooks(): CatalogueBook[] {
+function pickSliderBooks(CATALOGUE: CatalogueBook[]): CatalogueBook[] {
   const withCovers = CATALOGUE.filter((b) => b.coverImage);
   const picked = new Set(withCovers.map((b) => b.slug));
   const spread: CatalogueBook[] = [];
@@ -30,9 +31,6 @@ function pickSliderBooks(): CatalogueBook[] {
   return out;
 }
 
-const sliderBooks = pickSliderBooks();
-const columnA = sliderBooks.filter((_, i) => i % 2 === 0);
-const columnB = sliderBooks.filter((_, i) => i % 2 === 1);
 
 function SliderColumn({
   books,
@@ -68,6 +66,11 @@ function SliderColumn({
 }
 
 export default function AuthorsHero() {
+  const { catalogue: CATALOGUE, catalogueAuthors: CATALOGUE_AUTHORS } = useSiteContent();
+  const sliderBooks = pickSliderBooks(CATALOGUE);
+  const columnA = sliderBooks.filter((_, i) => i % 2 === 0);
+  const columnB = sliderBooks.filter((_, i) => i % 2 === 1);
+
   return (
     <section className="relative overflow-hidden bg-[#141010] text-white">
       {/* Warm glow behind the sliders */}

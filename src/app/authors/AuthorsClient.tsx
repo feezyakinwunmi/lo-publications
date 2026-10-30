@@ -14,16 +14,11 @@ import {
   Quote,
   ScanText,
 } from "lucide-react";
-import { featuredAuthors } from "../data/authors";
-import { AUTHOR_DIRECTORY, AUTHOR_REVIEWS, CATALOGUE, authorHref, type CatalogueBook } from "../data/catalogue";
+import { authorHref, type CatalogueBook } from "../data/catalogue";
+import { useSiteContent } from "@/app/data/SiteContentProvider";
 import AuthorAvatar from "./AuthorAvatar";
 import AuthorsHero from "./AuthorsHero";
 import BookCover from "../components/BookCover";
-
-// Two rows for the books strip, alternating titles so neighbours differ
-const stripBooks = [...CATALOGUE].sort((a, b) => Number(!!b.coverImage) - Number(!!a.coverImage)).slice(0, 36);
-const stripRowA = stripBooks.filter((_, i) => i % 2 === 0);
-const stripRowB = stripBooks.filter((_, i) => i % 2 === 1);
 
 const steps = [
   {
@@ -57,13 +52,6 @@ const steps = [
     text: "One-on-one guidance from first draft to finished book, so you're never publishing alone.",
   },
 ];
-
-const reviews = AUTHOR_REVIEWS;
-
-// Authors with a photo first, then those with the most titles
-const penMasters = [...AUTHOR_DIRECTORY]
-  .sort((a, b) => Number(!!b.photo) - Number(!!a.photo) || b.books.length - a.books.length)
-  .slice(0, 8);
 
 function BookRow({ books, reverse }: { books: CatalogueBook[]; reverse?: boolean }) {
   return (
@@ -104,6 +92,18 @@ function SectionLabel({ children, light }: { children: React.ReactNode; light?: 
 }
 
 export default function AuthorsClient() {
+  const { catalogue: CATALOGUE, authorDirectory: AUTHOR_DIRECTORY, reviews } = useSiteContent();
+
+  // Two rows for the books strip, alternating titles so neighbours differ
+  const stripBooks = [...CATALOGUE].sort((a, b) => Number(!!b.coverImage) - Number(!!a.coverImage)).slice(0, 36);
+  const stripRowA = stripBooks.filter((_, i) => i % 2 === 0);
+  const stripRowB = stripBooks.filter((_, i) => i % 2 === 1);
+
+  // Authors with a photo first, then those with the most titles
+  const penMasters = [...AUTHOR_DIRECTORY]
+    .sort((a, b) => Number(!!b.photo) - Number(!!a.photo) || b.books.length - a.books.length)
+    .slice(0, 8);
+
   return (
     <main className="min-h-screen bg-[#f8f6f3]">
       {/* ================= HERO SLIDER ================= */}
@@ -212,7 +212,7 @@ export default function AuthorsClient() {
                     <AuthorAvatar author={author} size="sm" ring="ring-2 ring-white/20" />
                     <div>
                       <p className="font-bold">{author.name}</p>
-                      <p className="text-xs text-white/60">Author of {author.firstTitle}</p>
+                      <p className="text-xs text-white/60">{author.firstTitle ? `Author of ${author.firstTitle}` : author.role}</p>
                     </div>
                   </figcaption>
                 </figure>

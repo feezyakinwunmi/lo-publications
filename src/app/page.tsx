@@ -1,6 +1,11 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import HomeClient from "./homeClient";
+import { getSiteContent } from "@/app/data/getSiteContent";
+import { SiteContentProvider } from "@/app/data/SiteContentProvider";
+
+// Re-check the database for new books, authors and testimonials every minute
+export const revalidate = 60;
 import { homeFaqs } from "./data/faqs";
 
 const SITE_URL = "https://lopublications.com"; // ← change to your real domain
@@ -61,7 +66,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const content = await getSiteContent();
   // JSON-LD structured data for the Organization + Website
   const jsonLd = {
     "@context": "https://schema.org",
@@ -110,7 +116,9 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeClient />
+      <SiteContentProvider value={content}>
+        <HomeClient />
+      </SiteContentProvider>
     </>
   );
 }

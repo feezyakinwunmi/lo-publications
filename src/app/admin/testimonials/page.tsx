@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, Save, X, Loader2, Star } from "lucide-react";
 import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import FileDropzone from "../../components/admin/FileDropzone";
+import { Field, StatusBadge, StatusToggle, TextInput } from "../../components/admin/FormFields";
+import { refreshPublicPages } from "../actions";
 
 // Type matching your testimonials table
 type Testimonial = {
@@ -14,6 +16,8 @@ type Testimonial = {
   quote: string;
   avatar_url?: string | null;
   rating: number; // 1-5
+  book_title?: string | null;
+  status?: "draft" | "published" | null;
   created_at: string;
 };
 
@@ -28,6 +32,8 @@ export default function AdminTestimonials() {
   const [quote, setQuote] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
   const [rating, setRating] = useState(5);
+  const [bookTitle, setBookTitle] = useState("");
+  const [status, setStatus] = useState<"draft" | "published">("published");
   const [saving, setSaving] = useState(false);
 
   // Fetch real testimonials
@@ -69,6 +75,8 @@ export default function AdminTestimonials() {
       setQuote(testimonial.quote);
       setAvatarUrl(testimonial.avatar_url || "");
       setRating(testimonial.rating);
+      setBookTitle(testimonial.book_title || "");
+      setStatus(testimonial.status === "draft" ? "draft" : "published");
     } else {
       setCurrentTestimonial(null);
       setAuthor("");
@@ -76,6 +84,8 @@ export default function AdminTestimonials() {
       setQuote("");
       setAvatarUrl("");
       setRating(5);
+      setBookTitle("");
+      setStatus("published");
     }
     setIsModalOpen(true);
   };
@@ -102,6 +112,8 @@ export default function AdminTestimonials() {
         quote,
         avatar_url: avatarUrl || null,
         rating,
+        book_title: bookTitle.trim() || null,
+        status,
       };
 
       let result;
@@ -124,6 +136,7 @@ export default function AdminTestimonials() {
         .order("created_at", { ascending: false });
 
       setTestimonials(data || []);
+      await refreshPublicPages();
       setIsModalOpen(false);
     } catch (err: any) {
       setError("Save failed: " + (err.message || "Unknown error"));
@@ -148,6 +161,7 @@ export default function AdminTestimonials() {
       if (error) throw error;
 
       setTestimonials(testimonials.filter(t => t.id !== id));
+      await refreshPublicPages();
     } catch (err: any) {
       alert("Delete failed: " + (err.message || "Unknown error"));
     }
@@ -188,14 +202,16 @@ export default function AdminTestimonials() {
             <div key={t.id} className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 p-6 transition hover:shadow-lg">
               <div className="flex items-center gap-4 mb-4">
                 <img
-                  src={t.avatar_url || "https://via.placeholder.com/100?text=Avatar"}
+                  src={t.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=7f1d1d&color=fff`}
                   alt={t.author}
                   className="w-16 h-16 rounded-full object-cover border-2 border-red-900"
                 />
-                <div>
+                <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-gray-900">{t.author}</h3>
                   {t.role && <p className="text-sm text-gray-600">{t.role}</p>}
+                  {t.book_title && <p className="text-sm text-gray-500">Author of {t.book_title}</p>}
                 </div>
+                <StatusBadge status={t.status ?? "published"} />
               </div>
 
               <p className="text-gray-700 italic mb-4">"{t.quote}"</p>
@@ -286,7 +302,7 @@ export default function AdminTestimonials() {
                 <select
                   value={rating}
                   onChange={(e) => setRating(Number(e.target.value))}
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  className="w-full text-black bg-white px-5 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                 >
                   {[1, 2, 3, 4, 5].map((r) => (
                     <option key={r} value={r}>
@@ -295,6 +311,14 @@ export default function AdminTestimonials() {
                   ))}
                 </select>
               </div>
+
+              <Field label="Book Title" hint="Shown as “Author of …” under the quote. Leave blank to show the role instead.">
+                <TextInput value={bookTitle} onChange={(e) => setBookTitle(e.target.value)} placeholder="e.g. Rhapsody of Love" />
+              </Field>
+
+              <Field label="Status">
+                <StatusToggle value={status} onChange={setStatus} />
+              </Field>
 
               <div className="flex justify-end gap-4 pt-6">
                 <button
