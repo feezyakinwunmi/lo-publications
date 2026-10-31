@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import BookCover from "../components/BookCover";
-import { CATEGORIES, authorHref, type CatalogueBook } from "../data/catalogue";
+import { CATEGORIES, SITE_STATS, authorHref, type CatalogueBook } from "../data/catalogue";
 import { useSiteContent } from "@/app/data/SiteContentProvider";
 
 // Real covers first, then one title from each shelf so the slider shows the range
@@ -66,7 +66,7 @@ function SliderColumn({
 }
 
 export default function AuthorsHero() {
-  const { catalogue: CATALOGUE, catalogueAuthors: CATALOGUE_AUTHORS } = useSiteContent();
+  const { catalogue: CATALOGUE } = useSiteContent();
   const sliderBooks = pickSliderBooks(CATALOGUE);
   const columnA = sliderBooks.filter((_, i) => i % 2 === 0);
   const columnB = sliderBooks.filter((_, i) => i % 2 === 1);
@@ -92,7 +92,7 @@ export default function AuthorsHero() {
             Our Authors
             <br />
             Write With{" "}
-            <span className="font-serif italic font-bold text-[#e0474d]">Purpose.</span>
+            <span className="font-serif italic font-bold text-[#e0474d]">Purpose</span>
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/65">
             From memoirs and devotionals to children&apos;s stories and business
@@ -118,8 +118,8 @@ export default function AuthorsHero() {
 
           <div className="mt-12 flex flex-wrap gap-x-10 gap-y-6 border-t border-white/10 pt-8">
             {[
-              { value: CATALOGUE_AUTHORS.length, label: "Authors" },
-              { value: `${CATALOGUE.length}+`, label: "Titles published" },
+              { value: SITE_STATS.authors, label: "Authors" },
+              { value: SITE_STATS.books, label: "Titles published" },
               { value: CATEGORIES.length, label: "Categories" },
             ].map((stat) => (
               <div key={stat.label}>

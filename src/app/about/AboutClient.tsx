@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import { useSiteContent } from "@/app/data/SiteContentProvider";
+import { SITE_STATS } from "../data/catalogue";
 import TiltCard from "../components/TiltCard";
 import CountUp from "../components/CountUp";
 import { PUBLISHING_CATEGORIES } from "../data/publishing";
@@ -37,8 +38,8 @@ const values = [
 ];
 
 const stats = [
-  { number: "20+", label: "Authors Published" },
-  { number: "100+", label: "Books Published" },
+  { number: SITE_STATS.authors, label: "Authors Published" },
+  { number: SITE_STATS.books, label: "Books Published" },
   { number: "4+", label: "Countries Reached" },
 ];
 

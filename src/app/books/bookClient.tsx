@@ -9,6 +9,7 @@ import NextLink from "next/link";
 import BookCover from "../components/BookCover";
 import {
   CATEGORIES,
+  SITE_STATS,
   authorHref,
   categoryOf,
   readLinkFor,
@@ -83,12 +84,12 @@ export default function BookClient() {
             <h1 className="text-4xl font-bold tracking-tight text-black md:text-6xl">Our Published Works</h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-gray-600">
               Stories of faith, hope, learning and purpose, crafted with love and excellence by{" "}
-              {CATALOGUE_AUTHORS.length} authors.
+              {SITE_STATS.authors} authors.
             </p>
           </div>
           <div className="flex gap-8">
             <div>
-              <p className="text-4xl font-black text-[#8d171c]">{CATALOGUE.length}</p>
+              <p className="text-4xl font-black text-[#8d171c]">{SITE_STATS.books}</p>
               <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Titles</p>
             </div>
             <div>

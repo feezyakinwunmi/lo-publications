@@ -14,7 +14,7 @@ import {
   Quote,
   ScanText,
 } from "lucide-react";
-import { authorHref, type CatalogueBook } from "../data/catalogue";
+import { SITE_STATS, authorHref, type CatalogueBook } from "../data/catalogue";
 import { useSiteContent } from "@/app/data/SiteContentProvider";
 import AuthorAvatar from "./AuthorAvatar";
 import AuthorsHero from "./AuthorsHero";
@@ -123,7 +123,7 @@ export default function AuthorsClient() {
             href="/books"
             className="group inline-flex w-fit items-center gap-2 rounded-full bg-black px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8d171c]"
           >
-            Browse all {CATALOGUE.length} books
+            Browse all {SITE_STATS.books} books
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -193,8 +193,8 @@ export default function AuthorsClient() {
           <div className="relative mx-auto mb-12 max-w-7xl px-5 sm:px-8">
             <SectionLabel light>In Their Own Words</SectionLabel>
             <h2 className="text-4xl font-black leading-[1] tracking-[-.03em] md:text-6xl">
-              Our Reviews Are{" "}
-              <span className="font-serif italic font-bold text-white/70">Loud.</span>
+               Our Work Speaks Through the Words of{" "}
+              <span className="font-serif italic font-bold text-white/70">Those We Serve.</span>
             </h2>
           </div>
 
@@ -232,14 +232,14 @@ export default function AuthorsClient() {
               <span className="font-serif italic font-bold text-[#8d171c]">Authors</span>
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-black/60">
-              Ministers, educators, entrepreneurs, parents and storytellers. Meet the {AUTHOR_DIRECTORY.length}{" "}
-              voices behind our {CATALOGUE.length} titles.
+              Ministers, educators, entrepreneurs, parents and storytellers. Meet the {SITE_STATS.authors}{" "}
+              voices behind our {SITE_STATS.books} titles.
             </p>
             <Link
               href="/authors/all"
               className="group mt-9 inline-flex items-center gap-2 rounded-full bg-[#8d171c] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#6b1215] hover:shadow-[0_14px_30px_-10px_rgba(141,23,28,.6)]"
             >
-              See all {AUTHOR_DIRECTORY.length} authors
+              See all {SITE_STATS.authors} authors
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>

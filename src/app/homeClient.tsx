@@ -41,6 +41,7 @@ import {
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
 import { useSiteContent } from "./data/SiteContentProvider";
+import { SITE_STATS } from "./data/catalogue";
 import { homeFaqs } from "./data/faqs";
 import AuthorAvatar from "./authors/AuthorAvatar";
 import TiltCard from "./components/TiltCard";
@@ -55,7 +56,7 @@ type Book = {
   published_year?: number | null;
 };
 
-const tickerText = "100+ Published Titles • Author-Centric Process • Fast Turnaround Times • Global Distribution Support • Faith-Friendly, Values-Aligned Publishing • Your Story Deserves Excellence • ";
+const tickerText = `${SITE_STATS.books} Published Titles • Author-Centric Process • Fast Turnaround Times • Global Distribution Support • Faith-Friendly, Values-Aligned Publishing • Your Story Deserves Excellence • `;
 
 // Team members data
 const teamMembers = [
@@ -71,8 +72,8 @@ const teamMembers = [
 
 // Stats data
 const stats = [
-  { number: "20+", label: "Authors Published", icon: Users },
-  { number: "100+", label: "Books Published", icon: BookOpen },
+  { number: SITE_STATS.authors, label: "Authors Published", icon: Users },
+  { number: SITE_STATS.books, label: "Books Published", icon: BookOpen },
   { number: "98%", label: "Satisfaction Rate", icon: Award },
   { number: "4+", label: "Countries Reached", icon: Globe },
 ];

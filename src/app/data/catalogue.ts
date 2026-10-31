@@ -27,6 +27,10 @@ export const CATEGORIES = [
   { key: "fiction", name: "Fiction and Literary Works", tone: "#6b1e45" },
 ] as const;
 
+// Headline figures shown across the site, kept as fixed marketing numbers
+// rather than live counts. Update here and every page follows.
+export const SITE_STATS = { authors: "20+", books: "150+" } as const;
+
 export type CategoryKey = (typeof CATEGORIES)[number]["key"];
 
 export type CatalogueBook = {

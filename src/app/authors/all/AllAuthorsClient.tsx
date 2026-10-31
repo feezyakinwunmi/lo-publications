@@ -8,12 +8,12 @@ import { ArrowLeft, ArrowRight, Search, X } from "lucide-react";
 import AuthorAvatar from "../AuthorAvatar";
 import AuthorModal from "../AuthorModal";
 import BookCover from "../../components/BookCover";
-import { type DirectoryAuthor } from "../../data/catalogue";
+import { SITE_STATS, type DirectoryAuthor } from "../../data/catalogue";
 import { findInDirectory } from "../../data/siteContent";
 import { useSiteContent } from "@/app/data/SiteContentProvider";
 
 export default function AllAuthorsClient() {
-  const { authorDirectory: AUTHOR_DIRECTORY, catalogue: CATALOGUE } = useSiteContent();
+  const { authorDirectory: AUTHOR_DIRECTORY } = useSiteContent();
   const [query, setQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -55,7 +55,7 @@ export default function AllAuthorsClient() {
                 <span className="font-serif italic font-bold text-[#e0474d]">Authors</span>
               </h1>
               <p className="mt-5 max-w-xl text-lg text-white/60">
-                {AUTHOR_DIRECTORY.length} authors and {CATALOGUE.length} titles. Tap any author to see their story
+                {SITE_STATS.authors} authors and {SITE_STATS.books} titles. Tap any author to see their story
                 and books.
               </p>
             </div>

@@ -180,7 +180,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&h=500&fit=crop",
     category: "Book Marketing",
     readTime: "10 min read",
-    date: "November 12, 2026",
+    date: "August 18, 2026",
     author: "LOPublications"
   },
   {
@@ -191,7 +191,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=1200&h=500&fit=crop",
     category: "Publishing",
     readTime: "9 min read",
-    date: "November 10, 2026",
+    date: "August 4, 2026",
     author: "LOPublications"
   },
   {
@@ -202,7 +202,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=500&fit=crop",
     category: "Publishing",
     readTime: "8 min read",
-    date: "November 8, 2026",
+    date: "July 28, 2026",
     author: "LOPublications"
   },
   {
@@ -213,7 +213,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=500&fit=crop",
     category: "Book Marketing",
     readTime: "10 min read",
-    date: "November 6, 2026",
+    date: "July 14, 2026",
     author: "LOPublications"
   },
   {
@@ -224,7 +224,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=1200&h=500&fit=crop",
     category: "Publishing",
     readTime: "9 min read",
-    date: "November 4, 2026",
+    date: "June 30, 2026",
     author: "LOPublications"
   },
   {
@@ -235,7 +235,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1200&h=500&fit=crop",
     category: "Writing Craft",
     readTime: "5 min read",
-    date: "November 2, 2026",
+    date: "July 14, 2026",
     author: "LOPublications"
   },
   {

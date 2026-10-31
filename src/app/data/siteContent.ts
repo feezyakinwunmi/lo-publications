@@ -88,6 +88,17 @@ function isCategory(key: string | null): key is CategoryKey {
   return CATEGORIES.some((c) => c.key === key);
 }
 
+// Name without honorifics, for matching "Pastor Ireti Sholola" to "Ireti Sholola"
+function plainName(name: string) {
+  return slugify(name.replace(/^((Pastor|Bishop|Rev|Dr|Mrs|Mr|Ms)\.?\s+)+/i, ""));
+}
+
+// Same book if the main titles (before any subtitle) match, ignoring punctuation and case
+function sameTitle(a: string, b: string) {
+  const main = (t: string) => slugify(t.split(":")[0]);
+  return slugify(a) === slugify(b) || main(a) === main(b);
+}
+
 function toProfile(row: DbAuthor, base?: FeaturedAuthor): FeaturedAuthor {
   return {
     slug: row.slug,
@@ -122,22 +133,28 @@ export function mergeContent({ authors, books, testimonials }: DbRows): SiteCont
     }
   }
 
-  // Newest admin-added books come first; a slug that matches a hardcoded book replaces it
+  // Newest admin-added books come first. A portal book replaces any hardcoded
+  // book with the same slug, or the same author's book with the same main title
+  // (so "Purpose Driven" vs "Purpose-Driven", or an added subtitle, don't duplicate).
   const added: CatalogueBook[] = [];
   for (const row of books) {
-    const slug = row.slug || slugify(row.title);
     const authorSlug = row.author_slug || slugify(row.author);
-    let author = directory.find((d) => d.slug === authorSlug);
+    let author =
+      directory.find((d) => d.slug === authorSlug) ??
+      directory.find((d) => plainName(d.name) === plainName(row.author));
     if (!author) {
       author = { slug: authorSlug, name: row.author, books: [] };
       directory.push(author);
     }
 
+    const duplicate = author.books.find((b) => sameTitle(b.title, row.title));
+    const slug = duplicate?.slug ?? (row.slug || slugify(row.title));
+
     const book: CatalogueBook = {
       slug,
       title: row.title,
       author: author.name,
-      authorSlug,
+      authorSlug: author.slug,
       category: isCategory(row.category) ? row.category : "fiction",
       coverImage: row.cover_url || undefined,
       readUrl: row.read_url || row.downloads?.[0]?.url || undefined,
@@ -147,8 +164,8 @@ export function mergeContent({ authors, books, testimonials }: DbRows): SiteCont
     author.books.unshift(book);
 
     // Books with a cover and description can be showcased on the author's profile
-    const profile = profiles.get(authorSlug);
-    if (profile && book.coverImage && row.description && !profile.books.some((b) => b.slug === slug)) {
+    const profile = profiles.get(author.slug);
+    if (profile && book.coverImage && row.description && !profile.books.some((b) => b.slug === slug || sameTitle(b.title, row.title))) {
       const showcase: AuthorBook = {
         title: row.title,
         slug,
