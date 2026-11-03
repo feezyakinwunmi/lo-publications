@@ -224,7 +224,7 @@ export default function HomeClient() {
           HERO - Original design
       ====================================================== */}
       <motion.section 
-        className="relative min-h-screen overflow-hidden bg-[#f5f2ed] px-5 pb-10 pt-20 sm:px-8 lg:px-10"
+        className="relative min-h-screen overflow-hidden bg-[#f5f2ed] px-5 pb-10 pt-24 sm:px-8 lg:px-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

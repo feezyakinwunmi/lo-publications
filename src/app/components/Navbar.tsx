@@ -345,7 +345,7 @@ export default function Navbar() {
     }
   };
 
-  const logoSize = scrolled ? "w-10 h-auto" : "w-12 h-auto";
+  const logoSize = scrolled ? "w-12 h-auto" : "w-16 h-auto";
 
   return (
     <>
@@ -428,7 +428,7 @@ export default function Navbar() {
                 <img
                   src="/logolop.png"
                   alt="LO Publications Logo"
-                  className={`${scrolled ? "w-10 h-auto" : "w-12 h-auto"} transition-all duration-300 drop-shadow-lg`}
+                  className={`${scrolled ? "w-12 h-auto" : "w-14 h-auto"} transition-all duration-300 drop-shadow-lg`}
                 />
               </motion.div>
             </Link>
