@@ -1228,7 +1228,9 @@ function FeaturedAuthorsShowcase() {
                     </div>
                   </div>
                   <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">{book.genre}</span>
-                  <p className="mt-5 text-lg italic leading-relaxed text-white/80">&ldquo;{author.quote}&rdquo;</p>
+                  {author.quote && (
+                    <p className="mt-5 text-lg italic leading-relaxed text-white/80">&ldquo;{author.quote}&rdquo;</p>
+                  )}
                   <Link
                     href={`/authors/all?author=${author.slug}`}
                     className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#e0474d] transition hover:text-white"

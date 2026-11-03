@@ -84,11 +84,13 @@ export default function AuthorModal({ author, onClose }: { author: DirectoryAuth
                 <h3 className="mb-2 mt-5 text-xs font-bold uppercase tracking-wider text-[#8d171c]">Mission</h3>
                 <p className="leading-relaxed text-gray-700">{profile.mission}</p>
               </div>
-              <figure className="rounded-2xl bg-white p-6 shadow-sm">
-                <Quote className="mb-3 h-8 w-8 text-[#8d171c]/30" />
-                <blockquote className="leading-relaxed text-gray-800">&ldquo;{profile.quote}&rdquo;</blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-[#8d171c]">{author.name}</figcaption>
-              </figure>
+              {profile.quote && (
+                <figure className="rounded-2xl bg-white p-6 shadow-sm">
+                  <Quote className="mb-3 h-8 w-8 text-[#8d171c]/30" />
+                  <blockquote className="leading-relaxed text-gray-800">&ldquo;{profile.quote}&rdquo;</blockquote>
+                  <figcaption className="mt-4 text-sm font-semibold text-[#8d171c]">{author.name}</figcaption>
+                </figure>
+              )}
             </div>
           )}
 

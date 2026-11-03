@@ -44,8 +44,7 @@ const authorProfiles: FeaturedAuthor[] = [
     bio: "Oluwabunmilayo Obidike — affectionately called Layo — is a passionate poet, writer, and visionary entrepreneur. She discovered her love for poetry at a tender age, using it as a therapeutic outlet to navigate her childhood trauma. Beyond her poetic expressions, Layo is a devoted wife and mother, currently living joyfully with her family in Canada. Her daily life beautifully blends being a wife, mother, and sister. She is also a writer, volunteer, and entrepreneur. In addition to her writing pursuits, Layo is a visionary entrepreneur, consistently crafting innovative solutions and contributing to creative endeavors. Her greatest values are love and cooperation, which drive her advocacy for the cooperative business model. She is the Director General for the Thriveon Entrepreneur Nonprofit model that aims to empower entrepreneurs for a thriving future.",
     mission:
       "To publish a book that inspires readers to embrace love, heal from emotional wounds, rediscover their identity, and build meaningful relationships through practical wisdom and biblical principles.",
-    quote:
-      "Working with the publishing team made my dream of becoming a published author seamless. Their professionalism, guidance, and attention to detail ensured that Rhapsody of Love was published to a high standard while preserving the heart of my message.",
+    quote: "",
     featured: true,
     books: [
       {
