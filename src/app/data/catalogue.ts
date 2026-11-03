@@ -128,11 +128,13 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["The Path, the Nature, and the Word: A Doctrinal Study of Psalm 1 and the Discipline of the Believer", "christian"],
       ["Understanding and Governing the Gates of Life: A Scriptural Guide to Spiritual Discipline and Authority", "bible"],
       ["Divine Protocol for a Virtuous Woman", "leadership"],
+      ["The Effectual Prayer of a Spiritual Woman: Manifesting Spiritual Realities Through Prayer", "christian"],
       ["The Fruitful Life: God’s Blueprint for Productivity, Purpose, Growth, Prosperity, and Lasting Impact", "christian"],
       ["Write Your Way Through It", "leadership"],
       ["Faith, Finance & Fulfillment: A Complete Biblical Guide to Building Wealth Without Losing Your Soul", "finance"],
       ["Praying God’s Word Over Your Finances: 53 Powerful Affirmations to Attract Wealth: Manifest Abundance & Financial Success All Year", "finance"],
       ["Money, Mind & Mastery: Financial Wisdom, Investing Principles, Entrepreneurship & Personal Development", "finance"],
+      ["Wealth, Mastery & Leverage: How to Think, Invest & Build Wealth", "finance"],
       ["Working with God: A Comprehensive Biblical Study of Work, Profession, Calling, Skill, Enterprise and Divine Assessment", "business"],
       ["Strive Masiyiwa’s Playbook for Entrepreneurial Success: Lessons in Business Mastery, Making History and Building Legacy", "business"],
       ["What Every Human Should Know About AI: A Beginner’s Guide for a Changing World", "tech"],
@@ -147,6 +149,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["Every Prize I Never Won", "memoir"],
       ["A Better Country", "fiction"],
       ["A Letter to My Daughter", "memoir"],
+      ["My Dear Daughter: A Mother’s Wisdom for Life, Love & Purpose", "leadership"],
       ["The Nation’s Book", "fiction"],
       ["Made New in Christ", "christian"],
       ["Growing in Grace", "christian"],
@@ -277,6 +280,11 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["My Winterized Home", "fiction"],
       ["The Long Trek", "fiction"],
     ],
+  },
+  {
+    name: "Femi Odebowale",
+    slug: "femi-odebowale",
+    books: [["Identity: Discovering Who You Are in Christ and Living from That Reality", "christian"]],
   },
 ];
 
