@@ -279,7 +279,7 @@ export default function AboutClient() {
             className="mb-14 text-center"
           >
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-[#8d171c]">What Guides Us</span>
-            <h2 className="mt-4 text-4xl font-bold text-black md:text-5xl">Our Three Pillars</h2>
+            <h2 className="mt-4 text-4xl font-bold text-black md:text-5xl">Our Four Pillars</h2>
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
