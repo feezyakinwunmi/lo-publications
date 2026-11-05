@@ -196,3 +196,6 @@ body {
   .post-content h3 { font-size: 1.3rem; }
   .post-content img[data-size="small"], .post-content img[data-size="medium"] { width: 100%; }
 }
+
+/* Young Authors Contest headings (Playfair Display, loaded on that page) */
+.yac-serif { font-family: var(--font-playfair), Georgia, "Times New Roman", serif; }
