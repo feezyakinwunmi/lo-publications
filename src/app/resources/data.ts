@@ -10,6 +10,9 @@ export type ResourceTool = {
   description: string; // meta description
   category: ToolCategory;
   keyword: string;
+  time: string; // how long it takes
+  gradient: string; // Tailwind gradient classes for the card visual
+  accent: string; // solid accent colour
 };
 
 export const RESOURCE_TOOLS: ResourceTool[] = [
@@ -21,6 +24,9 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
       "How much does it cost to publish a book in Canada? Estimate editing, proofreading, cover design, formatting, printing and distribution costs with this free calculator.",
     category: "Publishing",
     keyword: "book publishing costs in Canada",
+    time: "1 min",
+    gradient: "from-[#8d171c] via-[#b4262c] to-[#ea580c]",
+    accent: "#b4262c",
   },
   {
     slug: "word-count-to-page-calculator",
@@ -30,6 +36,9 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
       "How many pages is 50,000 words? Enter your word count, trim size and font size to estimate the printed page count of your book.",
     category: "Writing",
     keyword: "how many pages is my book",
+    time: "30 sec",
+    gradient: "from-indigo-600 via-blue-600 to-sky-500",
+    accent: "#2563eb",
   },
   {
     slug: "book-royalty-calculator",
@@ -39,6 +48,9 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
       "How much money can you make selling your book? Work out earnings per copy, total profit and break-even copies from your price, printing cost and retailer share.",
     category: "Publishing",
     keyword: "how much do authors make per book",
+    time: "1 min",
+    gradient: "from-emerald-600 via-teal-600 to-cyan-500",
+    accent: "#0d9488",
   },
   {
     slug: "manuscript-readiness-assessment",
@@ -48,6 +60,9 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
       "Is your manuscript ready for publishing? Take this free assessment and get a personalised readiness score with clear next steps.",
     category: "Writing",
     keyword: "is my manuscript ready for publishing",
+    time: "3 min",
+    gradient: "from-violet-600 via-purple-600 to-fuchsia-500",
+    accent: "#9333ea",
   },
   {
     slug: "book-marketing-plan-generator",
@@ -57,6 +72,9 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
       "Generate a free 30-day book marketing calendar from your publication date, with daily tasks for before, during and after your launch.",
     category: "Book Marketing",
     keyword: "how to market a book",
+    time: "2 min",
+    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    accent: "#f97316",
   },
 ];
 
