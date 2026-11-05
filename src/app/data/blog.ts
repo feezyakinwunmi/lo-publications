@@ -1,7 +1,7 @@
 // lib/blogs.ts
 
 export type BlogPost = {
-  id: number;
+  id: number | string;
   title: string;
   slug: string;
   excerpt: string;
@@ -12,6 +12,7 @@ export type BlogPost = {
   author: string;
   keyword?: string;
   isoDate?: string;
+  fromDb?: boolean;
 };
 
 export const allBlogPosts: BlogPost[] = [

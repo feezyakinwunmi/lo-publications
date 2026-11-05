@@ -2,7 +2,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Save, X, Loader2, Image as ImageIcon } from "lucide-react";
+import { Plus, Edit, Trash2, Save, X, Loader2, Image as ImageIcon, ExternalLink } from "lucide-react";
+import { allBlogPosts } from "@/app/data/blog";
 import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from '@tiptap/starter-kit';
@@ -19,7 +20,9 @@ type BlogPost = {
   excerpt?: string | null;
   content: string;
   thumbnail_url?: string | null;
-  publisher_name?: string | null; // ← New field
+  publisher_name?: string | null;
+  category?: string | null;
+  keyword?: string | null;
   status: "draft" | "published";
   published_at?: string | null;
 };
@@ -34,6 +37,12 @@ export default function AdminBlog() {
   const [publisherName, setPublisherName] = useState(""); // ← New state
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [saving, setSaving] = useState(false);
+  const [slug, setSlug] = useState("");
+  const [slugTouched, setSlugTouched] = useState(false);
+  const [category, setCategory] = useState("General");
+  const [excerpt, setExcerpt] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [pubDate, setPubDate] = useState("");
 
   // TipTap editor setup
 const editor = useEditor({
@@ -133,20 +142,46 @@ const handleImageUpload = async (file: File): Promise<string> => {
       setTitle(post.title);
       setPublisherName(post.publisher_name || ""); // ← Load existing value
       setThumbnailUrl(post.thumbnail_url || "");
+      setSlug(post.slug || "");
+      setSlugTouched(true);
+      setCategory(post.category || "General");
+      setExcerpt(post.excerpt || "");
+      setKeyword(post.keyword || "");
+      setPubDate(post.published_at ? post.published_at.slice(0, 10) : "");
       if (editor) editor.commands.setContent(post.content);
     } else {
       setCurrentPost(null);
       setTitle("");
       setPublisherName(""); // ← Default empty
       setThumbnailUrl("");
+      setSlug("");
+      setSlugTouched(false);
+      setCategory("General");
+      setExcerpt("");
+      setKeyword("");
+      setPubDate("");
       if (editor) editor.commands.setContent("");
     }
     setIsModalOpen(true);
   };
 
-  const handleSave = async () => {
-    if (!title || !publisherName || !editor?.getHTML()) {
-      setError("Title, Publisher Name, and content are required");
+  const slugify = (v: string) =>
+    v.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+  const handleSave = async (nextStatus: "draft" | "published") => {
+    const html = editor?.getHTML() ?? "";
+    const finalSlug = slugify(slug || title);
+
+    if (!title.trim() || !publisherName.trim() || !editor?.getText().trim()) {
+      setError("Title, author name and content are required");
+      return;
+    }
+    if (!finalSlug) {
+      setError("Please enter a web address (slug) for the post");
+      return;
+    }
+    if (allBlogPosts.some((p) => p.slug === finalSlug)) {
+      setError("That web address is already used by an existing article. Please choose a different slug.");
       return;
     }
 
@@ -160,28 +195,40 @@ const handleImageUpload = async (file: File): Promise<string> => {
         throw new Error(SUPABASE_NOT_CONFIGURED_MESSAGE);
       }
 
+      // Keep the original publish date when editing; use the chosen date, or now, on first publish
+      const publishedAt =
+        nextStatus === "published"
+          ? pubDate
+            ? new Date(`${pubDate}T12:00:00Z`).toISOString()
+            : currentPost?.published_at || new Date().toISOString()
+          : currentPost?.published_at || null;
+
       const postData = {
-        title,
-        slug: title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""),
-        excerpt: editor.getText().slice(0, 150) + "...",
-        content: editor.getHTML(),
+        title: title.trim(),
+        slug: finalSlug,
+        excerpt: excerpt.trim() || editor.getText().slice(0, 155).trim() + "...",
+        content: html,
         thumbnail_url: thumbnailUrl || null,
-        publisher_name: publisherName, // ← Save new field
-        status: "published",
+        publisher_name: publisherName.trim(),
+        category: category.trim() || "General",
+        keyword: keyword.trim() || null,
+        status: nextStatus,
+        published_at: publishedAt,
       };
 
-      let result;
+      const result = currentPost
+        ? await supabase.from("blog_posts").update(postData).eq("id", currentPost.id)
+        : await supabase.from("blog_posts").insert(postData);
 
-      if (currentPost) {
-        result = await supabase.from("blog_posts").update(postData).eq("id", currentPost.id);
-      } else {
-        result = await supabase.from("blog_posts").insert(postData);
+      if (result.error) {
+        if (result.error.code === "23505") {
+          throw new Error("Another post already uses that web address. Please change the slug.");
+        }
+        throw result.error;
       }
 
-      if (result.error) throw result.error;
-
       // Refresh list
-      const { data } = await supabase.from("blog_posts").select("*").order("published_at", { ascending: false });
+      const { data } = await supabase.from("blog_posts").select("*").order("published_at", { ascending: false, nullsFirst: true });
       setPosts(data || []);
       setIsModalOpen(false);
     } catch (err: any) {
@@ -244,8 +291,11 @@ const handleImageUpload = async (file: File): Promise<string> => {
                 {post.publisher_name && (
                   <p className="text-sm text-gray-600 mb-2">By {post.publisher_name}</p>
                 )}
-                <div className="text-sm text-gray-500 mb-4">
-                  {post.status === "published" ? "Published" : "Draft"}
+                <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${post.status === "published" ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}`}>
+                    {post.status === "published" ? "Published" : "Draft"}
+                  </span>
+                  {post.category && <span className="text-gray-500">{post.category}</span>}
                 </div>
                 <div className="flex gap-4">
                   <button onClick={() => openModal(post)} className="text-blue-600 hover:text-blue-800">
@@ -254,6 +304,11 @@ const handleImageUpload = async (file: File): Promise<string> => {
                   <button onClick={() => handleDelete(post.id)} className="text-red-600 hover:text-red-800">
                     <Trash2 size={20} />
                   </button>
+                  {post.status === "published" && (
+                    <a href={`/blog/${post.slug || post.id}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-800" title="View on site">
+                      <ExternalLink size={20} />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -280,10 +335,48 @@ const handleImageUpload = async (file: File): Promise<string> => {
                 <input
                   type="text"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                    if (!slugTouched) setSlug(slugify(e.target.value));
+                  }}
                   className="w-full px-5 text-black  py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="Enter a catchy title..."
                 />
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Web address (slug)</label>
+                  <input
+                    type="text"
+                    value={slug}
+                    onChange={(e) => {
+                      setSlug(slugify(e.target.value));
+                      setSlugTouched(true);
+                    }}
+                    className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    placeholder="my-article-title"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">lopublications.com/blog/{slug || "…"}</p>
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Category</label>
+                  <input
+                    type="text"
+                    list="blog-categories"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    placeholder="e.g. Writing, Book Marketing"
+                  />
+                  <datalist id="blog-categories">
+                    {Array.from(new Set([...allBlogPosts.map((p) => p.category), ...posts.map((p) => p.category || "")]))
+                      .filter(Boolean)
+                      .map((c) => (
+                        <option key={c} value={c} />
+                      ))}
+                  </datalist>
+                </div>
               </div>
 
               {/* New field: Publisher Name */}
@@ -296,6 +389,42 @@ const handleImageUpload = async (file: File): Promise<string> => {
                   className="w-full px-5 text-black  py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   placeholder="LO Publications / Your Name / Pen Name"
                 />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Short description (shown on the blog and in Google)</label>
+                <textarea
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  rows={3}
+                  maxLength={200}
+                  className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  placeholder="One or two sentences, about 150 characters. Leave blank to use the start of the article."
+                />
+                <p className="mt-1 text-xs text-gray-500">{excerpt.length}/200</p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Focus keyword (optional)</label>
+                  <input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                    placeholder="e.g. how to publish a book in Canada"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Publish date</label>
+                  <input
+                    type="date"
+                    value={pubDate}
+                    onChange={(e) => setPubDate(e.target.value)}
+                    className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">Leave blank to use today. You can back-date a post.</p>
+                </div>
               </div>
 
               <div>
@@ -321,8 +450,33 @@ const handleImageUpload = async (file: File): Promise<string> => {
                     <button onClick={() => editor?.chain().focus().toggleItalic().run()} className="p-2 hover:bg-gray-200 rounded">
                       <em>I</em>
                     </button>
-                    <button onClick={() => editor?.chain().focus().toggleHeading({ level: 1 }).run()} className="p-2 hover:bg-gray-200 rounded">
-                      H1
+                    <button type="button" onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()} className="p-2 hover:bg-gray-200 rounded font-semibold">
+                      H2
+                    </button>
+                    <button type="button" onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()} className="p-2 hover:bg-gray-200 rounded font-semibold">
+                      H3
+                    </button>
+                    <button type="button" onClick={() => editor?.chain().focus().toggleOrderedList().run()} className="p-2 hover:bg-gray-200 rounded">
+                      1. List
+                    </button>
+                    <button type="button" onClick={() => editor?.chain().focus().toggleBlockquote().run()} className="p-2 hover:bg-gray-200 rounded">
+                      &ldquo; Quote
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const prev = (editor?.getAttributes("link").href as string | undefined) || "https://";
+                        const url = window.prompt("Link address (leave empty to remove the link)", prev);
+                        if (url === null) return;
+                        if (url.trim() === "" || url.trim() === "https://") {
+                          editor?.chain().focus().extendMarkRange("link").unsetLink().run();
+                        } else {
+                          editor?.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
+                        }
+                      }}
+                      className="p-2 hover:bg-gray-200 rounded underline"
+                    >
+                      Link
                     </button>
                     <button onClick={() => editor?.chain().focus().toggleBulletList().run()} className="p-2 hover:bg-gray-200 rounded">
                       • List
@@ -361,12 +515,19 @@ const handleImageUpload = async (file: File): Promise<string> => {
                   Cancel
                 </button>
                 <button
-                  onClick={handleSave}
+                  onClick={() => handleSave("draft")}
+                  disabled={saving}
+                  className="px-8 py-4 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-100 transition disabled:opacity-50"
+                >
+                  Save as draft
+                </button>
+                <button
+                  onClick={() => handleSave("published")}
                   disabled={saving}
                   className="flex items-center gap-3 px-8 py-4 bg-red-900 text-white rounded-xl hover:bg-red-800 transition disabled:opacity-50"
                 >
                   {saving ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
-                  {saving ? "Saving..." : currentPost ? "Update Post" : "Publish Post"}
+                  {saving ? "Saving..." : currentPost && currentPost.status === "published" ? "Update post" : "Publish post"}
                 </button>
               </div>
 

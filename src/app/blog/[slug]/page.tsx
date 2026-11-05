@@ -2,7 +2,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, User, TrendingUp } from 'lucide-react';
-import { allBlogPosts } from '@/app/data/blog';
+import { allBlogPosts, type BlogPost } from '@/app/data/blog';
+import { getDbPosts, getDbPostBySlug } from '@/app/data/getBlogPosts';
+import PostBody from './PostBody';
 
 // ========== EXISTING POSTS ==========
 import CanadaBookMarketing from './posts/CanadaBookMarketing';
@@ -101,18 +103,32 @@ const PostComponents: Record<string, React.ComponentType> = {
 
 const SITE_URL = 'https://lopublications.com';
 
+// New posts live in the database and are cached; refresh at most once a minute.
+export const revalidate = 60;
+
+// Hardcoded posts first; otherwise look the post up in the database.
+async function resolvePost(slug: string): Promise<{ post: BlogPost; html: string | null; modified?: string } | null> {
+  const hard = allBlogPosts.find((p) => p.slug === slug);
+  if (hard) return { post: hard, html: null };
+  const db = await getDbPostBySlug(slug);
+  return db ? { post: db.post, html: db.html, modified: db.modifiedISO } : null;
+}
+
+const absolute = (u: string) => (u.startsWith('http') ? u : `${SITE_URL}${u}`);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = allBlogPosts.find(p => p.slug === slug);
+  const resolved = await resolvePost(slug);
 
-  if (!post) return { title: "Post Not Found | LO Publications" };
+  if (!resolved) return { title: "Post Not Found | LO Publications" };
+  const { post } = resolved;
 
-  // Writing cluster: meta title is the post title itself (all are under 60 characters).
-  if (post.keyword) {
+  // Writing cluster and database posts: meta title is the post title itself.
+  if (post.keyword || post.fromDb) {
     return {
       title: { absolute: post.title },
       description: post.excerpt,
-      keywords: [post.keyword],
+      keywords: post.keyword ? [post.keyword] : [post.category],
       authors: [{ name: post.author }],
       openGraph: {
         title: post.title,
@@ -168,27 +184,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = allBlogPosts.find(p => p.slug === slug);
+  const resolved = await resolvePost(slug);
 
-  if (!post) {
+  if (!resolved) {
     return <div className="pt-40 text-center">Post not found</div>;
   }
+  const { post, html } = resolved;
+  const isSeo = Boolean(post.keyword || post.fromDb);
 
-  const recommended = allBlogPosts
-    .filter(p => p.slug !== slug)
+  const dbPosts = (await getDbPosts()).map((d) => d.post);
+  const recommended = [...dbPosts, ...allBlogPosts]
+    .filter(p => p.slug !== post.slug)
     .slice(0, 3);
 
-  const PostComponent = PostComponents[slug];
+  const PostComponent = PostComponents[post.slug];
 
   const postUrl = `${SITE_URL}/blog/${post.slug}`;
-  const jsonLd = post.keyword
+  const jsonLd = isSeo
     ? [
         {
           "@context": "https://schema.org",
           "@type": "Article",
           headline: post.title,
           description: post.excerpt,
-          image: `${SITE_URL}${post.image}`,
+          image: absolute(post.image),
           author: { "@type": "Person", name: post.author },
           publisher: {
             "@type": "Organization",
@@ -196,7 +215,7 @@ export default async function BlogPostPage({ params }: Props) {
             logo: { "@type": "ImageObject", url: `${SITE_URL}/logolop.png` },
           },
           datePublished: post.isoDate,
-          dateModified: post.isoDate,
+          dateModified: resolved.modified ?? post.isoDate,
           url: postUrl,
           mainEntityOfPage: postUrl,
         },
@@ -222,7 +241,7 @@ export default async function BlogPostPage({ params }: Props) {
         />
       )}
       <div className="max-w-[90%] mx-auto px-6 py-8">
-        {post.keyword && (
+        {isSeo && (
           <nav aria-label="Breadcrumb" className="text-sm text-gray-500 mb-4">
             <ol className="flex flex-wrap items-center gap-2">
               <li><Link href="/" className="hover:text-red-600">Home</Link></li>
@@ -276,7 +295,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             {/* Dynamic Content */}
-            {PostComponent ? <PostComponent /> : <p>Content not available yet.</p>}
+            {html !== null ? <PostBody html={html} /> : PostComponent ? <PostComponent /> : <p>Content not available yet.</p>}
           </div>
 
           {/* Sidebar */}
@@ -292,7 +311,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                   <div>
                     <p className="font-semibold">{post.author}</p>
-                    <p className="text-sm text-gray-500">{post.keyword ? 'LO Publications' : 'Publishing & Author Services Team'}</p>
+                    <p className="text-sm text-gray-500">{isSeo ? 'LO Publications' : 'Publishing & Author Services Team'}</p>
                   </div>
                 </div>
               </div>

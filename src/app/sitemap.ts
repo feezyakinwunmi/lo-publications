@@ -1,7 +1,12 @@
 import { MetadataRoute } from 'next'
+import { getDbPosts } from '@/app/data/getBlogPosts'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Rebuild hourly so posts published from the admin panel appear in the sitemap
+export const revalidate = 3600
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://lopublications.com'
+  const dbPosts = await getDbPosts()
 
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
@@ -26,5 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/declutter-your-writing`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/blog/be-yourself-on-the-page`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/blog/write-for-yourself-first`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.7 },
+    ...dbPosts.map(({ post, modifiedISO }) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(modifiedISO),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
   ]
 }
