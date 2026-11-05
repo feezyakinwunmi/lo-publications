@@ -7,7 +7,8 @@ import { allBlogPosts } from "@/app/data/blog";
 import { createClient, SUPABASE_NOT_CONFIGURED_MESSAGE } from "@/lib/supabase/client";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
+import { StyledImage } from '@/lib/tiptap/extensions/StyledImage';
+import { Callout } from '@/lib/tiptap/extensions/Callout';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Placeholder from '@tiptap/extension-placeholder';
 import FileDropzone from "../../components/admin/FileDropzone";
@@ -48,7 +49,8 @@ export default function AdminBlog() {
 const editor = useEditor({
   extensions: [
     StarterKit,
-    Image.configure({ inline: true }),
+    StyledImage.configure({ inline: false }),
+    Callout,
     Dropcursor,
     Placeholder.configure({ placeholder: "Start writing..." }),
     ImageUpload.configure({
@@ -72,6 +74,8 @@ const editor = useEditor({
   ],
   content: currentPost?.content || '',
   immediatelyRender: false,
+  shouldRerenderOnTransaction: true,
+  editorProps: { attributes: { class: 'outline-none min-h-[380px]' } },
 })
 
 // Custom image upload handler
@@ -441,29 +445,29 @@ const handleImageUpload = async (file: File): Promise<string> => {
 
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Content</label>
-                <div className="border border-gray-300 rounded-xl overflow-hidden bg-white min-h-[400px]">
+                <div className="border border-gray-300 rounded-xl bg-white min-h-[400px]">
                   {/* Toolbar */}
-                  <div className="flex gap-2 p-3 border-b bg-gray-50">
-                    <button onClick={() => editor?.chain().focus().toggleBold().run()} className="p-2 hover:bg-gray-200 rounded">
-                      <strong>B</strong>
-                    </button>
-                    <button onClick={() => editor?.chain().focus().toggleItalic().run()} className="p-2 hover:bg-gray-200 rounded">
-                      <em>I</em>
-                    </button>
-                    <button type="button" onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()} className="p-2 hover:bg-gray-200 rounded font-semibold">
-                      H2
-                    </button>
-                    <button type="button" onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()} className="p-2 hover:bg-gray-200 rounded font-semibold">
-                      H3
-                    </button>
-                    <button type="button" onClick={() => editor?.chain().focus().toggleOrderedList().run()} className="p-2 hover:bg-gray-200 rounded">
-                      1. List
-                    </button>
-                    <button type="button" onClick={() => editor?.chain().focus().toggleBlockquote().run()} className="p-2 hover:bg-gray-200 rounded">
-                      &ldquo; Quote
-                    </button>
-                    <button
-                      type="button"
+                  <div className="sticky top-[73px] z-[5] flex flex-wrap items-center gap-1 border-b bg-gray-50 p-2">
+                    <ToolBtn label="Bold" active={editor?.isActive("bold")} onClick={() => editor?.chain().focus().toggleBold().run()}><strong>B</strong></ToolBtn>
+                    <ToolBtn label="Italic" active={editor?.isActive("italic")} onClick={() => editor?.chain().focus().toggleItalic().run()}><em>I</em></ToolBtn>
+                    <ToolBtn label="Underline" active={editor?.isActive("underline")} onClick={() => editor?.chain().focus().toggleUnderline().run()}><span className="underline">U</span></ToolBtn>
+                    <ToolBtn label="Strikethrough" active={editor?.isActive("strike")} onClick={() => editor?.chain().focus().toggleStrike().run()}><span className="line-through">S</span></ToolBtn>
+                    <Sep />
+                    <ToolBtn label="Heading (large)" active={editor?.isActive("heading", { level: 2 })} onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}>H2</ToolBtn>
+                    <ToolBtn label="Heading (smaller)" active={editor?.isActive("heading", { level: 3 })} onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()}>H3</ToolBtn>
+                    <Sep />
+                    <ToolBtn label="Bullet list" active={editor?.isActive("bulletList")} onClick={() => editor?.chain().focus().toggleBulletList().run()}>• List</ToolBtn>
+                    <ToolBtn label="Numbered list" active={editor?.isActive("orderedList")} onClick={() => editor?.chain().focus().toggleOrderedList().run()}>1. List</ToolBtn>
+                    <ToolBtn label="Quote" active={editor?.isActive("blockquote")} onClick={() => editor?.chain().focus().toggleBlockquote().run()}>&ldquo; Quote</ToolBtn>
+                    <ToolBtn label="Divider line" onClick={() => editor?.chain().focus().setHorizontalRule().run()}>&mdash;</ToolBtn>
+                    <Sep />
+                    <ToolBtn label="Blue info box" active={editor?.isActive("callout", { type: "info" })} onClick={() => editor?.chain().focus().toggleCallout("info").run()}><span className="text-blue-700">Info</span></ToolBtn>
+                    <ToolBtn label="Green tip box" active={editor?.isActive("callout", { type: "tip" })} onClick={() => editor?.chain().focus().toggleCallout("tip").run()}><span className="text-green-700">Tip</span></ToolBtn>
+                    <ToolBtn label="Amber warning box" active={editor?.isActive("callout", { type: "warning" })} onClick={() => editor?.chain().focus().toggleCallout("warning").run()}><span className="text-amber-700">Note</span></ToolBtn>
+                    <Sep />
+                    <ToolBtn
+                      label="Link"
+                      active={editor?.isActive("link")}
                       onClick={() => {
                         const prev = (editor?.getAttributes("link").href as string | undefined) || "https://";
                         const url = window.prompt("Link address (leave empty to remove the link)", prev);
@@ -474,36 +478,54 @@ const handleImageUpload = async (file: File): Promise<string> => {
                           editor?.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
                         }
                       }}
-                      className="p-2 hover:bg-gray-200 rounded underline"
                     >
-                      Link
-                    </button>
-                    <button onClick={() => editor?.chain().focus().toggleBulletList().run()} className="p-2 hover:bg-gray-200 rounded">
-                      • List
-                    </button>
-                   <button
-  onClick={() => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = 'image/*'
-    input.onchange = (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0]
-      if (file) {
-        // Use the same uploadFn
-        handleImageUpload(file).then(url => {
-          editor?.chain().focus().setImage({ src: url }).run()
-        })
-      }
-    }
-    input.click()
-  }}
-  className="p-2 hover:bg-gray-200 rounded"
->
-  <ImageIcon size={18} />
-</button>
+                      <span className="underline">Link</span>
+                    </ToolBtn>
+                    <ToolBtn
+                      label="Insert image"
+                      onClick={() => {
+                        const input = document.createElement("input");
+                        input.type = "file";
+                        input.accept = "image/*";
+                        input.onchange = (e) => {
+                          const file = (e.target as HTMLInputElement).files?.[0];
+                          if (file) {
+                            handleImageUpload(file)
+                              .then((url) => editor?.chain().focus().setImage({ src: url }).run())
+                              .catch((err) => setError("Image upload failed: " + (err?.message || err)));
+                          }
+                        };
+                        input.click();
+                      }}
+                    >
+                      <ImageIcon size={18} />
+                    </ToolBtn>
+                    <Sep />
+                    <ToolBtn label="Undo" onClick={() => editor?.chain().focus().undo().run()}>&#8630;</ToolBtn>
+                    <ToolBtn label="Redo" onClick={() => editor?.chain().focus().redo().run()}>&#8631;</ToolBtn>
+                    <ToolBtn label="Clear formatting" onClick={() => editor?.chain().focus().clearNodes().unsetAllMarks().run()}>Clear</ToolBtn>
                   </div>
 
-                  <EditorContent editor={editor} className="p-4 min-h-[300px] " />
+                  {/* Image controls: appear when a picture is selected */}
+                  {editor?.isActive("image") && (
+                    <div className="flex flex-wrap items-center gap-2 border-b bg-red-50 px-3 py-2 text-sm text-gray-800">
+                      <span className="font-semibold">Picture:</span>
+                      <span>Size</span>
+                      {(["small", "medium", "full"] as const).map((sz) => (
+                        <ToolBtn key={sz} label={`${sz} picture`} active={editor.getAttributes("image").size === sz} onClick={() => editor.chain().focus().updateAttributes("image", { size: sz }).run()}>
+                          {sz[0].toUpperCase() + sz.slice(1)}
+                        </ToolBtn>
+                      ))}
+                      <span className="ml-3">Position</span>
+                      {(["left", "center", "right"] as const).map((al) => (
+                        <ToolBtn key={al} label={`align ${al}`} active={editor.getAttributes("image").align === al} onClick={() => editor.chain().focus().updateAttributes("image", { align: al }).run()}>
+                          {al[0].toUpperCase() + al.slice(1)}
+                        </ToolBtn>
+                      ))}
+                    </div>
+                  )}
+
+                  <EditorContent editor={editor} className="post-content px-6 py-6 text-left" />
                 </div>
               </div>
 
@@ -538,4 +560,36 @@ const handleImageUpload = async (file: File): Promise<string> => {
       )}
     </div>
   );
+}
+
+function ToolBtn({
+  children,
+  onClick,
+  active,
+  label,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  active?: boolean;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      title={label}
+      aria-label={label}
+      aria-pressed={active ? true : undefined}
+      onMouseDown={(e) => e.preventDefault()}
+      onClick={onClick}
+      className={`min-w-[2.25rem] rounded-lg px-2.5 py-1.5 text-sm text-gray-800 transition ${
+        active ? "bg-red-900 text-white [&_*]:!text-white" : "hover:bg-gray-200"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function Sep() {
+  return <span className="mx-1 h-5 w-px bg-gray-300" aria-hidden="true" />;
 }

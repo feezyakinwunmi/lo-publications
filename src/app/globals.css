@@ -54,3 +54,145 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .marquee-up, .marquee-down, .marquee-left, .marquee-right { animation: none; }
 }
+
+/* ==========================================================================
+   Article typography. Used for BOTH the admin editor and the public post page,
+   so what the writer sees is what readers get. Unlayered on purpose: it must
+   win over Tailwind's preflight reset (which removes heading/list spacing).
+   ========================================================================== */
+.post-content {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+.post-content > * + * { margin-top: 1.5em; }
+.post-content > :first-child { margin-top: 0; }
+
+/* Opening paragraph reads as a lead */
+.post-content > p:first-child { font-size: 1.28em; line-height: 1.7; color: #1f2937; }
+
+.post-content p { margin: 0; }
+.post-content p + p { margin-top: 1.5em; }
+.post-content strong { color: #111827; font-weight: 700; }
+.post-content em { font-style: italic; }
+.post-content s { opacity: .65; }
+.post-content a { color: #8d171c; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.post-content a:hover { color: #5c0f13; }
+
+.post-content h1,
+.post-content h2 {
+  color: #111827;
+  font-size: 1.9rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-top: 2.6em;
+  margin-bottom: 0;
+  padding-top: 0.9em;
+  border-top: 3px solid #8d171c1f;
+}
+.post-content h3 {
+  color: #111827;
+  font-size: 1.45rem;
+  line-height: 1.3;
+  font-weight: 700;
+  margin-top: 2.2em;
+  margin-bottom: 0;
+}
+.post-content h1 + *, .post-content h2 + *, .post-content h3 + * { margin-top: 0.8em; }
+.post-content > h1:first-child, .post-content > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+
+.post-content ul, .post-content ol { padding-left: 1.6rem; }
+.post-content ul { list-style: disc; }
+.post-content ol { list-style: decimal; }
+.post-content li { padding-left: 0.3rem; }
+.post-content li + li { margin-top: 0.6em; }
+.post-content li::marker { color: #8d171c; font-weight: 700; }
+.post-content li > p { margin: 0; }
+.post-content li > ul, .post-content li > ol { margin-top: 0.6em; }
+
+.post-content blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid #8d171c;
+  background: #faf5f5;
+  border-radius: 0 14px 14px 0;
+  color: #1f2937;
+  font-size: 1.12em;
+  font-style: italic;
+}
+.post-content blockquote p + p { margin-top: 0.9em; }
+
+.post-content hr {
+  border: 0;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 3em auto;
+  width: 40%;
+}
+
+.post-content code {
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
+}
+.post-content pre {
+  background: #111827;
+  color: #f9fafb;
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  overflow-x: auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.post-content pre code { background: none; padding: 0; color: inherit; }
+
+/* Images: block, rounded, with size and alignment chosen in the editor */
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.25);
+}
+.post-content img[data-size="small"] { width: 45%; }
+.post-content img[data-size="medium"] { width: 70%; }
+.post-content img[data-size="full"] { width: 100%; }
+.post-content img[data-align="left"] { margin-left: 0; margin-right: auto; }
+.post-content img[data-align="right"] { margin-left: auto; margin-right: 0; }
+.post-content img.ProseMirror-selectednode { outline: 3px solid #8d171c; outline-offset: 3px; }
+
+/* Callout boxes */
+.post-content div[data-callout] {
+  padding: 1.2rem 1.4rem;
+  border-radius: 14px;
+  border-left: 5px solid;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.post-content div[data-callout] > * + * { margin-top: 0.8em; }
+.post-content div[data-callout="info"] { background: #eff6ff; border-color: #2563eb; color: #1e3a8a; }
+.post-content div[data-callout="tip"] { background: #f0fdf4; border-color: #16a34a; color: #14532d; }
+.post-content div[data-callout="warning"] { background: #fffbeb; border-color: #d97706; color: #78350f; }
+.post-content div[data-callout] strong { color: inherit; }
+
+/* Editor placeholder */
+.post-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .post-content { font-size: 1.0625rem; line-height: 1.8; }
+  .post-content h1, .post-content h2 { font-size: 1.6rem; }
+  .post-content h3 { font-size: 1.3rem; }
+  .post-content img[data-size="small"], .post-content img[data-size="medium"] { width: 100%; }
+}
