@@ -9,10 +9,24 @@ import type { BlogPost } from '@/app/data/blog';
 
 const POSTS_PER_PAGE = 12;
 
+type SortKey = 'newest' | 'oldest' | 'az' | 'za' | 'shortest' | 'longest';
+
+const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+  { value: 'newest', label: 'Newest first' },
+  { value: 'oldest', label: 'Oldest first' },
+  { value: 'az', label: 'Title A–Z' },
+  { value: 'za', label: 'Title Z–A' },
+  { value: 'shortest', label: 'Shortest read' },
+  { value: 'longest', label: 'Longest read' },
+];
+
+const minutes = (readTime: string) => parseInt(readTime, 10) || 0;
+
 export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
   const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [sortKey, setSortKey] = useState<SortKey>('newest');
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -55,9 +69,29 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
     [sortedPosts, activeCategory]
   );
 
-  // Featured is only meaningful when viewing All
-  const featured = activeCategory === 'All' ? filteredPosts[0] : null;
-  const rest = activeCategory === 'All' ? filteredPosts.slice(1) : filteredPosts;
+  // Apply the chosen sort order (newest-first is the base order)
+  const orderedPosts = useMemo(() => {
+    const list = [...filteredPosts];
+    switch (sortKey) {
+      case 'oldest':
+        return list.reverse();
+      case 'az':
+        return list.sort((a, b) => a.title.localeCompare(b.title));
+      case 'za':
+        return list.sort((a, b) => b.title.localeCompare(a.title));
+      case 'shortest':
+        return list.sort((a, b) => minutes(a.readTime) - minutes(b.readTime));
+      case 'longest':
+        return list.sort((a, b) => minutes(b.readTime) - minutes(a.readTime));
+      default:
+        return list;
+    }
+  }, [filteredPosts, sortKey]);
+
+  // Featured post only when viewing All, newest first
+  const showFeatured = activeCategory === 'All' && sortKey === 'newest';
+  const featured = showFeatured ? orderedPosts[0] : null;
+  const rest = showFeatured ? orderedPosts.slice(1) : orderedPosts;
 
   const gridPosts = rest.slice(0, visibleCount);
   const hasMore = visibleCount < rest.length;
@@ -103,8 +137,26 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
           <div className="lg:col-span-8">
             <div className="mb-6 flex items-center justify-between flex-wrap gap-4">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                {activeCategory === 'All' ? 'Latest Articles' : activeCategory}
+                {activeCategory === 'All' ? (sortKey === 'newest' ? 'Latest Articles' : 'All Articles') : activeCategory}
               </h2>
+
+              <label className="inline-flex items-center gap-2 text-sm text-gray-600">
+                Sort by
+                <select
+                  value={sortKey}
+                  onChange={(e) => {
+                    setSortKey(e.target.value as SortKey);
+                    setVisibleCount(POSTS_PER_PAGE);
+                  }}
+                  className="rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-red-500"
+                >
+                  {SORT_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
               {activeCategory !== 'All' && (
                 <button

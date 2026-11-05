@@ -367,10 +367,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/writing-is-a-transaction/hero.webp",
     category: "Writing",
     readTime: "7 min read",
-    date: "November 5, 2026",
+    date: "November 4, 2026",
     author: "Layo Obidike",
     keyword: "what makes good writing",
-    isoDate: "2026-11-05"
+    isoDate: "2026-11-04"
 },
 {
     id: 33,
@@ -380,10 +380,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/the-secret-of-good-writing/hero.webp",
     category: "Writing",
     readTime: "12 min read",
-    date: "November 5, 2026",
+    date: "November 4, 2026",
     author: "Layo Obidike",
     keyword: "simple writing",
-    isoDate: "2026-11-05"
+    isoDate: "2026-11-04"
 },
 {
     id: 34,
@@ -393,10 +393,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/declutter-your-writing/hero.webp",
     category: "Writing",
     readTime: "8 min read",
-    date: "November 5, 2026",
+    date: "November 4, 2026",
     author: "Layo Obidike",
     keyword: "declutter your writing",
-    isoDate: "2026-11-05"
+    isoDate: "2026-11-04"
 },
 {
     id: 35,
@@ -406,10 +406,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/be-yourself-on-the-page/hero.webp",
     category: "Writing",
     readTime: "12 min read",
-    date: "November 5, 2026",
+    date: "November 4, 2026",
     author: "Layo Obidike",
     keyword: "finding your writing voice",
-    isoDate: "2026-11-05"
+    isoDate: "2026-11-04"
 },
 {
     id: 36,
@@ -419,9 +419,9 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/write-for-yourself-first/hero.webp",
     category: "Writing",
     readTime: "5 min read",
-    date: "November 5, 2026",
+    date: "November 4, 2026",
     author: "Layo Obidike",
     keyword: "write for yourself first",
-    isoDate: "2026-11-05"
+    isoDate: "2026-11-04"
 }
 ];
