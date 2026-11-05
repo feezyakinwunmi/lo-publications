@@ -9,6 +9,7 @@ import PageCalculator from "./tools/PageCalculator";
 import RoyaltyCalculator from "./tools/RoyaltyCalculator";
 import ReadinessAssessment from "./tools/ReadinessAssessment";
 import MarketingPlanGenerator from "./tools/MarketingPlanGenerator";
+import BarcodeGenerator from "./tools/BarcodeGenerator";
 
 const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "book-publishing-cost-calculator": CostCalculator,
@@ -16,6 +17,7 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "book-royalty-calculator": RoyaltyCalculator,
   "manuscript-readiness-assessment": ReadinessAssessment,
   "book-marketing-plan-generator": MarketingPlanGenerator,
+  "barcode-generator": BarcodeGenerator,
 };
 
 const CTA: Record<string, { heading: string; text: string; button: string; href: string }> = {
@@ -49,6 +51,12 @@ const CTA: Record<string, { heading: string; text: string; button: string; href:
     button: "Ask About Launch Support",
     href: "/services#author-development",
   },
+  "barcode-generator": {
+    heading: "Need a print-ready cover with the barcode in place?",
+    text: "Our designers prepare full book covers, spine and back cover included, with your ISBN barcode placed where your printer expects it.",
+    button: "Talk to Us About Cover Design",
+    href: "/services#book-design",
+  },
 };
 
 export default function ToolShell({ tool }: { tool: ResourceTool }) {
@@ -57,7 +65,7 @@ export default function ToolShell({ tool }: { tool: ResourceTool }) {
   const others = RESOURCE_TOOLS.filter((t) => t.slug !== tool.slug).slice(0, 3);
 
   return (
-    <main className="bg-[#f8f6f3] pt-20">
+    <main className={`${tool.background === "white" ? "bg-white" : "bg-[#f8f6f3]"} pt-20`}>
       <ToolHero tool={tool} />
 
       <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
@@ -84,7 +92,7 @@ export default function ToolShell({ tool }: { tool: ResourceTool }) {
               <Link
                 key={t.slug}
                 href={`/resources/${t.slug}`}
-                className="group overflow-hidden rounded-3xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+                className={`group overflow-hidden rounded-3xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl ${tool.background === "white" ? "ring-1 ring-gray-200" : ""}`}
               >
                 <ToolVisual tool={t} />
                 <div className="p-6">

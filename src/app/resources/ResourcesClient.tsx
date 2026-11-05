@@ -115,7 +115,7 @@ export default function ResourcesClient() {
                 your book.
               </motion.h1>
               <motion.p variants={fadeUp} className="mt-6 max-w-xl text-lg text-white/80 md:text-xl">
-                Calculators, assessments and planners built by the LO Publications team, so you can make confident
+                Calculators, assessments, planners and a barcode generator built by the LO Publications team, so you can make confident
                 decisions about your book in minutes.
               </motion.p>
               <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">

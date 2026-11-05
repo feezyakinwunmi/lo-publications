@@ -3,7 +3,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calculator, CalendarDays, ClipboardCheck, Coins, FileText, type LucideIcon } from "lucide-react";
+import { Barcode, Calculator, CalendarDays, ClipboardCheck, Coins, FileText, type LucideIcon } from "lucide-react";
 import type { ResourceTool } from "./data";
 
 export const TOOL_ICONS: Record<string, LucideIcon> = {
@@ -12,6 +12,7 @@ export const TOOL_ICONS: Record<string, LucideIcon> = {
   "book-royalty-calculator": Coins,
   "manuscript-readiness-assessment": ClipboardCheck,
   "book-marketing-plan-generator": CalendarDays,
+  "barcode-generator": Barcode,
 };
 
 function CostArt() {
@@ -142,12 +143,40 @@ function MarketingArt() {
   );
 }
 
+function BarcodeArt() {
+  const bars = [3, 1, 2, 1, 1, 3, 1, 2, 2, 1, 1, 3, 1, 1, 2, 1, 3];
+  return (
+    <div className="relative rounded-lg bg-white px-3 pb-2 pt-3 shadow-lg">
+      <div className="flex h-14 items-stretch gap-[2px]">
+        {bars.map((w, i) => (
+          <motion.span
+            key={i}
+            className="block bg-gray-900"
+            style={{ width: w * 2 }}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 + i * 0.03, ease: "easeOut" }}
+          />
+        ))}
+      </div>
+      <p className="mt-1 text-center font-mono text-[9px] tracking-[.2em] text-gray-700">978 0 00000</p>
+      <motion.span
+        className="absolute inset-x-1 top-3 h-0.5 rounded bg-red-500 shadow-[0_0_8px_rgba(239,68,68,.9)]"
+        animate={{ y: [0, 52, 0] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </div>
+  );
+}
+
 const ART: Record<string, () => React.JSX.Element> = {
   "book-publishing-cost-calculator": CostArt,
   "word-count-to-page-calculator": PagesArt,
   "book-royalty-calculator": RoyaltyArt,
   "manuscript-readiness-assessment": ReadinessArt,
   "book-marketing-plan-generator": MarketingArt,
+  "barcode-generator": BarcodeArt,
 };
 
 // Coloured panel with the tool's icon and its little illustration.

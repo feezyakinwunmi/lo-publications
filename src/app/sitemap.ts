@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/resources/book-royalty-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/resources/manuscript-readiness-assessment`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/resources/book-marketing-plan-generator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/resources/barcode-generator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/blog/writing-is-a-transaction`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/blog/the-secret-of-good-writing`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/blog/declutter-your-writing`, lastModified: new Date('2026-11-04'), changeFrequency: 'monthly', priority: 0.7 },

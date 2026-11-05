@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       { source: "/casestudies/:slug", destination: "/authors/all?author=:slug", permanent: true },
       // Individual author pages became pop-ups on the all-authors page
       { source: "/authors/:slug((?!all$)[^/]+)", destination: "/authors/all?author=:slug", permanent: true },
+      // The barcode generator brief used /tools/barcode-generator; the tool lives with the other free resources
+      { source: "/tools/barcode-generator", destination: "/resources/barcode-generator", permanent: true },
     ];
   },
 };

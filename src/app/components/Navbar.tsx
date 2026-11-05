@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, ChevronDown, ArrowRight, Calculator } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { allBlogPosts } from "@/app/data/blog";
+import { RESOURCE_TOOLS } from "@/app/resources/data";
+import { TOOL_ICONS } from "@/app/resources/ToolVisual";
 
 interface NavLink {
   name: string;
@@ -30,7 +32,7 @@ const navLinks: NavLink[] = [
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/contact" },      
   { name: "Featured Authors", href: "/authors" },
-  { name: "Free Resources", href: "/resources" },
+  { name: "Free Resources", href: "/resources" }, // shown with a dropdown of the tools
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Young Authors Contest", href: "/young-authors-contest" },
@@ -39,6 +41,8 @@ const navLinks: NavLink[] = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -246,6 +250,8 @@ export default function Navbar() {
           { title: "Submit Manuscript", href: "/submit", type: "Page" },
           { title: "Young Authors Contest", href: "/young-authors-contest", type: "Page" },
           { title: "Featured Authors", href: "/authors", type: "Page" },
+          { title: "Free Resources", href: "/resources", type: "Page" },
+          ...RESOURCE_TOOLS.map((t) => ({ title: t.title, href: `/resources/${t.slug}`, type: "Tool", excerpt: t.short })),
         ];
 
         staticPages.forEach(page => {
@@ -306,6 +312,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        setResourcesOpen(false);
         setSearchOpen(false);
         setSearchQuery("");
         setSearchResults([]);
@@ -317,6 +324,8 @@ export default function Navbar() {
 
   const closeAllMenus = () => {
     setIsOpen(false);
+    setResourcesOpen(false);
+    setMobileResourcesOpen(false);
   };
 
   const handleSearchOpen = () => {
@@ -390,7 +399,90 @@ export default function Navbar() {
                 <Search className="h-4 w-4" />
               </motion.button>
 
-              {navLinks.map((link) => (
+              {navLinks.map((link) =>
+                link.href === "/resources" ? (
+                  <div
+                    key={link.name}
+                    className="relative"
+                    onMouseEnter={() => setResourcesOpen(true)}
+                    onMouseLeave={() => setResourcesOpen(false)}
+                    onBlur={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setResourcesOpen(false);
+                    }}
+                  >
+                    <div className="flex items-center gap-0.5">
+                      <Link href={link.href} onClick={closeAllMenus}>
+                        <motion.span
+                          whileHover={{ y: -1 }}
+                          className="border-b-2 border-transparent py-2 text-sm font-medium text-white/85 transition hover:border-white hover:text-white whitespace-nowrap"
+                        >
+                          {link.name}
+                        </motion.span>
+                      </Link>
+                      <button
+                        type="button"
+                        aria-label="Show free resources"
+                        aria-expanded={resourcesOpen}
+                        aria-controls="nav-resources-menu"
+                        onClick={() => setResourcesOpen((o) => !o)}
+                        className="rounded p-1 text-white/85 transition hover:text-white"
+                      >
+                        <ChevronDown className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`} />
+                      </button>
+                    </div>
+
+                    <AnimatePresence>
+                      {resourcesOpen && (
+                        <div className="absolute left-1/2 top-full z-50 w-[400px] -translate-x-1/2 pt-3">
+                          <motion.div
+                            id="nav-resources-menu"
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.18 }}
+                            className="overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5"
+                          >
+                            <p className="px-5 pb-1 pt-4 text-[11px] font-bold uppercase tracking-[.18em] text-gray-400">Free tools</p>
+                            <div className="p-2">
+                              {RESOURCE_TOOLS.map((t) => {
+                                const Icon = TOOL_ICONS[t.slug] ?? Calculator;
+                                return (
+                                  <Link
+                                    key={t.slug}
+                                    href={`/resources/${t.slug}`}
+                                    onClick={closeAllMenus}
+                                    className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-gray-50"
+                                  >
+                                    <span
+                                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
+                                      style={{ background: t.accent }}
+                                    >
+                                      <Icon size={18} />
+                                    </span>
+                                    <span className="min-w-0">
+                                      <span className="block text-sm font-semibold text-gray-900 transition group-hover:text-[#8d171c]">
+                                        {t.title}
+                                      </span>
+                                      <span className="line-clamp-1 block text-xs text-gray-500">{t.short}</span>
+                                    </span>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                            <Link
+                              href="/resources"
+                              onClick={closeAllMenus}
+                              className="group flex items-center justify-between border-t border-gray-100 bg-gray-50 px-5 py-3 text-sm font-semibold text-[#8d171c]"
+                            >
+                              See all free resources
+                              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                            </Link>
+                          </motion.div>
+                        </div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
                   <Link key={link.name} href={link.href} onClick={closeAllMenus}>
                     <motion.span
                       whileHover={{ y: -1 }}
@@ -399,7 +491,8 @@ export default function Navbar() {
                         {link.name}
                     </motion.span>
                   </Link>
-              ))}
+                )
+              )}
             </div>
           </div>
         </div>
@@ -480,7 +573,59 @@ export default function Navbar() {
                   Search articles, blogs, books...
                 </button>
 
-                {navLinks.map((link) => (
+                {navLinks.map((link) =>
+                  link.href === "/resources" ? (
+                    <div key={link.name} className="border-b border-white/10">
+                      <div className="flex items-center justify-between">
+                        <Link
+                          href={link.href}
+                          className="block flex-1 text-white text-base font-medium hover:text-red-200 transition py-2"
+                          onClick={closeAllMenus}
+                        >
+                          {link.name}
+                        </Link>
+                        <button
+                          type="button"
+                          aria-label="Show free resources"
+                          aria-expanded={mobileResourcesOpen}
+                          onClick={() => setMobileResourcesOpen((o) => !o)}
+                          className="rounded-lg p-2 text-white hover:bg-white/10"
+                        >
+                          <ChevronDown className={`h-5 w-5 transition-transform ${mobileResourcesOpen ? "rotate-180" : ""}`} />
+                        </button>
+                      </div>
+                      <AnimatePresence initial={false}>
+                        {mobileResourcesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="space-y-1 pb-3 pl-2">
+                              {RESOURCE_TOOLS.map((t) => {
+                                const Icon = TOOL_ICONS[t.slug] ?? Calculator;
+                                return (
+                                  <Link
+                                    key={t.slug}
+                                    href={`/resources/${t.slug}`}
+                                    onClick={closeAllMenus}
+                                    className="flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-white/90 transition hover:bg-white/10 hover:text-white"
+                                  >
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/15">
+                                      <Icon size={16} />
+                                    </span>
+                                    {t.title}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
                     <Link
                       key={link.name}
                       href={link.href}
@@ -489,7 +634,8 @@ export default function Navbar() {
                     >
                       {link.name}
                     </Link>
-                ))}
+                  )
+                )}
               </div>
             </motion.div>
           )}

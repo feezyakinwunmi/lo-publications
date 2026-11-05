@@ -13,6 +13,7 @@ export type ResourceTool = {
   time: string; // how long it takes
   gradient: string; // Tailwind gradient classes for the card visual
   accent: string; // solid accent colour
+  background?: "white"; // page background for the tool page (default is the warm off-white)
 };
 
 export const RESOURCE_TOOLS: ResourceTool[] = [
@@ -75,6 +76,19 @@ export const RESOURCE_TOOLS: ResourceTool[] = [
     time: "2 min",
     gradient: "from-amber-500 via-orange-500 to-rose-500",
     accent: "#f97316",
+  },
+  {
+    slug: "barcode-generator",
+    title: "Free Barcode Generator",
+    short: "Make ISBN barcodes with a price add-on, retail barcodes, stock labels and QR codes. Download PNG, SVG or PDF.",
+    description:
+      "Free ISBN barcode generator for your book cover, plus EAN-13, UPC-A, Code 128, Code 39 and QR codes. Add a price, a caption and download PNG, SVG or PDF. No sign-up, no watermark.",
+    category: "Publishing",
+    keyword: "ISBN barcode generator",
+    time: "1 min",
+    gradient: "from-gray-900 via-[#5c0f13] to-[#8d171c]",
+    accent: "#8d171c",
+    background: "white",
   },
 ];
 
