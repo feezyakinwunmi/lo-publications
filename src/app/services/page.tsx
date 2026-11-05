@@ -99,9 +99,8 @@ export default function ServicesPage() {
             <article id={group.id} key={group.id} className="scroll-mt-28">
               <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
                 <div className={imageFirst ? "lg:order-2" : ""}>
-                  <div className="relative overflow-hidden rounded-3xl bg-[#f8f6f3] shadow-xl">
-                    <img src={group.image} alt={group.imageAlt} className="h-[360px] w-full object-cover md:h-[470px]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                  <div className="relative overflow-hidden rounded-3xl bg-[#efe9e2] shadow-xl">
+                    <img src={group.image} alt={group.imageAlt} className="h-[420px] w-full object-contain p-6 drop-shadow-xl md:h-[540px]" />
                     <div className="absolute bottom-5 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#8d171c] shadow-lg"><Icon size={22} /></div>
                   </div>
                 </div>
