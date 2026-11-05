@@ -1,11 +1,7 @@
 // src/app/young-authors-contest/page.tsx
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins } from "next/font/google";
 import ContestClient from "./ContestClient";
 import { ALL_FAQS } from "./contestData";
-
-const playfair = Playfair_Display({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-playfair", display: "swap" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
 
 const PAGE_URL = "https://lopublications.com/young-authors-contest";
 
@@ -58,9 +54,9 @@ const jsonLd = [
 
 export default function YoungAuthorsContestPage() {
   return (
-    <div className={`${poppins.className} ${playfair.variable}`}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <ContestClient />
-    </div>
+    </>
   );
 }

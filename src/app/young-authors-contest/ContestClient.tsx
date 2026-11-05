@@ -110,7 +110,7 @@ function SectionTitle({
       className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}
     >
       <Eyebrow light={light}>{eyebrow}</Eyebrow>
-      <h2 className={`yac-serif mt-4 text-3xl font-bold leading-tight md:text-5xl ${light ? "text-white" : "text-[#64152D]"}`}>{title}</h2>
+      <h2 className={`mt-4 text-2xl font-bold leading-tight md:text-4xl ${light ? "text-white" : "text-[#64152D]"}`}>{title}</h2>
       {text && <p className={`mt-4 text-base leading-relaxed md:text-lg ${light ? "text-white/80" : "text-[#171717]/70"}`}>{text}</p>}
     </motion.div>
   );
@@ -190,7 +190,7 @@ function Countdown() {
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {parts.map((p) => (
           <div key={p.l} className="rounded-xl bg-white/95 px-1 py-2.5 text-center shadow-sm">
-            <p className="text-2xl font-bold tabular-nums text-[#64152D] sm:text-3xl">{String(p.v).padStart(2, "0")}</p>
+            <p className="text-xl font-bold tabular-nums text-[#64152D] sm:text-2xl">{String(p.v).padStart(2, "0")}</p>
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[#171717]/55">{p.l}</p>
           </div>
         ))}
@@ -321,7 +321,7 @@ export default function ContestClient() {
     <MotionConfig reducedMotion="user">
       <main className="overflow-x-hidden bg-white text-[#171717]">
         {/* =============================== HERO =============================== */}
-        <section className="relative overflow-hidden bg-[#64152D] pb-20 pt-28 text-white md:pb-28 md:pt-36 lg:min-h-[88vh]">
+        <section className="relative overflow-hidden bg-[#64152D] pb-20 pt-28 text-white md:pb-24 md:pt-32 lg:min-h-[80vh]">
           {/* Decorative accents */}
           <motion.div
             aria-hidden="true"
@@ -341,7 +341,7 @@ export default function ContestClient() {
             style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "24px 24px" }}
           />
 
-          <div className="relative mx-auto grid max-w-[1280px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.05fr]">
+          <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.05fr]">
             <motion.div initial="hidden" animate="show" variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
               <motion.span
                 variants={fadeUp}
@@ -350,7 +350,7 @@ export default function ContestClient() {
                 <Sparkles size={14} /> Young Authors Contest 2027
               </motion.span>
 
-              <motion.h1 variants={fadeUp} className="yac-serif mt-6 text-[2.6rem] font-bold leading-[1.05] sm:text-6xl xl:text-7xl">
+              <motion.h1 variants={fadeUp} className="mt-6 text-[2.25rem] font-bold leading-[1.05] sm:text-5xl xl:text-6xl">
                 Your Story.
                 <br />
                 Your Voice.
@@ -462,8 +462,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== HIGHLIGHTS =============================== */}
-        <section aria-labelledby="highlights-title" className="bg-white py-16 md:py-24">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+        <section aria-labelledby="highlights-title" className="bg-white py-16 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <h2 id="highlights-title" className="sr-only">Contest highlights</h2>
             <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr]">
               <motion.div
@@ -502,8 +502,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== ABOUT =============================== */}
-        <section id="about" aria-labelledby="about-title" className="scroll-mt-24 bg-[#fbf6f3] py-16 md:py-24">
-          <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
+        <section id="about" aria-labelledby="about-title" className="scroll-mt-24 bg-[#fbf6f3] py-16 md:py-20">
+          <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -554,8 +554,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== CATEGORIES =============================== */}
-        <section id="categories" aria-labelledby="categories-title" className="scroll-mt-24 bg-white py-16 md:py-24">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+        <section id="categories" aria-labelledby="categories-title" className="scroll-mt-24 bg-white py-16 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <SectionTitle
               center
               eyebrow="Competition categories"
@@ -591,8 +591,8 @@ export default function ContestClient() {
                         <Icon size={14} /> Category {i + 1}
                       </span>
                     </div>
-                    <div className="flex flex-1 flex-col p-7 md:p-8">
-                      <h3 className={`yac-serif text-3xl font-bold ${film ? "text-white" : "text-[#64152D]"}`}>{c.title}</h3>
+                    <div className="flex flex-1 flex-col p-6 md:p-7">
+                      <h3 className={`text-2xl font-bold ${film ? "text-white" : "text-[#64152D]"}`}>{c.title}</h3>
                       <p className={`mt-3 leading-relaxed ${film ? "text-white/75" : "text-[#171717]/70"}`}>{c.text}</p>
                       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
                         <span className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold ${film ? "bg-white/10 text-[#F2B544]" : "bg-[#C62836]/8 text-[#C62836]"}`}>
@@ -611,9 +611,9 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== ELIGIBILITY =============================== */}
-        <section id="eligibility" aria-labelledby="eligibility-title" className="relative scroll-mt-24 overflow-hidden bg-[#64152D] py-16 text-white md:py-24">
+        <section id="eligibility" aria-labelledby="eligibility-title" className="relative scroll-mt-24 overflow-hidden bg-[#64152D] py-16 text-white md:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-[#C62836]/40 blur-3xl" />
-          <div className="relative mx-auto grid max-w-[1280px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
+          <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
             <div>
               <SectionTitle light eyebrow="Who can participate?" title={<span id="eligibility-title">Open to young writers around the world</span>} />
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -656,8 +656,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== HOW TO PARTICIPATE =============================== */}
-        <section id="guidelines" aria-labelledby="steps-title" className="scroll-mt-24 bg-white py-16 md:py-24">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+        <section id="guidelines" aria-labelledby="steps-title" className="scroll-mt-24 bg-white py-16 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <SectionTitle center eyebrow="How to participate" title={<span id="steps-title">Five steps from idea to award</span>} />
 
             <motion.div
@@ -687,7 +687,7 @@ export default function ContestClient() {
                     i === 0 || i === 2 ? "ring-[#C62836]/40" : "ring-[#171717]/8"
                   }`}
                 >
-                  <div className="relative flex h-44 items-end justify-center bg-gradient-to-b from-[#fbf3ee] to-[#f6e6df]">
+                  <div className="relative flex h-40 items-end justify-center bg-gradient-to-b from-[#fbf3ee] to-[#f6e6df]">
                     <img src={s.img} alt={s.alt} width={s.w} height={620} loading="lazy" className="h-full w-auto object-contain" />
                     <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#64152D] text-sm font-bold text-white shadow">
                       {i + 1}
@@ -717,8 +717,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== DATES =============================== */}
-        <section id="dates" aria-labelledby="dates-title" className="scroll-mt-24 bg-[#fbf6f3] py-16 md:py-24">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+        <section id="dates" aria-labelledby="dates-title" className="scroll-mt-24 bg-[#fbf6f3] py-16 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_1fr]">
               <SectionTitle eyebrow="Important dates" title={<span id="dates-title">Mark your calendar</span>} />
               <motion.div
@@ -772,12 +772,12 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== PRIZES =============================== */}
-        <section id="prizes" aria-labelledby="prizes-title" className="relative scroll-mt-24 overflow-hidden bg-[#171717] py-16 text-white md:py-24">
+        <section id="prizes" aria-labelledby="prizes-title" className="relative scroll-mt-24 overflow-hidden bg-[#171717] py-16 text-white md:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#64152D]/60 blur-3xl" />
-          <div className="relative mx-auto max-w-[1280px] px-5 sm:px-8">
+          <div className="relative mx-auto max-w-[1200px] px-5 sm:px-8">
             <SectionTitle center light eyebrow="Prizes and awards" title={<span id="prizes-title">Your words could win</span>} />
 
-            <div className="mt-14 grid items-end gap-6 md:grid-cols-3">
+            <div className="mt-12 grid items-end gap-6 md:grid-cols-3">
               {PRIZES.map((p, i) => {
                 const first = p.rank === 1;
                 return (
@@ -799,7 +799,7 @@ export default function ContestClient() {
                         Top prize
                       </span>
                     )}
-                    <div className={`mx-auto ${first ? "w-48 pt-8" : "w-40 pt-6"}`}>
+                    <div className={`mx-auto ${first ? "w-40 pt-7" : "w-32 pt-5"}`}>
                       <motion.img
                         src={p.image}
                         alt={`${p.alt} for ${p.place}`}
@@ -813,7 +813,7 @@ export default function ContestClient() {
                     </div>
                     <div className="px-6 pb-8 pt-2">
                       <p className={`text-sm font-semibold uppercase tracking-[.2em] ${first ? "text-[#171717]/70" : "text-white/60"}`}>{p.place}</p>
-                      <p className={`yac-serif mt-1 font-bold ${first ? "text-6xl" : "text-5xl"}`}>{p.amount}</p>
+                      <p className={`mt-1 font-bold ${first ? "text-5xl" : "text-4xl"}`}>{p.amount}</p>
                       <p className={`mt-2 text-sm ${first ? "text-[#171717]/70" : "text-white/60"}`}>Cash award</p>
                     </div>
                   </motion.div>
@@ -829,11 +829,11 @@ export default function ContestClient() {
               variants={fadeUp}
               className="mx-auto mt-14 grid max-w-4xl items-center gap-6 rounded-3xl bg-white p-6 text-[#171717] shadow-2xl sm:grid-cols-[auto_1fr] md:p-8"
             >
-              <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C62836] text-white">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C62836] text-white">
                 <BookOpen size={30} />
               </span>
               <div>
-                <h3 className="yac-serif text-2xl font-bold text-[#64152D]">Publication opportunity</h3>
+                <h3 className="text-xl font-bold text-[#64152D]">Publication opportunity</h3>
                 <p className="mt-2 leading-relaxed text-[#171717]/75">
                   Selected entries are intended for publication by LO Publications, with a publication target of March 2027.
                   Authors retain full ownership of their work.
@@ -844,8 +844,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== JUDGING =============================== */}
-        <section id="judging" aria-labelledby="judging-title" className="scroll-mt-24 bg-white py-16 md:py-24">
-          <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_1fr]">
+        <section id="judging" aria-labelledby="judging-title" className="scroll-mt-24 bg-white py-16 md:py-20">
+          <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_1fr]">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -885,8 +885,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== PUBLISHING JOURNEY =============================== */}
-        <section aria-labelledby="journey-title" className="bg-[#fbf6f3] py-16 md:py-24">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+        <section aria-labelledby="journey-title" className="bg-[#fbf6f3] py-16 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
             <SectionTitle
               center
               eyebrow="From manuscript to published book"
@@ -939,8 +939,8 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== FAQ =============================== */}
-        <section id="faq" aria-labelledby="faq-title" className="scroll-mt-24 bg-white py-16 md:py-24">
-          <div className="mx-auto grid max-w-[1280px] gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <section id="faq" aria-labelledby="faq-title" className="scroll-mt-24 bg-white py-16 md:py-20">
+          <div className="mx-auto grid max-w-[1200px] gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr]">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <SectionTitle eyebrow="Frequently asked questions" title={<span id="faq-title">Questions? We have answers.</span>} />
               <div className="mt-8 overflow-hidden rounded-3xl bg-[#fbf3ee] shadow-md">
@@ -975,13 +975,13 @@ export default function ContestClient() {
         </section>
 
         {/* =============================== FINAL CTA =============================== */}
-        <section id="contact" aria-labelledby="cta-title" className="relative scroll-mt-24 overflow-hidden bg-[#64152D] py-16 text-white md:py-24">
+        <section id="contact" aria-labelledby="cta-title" className="relative scroll-mt-24 overflow-hidden bg-[#64152D] py-16 text-white md:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-[#C62836]/50 blur-3xl" />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[.06]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-          <div className="relative mx-auto grid max-w-[1280px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
+          <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
               <motion.div variants={fadeUp}><Eyebrow light>Your moment</Eyebrow></motion.div>
-              <motion.h2 variants={fadeUp} id="cta-title" className="yac-serif mt-4 text-4xl font-bold leading-tight md:text-6xl">
+              <motion.h2 variants={fadeUp} id="cta-title" className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
                 Your story deserves to be told.
               </motion.h2>
               <motion.p variants={fadeUp} className="mt-5 max-w-xl text-lg text-white/85">
@@ -992,7 +992,7 @@ export default function ContestClient() {
                   href={APPLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex min-h-[56px] items-center gap-2 rounded-xl bg-white px-8 py-4 font-semibold uppercase tracking-wide text-[#C62836] shadow-2xl transition hover:-translate-y-0.5"
+                  className="group inline-flex min-h-[52px] items-center gap-2 rounded-xl bg-white px-7 py-3.5 font-semibold uppercase tracking-wide text-[#C62836] shadow-2xl transition hover:-translate-y-0.5"
                 >
                   Register for the Contest <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </a>
