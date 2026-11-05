@@ -10,6 +10,8 @@ export type BlogPost = {
   readTime: string;
   date: string;
   author: string;
+  keyword?: string;
+  isoDate?: string;
 };
 
 export const allBlogPosts: BlogPost[] = [
@@ -356,5 +358,70 @@ export const allBlogPosts: BlogPost[] = [
     readTime: "7 min read",
     date: "October 30, 2026",
     author: "LOPublications"
+},
+{
+    id: 32,
+    title: "Writing Is a Transaction",
+    slug: "writing-is-a-transaction",
+    excerpt: "Good writing is not a display of skill. It is a transaction between two people. Here is what that means for every page you write.",
+    image: "/blog/writing-is-a-transaction/hero.webp",
+    category: "Writing",
+    readTime: "7 min read",
+    date: "November 5, 2026",
+    author: "Layo Obidike",
+    keyword: "what makes good writing",
+    isoDate: "2026-11-05"
+},
+{
+    id: 33,
+    title: "The Secret of Good Writing",
+    slug: "the-secret-of-good-writing",
+    excerpt: "Strip every sentence to its cleanest parts. Why simplicity is the core of good writing, and how to practise it.",
+    image: "/blog/the-secret-of-good-writing/hero.webp",
+    category: "Writing",
+    readTime: "12 min read",
+    date: "November 5, 2026",
+    author: "Layo Obidike",
+    keyword: "simple writing",
+    isoDate: "2026-11-05"
+},
+{
+    id: 34,
+    title: "Declutter Your Writing",
+    slug: "declutter-your-writing",
+    excerpt: "Clutter is unnecessary language that gets in the way of meaning. Learn how to spot it, cut it and keep what the thought requires.",
+    image: "/blog/declutter-your-writing/hero.webp",
+    category: "Writing",
+    readTime: "8 min read",
+    date: "November 5, 2026",
+    author: "Layo Obidike",
+    keyword: "declutter your writing",
+    isoDate: "2026-11-05"
+},
+{
+    id: 35,
+    title: "Be Yourself on the Page",
+    slug: "be-yourself-on-the-page",
+    excerpt: "Your voice is not your vocabulary. How to learn from the writers you admire without copying them, and sound like yourself on the page.",
+    image: "/blog/be-yourself-on-the-page/hero.webp",
+    category: "Writing",
+    readTime: "12 min read",
+    date: "November 5, 2026",
+    author: "Layo Obidike",
+    keyword: "finding your writing voice",
+    isoDate: "2026-11-05"
+},
+{
+    id: 36,
+    title: "Write for Yourself First",
+    slug: "write-for-yourself-first",
+    excerpt: "Know your reader, but do not write for approval. Why writing for yourself first makes your work more honest and worth reading.",
+    image: "/blog/write-for-yourself-first/hero.webp",
+    category: "Writing",
+    readTime: "5 min read",
+    date: "November 5, 2026",
+    author: "Layo Obidike",
+    keyword: "write for yourself first",
+    isoDate: "2026-11-05"
 }
 ];

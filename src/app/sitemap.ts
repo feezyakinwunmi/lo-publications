@@ -15,5 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/careers`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/submit`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${baseUrl}/blog/writing-is-a-transaction`, lastModified: new Date('2026-11-05'), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/blog/the-secret-of-good-writing`, lastModified: new Date('2026-11-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/blog/declutter-your-writing`, lastModified: new Date('2026-11-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/blog/be-yourself-on-the-page`, lastModified: new Date('2026-11-05'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/blog/write-for-yourself-first`, lastModified: new Date('2026-11-05'), changeFrequency: 'monthly', priority: 0.7 },
   ]
 }

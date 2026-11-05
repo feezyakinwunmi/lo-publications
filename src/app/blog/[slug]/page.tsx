@@ -41,6 +41,13 @@ import ChildrensPictureBookOttawa from './posts/ChildrensPictureBookOttawa';
 import ChooseChildrensBookIllustrator from './posts/ChooseChildrensBookIllustrator';
 import PrepareIllustrationsForPrint from './posts/PrepareIllustrationsForPrint';
 
+// ========== WRITING CLUSTER ==========
+import WritingIsATransaction from './posts/WritingIsATransaction';
+import TheSecretOfGoodWriting from './posts/TheSecretOfGoodWriting';
+import DeclutterYourWriting from './posts/DeclutterYourWriting';
+import BeYourselfOnThePage from './posts/BeYourselfOnThePage';
+import WriteForYourselfFirst from './posts/WriteForYourselfFirst';
+
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -83,13 +90,51 @@ const PostComponents: Record<string, React.ComponentType> = {
   "how-to-publish-a-childrens-picture-book-ottawa": ChildrensPictureBookOttawa,
   "how-to-choose-an-illustrator-for-your-childrens-book": ChooseChildrensBookIllustrator,
   "prepare-childrens-book-illustrations-for-print": PrepareIllustrationsForPrint,
+
+  // ========== WRITING CLUSTER ==========
+  "writing-is-a-transaction": WritingIsATransaction,
+  "the-secret-of-good-writing": TheSecretOfGoodWriting,
+  "declutter-your-writing": DeclutterYourWriting,
+  "be-yourself-on-the-page": BeYourselfOnThePage,
+  "write-for-yourself-first": WriteForYourselfFirst,
 };
+
+const SITE_URL = 'https://lopublications.com';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = allBlogPosts.find(p => p.slug === slug);
 
   if (!post) return { title: "Post Not Found | LO Publications" };
+
+  // Writing cluster: meta title is the post title itself (all are under 60 characters).
+  if (post.keyword) {
+    return {
+      title: { absolute: post.title },
+      description: post.excerpt,
+      keywords: [post.keyword],
+      authors: [{ name: post.author }],
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        url: `/blog/${post.slug}`,
+        images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+        locale: "en_CA",
+        type: "article",
+        publishedTime: post.isoDate,
+        authors: [post.author],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: post.title,
+        description: post.excerpt,
+        images: [post.image],
+      },
+      alternates: {
+        canonical: `/blog/${post.slug}`,
+      },
+    };
+  }
 
   return {
     title: `${post.title} | LO Publications`,
@@ -135,9 +180,61 @@ export default async function BlogPostPage({ params }: Props) {
 
   const PostComponent = PostComponents[slug];
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const jsonLd = post.keyword
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt,
+          image: `${SITE_URL}${post.image}`,
+          author: { "@type": "Person", name: post.author },
+          publisher: {
+            "@type": "Organization",
+            name: "LO Publications",
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/logolop.png` },
+          },
+          datePublished: post.isoDate,
+          dateModified: post.isoDate,
+          url: postUrl,
+          mainEntityOfPage: postUrl,
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+            { "@type": "ListItem", position: 3, name: post.category, item: `${SITE_URL}/blog` },
+            { "@type": "ListItem", position: 4, name: post.title, item: postUrl },
+          ],
+        },
+      ]
+    : null;
+
   return (
     <div className="bg-gray-50 text-black min-h-screen pt-20">
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+        />
+      )}
       <div className="max-w-[90%] mx-auto px-6 py-8">
+        {post.keyword && (
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-500 mb-4">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li><Link href="/" className="hover:text-red-600">Home</Link></li>
+              <li aria-hidden="true">&gt;</li>
+              <li><Link href="/blog" className="hover:text-red-600">Blog</Link></li>
+              <li aria-hidden="true">&gt;</li>
+              <li><Link href="/blog" className="hover:text-red-600">{post.category}</Link></li>
+              <li aria-hidden="true">&gt;</li>
+              <li aria-current="page" className="text-gray-700">{post.title}</li>
+            </ol>
+          </nav>
+        )}
         <Link href="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-red-600 mb-8">
           <ArrowLeft className="w-5 h-5" /> Back to All Articles
         </Link>
@@ -195,7 +292,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                   <div>
                     <p className="font-semibold">{post.author}</p>
-                    <p className="text-sm text-gray-500">Publishing & Author Services Team</p>
+                    <p className="text-sm text-gray-500">{post.keyword ? 'LO Publications' : 'Publishing & Author Services Team'}</p>
                   </div>
                 </div>
               </div>
