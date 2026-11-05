@@ -9,7 +9,6 @@ import {
   ArrowRight, 
   BookOpen, 
   Calendar, 
-  Loader2, 
   ChevronLeft, 
   ChevronRight, 
   Quote, 
@@ -41,10 +40,11 @@ import {
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
 import { useSiteContent } from "./data/SiteContentProvider";
-import { SITE_STATS } from "./data/catalogue";
+import { SITE_STATS, authorHref, type CatalogueBook } from "./data/catalogue";
 import { homeFaqs } from "./data/faqs";
 import AuthorAvatar from "./authors/AuthorAvatar";
 import TiltCard from "./components/TiltCard";
+import BookCover from "./components/BookCover";
 import CountUp from "./components/CountUp";
 
 // Types for real data
@@ -88,7 +88,7 @@ const processSteps = [
 
 
 export default function HomeClient() {
-  const { showcaseAuthors, reviews } = useSiteContent();
+  const { showcaseAuthors, reviews, catalogue } = useSiteContent();
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -198,6 +198,11 @@ export default function HomeClient() {
   const prevTeamSlide = () => {
     setCurrentTeamSlide((prev) => (prev - 1 + Math.ceil(teamMembers.length / 4)) % Math.ceil(teamMembers.length / 4));
   };
+
+  // Library strip: two rows of covers, alternating titles so neighbours differ
+  const libraryBooks = [...catalogue].sort((a, b) => Number(!!b.coverImage) - Number(!!a.coverImage)).slice(0, 36);
+  const libraryRowA = libraryBooks.filter((_, i) => i % 2 === 0);
+  const libraryRowB = libraryBooks.filter((_, i) => i % 2 === 1);
 
   // Until the catalogue has approved titles, the hero shows our featured authors' books
   const heroCovers: Book[] = (
@@ -703,7 +708,7 @@ export default function HomeClient() {
       {/* =====================================================
           FEATURED BOOKS
       ====================================================== */}
-      <section id="books" className="py-24 bg-[#f8f6f3]">
+      <section id="books" className="py-24 bg-[#f8f6f3] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -718,46 +723,10 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          {loadingBooks ? (
-            <div className="text-center py-12">
-              <Loader2 className="animate-spin mx-auto" size={48} />
-              <p className="mt-4 text-gray-600">Loading featured books...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-12 text-red-600">{error}</div>
-          ) : featuredBooks.length === 0 ? (
-            <div className="text-center py-12 text-gray-600">No featured books yet. Check back soon!</div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {featuredBooks.map((book, index) => (
-                <motion.div
-                  key={book.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -10 }}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
-                    <img
-                      src={book.cover_url || "https://via.placeholder.com/800x800?text=No+Cover"}
-                      alt={book.title}
-                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-sm opacity-80">{book.published_year || "Published"}</p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-black mb-2 line-clamp-2">{book.title}</h3>
-                    <p className="text-gray-600">by {book.author}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+          <div className="marquee-pause space-y-5 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <LibraryRow books={libraryRowA} />
+            <LibraryRow books={libraryRowB} reverse />
+          </div>
 
           <div className="text-center mt-16">
             <motion.a
@@ -1305,5 +1274,32 @@ function Plus({ size = 24 }) {
       <line x1="12" y1="5" x2="12" y2="19" />
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
+  );
+}
+
+
+function LibraryRow({ books, reverse }: { books: CatalogueBook[]; reverse?: boolean }) {
+  if (books.length === 0) return null;
+  return (
+    <div className="flex overflow-hidden">
+      <div
+        className={`flex shrink-0 gap-5 pr-5 ${reverse ? "marquee-right" : "marquee-left"}`}
+        style={{ ["--marquee-duration" as string]: reverse ? "70s" : "60s" }}
+      >
+        {[...books, ...books].map((book, i) => (
+          <Link
+            key={`${book.slug}-${i}`}
+            href={authorHref(book.authorSlug)}
+            aria-hidden={i >= books.length}
+            tabIndex={i >= books.length ? -1 : undefined}
+            className="group w-36 shrink-0 sm:w-44"
+          >
+            <div className="overflow-hidden rounded-xl shadow-[0_16px_30px_-16px_rgba(0,0,0,.45)] transition-transform duration-500 group-hover:-translate-y-2">
+              <BookCover book={book} compact />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

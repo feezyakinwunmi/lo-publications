@@ -56,7 +56,7 @@ const pillars = [
   },
   {
     icon: Users,
-    title: "xcellence With Integrity",
+    title: "Excellence With Integrity",
     desc: "From manuscript to final publication, we uphold high editorial standards, professional quality, and integrity in every project we undertake.",
   },
   {
