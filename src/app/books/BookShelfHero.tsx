@@ -43,7 +43,7 @@ function spineStyle(book: CatalogueBook) {
   };
 }
 
-export default function BookShelfHero({ books: allBooks, totalTitles }: { books: CatalogueBook[]; totalTitles: number }) {
+export default function BookShelfHero({ books: allBooks, totalTitles }: { books: CatalogueBook[]; totalTitles: number | string }) {
   // Books with covers, grouped by category so the ruler reads cleanly
   const books = useMemo(() => {
     const order = CATEGORIES.map((c) => c.key as string);
