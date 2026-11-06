@@ -69,6 +69,7 @@ export default function BookShelfHero({ books: allBooks, totalTitles }: { books:
   const cursorRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const circlesRef = useRef<SVGGElement>(null);
+  const posterRef = useRef<SVGImageElement>(null);
 
   const [detail, setDetail] = useState<CatalogueBook | null>(null);
   const [counter, setCounter] = useState(START);
@@ -456,9 +457,12 @@ export default function BookShelfHero({ books: allBooks, totalTitles }: { books:
       circles.forEach((c, i) => {
         const t = Math.min(1, Math.max(0, (now - t0 - delays[i]) / 1250));
         if (t < 1) running = true;
-        c.setAttribute("r", String(720 * (1 - Math.pow(1 - t, 3))));
+        c.setAttribute("r", String(600 * (1 - Math.pow(1 - t, 3))));
       });
       if (running) raf = requestAnimationFrame(grow);
+      // Reveal finished: drop the ink mask so the cover is drawn plainly. Some browsers (Safari)
+      // stop painting a filtered mask once it settles, which left the poster blank.
+      else posterRef.current?.removeAttribute("mask");
     };
     raf = requestAnimationFrame(grow);
     document.body.style.overflow = "hidden";
@@ -752,7 +756,7 @@ export default function BookShelfHero({ books: allBooks, totalTitles }: { books:
             <div className="order-1 flex justify-center md:order-2">
               <svg viewBox="0 0 600 900" className="h-[46svh] w-auto drop-shadow-2xl md:h-[min(78vh,760px)]" role="img" aria-label={`Cover of ${detail.title}`}>
                 <defs>
-                  <filter id="shelf-ink" x="-20%" y="-20%" width="140%" height="140%">
+                  <filter id="shelf-ink" filterUnits="userSpaceOnUse" x="-80" y="-80" width="760" height="1060">
                     <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves={3} seed={7} />
                     <feDisplacementMap in="SourceGraphic" scale={120} xChannelSelector="R" yChannelSelector="G" />
                   </filter>
@@ -776,7 +780,7 @@ export default function BookShelfHero({ books: allBooks, totalTitles }: { books:
                   </clipPath>
                 </defs>
                 <g clipPath="url(#shelf-poster-clip)">
-                  <image href={detail.coverImage} width="600" height="900" preserveAspectRatio="xMidYMid slice" mask="url(#shelf-ink-mask)" />
+                  <image ref={posterRef} href={detail.coverImage} width="600" height="900" preserveAspectRatio="xMidYMid slice" mask="url(#shelf-ink-mask)" />
                 </g>
               </svg>
             </div>
