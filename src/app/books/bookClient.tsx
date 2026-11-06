@@ -4,9 +4,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
-import { X, BookOpen, User, Search, BookMarked, ArrowRight, Send, Sparkles, Layers } from "lucide-react";
+import { X, BookOpen, User, Search, ArrowRight, Send, Sparkles, Layers } from "lucide-react";
 import NextLink from "next/link";
 import BookCover from "../components/BookCover";
+import BookShelfHero from "./BookShelfHero";
 import {
   CATEGORIES,
   SITE_STATS,
@@ -68,36 +69,17 @@ export default function BookClient() {
   };
 
   return (
-    <main className="min-h-screen bg-[#f8f6f3] pb-20 pt-28 md:pt-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
-        >
-          <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#8d171c]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#8d171c]">
-              <BookMarked size={14} />
-              Our Catalogue
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-black md:text-6xl">Our Published Works</h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-gray-600">
-              Stories of faith, hope, learning and purpose, crafted with love and excellence by{" "}
-              {SITE_STATS.authors} authors.
-            </p>
-          </div>
-          <div className="flex gap-8">
-            <div>
-              <p className="text-4xl font-black text-[#8d171c]">{SITE_STATS.books}</p>
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Titles</p>
-            </div>
-            <div>
-              <p className="text-4xl font-black text-[#8d171c]">{CATEGORIES.length}</p>
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Categories</p>
-            </div>
-          </div>
-        </motion.div>
+    <main className="min-h-screen bg-[#f8f6f3] pb-20">
+      {/* Curved library shelf of our books */}
+      <BookShelfHero books={CATALOGUE} totalTitles={SITE_STATS.books} />
+
+      <div id="catalogue" className="mx-auto max-w-7xl scroll-mt-20 px-5 pt-12 sm:px-6">
+        <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <h2 className="text-3xl font-bold tracking-tight text-black md:text-4xl">The full catalogue</h2>
+          <p className="text-sm text-gray-500">
+            {SITE_STATS.books} titles · {CATEGORIES.length} categories · {SITE_STATS.authors} authors
+          </p>
+        </div>
 
         {/* Toolbar */}
         <div className="sticky top-16 z-30 -mx-5 mb-10 border-y border-black/5 bg-[#f8f6f3]/90 px-5 py-4 backdrop-blur-md sm:-mx-6 sm:px-6 xl:top-20">
