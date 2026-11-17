@@ -6,10 +6,13 @@ import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import MetaPixel from "./components/MetaPixel";
 import { Suspense } from "react";
-import {GoogleAnalytics} from "@next/third-parties/google"
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 
 const inter = Inter({ subsets: ["latin"] });
+const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
+  : null;
 
 export const metadata: Metadata = {
   title: "LO Publications - Premium Book Publishing",
@@ -23,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {supabaseOrigin && <link rel="preconnect" href={supabaseOrigin} crossOrigin="anonymous" />}
+      </head>
       <body className={`${inter.className} bg-brand-white text-black antialiased`}>
         <Navbar />
         {children}

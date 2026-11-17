@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import NextImage from "next/image";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { sendGAEvent } from '@next/third-parties/google'
 import { 
@@ -231,14 +232,14 @@ export default function HomeClient() {
                     whileHover={{ scale: 1.08, rotate: 0, zIndex: 20, transition: { duration: 0.3 } }}
                   >
                     <div className="aspect-[3/4] overflow-hidden rounded-xl border border-white/60 bg-[#ddd6ce] shadow-[20px_25px_50px_rgba(0,0,0,.2)]">
-                      <img
+                      <NextImage
                         src={book.cover_url || "/covers/web/rhapsody-of-love.webp"}
                         alt={book.title}
                         width={450}
                         height={600}
+                        sizes="(max-width: 639px) 160px, 200px"
                         loading={index === heroCovers.length - 1 ? "eager" : "lazy"}
                         fetchPriority={index === heroCovers.length - 1 ? "high" : "low"}
-                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>
