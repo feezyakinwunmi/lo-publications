@@ -37,8 +37,6 @@ import {
   Linkedin,
   Youtube
 } from "lucide-react";
-import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { DEMO_BOOKS, SHOW_DEMO_BOOKS } from "./books/data";
 import { useSiteContent } from "./data/SiteContentProvider";
 import { SITE_STATS, authorHref, type CatalogueBook } from "./data/catalogue";
 import { homeFaqs } from "./data/faqs";
@@ -88,10 +86,7 @@ const processSteps = [
 
 
 export default function HomeClient() {
-  const { showcaseAuthors, reviews, catalogue } = useSiteContent();
-  const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
-  const [loadingBooks, setLoadingBooks] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { reviews, catalogue } = useSiteContent();
   const { scrollYProgress } = useScroll();
 
   // Parallax effects
@@ -116,45 +111,6 @@ export default function HomeClient() {
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, []);
-
-  // Fetch latest 4 published books
-  useEffect(() => {
-    async function fetchFeaturedBooks() {
-      setLoadingBooks(true);
-
-      // Keep sample titles out of the public site until approved books are available.
-      if (!isSupabaseConfigured()) {
-        setFeaturedBooks(SHOW_DEMO_BOOKS ? DEMO_BOOKS.slice(0, 6) : []);
-        setLoadingBooks(false);
-        return;
-      }
-
-      const supabase = createClient();
-
-      if (!supabase) {
-        setFeaturedBooks(SHOW_DEMO_BOOKS ? DEMO_BOOKS.slice(0, 6) : []);
-        setLoadingBooks(false);
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("books")
-        .select("id, title, author, cover_url, published_year")
-        .order("published_year", { ascending: false })
-        .order("created_at", { ascending: false })
-        .limit(6);
-
-      if (error) {
-        console.error("Books fetch error:", error);
-        setError("Failed to load featured books");
-      } else {
-        setFeaturedBooks(data || []);
-      }
-      setLoadingBooks(false);
-    }
-
-    fetchFeaturedBooks();
   }, []);
 
   // Simple form submit
@@ -204,17 +160,15 @@ export default function HomeClient() {
   const libraryRowA = libraryBooks.filter((_, i) => i % 2 === 0);
   const libraryRowB = libraryBooks.filter((_, i) => i % 2 === 1);
 
-  // Until the catalogue has approved titles, the hero shows our featured authors' books
-  const heroCovers: Book[] = (
-    featuredBooks.length
-      ? featuredBooks
-      : showcaseAuthors.map((a) => ({
-          id: a.slug,
-          title: a.books[0].title,
-          author: a.name,
-          cover_url: a.books[0].coverImage,
-        }))
-  ).slice(0, 4);
+  const heroCovers: Book[] = catalogue
+    .filter((book) => book.coverImage)
+    .slice(0, 4)
+    .map((book, index) => ({
+      id: `${book.slug}-${book.authorSlug}-${index}`,
+      title: book.title,
+      author: book.author,
+      cover_url: book.coverImage,
+    }));
 
   const getVisibleTeam = () => {
     const start = currentTeamSlide * 4;
@@ -228,11 +182,8 @@ export default function HomeClient() {
       {/* =====================================================
           HERO - Original design
       ====================================================== */}
-      <motion.section 
+      <section
         className="relative min-h-screen overflow-hidden bg-[#f5f2ed] px-5 pb-10 pt-24 sm:px-8 lg:px-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
       >
         {/* organic shapes with parallax */}
         <motion.div 
@@ -248,11 +199,8 @@ export default function HomeClient() {
           <div className="grid min-h-[650px] items-center gap-8 lg:grid-cols-12">
 
             {/* BOOKS */}
-            <motion.div 
+            <div
               className="order-2 lg:order-1 lg:col-span-5"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="mb-3 flex items-center gap-3 text-[9px] font-bold uppercase tracking-[.25em] text-black/40">
                 <span className="h-2 w-2 rounded-full bg-[#8d171c]" />
@@ -267,7 +215,12 @@ export default function HomeClient() {
                     key={book.id}
                     className="absolute w-[160px] sm:w-[200px]"
                     style={{ zIndex: index + 2 }}
-                    initial={{ opacity: 0, y: 120, x: 0, rotate: 0 }}
+                    initial={{
+                      opacity: index === heroCovers.length - 1 ? 1 : 0,
+                      y: index === heroCovers.length - 1 ? 0 : 120,
+                      x: index === heroCovers.length - 1 ? 80 : 0,
+                      rotate: index === heroCovers.length - 1 ? 11 : 0,
+                    }}
                     animate={{ opacity: 1, y: [0, -8, 0], x: [-80, -28, 28, 80][index], rotate: [-11, -4, 5, 11][index] }}
                     transition={{
                       opacity: { duration: 0.5, delay: 0.4 + index * 0.12 },
@@ -283,20 +236,20 @@ export default function HomeClient() {
                         alt={book.title}
                         width={450}
                         height={600}
+                        loading={index === heroCovers.length - 1 ? "eager" : "lazy"}
+                        fetchPriority={index === heroCovers.length - 1 ? "high" : "low"}
+                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* HERO TEXT */}
-            <motion.div 
+            <div
               className="order-1 lg:order-2 lg:col-span-7"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
             >
               <p className="mb-5 text-[9px] font-bold uppercase tracking-[.25em] text-black/35">
                 Stories · Ideas · Books
@@ -336,15 +289,12 @@ export default function HomeClient() {
                   </span>
                 </motion.a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* bottom hero strip */}
-          <motion.div 
+          <div
             className="grid gap-4 md:grid-cols-12"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="relative min-h-[210px] overflow-hidden rounded-[22px] bg-black md:col-span-8">
               <img
@@ -352,6 +302,8 @@ export default function HomeClient() {
                 alt="The publishing experience"
                 width={960}
                 height={420}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover opacity-45"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
@@ -379,9 +331,9 @@ export default function HomeClient() {
                 <span className="text-[#8d171c]">STAY</span>
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Tiny Ticker */}
       <div className="bg-[#8d171c] text-white py-3 overflow-hidden whitespace-nowrap">

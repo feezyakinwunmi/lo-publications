@@ -64,6 +64,8 @@ export default function Navbar() {
 
   // Load all content
   useEffect(() => {
+    if (!searchOpen) return;
+
     const loadAllContent = async () => {
       setIsLoading(true);
       const items: SearchItem[] = [];
@@ -284,7 +286,7 @@ export default function Navbar() {
     };
 
     loadAllContent();
-  }, []);
+  }, [searchOpen]);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
