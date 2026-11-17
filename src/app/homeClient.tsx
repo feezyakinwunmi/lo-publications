@@ -60,14 +60,14 @@ const tickerText = `${SITE_STATS.books} Published Titles • Author-Centric Proc
 
 // Team members data
 const teamMembers = [
-  { name: "Layo Obidike",  image: "/Layo-Obidike.png" },
-  { name: "John", image: "/john.jpg" },
-  { name: "Kenny", image: "/kenny.jpg" },
-  { name: "Deb",image: "/deb.jpg" },
-  { name: "Akeem", image: "/akeem.png" },
-  { name: "Oma", image: "/oma.jpeg" },
-  { name: "Jul",image: "/jul.jpeg" },
-  { name: "Ade", image: "/ade.png" },
+  { name: "Layo Obidike",  image: "/team/web/layo-obidike.webp" },
+  { name: "John", image: "/team/web/john.webp" },
+  { name: "Kenny", image: "/team/web/kenny.webp" },
+  { name: "Deb",image: "/team/web/deb.webp" },
+  { name: "Akeem", image: "/team/web/akeem.webp" },
+  { name: "Oma", image: "/team/web/oma.webp" },
+  { name: "Jul",image: "/team/web/jul.webp" },
+  { name: "Ade", image: "/team/web/ade.webp" },
 ];
 
 // Stats data
@@ -279,8 +279,10 @@ export default function HomeClient() {
                   >
                     <div className="aspect-[3/4] overflow-hidden rounded-xl border border-white/60 bg-[#ddd6ce] shadow-[20px_25px_50px_rgba(0,0,0,.2)]">
                       <img
-                        src={book.cover_url || "/book.jpg"}
+                        src={book.cover_url || "/covers/web/rhapsody-of-love.webp"}
                         alt={book.title}
+                        width={450}
+                        height={600}
                         className="h-full w-full object-cover"
                       />
                     </div>
@@ -346,8 +348,10 @@ export default function HomeClient() {
           >
             <div className="relative min-h-[210px] overflow-hidden rounded-[22px] bg-black md:col-span-8">
               <img
-                src="/img1.jpg"
-                alt=""
+                src="/publishing-experience.webp"
+                alt="The publishing experience"
+                width={960}
+                height={420}
                 className="absolute inset-0 h-full w-full object-cover opacity-45"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
@@ -653,9 +657,11 @@ export default function HomeClient() {
             >
               <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-transparent ">
                 <img
-                  src="/book.jpg"
-                  alt="LO Publications"
-                  className="h-full w-full object-contain "
+                  src="/author-principles.webp"
+                  alt="LO Publications - Built around the author"
+                  width={600}
+                  height={750}
+                  className="h-full w-full object-cover"
                 />
               </div>
               <motion.div
@@ -783,6 +789,10 @@ export default function HomeClient() {
                     <img
                       src={member.image}
                       alt={member.name}
+                      width={144}
+                      height={144}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover object-[center_5%] grayscale-[30%] transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0"
                     />
                     <div className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-[#8d171c] to-[#8d171c]/70 py-2 text-xs font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
@@ -1185,7 +1195,15 @@ function FeaturedAuthorsShowcase() {
                     transition={{ type: "spring", stiffness: 120, damping: 12 }}
                     className="aspect-[3/4] overflow-hidden rounded-lg shadow-[0_30px_60px_rgba(0,0,0,.6)] ring-1 ring-white/10 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-105"
                   >
-                    <img src={book.coverImage} alt={book.title} className="h-full w-full object-cover" />
+                    <img
+                      src={book.coverImage}
+                      alt={book.title}
+                      width={450}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
                   </motion.div>
                 </Link>
                 <div>

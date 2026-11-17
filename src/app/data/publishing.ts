@@ -42,19 +42,19 @@ export const PUBLISHING_CATEGORIES: PublishingCategory[] = [
     title: "Fiction and Creative Writing",
     desc: "Novels, short stories, romance, mystery, thrillers, fantasy, science fiction, historical fiction, and young adult fiction.",
     icon: Feather,
-    img: "/ngozi.jpg",
+    img: "/covers/web/a-visit-to-aunt-ngozi.webp",
   },
   {
     title: "Nonfiction and General Interest",
     desc: "Memoirs, biographies, autobiographies, personal development, self-help, relationships, parenting, travel, and social commentary.",
     icon: BookOpen,
-    img: "/niw.jpg",
+    img: "/covers/web/names-ive-worn.webp",
   },
   {
     title: "Christian, Religious and Spiritual Books",
     desc: "Devotionals, Bible studies, theology, prayer books, sermons, Christian living, church leadership, discipleship, and ministry resources.",
     icon: Church,
-    img: "/rl.jpg",
+    img: "/covers/web/rhapsody-of-love.webp",
   },
   {
     title: "Business, Entrepreneurship and Finance",

@@ -382,6 +382,8 @@ export default function Navbar() {
                 <img
                   src="/logolop.png"
                   alt="LO Publications Logo"
+                  width={64}
+                  height={64}
                   className={`${logoSize} transition-all duration-500 drop-shadow-lg`}
                 />
               </motion.div>
@@ -522,6 +524,8 @@ export default function Navbar() {
                 <img
                   src="/logolop.png"
                   alt="LO Publications Logo"
+                  width={56}
+                  height={56}
                   className={`${scrolled ? "w-12 h-auto" : "w-14 h-auto"} transition-all duration-300 drop-shadow-lg`}
                 />
               </motion.div>

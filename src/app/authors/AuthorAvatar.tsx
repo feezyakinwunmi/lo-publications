@@ -8,6 +8,13 @@ const sizes = {
   xl: "h-36 w-36 text-4xl",
 };
 
+const pixelSizes = {
+  sm: 48,
+  md: 80,
+  lg: 112,
+  xl: 144,
+};
+
 export default function AuthorAvatar({
   author,
   size = "md",
@@ -17,6 +24,7 @@ export default function AuthorAvatar({
   size?: keyof typeof sizes;
   ring?: string;
 }) {
+  const dim = pixelSizes[size];
   return (
     <div
       className={`${sizes[size]} ${ring} relative shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-[#8d171c] to-[#4a0b0e] shadow-lg`}
@@ -25,6 +33,10 @@ export default function AuthorAvatar({
         <img
           src={author.photo}
           alt={author.name}
+          width={dim}
+          height={dim}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover object-[center_15%]"
         />
       ) : (

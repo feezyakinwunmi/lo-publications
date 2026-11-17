@@ -1,19 +1,17 @@
-// Scans public/covers and public/authors and writes the list of available
+// Scans public/covers, public/authors, and public/team and writes the list of available
 // images to src/app/data/image-manifest.json. Runs automatically before
 // `npm run dev` and `npm run build`; run `npm run images` to refresh by hand.
 //
-// Files can be named loosely ("Leo_s home.png", "A Weekend in Bristol.png"):
-// names are slugified the same way catalogue titles are. Names that still don't
-// match a title go in ALIASES below.
-//
-// Each image is also shrunk to a web-sized WebP in public/<folder>/web/, which
-// is what the site serves. Originals are left untouched.
-import { readdirSync, writeFileSync, existsSync, mkdirSync, statSync } from "node:fs";
+// Each image is optimized to a web-sized WebP in public/<folder>/web/:
+// - covers: 450x600 (3:4 ratio) using contain + white background (prevents distortion & CLS)
+// - authors: 400x400 (1:1 ratio) square avatar
+// - team: 300x300 (1:1 ratio) square avatar
+import { readdirSync, writeFileSync, existsSync, mkdirSync, statSync, copyFileSync } from "node:fs";
 import { join, parse } from "node:path";
 
 const root = process.cwd();
 const IMAGE = /\.(jpe?g|png|webp|avif)$/i;
-const WIDTH = { covers: 600, authors: 500 };
+const FORCE = process.argv.includes("--force");
 
 // slugified filename -> catalogue slug
 const ALIASES = {
@@ -32,7 +30,10 @@ const ALIASES = {
   },
   authors: {
     "ayokunle-bamigboye": "david-cross",
+    "pastor-ireti-sholola": "ireti-sholola",
+    "bishop-jesse-dibal": "jesse-dibal",
   },
+  team: {},
 };
 
 // Must match slugify() in src/app/data/catalogue.ts; "_s" covers apostrophes
@@ -53,26 +54,116 @@ try {
   console.warn("images: sharp not available, serving original files unoptimised");
 }
 
+async function ensureStaticAssets() {
+  const p = (rel) => join(root, "public", rel);
+
+  // Logo fallback
+  if (existsSync(p("logolop.png")) && !existsSync(p("logo.png"))) {
+    copyFileSync(p("logolop.png"), p("logo.png"));
+  }
+
+  // Deborah Adebayo cover fallback
+  if (existsSync(p("covers/names-ive-worn.jpeg")) && !existsSync(p("niw.jpg"))) {
+    copyFileSync(p("covers/names-ive-worn.jpeg"), p("niw.jpg"));
+  }
+
+  // Missing pexels fallback
+  if (existsSync(p("covers/names-ive-worn.jpeg")) && !existsSync(p("pexels-jessbaileydesign-762685.png"))) {
+    copyFileSync(p("covers/names-ive-worn.jpeg"), p("pexels-jessbaileydesign-762685.png"));
+  }
+
+  if (!sharp) return;
+
+  // Publishing experience strip
+  if (existsSync(p("book.jpg")) && !existsSync(p("publishing-experience.webp"))) {
+    await sharp(p("book.jpg"))
+      .resize({ width: 960, height: 420, fit: "cover", position: "center" })
+      .webp({ quality: 80 })
+      .toFile(p("publishing-experience.webp"));
+  }
+  if (existsSync(p("publishing-experience.webp")) && !existsSync(p("img1.jpg"))) {
+    await sharp(p("publishing-experience.webp")).jpeg({ quality: 80 }).toFile(p("img1.jpg"));
+  }
+
+  // Author principles 4:5 visual
+  if (existsSync(p("book.jpg")) && !existsSync(p("author-principles.webp"))) {
+    await sharp(p("book.jpg"))
+      .resize({ width: 600, height: 750, fit: "cover", position: "center" })
+      .webp({ quality: 82 })
+      .toFile(p("author-principles.webp"));
+  }
+
+  // OpenGraph fallback images
+  if (!existsSync(p("og-home.jpg"))) {
+    const ogHomeSvg = Buffer.from(`
+      <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1200" height="630" fill="#141010" />
+        <text x="100" y="240" font-family="sans-serif" font-size="28" font-weight="700" fill="#e0474d">LO PUBLICATIONS</text>
+        <text x="100" y="320" font-family="sans-serif" font-size="56" font-weight="900" fill="#ffffff">Your Story Deserves a Book</text>
+        <text x="100" y="380" font-family="sans-serif" font-size="24" fill="#cccccc">Editorial, cover design, formatting, and publishing services.</text>
+      </svg>
+    `);
+    await sharp(ogHomeSvg).jpeg({ quality: 90 }).toFile(p("og-home.jpg"));
+  }
+
+  if (!existsSync(p("og-books.jpg"))) {
+    const ogBooksSvg = Buffer.from(`
+      <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1200" height="630" fill="#141010" />
+        <text x="100" y="240" font-family="sans-serif" font-size="28" font-weight="700" fill="#e0474d">LO PUBLICATIONS CATALOGUE</text>
+        <text x="100" y="320" font-family="sans-serif" font-size="56" font-weight="900" fill="#ffffff">Our Published Works</text>
+        <text x="100" y="380" font-family="sans-serif" font-size="24" fill="#cccccc">Browse our catalogue of published books across diverse genres.</text>
+      </svg>
+    `);
+    await sharp(ogBooksSvg).jpeg({ quality: 90 }).toFile(p("og-books.jpg"));
+  }
+}
+
 async function scan(folder) {
   const dir = join(root, "public", folder);
   const webDir = join(dir, "web");
   const found = {};
 
   if (existsSync(dir)) {
+    mkdirSync(webDir, { recursive: true });
     for (const file of readdirSync(dir).sort()) {
       if (!IMAGE.test(file)) continue;
       let name = slugify(parse(file).name);
       // "pastor-kayode-adekoya.jpg" -> "kayode-adekoya": titles aren't part of author slugs
       if (folder === "authors") name = name.replace(/^(pastor|bishop|mrs|mr|dr)-/, "");
-      const slug = ALIASES[folder][name] ?? name;
+      const slug = ALIASES[folder]?.[name] ?? name;
       found[slug] = `/${folder}/${encodeURIComponent(file)}`;
 
       if (!sharp) continue;
       const src = join(dir, file);
       const out = join(webDir, `${slug}.webp`);
-      if (!existsSync(out) || statSync(out).mtimeMs < statSync(src).mtimeMs) {
-        mkdirSync(webDir, { recursive: true });
-        await sharp(src).resize({ width: WIDTH[folder], withoutEnlargement: true }).webp({ quality: 80 }).toFile(out);
+
+      const needsBuild =
+        FORCE ||
+        !existsSync(out) ||
+        statSync(out).mtimeMs < statSync(src).mtimeMs;
+
+      if (needsBuild) {
+        try {
+          if (folder === "covers") {
+            await sharp(src)
+              .resize({ width: 450, height: 600, fit: "cover", position: "center" })
+              .webp({ quality: 82 })
+              .toFile(out);
+          } else if (folder === "authors") {
+            await sharp(src)
+              .resize({ width: 400, height: 400, fit: "cover", position: "top" })
+              .webp({ quality: 82 })
+              .toFile(out);
+          } else if (folder === "team") {
+            await sharp(src)
+              .resize({ width: 300, height: 300, fit: "cover", position: "top" })
+              .webp({ quality: 82 })
+              .toFile(out);
+          }
+        } catch (err) {
+          console.warn(`Failed to optimize ${src}:`, err.message);
+        }
       }
     }
   }
@@ -86,11 +177,18 @@ async function scan(folder) {
   return found;
 }
 
-const manifest = { covers: await scan("covers"), authors: await scan("authors") };
+await ensureStaticAssets();
+
+const manifest = {
+  covers: await scan("covers"),
+  authors: await scan("authors"),
+  team: await scan("team"),
+};
+
 writeFileSync(
   join(root, "src", "app", "data", "image-manifest.json"),
   JSON.stringify(manifest, null, 2) + "\n"
 );
 console.log(
-  `images: ${Object.keys(manifest.covers).length} book covers, ${Object.keys(manifest.authors).length} author photos`
+  `images: ${Object.keys(manifest.covers).length} book covers, ${Object.keys(manifest.authors).length} author photos, ${Object.keys(manifest.team).length} team photos`
 );

@@ -127,7 +127,12 @@ export default function TeamPage() {
               >
                 <div className="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#8d171c] shadow-lg group-hover:shadow-2xl transition-shadow">
         <img
-         src={member.photo_url || "https://via.placeholder.com/400?text=No+Photo"}          alt={member.name}
+          src={member.photo_url || "/team/web/layo-obidike.webp"}
+          alt={member.name}
+          width={144}
+          height={144}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-300"
         />
       </div>
@@ -170,9 +175,11 @@ export default function TeamPage() {
                     <div className="flex-shrink-0">
                       <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-red-900/20 shadow-xl mx-auto md:mx-0">
                         <img
-                          src={selectedMember.photo_url || "https://via.placeholder.com/400?text=No+Photo"}
+                          src={selectedMember.photo_url || "/team/web/layo-obidike.webp"}
                           alt={selectedMember.name}
-                          className="w-full h-full object-contain bg-black"
+                          width={320}
+                          height={320}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     </div>

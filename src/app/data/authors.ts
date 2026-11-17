@@ -39,7 +39,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "layo-obidike",
     legacySlug: "rhapsody-of-love-layo-obidike",
     name: "Layo Obidike",
-    photo: "/Layo-Obidike.png",
+    photo: "/authors/web/layo-obidike.webp",
     profession: "Poet, Writer, Entrepreneur, and Educator",
     bio: "Oluwabunmilayo Obidike — affectionately called Layo — is a passionate poet, writer, and visionary entrepreneur. She discovered her love for poetry at a tender age, using it as a therapeutic outlet to navigate her childhood trauma. Beyond her poetic expressions, Layo is a devoted wife and mother, currently living joyfully with her family in Canada. Her daily life beautifully blends being a wife, mother, and sister. She is also a writer, volunteer, and entrepreneur. In addition to her writing pursuits, Layo is a visionary entrepreneur, consistently crafting innovative solutions and contributing to creative endeavors. Her greatest values are love and cooperation, which drive her advocacy for the cooperative business model. She is the Director General for the Thriveon Entrepreneur Nonprofit model that aims to empower entrepreneurs for a thriving future.",
     mission:
@@ -51,7 +51,7 @@ const authorProfiles: FeaturedAuthor[] = [
         title: "Rhapsody of Love",
         slug: "rhapsody-of-love",
         genre: "Inspirational / Christian Living",
-        coverImage: "/rl.jpg",
+        coverImage: "/covers/web/rhapsody-of-love.webp",
         synopsis:
           "A transformational book combining reflections, poetry, guided exercises and scriptural insights to help readers experience healing, self-love, forgiveness, and authentic relationships.",
         publishedDate: "2025-01-15",
@@ -95,7 +95,7 @@ const authorProfiles: FeaturedAuthor[] = [
         title: "The Crown and the Burden",
         slug: "the-crown-and-the-burden",
         genre: "Memoir / Literary Nonfiction",
-        coverImage: "/crown.jpg",
+        coverImage: "/covers/web/the-crown-and-the-burden.webp",
         synopsis:
           "A reflective memoir that explores identity, family dynamics, birth order, resilience, forgiveness, and healing through the author's experience as a firstborn daughter in a Nigerian polygamous household.",
         publishedDate: "2025-02-20",
@@ -126,7 +126,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "omolara-adeola",
     legacySlug: "a-visit-to-aunt-ngozi-omolara-adeola",
     name: "Omolara Adeola",
-    photo: "/Adeola-1.jpg",
+    photo: "/authors/web/adeola-adekoya.webp",
     profession: "Educator, Author, and Motivational Speaker",
     bio: "Omolara Adeola is a seasoned educator, leader, and motivational speaker — a force to be reckoned with in the education sector. With over thirteen years of experience across primary and secondary education, she has established herself as a teacher of teachers, inspiring generations of students and educators alike. She holds a Master's degree in International Business Management from Sheffield Hallam University, UK, and a Certificate of Participation in Management from IESEG School of Management, France, bringing a unique global perspective to her work. She also holds a Bachelor of Education in English Language & Literature from Tai Solarin University of Education, Nigeria, and is a registered and chartered teacher with the Teachers Registration Council of Nigeria (TRCN). Known among her peers as a teacher of teachers, Omolara has trained, mentored, and inspired many to rediscover the joy and dignity of the teaching profession. Beyond her professional achievements, she is a devoted wife and mother — she often describes her family as her greatest ministry and the foundation that grounds her calling to educate, empower, and lead with integrity.",
     mission:
@@ -139,7 +139,7 @@ const authorProfiles: FeaturedAuthor[] = [
         title: "A Visit to Aunt Ngozi",
         slug: "a-visit-to-aunt-ngozi",
         genre: "Children's Fiction / Educational",
-        coverImage: "/ngozi.jpg",
+        coverImage: "/covers/web/a-visit-to-aunt-ngozi.webp",
         synopsis:
           "A culturally rich children's story that celebrates the beauty of family, community, and everyday learning through a memorable visit to a beloved aunt.",
         publishedDate: "2025-03-10",
@@ -170,7 +170,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "ireti-sholola",
     legacySlug: "kingdom-strategies-pastor-ireti-sholola",
     name: "Pastor Ireti Sholola",
-    photo: "/ireti-sholola.png",
+    photo: "/authors/web/ireti-sholola.webp",
     profession: "Entrepreneur, Leadership Mentor, and Christian Minister",
     bio: "Pastor Ireti Sholola is a visionary leader, spiritual mentor, and seasoned entrepreneur who believes that business is a divine calling. With decades of experience spanning leadership, human resources, and travel consultancy, she has dedicated her life to helping individuals turn God-given visions into viable, sustainable ventures. A passionate teacher of Kingdom entrepreneurship, Pastor Ireti blends divine wisdom with practical strategies, empowering everyday people to build extraordinary businesses without compromising their faith or integrity. Her approach is rooted in the belief that true success is measured by purpose and impact as much as profit. She is the founder and lead consultant at Living Hope Travels, a thriving travel and tourism business recognised for its customer care, operational excellence, and commitment to service. She also serves in ministry, where her firm yet graceful voice, faith-centred guidance, and practical counsel have inspired many to pursue their God-given assignments with courage and discipline. Pastor Ireti is deeply committed to mentoring the next generation of leaders, with a focus on instilling the principles of starting small, building strong, and scaling wisely. She lives in Lagos, Nigeria, where she balances ministry and business while cherishing time with her family, especially her beloved sons.",
     mission:
@@ -183,7 +183,7 @@ const authorProfiles: FeaturedAuthor[] = [
         title: "Kingdom Strategies for Purpose-Driven Entrepreneurs",
         slug: "kingdom-strategies-for-purpose-driven-entrepreneurs",
         genre: "Christian Entrepreneurship",
-        coverImage: "/kingdom.jpg",
+        coverImage: "/covers/web/kingdom-strategies-for-purpose-driven-entrepreneurs.webp",
         synopsis:
           "A transformative book bridging faith and entrepreneurship with practical, Scripture-based strategies for leadership, stewardship, integrity, and sustainable business growth.",
         publishedDate: "2025-04-05",
@@ -212,6 +212,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "oluwaseun-deborah-adebayo",
     legacySlug: "names-ive-worn-oluwaseun-deborah-adebayo",
     name: "Oluwaseun Deborah Adebayo",
+    photo: "/authors/web/oluwaseun-deborah-adebayo.webp",
     profession: "Storyteller, Memoir Writer, and Creative Artist",
     bio: "Oluwaseun Deborah Adebayo is a woman of words and wonder — a storyteller whose voice carries both grace and grit. She writes from the deep thoughts, from the ache and the beauty, from the lessons that come slowly but stay long. Her writing is not just craft; it is calling, and her stories are offerings. Through her platform, Crafts and Impressions, Deborah shares more than art; she shares presence. Her hands create what her heart prays, and every piece is shaped with intention. She is a daughter of heritage and healing, shaped by her Nigerian roots and her Canadian soil. Her stories remember, they rebuild, and they remind us that we are never too broken for beauty. In her debut collection, Names I've Worn, she traces the journey of becoming — through loss and laughter, through silence and scripture, through the seasons only God can measure. Deborah believes that healing is holy, that stories are sacred, and that even when life feels uncertain, God still writes in complete sentences. She writes for the woman who feels behind, for the one who stayed too long or left too soon, for the one who is learning to rise again — softly, slowly, and surely. She lives in Ottawa with her husband and lovely family, where faith fills her home.",
     mission:
@@ -224,7 +225,7 @@ const authorProfiles: FeaturedAuthor[] = [
         title: "Names I've Worn",
         slug: "names-ive-worn",
         genre: "Inspirational Memoir / Women's Literature",
-        coverImage: "/niw.jpg",
+        coverImage: "/covers/web/names-ive-worn.webp",
         synopsis:
           "An inspirational memoir exploring identity, grief, healing, resilience, and faith through the experiences of Deborah Adebayo and the women whose lives shaped her.",
         publishedDate: "2025-05-12",
@@ -257,7 +258,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "jesse-dibal",
     legacySlug: "the-5-star-woman-bishop-jesse-dibal",
     name: "Bishop Jesse Dibal",
-    photo: "/bishop-jesse-dibal.jpeg",
+    photo: "/authors/web/jesse-dibal.webp",
 
     profession: "Visionary Leader, Author, and Teacher",
     bio: "Bishop Jesse Dibal is a seasoned visionary leader, author, and teacher with a deep commitment to spiritual growth, kingdom impact, and practical discipleship. With years of ministry experience, he has served churches, led conferences, and equipped believers across cultures to walk confidently in their God-given purpose. His teachings flow from a firm foundation in Scripture and a passion for raising up mature, capable, and faithful followers of Jesus. Jesse's work extends beyond the local church into entrepreneurial, mentoring, and thought-leadership spaces where he inspires others to pursue excellence in character, calling, and influence. He is known for his directness and commitment to truth lived out in everyday life. He shares his life and ministry more widely through social media and digital platforms where he connects with a global audience.",
@@ -385,7 +386,7 @@ const authorProfiles: FeaturedAuthor[] = [
     slug: "david-cross",
     legacySlug: "novi-sa-protocol-david-cross",
     name: "Ayokunle Bamigboye",
-    photo: "/mr-ayokunle-bamigboye.jpg",
+    photo: "/authors/web/david-cross.webp",
     profession: "Author and Business Writer",
     bio: "Ayokunle Bamigboye is the author of Novi SA Protocol, a business title exploring professional protocols, strategy, and operational excellence in the modern marketplace.",
     mission:

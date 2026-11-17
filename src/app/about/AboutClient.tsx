@@ -178,7 +178,15 @@ export default function AboutClient() {
                     aria-label={`${cover.title} by ${cover.author}`}
                   >
                     <div className="aspect-[3/4] overflow-hidden rounded-lg border-4 border-white bg-white shadow-[18px_24px_50px_rgba(0,0,0,.22)]">
-                      <img src={cover.src} alt={cover.title} className="h-full w-full object-cover" />
+                      <img
+                        src={cover.src}
+                        alt={cover.title}
+                        width={450}
+                        height={600}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
                     </div>
                   </Link>
                 </motion.div>
@@ -412,6 +420,10 @@ export default function AboutClient() {
                     <img
                       src={cover.src}
                       alt={cover.title}
+                      width={450}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -471,6 +483,10 @@ function PublishingCategories() {
                 <img
                   src={cat.img}
                   alt={`${cat.title} book cover`}
+                  width={450}
+                  height={600}
+                  loading="lazy"
+                  decoding="async"
                   className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
                     isActive ? "scale-105 opacity-60" : "scale-100 opacity-35 grayscale"
                   }`}

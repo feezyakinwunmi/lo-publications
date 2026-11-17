@@ -7,7 +7,7 @@ const serviceGroups = [
     eyebrow: "01 — Editorial Services",
     title: "Give Your Manuscript the Attention It Deserves",
     introduction: "We assess, refine, and prepare your manuscript with care—strengthening the work while preserving your voice, message, and intent.",
-    image: "/book.jpg",
+    image: "/covers/web/names-ive-worn.webp",
     imageAlt: "A professionally produced LO Publications book",
     icon: PenTool,
     services: [
@@ -23,7 +23,7 @@ const serviceGroups = [
     eyebrow: "02 — Book Design & Visual Development",
     title: "Design That Makes a Confident First Impression",
     introduction: "From the first look at the cover to the final page, we create a visual reading experience that reflects your book and respects your reader.",
-    image: "/crown.jpg",
+    image: "/covers/web/the-crown-and-the-burden.webp",
     imageAlt: "Example of a book cover produced by LO Publications",
     icon: Brush,
     services: [
@@ -37,7 +37,7 @@ const serviceGroups = [
     eyebrow: "03 — Publishing Services",
     title: "A Clear Path From Approval to Publication",
     introduction: "We manage the technical and practical work of preparing your book for publication, with clear milestones, communication, and approvals throughout.",
-    image: "/kingdom.jpg",
+    image: "/covers/web/the-kingdom-of-priests.webp",
     imageAlt: "Another LO Publications book cover",
     icon: BookOpen,
     services: [
@@ -52,7 +52,7 @@ const serviceGroups = [
     eyebrow: "04 — Author Development & Promotion",
     title: "Present Your Book — and Yourself — Professionally",
     introduction: "Additional author and promotional support is available for writers who want to build their platform, launch thoughtfully, and reach readers with confidence.",
-    image: "/rl.jpg",
+    image: "/covers/web/rhapsody-of-love.webp",
     imageAlt: "A book produced by LO Publications",
     icon: Rocket,
     services: [
@@ -100,7 +100,7 @@ export default function ServicesPage() {
               <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
                 <div className={imageFirst ? "lg:order-2" : ""}>
                   <div className="relative overflow-hidden rounded-3xl bg-[#efe9e2] shadow-xl">
-                    <img src={group.image} alt={group.imageAlt} className="h-[420px] w-full object-contain p-6 drop-shadow-xl md:h-[540px]" />
+                    <img src={group.image} alt={group.imageAlt} width={450} height={600} loading="lazy" decoding="async" className="h-[420px] w-full object-contain p-6 drop-shadow-xl md:h-[540px]" />
                     <div className="absolute bottom-5 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#8d171c] shadow-lg"><Icon size={22} /></div>
                   </div>
                 </div>

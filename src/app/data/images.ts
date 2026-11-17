@@ -5,6 +5,7 @@ import manifest from "./image-manifest.json";
 
 const covers: Record<string, string> = manifest.covers;
 const authors: Record<string, string> = manifest.authors;
+const team: Record<string, string> = (manifest as { team?: Record<string, string> }).team ?? {};
 
 export function coverFor<T extends string | undefined>(bookSlug: string, fallback: T): string | T {
   return covers[bookSlug] ?? fallback;
@@ -12,4 +13,8 @@ export function coverFor<T extends string | undefined>(bookSlug: string, fallbac
 
 export function photoFor<T extends string | undefined>(authorSlug: string, fallback: T): string | T {
   return authors[authorSlug] ?? fallback;
+}
+
+export function teamPhotoFor<T extends string | undefined>(memberSlug: string, fallback: T): string | T {
+  return team[memberSlug] ?? fallback;
 }

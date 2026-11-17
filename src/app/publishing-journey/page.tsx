@@ -18,7 +18,7 @@ const journey = [
     description: "We review your manuscript’s current stage and discuss the appropriate editorial, design, and publishing pathway. This helps establish a clear scope of work, practical timelines, and the agreed deliverables for your project.",
     details: ["Assess manuscript readiness, content, and structure.", "Identify the editorial and production support required.", "Confirm the agreed publishing scope, milestones, and responsibilities."],
     icon: FileSearch,
-    image: "/pexels-jessbaileydesign-762685.png",
+    image: "/covers/web/names-ive-worn.webp",
   },
   {
     number: "03",
@@ -27,7 +27,7 @@ const journey = [
     description: "Once your manuscript is approved for design, we develop a professional visual direction for your book. This includes the cover and interior presentation, with careful attention to audience, genre, readability, and the author’s vision.",
     details: ["Develop and approve the cover design direction.", "Create the interior layout and typesetting.", "Coordinate agreed illustrations, diagrams, or visual elements."],
     icon: Palette,
-    image: "/crown.jpg",
+    image: "/covers/web/the-crown-and-the-burden.webp",
   },
   {
     number: "04",
@@ -36,7 +36,7 @@ const journey = [
     description: "Following editorial refinement and design approval, we prepare your book for publication. This stage includes final manuscript checks, publication documentation, and the technical preparation of your book files.",
     details: ["Complete final manuscript preparation and publication metadata.", "Provide ISBN application and publishing registration assistance, where agreed.", "Prepare applicable print-ready and digital files, then review and approve them before publication."],
     icon: FileCheck2,
-    image: "/kingdom.jpg",
+    image: "/covers/web/the-kingdom-of-priests.webp",
     refinements: [
       ["Developmental Editing", "Strengthening the manuscript’s central ideas, content, structure, argument, and overall direction."],
       ["Structural Editing", "Improving the organisation, sequence, flow, and arrangement of chapters and sections."],
@@ -52,7 +52,7 @@ const journey = [
     description: "With your book published, we can support the next stage of your journey according to your selected package or agreed services. This may include launch planning, author materials, promotional assets, and practical guidance for presenting your book professionally.",
     details: ["Plan agreed launch activities and timelines.", "Prepare selected promotional and author-platform materials.", "Coordinate additional marketing, media, or publicity support where contracted."],
     icon: Rocket,
-    image: "/rl.jpg",
+    image: "/covers/web/rhapsody-of-love.webp",
   },
 ];
 
@@ -89,7 +89,7 @@ export default function PublishingJourneyPage() {
               <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
                 <div className={imageSecond ? "lg:order-2" : ""}>
                   <div className="relative overflow-hidden rounded-3xl bg-[#f8f6f3] shadow-xl">
-                    <img src={step.image} alt="LO Publications publishing process" className="h-[340px] w-full object-cover md:h-[470px]" />
+                    <img src={step.image} alt="LO Publications publishing process" width={600} height={470} loading="lazy" decoding="async" className="h-[340px] w-full object-cover md:h-[470px]" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                     <div className="absolute bottom-5 left-5 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#8d171c] shadow-lg"><Icon size={25} /></div>
                   </div>

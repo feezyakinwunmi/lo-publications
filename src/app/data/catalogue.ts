@@ -50,31 +50,31 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
   {
     name: "Oluwaseun Deborah Adebayo",
     slug: "oluwaseun-deborah-adebayo",
-    books: [["Names I’ve Worn", "memoir", { coverImage: "/niw.jpg" }]],
+    books: [["Names I’ve Worn", "memoir", { coverImage: "/covers/web/names-ive-worn.webp" }]],
   },
   {
     name: "Pastor Ireti Sholola",
     slug: "ireti-sholola",
-    books: [["Kingdom Strategies for Purpose Driven Entrepreneurs", "leadership", { coverImage: "/kingdom.jpg" }]],
+    books: [["Kingdom Strategies for Purpose Driven Entrepreneurs", "leadership", { coverImage: "/covers/web/kingdom-strategies-for-purpose-driven-entrepreneurs.webp" }]],
   },
   {
     name: "Omolara Adeola",
     slug: "omolara-adeola",
     books: [
       ["Light at the End of the Tunnel", "fiction"],
-      ["A Visit to Aunt Ngozi", "fiction", { coverImage: "/ngozi.jpg" }],
+      ["A Visit to Aunt Ngozi", "fiction", { coverImage: "/covers/web/a-visit-to-aunt-ngozi.webp" }],
     ],
   },
   {
     name: "Temitope Soewu",
     slug: "temitope-soewu",
-    books: [["The Crown and The Burden", "memoir", { coverImage: "/crown.jpg" }]],
+    books: [["The Crown and The Burden", "memoir", { coverImage: "/covers/web/the-crown-and-the-burden.webp" }]],
   },
   {
     name: "Layo Obidike",
     slug: "layo-obidike",
     books: [
-      ["Rhapsody of Love", "christian", { coverImage: "/rl.jpg" }],
+      ["Rhapsody of Love", "christian", { coverImage: "/covers/web/rhapsody-of-love.webp" }],
       ["See The Bee", "picture"],
       ["The Ant and the Termite", "picture"],
       ["The Empowered Teens Daily Affirmations", "leadership"],

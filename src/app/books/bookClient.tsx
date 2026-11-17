@@ -248,7 +248,7 @@ function BookGrid({ books, onSelect }: { books: CatalogueBook[]; onSelect: (book
     <div className="grid grid-cols-2 gap-x-5 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {books.map((book, index) => (
         <motion.article
-          key={book.slug}
+          key={`${book.slug}-${book.authorSlug}-${index}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}

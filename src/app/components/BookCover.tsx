@@ -14,7 +14,15 @@ export default function BookCover({
   if (book.coverImage) {
     return (
       <div className={`aspect-[3/4] overflow-hidden bg-white ${className}`}>
-        <img src={book.coverImage} alt={book.title} className="h-full w-full object-cover" loading="lazy" />
+        <img
+          src={book.coverImage}
+          alt={book.title}
+          width={450}
+          height={600}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
       </div>
     );
   }
