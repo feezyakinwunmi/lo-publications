@@ -47,7 +47,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2074",
     category: "Book Marketing",
     readTime: "13 min read",
-    date: "January 21, 2026",
+    date: "January 22, 2026",
     author: "LOPublications"
   },
   {
@@ -58,7 +58,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069",
     category: "Publishing",
     readTime: "17 min read",
-    date: "January 21, 2026",
+    date: "January 23, 2026",
     author: "LOPublications"
   },
   {
@@ -69,7 +69,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072",
     category: "Writing Career",
     readTime: "15 min read",
-    date: "January 21, 2026",
+    date: "January 24, 2026",
     author: "LOPublications"
   },
   {
@@ -80,7 +80,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=2074",
     category: "Self-Publishing",
     readTime: "15 min read",
-    date: "January 21, 2026",
+    date: "January 25, 2026",
     author: "LOPublications"
   },
   {
@@ -91,7 +91,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022",
     category: "Faith & Teens",
     readTime: "16 min read",
-    date: "January 21, 2026",
+    date: "January 26, 2026",
     author: "LOPublications"
   },
   {
@@ -102,7 +102,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070",
     category: "Faith & Writing",
     readTime: "17 min read",
-    date: "January 21, 2026",
+    date: "January 27, 2026",
     author: "LOPublications"
   },
   {
@@ -113,7 +113,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070",
     category: "Storytelling",
     readTime: "12 min read",
-    date: "January 21, 2026",
+    date: "January 28, 2026",
     author: "LOPublications"
   },
   {
@@ -124,7 +124,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=2098",
     category: "Book Lists",
     readTime: "7 min read",
-    date: "January 21, 2026",
+    date: "January 29, 2026",
     author: "LOPublications"
   },
   {
@@ -146,7 +146,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2073",
     category: "Teen Writing",
     readTime: "6 min read",
-    date: "January 20, 2026",
+    date: "January 19, 2026",
     author: "LOPublications"
   },
   {
@@ -157,7 +157,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2090",
     category: "Self-Publishing",
     readTime: "4 min read",
-    date: "January 20, 2026",
+    date: "January 18, 2026",
     author: "LOPublications"
   },
   {
@@ -236,7 +236,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1200&h=500&fit=crop",
     category: "Writing Craft",
     readTime: "5 min read",
-    date: "July 14, 2026",
+    date: "July 13, 2026",
     author: "LOPublications"
   },
   {
@@ -313,7 +313,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=1200&h=500&fit=crop",
     category: "Book Marketing",
     readTime: "15 min read",
-    date: "October 20, 2026",
+    date: "October 19, 2026",
     author: "LOPublications"
 },
 {
@@ -324,7 +324,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=500&fit=crop",
     category: "Web Design",
     readTime: "12 min read",
-    date: "October 20, 2026",
+    date: "October 18, 2026",
     author: "LOPublications"
 },
 {
@@ -346,7 +346,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=500&fit=crop",
     category: "Children's Books",
     readTime: "6 min read",
-    date: "October 29, 2026",
+    date: "October 27, 2026",
     author: "LOPublications"
 },
 {
@@ -357,7 +357,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=1200&h=500&fit=crop",
     category: "Children's Books",
     readTime: "7 min read",
-    date: "October 30, 2026",
+    date: "October 31, 2026",
     author: "LOPublications"
 },
 {
@@ -381,10 +381,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/the-secret-of-good-writing/hero.webp",
     category: "Writing",
     readTime: "12 min read",
-    date: "November 4, 2026",
+    date: "November 3, 2026",
     author: "Layo Obidike",
     keyword: "simple writing",
-    isoDate: "2026-11-04"
+    isoDate: "2026-11-03"
 },
 {
     id: 34,
@@ -394,10 +394,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/declutter-your-writing/hero.webp",
     category: "Writing",
     readTime: "8 min read",
-    date: "November 4, 2026",
+    date: "November 2, 2026",
     author: "Layo Obidike",
     keyword: "declutter your writing",
-    isoDate: "2026-11-04"
+    isoDate: "2026-11-02"
 },
 {
     id: 35,
@@ -407,10 +407,10 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/be-yourself-on-the-page/hero.webp",
     category: "Writing",
     readTime: "12 min read",
-    date: "November 4, 2026",
+    date: "November 1, 2026",
     author: "Layo Obidike",
     keyword: "finding your writing voice",
-    isoDate: "2026-11-04"
+    isoDate: "2026-11-01"
 },
 {
     id: 36,
@@ -420,9 +420,9 @@ export const allBlogPosts: BlogPost[] = [
     image: "/blog/write-for-yourself-first/hero.webp",
     category: "Writing",
     readTime: "5 min read",
-    date: "November 4, 2026",
+    date: "October 25, 2026",
     author: "Layo Obidike",
     keyword: "write for yourself first",
-    isoDate: "2026-11-04"
+    isoDate: "2026-10-25"
 }
 ];

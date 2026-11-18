@@ -28,6 +28,16 @@ type BlogPost = {
   published_at?: string | null;
 };
 
+const toDateInputValue = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+const todayDate = () => toDateInputValue(new Date());
+
+const getStaticPostDate = (post: (typeof allBlogPosts)[number]) => {
+  const date = new Date(post.isoDate ?? post.date);
+  return Number.isNaN(date.getTime()) ? null : toDateInputValue(date);
+};
+
 export default function AdminBlog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -189,6 +199,31 @@ const handleImageUpload = async (file: File): Promise<string> => {
       return;
     }
 
+    if (nextStatus === "published") {
+      const publishDate = pubDate || currentPost?.published_at?.slice(0, 10) || todayDate();
+      if (publishDate > todayDate()) {
+        setError("Publish date cannot be in the future.");
+        return;
+      }
+
+      const staticDateConflict = allBlogPosts.find((post) => getStaticPostDate(post) === publishDate);
+      if (staticDateConflict) {
+        setError(`Another blog post already uses ${staticDateConflict.date}. Choose a different date.`);
+        return;
+      }
+
+      const databaseDateConflict = posts.find(
+        (post) =>
+          post.status === "published" &&
+          post.id !== currentPost?.id &&
+          post.published_at?.slice(0, 10) === publishDate
+      );
+      if (databaseDateConflict) {
+        setError("Another published blog post already uses that date. Choose a different date.");
+        return;
+      }
+    }
+
     setSaving(true);
     setError(null);
 
@@ -294,6 +329,11 @@ const handleImageUpload = async (file: File): Promise<string> => {
                 <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">{post.title}</h3>
                 {post.publisher_name && (
                   <p className="text-sm text-gray-600 mb-2">By {post.publisher_name}</p>
+                )}
+                {post.published_at && (
+                  <p className="text-sm text-gray-500 mb-2">
+                    Publish date: {new Date(post.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
+                  </p>
                 )}
                 <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
                   <span className={`rounded-full px-3 py-1 text-xs font-semibold ${post.status === "published" ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}`}>
@@ -425,9 +465,10 @@ const handleImageUpload = async (file: File): Promise<string> => {
                     type="date"
                     value={pubDate}
                     onChange={(e) => setPubDate(e.target.value)}
+                    max={todayDate()}
                     className="w-full px-5 text-black py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-900"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Leave blank to use today. You can back-date a post.</p>
+                  <p className="mt-1 text-xs text-gray-500">Choose today or an earlier date. Each date can be used for one published blog only.</p>
                 </div>
               </div>
 
