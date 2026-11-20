@@ -1,6 +1,7 @@
 // app/blog/[slug]/page.tsx
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Calendar, User, TrendingUp } from 'lucide-react';
 import { allBlogPosts, type BlogPost } from '@/app/data/blog';
 import { getDbPosts, getDbPostBySlug } from '@/app/data/getBlogPosts';
@@ -187,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
   const resolved = await resolvePost(slug);
 
   if (!resolved) {
-    return <div className="pt-40 text-center">Post not found</div>;
+    notFound();
   }
   const { post, html } = resolved;
   const isSeo = Boolean(post.keyword || post.fromDb);

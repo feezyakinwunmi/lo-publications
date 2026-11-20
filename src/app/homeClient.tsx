@@ -55,6 +55,11 @@ type Book = {
   published_year?: number | null;
 };
 
+const isAdultCatalogueBook = (book: CatalogueBook) =>
+  !["picture", "childfic", "education"].includes(book.category) &&
+  !/\b(?:children|child|kids|teens?)\b/i.test(book.title) &&
+  book.slug !== "a-visit-to-aunt-ngozi";
+
 const tickerText = `${SITE_STATS.books} Published Titles • Author-Centric Process • Fast Turnaround Times • Global Distribution Support • Faith-Friendly, Values-Aligned Publishing • Your Story Deserves Excellence • `;
 
 // Team members data
@@ -157,11 +162,12 @@ export default function HomeClient() {
   };
 
   // Library strip: two rows of covers, alternating titles so neighbours differ
-  const libraryBooks = [...catalogue].sort((a, b) => Number(!!b.coverImage) - Number(!!a.coverImage)).slice(0, 36);
+  const adultCatalogue = catalogue.filter(isAdultCatalogueBook);
+  const libraryBooks = [...adultCatalogue].sort((a, b) => Number(!!b.coverImage) - Number(!!a.coverImage)).slice(0, 36);
   const libraryRowA = libraryBooks.filter((_, i) => i % 2 === 0);
   const libraryRowB = libraryBooks.filter((_, i) => i % 2 === 1);
 
-  const heroCovers: Book[] = catalogue
+  const heroCovers: Book[] = adultCatalogue
     .filter((book) => book.coverImage)
     .slice(0, 4)
     .map((book, index) => ({

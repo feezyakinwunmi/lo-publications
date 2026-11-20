@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";  // ← correct name
 export const metadata = {
   title: "LO Admin Dashboard",
   description: "Manage LO Publications content",
+  robots: { index: false, follow: false },
 };
 
 export default async function AdminLayout({

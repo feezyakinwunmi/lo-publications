@@ -79,11 +79,10 @@ export default async function Page() {
         url: SITE_URL,
         logo: `${SITE_URL}/logo.png`,
         sameAs: [
-          "https://facebook.com/yourpage",
-          "https://twitter.com/yourhandle",
-          "https://instagram.com/yourhandle",
-          "https://linkedin.com/company/yourpage",
-          "https://youtube.com/@yourchannel",
+          "https://web.facebook.com/profile.php?id=61558581959123",
+          "https://x.com/Lo_Publications",
+          "https://www.instagram.com/lopublications/",
+          "https://www.linkedin.com/company/lo-publications",
         ],
         contactPoint: {
           "@type": "ContactPoint",

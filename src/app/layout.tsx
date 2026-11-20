@@ -15,6 +15,7 @@ const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL
   : null;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lopublications.com"),
   title: "LO Publications - Premium Book Publishing",
   description: "Turn your manuscript into a published masterpiece with expert guidance",
 };

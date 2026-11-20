@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Article content was migrated to /blog; preserve the old URLs.
+      { source: "/articles", destination: "/blog", permanent: true },
+      { source: "/articles/:slug", destination: "/blog/:slug", permanent: true },
       // Case Studies became Featured Authors
       { source: "/casestudies", destination: "/authors", permanent: true },
       { source: "/casestudies/:slug", destination: "/authors/all?author=:slug", permanent: true },
