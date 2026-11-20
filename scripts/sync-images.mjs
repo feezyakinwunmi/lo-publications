@@ -33,6 +33,26 @@ const ALIASES = {
     "the-protocol-of-fasting": "the-protocol-of-fasting-biblical-patterns-principles-and-practices-for-fasting",
     "spiritual-encounters": "spiritual-encounters-knowing-god-by-koinonia",
     "working-with-god": "working-with-god-a-comprehensive-biblical-study-of-work-profession-calling-skill-enterprise-and-divine-assessment",
+    "17d28aab-c046-4db4-b23b-902a3ab4515a": "light-at-the-end-of-the-tunnel",
+    "long-trek-1": "the-long-trek",
+    "pre-k": "mathematics-coursebook-pre-k",
+    "pry-1": "mathematics-coursebook-grade-1",
+    "pry-2": "mathematics-coursebook-grade-2",
+    "pry-3": "mathematics-coursebook-grade-3",
+    "pry-4": "mathematics-coursebook-grade-4",
+    "pry-5": "mathematics-coursebook-grade-5",
+    "pry-6": "mathematics-coursebook-grade-6",
+    "pry-1-plus": "my-spelling-adventure-book-1",
+    "pry-1-plus-1": "my-spelling-adventure-book-1",
+    "pry-2-plus": "my-spelling-adventure-book-2",
+    "pry-3-plus": "my-spelling-adventure-book-3",
+    "pry-4-plus": "my-spelling-adventure-book-4",
+    "pry-5-plus": "my-spelling-adventure-book-5",
+    "pry-6-plus": "my-spelling-adventure-book-6",
+    "prsyer": "prayer-journal-2027",
+    "prsyer-2": "intercessors-prayer-guide-2027",
+    "screenshot-2026-11-20-135516": "adult-sunday-bible-study-manual-fruitful-in-every-good-work-2027",
+    "screenshot-2026-11-20-135621": "sodgem-midweek-bible-study-manual-2027",
   },
   authors: {
     "ayokunle-bamigboye": "david-cross",
@@ -48,6 +68,7 @@ function slugify(text) {
   return text
     .toLowerCase()
     .replace(/_s\b/g, "s")
+    .replace(/\+/g, "-plus")
     .replace(/[’'&]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
@@ -152,7 +173,7 @@ async function scan(folder) {
       if (needsBuild) {
         try {
           if (folder === "covers") {
-            await sharp(src)
+            await sharp(src, { limitInputPixels: false })
               .resize({ width: 450, height: 600, fit: "cover", position: "center" })
               .webp({ quality: 82 })
               .toFile(out);

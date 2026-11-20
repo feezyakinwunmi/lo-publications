@@ -257,6 +257,7 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["Ministers and Workers Code of Conduct", "bible"],
       ["Prayer Journal (2026)", "bible"],
       ["Prayer Journal (2027)", "bible"],
+      ["Intercessors’ Prayer Guide (2027)", "bible"],
     ],
   },
 
