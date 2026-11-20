@@ -16,6 +16,7 @@ const FORCE = process.argv.includes("--force");
 // slugified filename -> catalogue slug
 const ALIASES = {
   covers: {
+    "a-complete-guide-to-publishing5": "a-complete-guide-to-publishing",
     "a-christmass-to-remember": "a-christmas-to-remember",
     "car-watchers": "car-watchers-vroom-zoom-beep",
     "duke-shares-his-den": "duke-shares-her-den",
@@ -27,6 +28,11 @@ const ALIASES = {
     "splish-splash": "splish-splash-wow-water-wonders",
     "then-now-always": "then-now-and-always",
     "novi-sa-protocol": "novi-sad-protocol",
+    "the-end-of-shadows": "the-end-of-shadows-from-adam-to-christ-promise-law-kingship-and-their-fulfilment-in-christ",
+    "the-nation": "the-nations-book",
+    "the-protocol-of-fasting": "the-protocol-of-fasting-biblical-patterns-principles-and-practices-for-fasting",
+    "spiritual-encounters": "spiritual-encounters-knowing-god-by-koinonia",
+    "working-with-god": "working-with-god-a-comprehensive-biblical-study-of-work-profession-calling-skill-enterprise-and-divine-assessment",
   },
   authors: {
     "ayokunle-bamigboye": "david-cross",

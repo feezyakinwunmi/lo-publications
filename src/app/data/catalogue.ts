@@ -109,7 +109,6 @@ const AUTHORS: { name: string; slug?: string; photo?: string; books: Entry[] }[]
       ["Amara Blasts Off to Space", "picture"],
       ["The Empowered Woman", "memoir"],
       ["Understanding Professional Communication", "business"],
-      ["Strive Masiyiwa’s Playbook for Entrepreneurial Success: Lessons in Business Mastery", "business"],
       ["Prayers in the Bible", "christian"],
       ["Dead to Sin, Alive in Christ: Dying to Self Daily: The Call and Cost of a Living Sacrifice", "christian"],
       ["Fasting", "christian"],
